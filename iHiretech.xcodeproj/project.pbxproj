@@ -1,0 +1,580 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8403A6BD1FA0610200222ED9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403A6BC1FA0610200222ED9 /* AppDelegate.swift */; };
+		8403A6BF1FA0610200222ED9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403A6BE1FA0610200222ED9 /* ViewController.swift */; };
+		8403A6C21FA0610200222ED9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8403A6C01FA0610200222ED9 /* Main.storyboard */; };
+		8403A6C51FA0610200222ED9 /* iHiretech.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8403A6C31FA0610200222ED9 /* iHiretech.xcdatamodeld */; };
+		8403A6C71FA0610200222ED9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8403A6C61FA0610200222ED9 /* Assets.xcassets */; };
+		8403A6CA1FA0610200222ED9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8403A6C81FA0610200222ED9 /* LaunchScreen.storyboard */; };
+		8403A6D51FA0610200222ED9 /* iHiretechTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403A6D41FA0610200222ED9 /* iHiretechTests.swift */; };
+		8403A6E01FA0610200222ED9 /* iHiretechUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403A6DF1FA0610200222ED9 /* iHiretechUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8403A6D11FA0610200222ED9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8403A6B11FA0610100222ED9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8403A6B81FA0610200222ED9;
+			remoteInfo = iHiretech;
+		};
+		8403A6DC1FA0610200222ED9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8403A6B11FA0610100222ED9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8403A6B81FA0610200222ED9;
+			remoteInfo = iHiretech;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8403A6B91FA0610200222ED9 /* iHiretech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iHiretech.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8403A6BC1FA0610200222ED9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8403A6BE1FA0610200222ED9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8403A6C11FA0610200222ED9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8403A6C41FA0610200222ED9 /* iHiretech.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iHiretech.xcdatamodel; sourceTree = "<group>"; };
+		8403A6C61FA0610200222ED9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8403A6C91FA0610200222ED9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8403A6CB1FA0610200222ED9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8403A6D01FA0610200222ED9 /* iHiretechTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iHiretechTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8403A6D41FA0610200222ED9 /* iHiretechTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iHiretechTests.swift; sourceTree = "<group>"; };
+		8403A6D61FA0610200222ED9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8403A6DB1FA0610200222ED9 /* iHiretechUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iHiretechUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8403A6DF1FA0610200222ED9 /* iHiretechUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iHiretechUITests.swift; sourceTree = "<group>"; };
+		8403A6E11FA0610200222ED9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8403A6B61FA0610200222ED9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8403A6CD1FA0610200222ED9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8403A6D81FA0610200222ED9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8403A6B01FA0610100222ED9 = {
+			isa = PBXGroup;
+			children = (
+				8403A6BB1FA0610200222ED9 /* iHiretech */,
+				8403A6D31FA0610200222ED9 /* iHiretechTests */,
+				8403A6DE1FA0610200222ED9 /* iHiretechUITests */,
+				8403A6BA1FA0610200222ED9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8403A6BA1FA0610200222ED9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8403A6B91FA0610200222ED9 /* iHiretech.app */,
+				8403A6D01FA0610200222ED9 /* iHiretechTests.xctest */,
+				8403A6DB1FA0610200222ED9 /* iHiretechUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8403A6BB1FA0610200222ED9 /* iHiretech */ = {
+			isa = PBXGroup;
+			children = (
+				8403A6BC1FA0610200222ED9 /* AppDelegate.swift */,
+				8403A6BE1FA0610200222ED9 /* ViewController.swift */,
+				8403A6C01FA0610200222ED9 /* Main.storyboard */,
+				8403A6C61FA0610200222ED9 /* Assets.xcassets */,
+				8403A6C81FA0610200222ED9 /* LaunchScreen.storyboard */,
+				8403A6CB1FA0610200222ED9 /* Info.plist */,
+				8403A6C31FA0610200222ED9 /* iHiretech.xcdatamodeld */,
+			);
+			path = iHiretech;
+			sourceTree = "<group>";
+		};
+		8403A6D31FA0610200222ED9 /* iHiretechTests */ = {
+			isa = PBXGroup;
+			children = (
+				8403A6D41FA0610200222ED9 /* iHiretechTests.swift */,
+				8403A6D61FA0610200222ED9 /* Info.plist */,
+			);
+			path = iHiretechTests;
+			sourceTree = "<group>";
+		};
+		8403A6DE1FA0610200222ED9 /* iHiretechUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8403A6DF1FA0610200222ED9 /* iHiretechUITests.swift */,
+				8403A6E11FA0610200222ED9 /* Info.plist */,
+			);
+			path = iHiretechUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8403A6B81FA0610200222ED9 /* iHiretech */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8403A6E41FA0610200222ED9 /* Build configuration list for PBXNativeTarget "iHiretech" */;
+			buildPhases = (
+				8403A6B51FA0610200222ED9 /* Sources */,
+				8403A6B61FA0610200222ED9 /* Frameworks */,
+				8403A6B71FA0610200222ED9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iHiretech;
+			productName = iHiretech;
+			productReference = 8403A6B91FA0610200222ED9 /* iHiretech.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8403A6CF1FA0610200222ED9 /* iHiretechTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8403A6E71FA0610200222ED9 /* Build configuration list for PBXNativeTarget "iHiretechTests" */;
+			buildPhases = (
+				8403A6CC1FA0610200222ED9 /* Sources */,
+				8403A6CD1FA0610200222ED9 /* Frameworks */,
+				8403A6CE1FA0610200222ED9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8403A6D21FA0610200222ED9 /* PBXTargetDependency */,
+			);
+			name = iHiretechTests;
+			productName = iHiretechTests;
+			productReference = 8403A6D01FA0610200222ED9 /* iHiretechTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8403A6DA1FA0610200222ED9 /* iHiretechUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8403A6EA1FA0610200222ED9 /* Build configuration list for PBXNativeTarget "iHiretechUITests" */;
+			buildPhases = (
+				8403A6D71FA0610200222ED9 /* Sources */,
+				8403A6D81FA0610200222ED9 /* Frameworks */,
+				8403A6D91FA0610200222ED9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8403A6DD1FA0610200222ED9 /* PBXTargetDependency */,
+			);
+			name = iHiretechUITests;
+			productName = iHiretechUITests;
+			productReference = 8403A6DB1FA0610200222ED9 /* iHiretechUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8403A6B11FA0610100222ED9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = Admin;
+				TargetAttributes = {
+					8403A6B81FA0610200222ED9 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					8403A6CF1FA0610200222ED9 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8403A6B81FA0610200222ED9;
+					};
+					8403A6DA1FA0610200222ED9 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8403A6B81FA0610200222ED9;
+					};
+				};
+			};
+			buildConfigurationList = 8403A6B41FA0610100222ED9 /* Build configuration list for PBXProject "iHiretech" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8403A6B01FA0610100222ED9;
+			productRefGroup = 8403A6BA1FA0610200222ED9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8403A6B81FA0610200222ED9 /* iHiretech */,
+				8403A6CF1FA0610200222ED9 /* iHiretechTests */,
+				8403A6DA1FA0610200222ED9 /* iHiretechUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8403A6B71FA0610200222ED9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8403A6CA1FA0610200222ED9 /* LaunchScreen.storyboard in Resources */,
+				8403A6C71FA0610200222ED9 /* Assets.xcassets in Resources */,
+				8403A6C21FA0610200222ED9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8403A6CE1FA0610200222ED9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8403A6D91FA0610200222ED9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8403A6B51FA0610200222ED9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8403A6BF1FA0610200222ED9 /* ViewController.swift in Sources */,
+				8403A6BD1FA0610200222ED9 /* AppDelegate.swift in Sources */,
+				8403A6C51FA0610200222ED9 /* iHiretech.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8403A6CC1FA0610200222ED9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8403A6D51FA0610200222ED9 /* iHiretechTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8403A6D71FA0610200222ED9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8403A6E01FA0610200222ED9 /* iHiretechUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8403A6D21FA0610200222ED9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8403A6B81FA0610200222ED9 /* iHiretech */;
+			targetProxy = 8403A6D11FA0610200222ED9 /* PBXContainerItemProxy */;
+		};
+		8403A6DD1FA0610200222ED9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8403A6B81FA0610200222ED9 /* iHiretech */;
+			targetProxy = 8403A6DC1FA0610200222ED9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8403A6C01FA0610200222ED9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8403A6C11FA0610200222ED9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8403A6C81FA0610200222ED9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8403A6C91FA0610200222ED9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8403A6E21FA0610200222ED9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8403A6E31FA0610200222ED9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8403A6E51FA0610200222ED9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C3Q38N8A85;
+				INFOPLIST_FILE = iHiretech/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.heypayless.iHiretech;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8403A6E61FA0610200222ED9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C3Q38N8A85;
+				INFOPLIST_FILE = iHiretech/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.heypayless.iHiretech;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8403A6E81FA0610200222ED9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C3Q38N8A85;
+				INFOPLIST_FILE = iHiretechTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.heypayless.iHiretechTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iHiretech.app/iHiretech";
+			};
+			name = Debug;
+		};
+		8403A6E91FA0610200222ED9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C3Q38N8A85;
+				INFOPLIST_FILE = iHiretechTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.heypayless.iHiretechTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iHiretech.app/iHiretech";
+			};
+			name = Release;
+		};
+		8403A6EB1FA0610200222ED9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C3Q38N8A85;
+				INFOPLIST_FILE = iHiretechUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.heypayless.iHiretechUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = iHiretech;
+			};
+			name = Debug;
+		};
+		8403A6EC1FA0610200222ED9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C3Q38N8A85;
+				INFOPLIST_FILE = iHiretechUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.heypayless.iHiretechUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = iHiretech;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8403A6B41FA0610100222ED9 /* Build configuration list for PBXProject "iHiretech" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8403A6E21FA0610200222ED9 /* Debug */,
+				8403A6E31FA0610200222ED9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8403A6E41FA0610200222ED9 /* Build configuration list for PBXNativeTarget "iHiretech" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8403A6E51FA0610200222ED9 /* Debug */,
+				8403A6E61FA0610200222ED9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8403A6E71FA0610200222ED9 /* Build configuration list for PBXNativeTarget "iHiretechTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8403A6E81FA0610200222ED9 /* Debug */,
+				8403A6E91FA0610200222ED9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8403A6EA1FA0610200222ED9 /* Build configuration list for PBXNativeTarget "iHiretechUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8403A6EB1FA0610200222ED9 /* Debug */,
+				8403A6EC1FA0610200222ED9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8403A6C31FA0610200222ED9 /* iHiretech.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8403A6C41FA0610200222ED9 /* iHiretech.xcdatamodel */,
+			);
+			currentVersion = 8403A6C41FA0610200222ED9 /* iHiretech.xcdatamodel */;
+			path = iHiretech.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 8403A6B11FA0610100222ED9 /* Project object */;
+}
