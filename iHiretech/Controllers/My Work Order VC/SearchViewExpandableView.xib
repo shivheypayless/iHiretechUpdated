@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Quicksand-Bold_0.ttf">
+            <string>Quicksand-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="378" height="47"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxv-qw-tZm">
+                    <rect key="frame" x="16" y="12" width="346" height="35"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search For Work Order" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWi-WN-Vnn">
+                            <rect key="frame" x="16" y="9" width="154.5" height="17.5"/>
+                            <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="15"/>
+                            <color key="textColor" red="0.98039215690000003" green="0.46666666670000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minus" translatesAutoresizingMaskIntoConstraints="NO" id="Vwc-J2-a6a">
+                            <rect key="frame" x="314" y="12.5" width="16" height="10"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="Vwc-J2-a6a" secondAttribute="height" multiplier="8:5" id="9AX-wl-CTY"/>
+                                <constraint firstAttribute="height" constant="10" id="YSr-i6-XAe"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstItem="Vwc-J2-a6a" firstAttribute="centerY" secondItem="mxv-qw-tZm" secondAttribute="centerY" id="Eby-UZ-nx7"/>
+                        <constraint firstItem="PWi-WN-Vnn" firstAttribute="centerY" secondItem="mxv-qw-tZm" secondAttribute="centerY" id="f3H-ZR-6PQ"/>
+                        <constraint firstAttribute="trailing" secondItem="Vwc-J2-a6a" secondAttribute="trailing" constant="16" id="hde-Fh-8pY"/>
+                        <constraint firstItem="PWi-WN-Vnn" firstAttribute="leading" secondItem="mxv-qw-tZm" secondAttribute="leading" constant="16" id="tdY-vN-bGK"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="mxv-qw-tZm" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="URN-V6-g47"/>
+                <constraint firstItem="mxv-qw-tZm" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="oIj-RM-Er6"/>
+                <constraint firstItem="mxv-qw-tZm" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="tZC-06-fXq"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mxv-qw-tZm" secondAttribute="trailing" constant="16" id="wCN-C9-f32"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="26" y="-257.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="minus" width="11" height="6"/>
+    </resources>
+</document>

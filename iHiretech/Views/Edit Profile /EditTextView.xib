@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Quicksand-Regular.ttf">
+            <string>Quicksand-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditTextView" customModule="iHiretech" customModuleProvider="target">
+            <connections>
+                <outlet property="borderView" destination="N4L-Nx-Q1r" id="bYT-iL-eNA"/>
+                <outlet property="detailTextField" destination="rrh-uO-6SE" id="PjH-0R-qm5"/>
+                <outlet property="lblTitle" destination="jKu-qa-MwS" id="H4c-mq-nKk"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="354" height="81"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N4L-Nx-Q1r">
+                    <rect key="frame" x="8" y="33.5" width="338" height="39.5"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rrh-uO-6SE">
+                            <rect key="frame" x="8" y="0.0" width="330" height="39.5"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="rrh-uO-6SE" firstAttribute="leading" secondItem="N4L-Nx-Q1r" secondAttribute="leading" constant="8" id="Ic6-gH-s0d"/>
+                        <constraint firstItem="rrh-uO-6SE" firstAttribute="top" secondItem="N4L-Nx-Q1r" secondAttribute="top" id="Ne7-Hc-f86"/>
+                        <constraint firstAttribute="bottom" secondItem="rrh-uO-6SE" secondAttribute="bottom" id="UiQ-70-Gfr"/>
+                        <constraint firstAttribute="trailing" secondItem="rrh-uO-6SE" secondAttribute="trailing" id="cHf-We-UEj"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label *" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKu-qa-MwS">
+                    <rect key="frame" x="16" y="8" width="43.5" height="17.5"/>
+                    <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="jKu-qa-MwS" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="0B2-xv-V7F"/>
+                <constraint firstItem="jKu-qa-MwS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="2QJ-Sh-pzN"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="N4L-Nx-Q1r" secondAttribute="bottom" constant="8" id="36I-Ry-7EG"/>
+                <constraint firstItem="N4L-Nx-Q1r" firstAttribute="top" secondItem="jKu-qa-MwS" secondAttribute="bottom" constant="8" id="84H-9G-sTD"/>
+                <constraint firstItem="N4L-Nx-Q1r" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="BmB-gA-6t9"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="N4L-Nx-Q1r" secondAttribute="trailing" constant="8" id="mF6-sq-vGr"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="23" y="-223.5"/>
+        </view>
+    </objects>
+</document>

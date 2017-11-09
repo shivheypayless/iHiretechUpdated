@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Quicksand-Light_0.ttf">
+            <string>Quicksand-Light</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FormFieldView" customModule="iHiretech" customModuleProvider="target">
+            <connections>
+                <outlet property="formImage" destination="g19-f9-Oqy" id="363-vt-CE9"/>
+                <outlet property="txtFieldName" destination="v44-kC-VxX" id="L8y-2a-hmN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v44-kC-VxX">
+                    <rect key="frame" x="66" y="0.0" width="277" height="40"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" name="Quicksand-Light" family="Quicksand" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ExG-vg-gp7">
+                    <rect key="frame" x="57" y="0.0" width="1" height="40"/>
+                    <color key="backgroundColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="1" id="cPi-bq-xyS"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g19-f9-Oqy">
+                    <rect key="frame" x="20" y="13" width="17" height="14"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="17" id="2hs-a4-pat"/>
+                        <constraint firstAttribute="width" secondItem="g19-f9-Oqy" secondAttribute="height" multiplier="2:1" constant="-11" id="Naa-5t-n9A"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="v44-kC-VxX" secondAttribute="trailing" id="1Ae-qd-pwO"/>
+                <constraint firstItem="v44-kC-VxX" firstAttribute="leading" secondItem="ExG-vg-gp7" secondAttribute="trailing" constant="8" id="2qx-ZP-MoO"/>
+                <constraint firstItem="g19-f9-Oqy" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="BND-ty-oYr"/>
+                <constraint firstItem="ExG-vg-gp7" firstAttribute="leading" secondItem="g19-f9-Oqy" secondAttribute="trailing" constant="20" id="PdY-8q-T1C"/>
+                <constraint firstItem="ExG-vg-gp7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Yws-EY-dyB"/>
+                <constraint firstItem="g19-f9-Oqy" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="jgd-2m-Xbn"/>
+                <constraint firstItem="ExG-vg-gp7" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="s2h-QC-hkI"/>
+                <constraint firstItem="v44-kC-VxX" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="vqj-6N-CkT"/>
+                <constraint firstItem="v44-kC-VxX" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="wfn-Tn-2iI"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="19.5" y="-362"/>
+        </view>
+    </objects>
+</document>

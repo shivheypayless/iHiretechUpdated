@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+        <array key="Quicksand-Bold_0.ttf">
+            <string>Quicksand-Bold</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchOrderTableViewCell" rowHeight="462" id="KGk-i7-Jjw" customClass="SearchOrderTableViewCell" customModule="iHiretech" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="462"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="461.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mc3-13-YvN">
+                        <rect key="frame" x="16" y="0.0" width="288" height="453.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdr-ZR-hMM">
+                                <rect key="frame" x="8" y="90.5" width="80" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort by Client" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wb3-Mx-azc">
+                                <rect key="frame" x="8" y="221.5" width="86" height="16.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ah-n1-86P">
+                                <rect key="frame" x="8" y="250" width="272" height="36"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <state key="normal" title="   Client Name">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minus" translatesAutoresizingMaskIntoConstraints="NO" id="bm0-xW-dCy">
+                                <rect key="frame" x="256" y="263" width="16" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="bm0-xW-dCy" secondAttribute="height" multiplier="8:5" id="Y7K-2B-npf"/>
+                                    <constraint firstAttribute="height" constant="10" id="jLc-93-uDa"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xZu-kE-9sc" customClass="TextFieldView" customModule="iHiretech" customModuleProvider="target">
+                                <rect key="frame" x="8" y="117" width="272" height="36"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="MBT-Wt-Hsv"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="From Date"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1zw-bC-ebM" customClass="TextFieldView" customModule="iHiretech" customModuleProvider="target">
+                                <rect key="frame" x="8" y="169" width="272" height="36.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="To Date"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work Order Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEf-4X-1h2">
+                                <rect key="frame" x="8" y="302" width="126" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGq-5f-hta">
+                                <rect key="frame" x="8" y="386.5" width="132.5" height="46"/>
+                                <color key="backgroundColor" red="0.25882352939999997" green="0.70980392160000005" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="18"/>
+                                <state key="normal" title="SEARCH">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QR1-Ux-cpU" customClass="TextFieldView" customModule="iHiretech" customModuleProvider="target">
+                                <rect key="frame" x="8" y="334.5" width="272" height="36"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Search by work order number"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AXd-P5-DPn">
+                                <rect key="frame" x="147.5" y="386.5" width="132.5" height="46"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="18"/>
+                                <state key="normal" title="RESET">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xHj-5T-oOS">
+                                <rect key="frame" x="8" y="286" width="151" height="0.0"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="dp8-Qu-OaE"/>
+                                </constraints>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zuu-DR-eFR">
+                                <rect key="frame" x="8" y="16" width="33" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lcb-sD-pQu">
+                                <rect key="frame" x="8" y="42.5" width="272" height="36"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <state key="normal" title="   Select Miles">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minus" translatesAutoresizingMaskIntoConstraints="NO" id="Euj-2U-h19">
+                                <rect key="frame" x="256" y="55.5" width="16" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Euj-2U-h19" secondAttribute="height" multiplier="8:5" id="KL8-Ul-8Z5"/>
+                                    <constraint firstAttribute="height" constant="10" id="S0a-yd-bHj"/>
+                                </constraints>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PPy-9h-4Bh">
+                                <rect key="frame" x="8" y="78.5" width="151" height="0.0"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="IjW-zF-HaF"/>
+                                </constraints>
+                            </tableView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="wb3-Mx-azc" firstAttribute="leading" secondItem="mc3-13-YvN" secondAttribute="leading" constant="8" id="0Mj-ja-47m"/>
+                            <constraint firstItem="AXd-P5-DPn" firstAttribute="width" secondItem="OGq-5f-hta" secondAttribute="width" id="35e-Yi-1wT"/>
+                            <constraint firstItem="xHj-5T-oOS" firstAttribute="leading" secondItem="mc3-13-YvN" secondAttribute="leading" constant="8" id="A8o-m1-Ddx"/>
+                            <constraint firstAttribute="trailing" secondItem="5ah-n1-86P" secondAttribute="trailing" constant="8" id="Ara-7B-lia"/>
+                            <constraint firstItem="OGq-5f-hta" firstAttribute="height" secondItem="xZu-kE-9sc" secondAttribute="height" constant="10" id="EbD-AY-hY8"/>
+                            <constraint firstItem="wb3-Mx-azc" firstAttribute="top" secondItem="1zw-bC-ebM" secondAttribute="bottom" constant="16" id="EdG-4v-rPg"/>
+                            <constraint firstItem="xZu-kE-9sc" firstAttribute="top" secondItem="tdr-ZR-hMM" secondAttribute="bottom" constant="10" id="H6f-mc-Kyc"/>
+                            <constraint firstItem="AXd-P5-DPn" firstAttribute="height" secondItem="OGq-5f-hta" secondAttribute="height" id="Ho9-GD-kUT"/>
+                            <constraint firstItem="xHj-5T-oOS" firstAttribute="top" secondItem="5ah-n1-86P" secondAttribute="bottom" id="I70-fb-9nR"/>
+                            <constraint firstItem="Zuu-DR-eFR" firstAttribute="top" secondItem="mc3-13-YvN" secondAttribute="top" constant="16" id="JF5-vc-Y8s"/>
+                            <constraint firstItem="tdr-ZR-hMM" firstAttribute="top" secondItem="lcb-sD-pQu" secondAttribute="bottom" constant="12" id="Kwl-yI-HHp"/>
+                            <constraint firstItem="5ah-n1-86P" firstAttribute="height" secondItem="xZu-kE-9sc" secondAttribute="height" id="LLh-lL-NsQ"/>
+                            <constraint firstAttribute="trailing" secondItem="xZu-kE-9sc" secondAttribute="trailing" constant="8" id="LMz-HX-ktz"/>
+                            <constraint firstAttribute="trailing" secondItem="xHj-5T-oOS" secondAttribute="trailing" constant="129" id="LWA-7n-kBH"/>
+                            <constraint firstItem="QR1-Ux-cpU" firstAttribute="top" secondItem="DEf-4X-1h2" secondAttribute="bottom" constant="16" id="LX1-eL-M5A"/>
+                            <constraint firstItem="lcb-sD-pQu" firstAttribute="height" secondItem="xZu-kE-9sc" secondAttribute="height" id="POU-zC-hNM"/>
+                            <constraint firstItem="5ah-n1-86P" firstAttribute="top" secondItem="wb3-Mx-azc" secondAttribute="bottom" constant="12" id="Qyq-DI-WjI"/>
+                            <constraint firstAttribute="trailing" secondItem="bm0-xW-dCy" secondAttribute="trailing" constant="16" id="TnY-U7-M5L"/>
+                            <constraint firstAttribute="trailing" secondItem="1zw-bC-ebM" secondAttribute="trailing" constant="8" id="V6p-Bc-nWa"/>
+                            <constraint firstItem="Euj-2U-h19" firstAttribute="centerY" secondItem="lcb-sD-pQu" secondAttribute="centerY" id="VKb-wk-oeQ"/>
+                            <constraint firstItem="QR1-Ux-cpU" firstAttribute="height" secondItem="xZu-kE-9sc" secondAttribute="height" id="Yqh-vx-9D5"/>
+                            <constraint firstAttribute="trailing" secondItem="PPy-9h-4Bh" secondAttribute="trailing" constant="129" id="Yut-e1-27Z"/>
+                            <constraint firstItem="Zuu-DR-eFR" firstAttribute="leading" secondItem="mc3-13-YvN" secondAttribute="leading" constant="8" id="aco-he-GKW"/>
+                            <constraint firstItem="OGq-5f-hta" firstAttribute="top" secondItem="QR1-Ux-cpU" secondAttribute="bottom" constant="16" id="agr-lv-trT"/>
+                            <constraint firstItem="QR1-Ux-cpU" firstAttribute="leading" secondItem="mc3-13-YvN" secondAttribute="leading" constant="8" id="bdP-2B-RAB"/>
+                            <constraint firstItem="PPy-9h-4Bh" firstAttribute="top" secondItem="lcb-sD-pQu" secondAttribute="bottom" id="cvZ-LH-zYy"/>
+                            <constraint firstItem="OGq-5f-hta" firstAttribute="width" secondItem="mc3-13-YvN" secondAttribute="width" multiplier="0.46" id="f56-SC-aeP"/>
+                            <constraint firstItem="AXd-P5-DPn" firstAttribute="top" secondItem="QR1-Ux-cpU" secondAttribute="bottom" constant="16" id="g5r-hm-Cis"/>
+                            <constraint firstItem="lcb-sD-pQu" firstAttribute="top" secondItem="Zuu-DR-eFR" secondAttribute="bottom" constant="10" id="g8g-JE-g7h"/>
+                            <constraint firstItem="DEf-4X-1h2" firstAttribute="leading" secondItem="mc3-13-YvN" secondAttribute="leading" constant="8" id="gqp-Zw-ahV"/>
+                            <constraint firstItem="xZu-kE-9sc" firstAttribute="leading" secondItem="mc3-13-YvN" secondAttribute="leading" constant="8" id="had-Wq-HgC"/>
+                            <constraint firstItem="OGq-5f-hta" firstAttribute="leading" secondItem="mc3-13-YvN" secondAttribute="leading" constant="8" id="jtq-19-9Hm"/>
+                            <constraint firstAttribute="trailing" secondItem="lcb-sD-pQu" secondAttribute="trailing" constant="8" id="kCc-uF-WwJ"/>
+                            <constraint firstItem="1zw-bC-ebM" firstAttribute="leading" secondItem="mc3-13-YvN" secondAttribute="leading" constant="8" id="m0D-Da-4bo"/>
+                            <constraint firstItem="tdr-ZR-hMM" firstAttribute="leading" secondItem="mc3-13-YvN" secondAttribute="leading" constant="8" id="mN0-NI-xP1"/>
+                            <constraint firstAttribute="trailing" secondItem="AXd-P5-DPn" secondAttribute="trailing" constant="8" id="mdL-kB-1RB"/>
+                            <constraint firstAttribute="trailing" secondItem="QR1-Ux-cpU" secondAttribute="trailing" constant="8" id="mjm-B6-yTN"/>
+                            <constraint firstItem="bm0-xW-dCy" firstAttribute="centerY" secondItem="5ah-n1-86P" secondAttribute="centerY" id="nF5-zd-mu2"/>
+                            <constraint firstItem="1zw-bC-ebM" firstAttribute="height" secondItem="xZu-kE-9sc" secondAttribute="height" id="oiy-Xp-awu"/>
+                            <constraint firstAttribute="trailing" secondItem="Euj-2U-h19" secondAttribute="trailing" constant="16" id="pC8-TI-JPc"/>
+                            <constraint firstItem="DEf-4X-1h2" firstAttribute="top" secondItem="5ah-n1-86P" secondAttribute="bottom" constant="16" id="qct-pf-MJP"/>
+                            <constraint firstItem="1zw-bC-ebM" firstAttribute="top" secondItem="xZu-kE-9sc" secondAttribute="bottom" constant="16" id="rdU-R2-9PW"/>
+                            <constraint firstItem="lcb-sD-pQu" firstAttribute="leading" secondItem="mc3-13-YvN" secondAttribute="leading" constant="8" id="xJy-3w-h33"/>
+                            <constraint firstItem="5ah-n1-86P" firstAttribute="leading" secondItem="mc3-13-YvN" secondAttribute="leading" constant="8" id="z0Y-Ls-Dgj"/>
+                            <constraint firstItem="PPy-9h-4Bh" firstAttribute="leading" secondItem="mc3-13-YvN" secondAttribute="leading" constant="8" id="zs9-4i-NFJ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="mc3-13-YvN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9c3-Qp-PjN"/>
+                    <constraint firstAttribute="bottom" secondItem="mc3-13-YvN" secondAttribute="bottom" constant="8" id="DSk-IC-ZqP"/>
+                    <constraint firstAttribute="trailing" secondItem="mc3-13-YvN" secondAttribute="trailing" constant="16" id="VLn-JI-OJo"/>
+                    <constraint firstItem="mc3-13-YvN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="iQu-HA-vBe"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="btnReset" destination="AXd-P5-DPn" id="7EI-kI-RD6"/>
+                <outlet property="btnSearch" destination="OGq-5f-hta" id="2uO-fL-Kcs"/>
+                <outlet property="btnSelectMiles" destination="lcb-sD-pQu" id="iHw-xf-bhl"/>
+                <outlet property="btnSortClient" destination="5ah-n1-86P" id="WiO-pZ-uzL"/>
+                <outlet property="superViewBorder" destination="mc3-13-YvN" id="1On-JN-DzU"/>
+            </connections>
+            <point key="canvasLocation" x="25" y="261"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="minus" width="11" height="6"/>
+    </resources>
+</document>

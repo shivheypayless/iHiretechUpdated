@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F75DCFB855CF8D260E5AAE7 /* Pods_iHiretech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3492553B89630A46C90F0D57 /* Pods_iHiretech.framework */; };
+		728928F21FA1A1BF007686AE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728928F11FA1A1BF007686AE /* SignUpViewController.swift */; };
+		728928F51FA1A211007686AE /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728928F41FA1A211007686AE /* ResetPasswordViewController.swift */; };
+		728928F81FA1A25D007686AE /* ChangePaawordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728928F71FA1A25D007686AE /* ChangePaawordViewController.swift */; };
 		8403A6BD1FA0610200222ED9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403A6BC1FA0610200222ED9 /* AppDelegate.swift */; };
 		8403A6BF1FA0610200222ED9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403A6BE1FA0610200222ED9 /* ViewController.swift */; };
 		8403A6C21FA0610200222ED9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8403A6C01FA0610200222ED9 /* Main.storyboard */; };
@@ -15,6 +19,54 @@
 		8403A6CA1FA0610200222ED9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8403A6C81FA0610200222ED9 /* LaunchScreen.storyboard */; };
 		8403A6D51FA0610200222ED9 /* iHiretechTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403A6D41FA0610200222ED9 /* iHiretechTests.swift */; };
 		8403A6E01FA0610200222ED9 /* iHiretechUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403A6DF1FA0610200222ED9 /* iHiretechUITests.swift */; };
+		8403A6F31FA06DDC00222ED9 /* FormFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8403A6F21FA06DDB00222ED9 /* FormFieldView.xib */; };
+		8403A6F51FA06E3200222ED9 /* FormFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403A6F41FA06E3200222ED9 /* FormFieldView.swift */; };
+		8419929E1FA1DE4B0001E626 /* LeftMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8419929D1FA1DE4B0001E626 /* LeftMenuViewController.swift */; };
+		841992A41FA1F00E0001E626 /* iHiretechNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841992A31FA1F00E0001E626 /* iHiretechNavigationViewController.swift */; };
+		841992A71FA1F1490001E626 /* DashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841992A61FA1F1490001E626 /* DashBoardViewController.swift */; };
+		841C60B71FB0A01F00945E10 /* WebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841C60B61FB0A01F00945E10 /* WebServices.swift */; };
+		843D5D3E1FA317C300292565 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843D5D3D1FA317C200292565 /* ProfileView.xib */; };
+		843D5D411FA31C2400292565 /* profileDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D5D3F1FA31C2400292565 /* profileDetailsTableViewCell.swift */; };
+		843D5D421FA31C2400292565 /* profileDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843D5D401FA31C2400292565 /* profileDetailsTableViewCell.xib */; };
+		843D5D451FA339A800292565 /* AttactmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D5D431FA339A800292565 /* AttactmentTableViewCell.swift */; };
+		843D5D461FA339A800292565 /* AttactmentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843D5D441FA339A800292565 /* AttactmentTableViewCell.xib */; };
+		84416A951FB198E300C45E00 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84416A941FB198E300C45E00 /* Validation.swift */; };
+		84416A9B1FB1E59E00C45E00 /* AListAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84416A9A1FB1E59E00C45E00 /* AListAlertController.swift */; };
+		84416A9E1FB1F3C300C45E00 /* VerifyOtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84416A9D1FB1F3C200C45E00 /* VerifyOtpViewController.swift */; };
+		8459E71E1FA83BE70081915E /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8459E71C1FA83BE70081915E /* MapTableViewCell.swift */; };
+		8459E71F1FA83BE70081915E /* MapTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8459E71D1FA83BE70081915E /* MapTableViewCell.xib */; };
+		8459E7251FA859CE0081915E /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8459E7231FA859CE0081915E /* NotificationTableViewCell.swift */; };
+		8459E7261FA859CE0081915E /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8459E7241FA859CE0081915E /* NotificationTableViewCell.xib */; };
+		8459E7281FA85D600081915E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8459E7271FA85D600081915E /* NotificationViewController.swift */; };
+		8459E72E1FA868480081915E /* OwnerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8459E72C1FA868480081915E /* OwnerTableViewCell.swift */; };
+		8459E72F1FA868480081915E /* OwnerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8459E72D1FA868480081915E /* OwnerTableViewCell.xib */; };
+		8459E7321FA8685B0081915E /* OtherUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8459E7301FA8685B0081915E /* OtherUserTableViewCell.swift */; };
+		8459E7331FA8685B0081915E /* OtherUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8459E7311FA8685B0081915E /* OtherUserTableViewCell.xib */; };
+		8459E7351FA8787E0081915E /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8459E7341FA8787E0081915E /* ChatViewController.swift */; };
+		8459E7381FA88F530081915E /* EditTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8459E7371FA88F530081915E /* EditTextView.xib */; };
+		8459E73A1FA88F730081915E /* EditTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8459E7391FA88F730081915E /* EditTextView.swift */; };
+		8490D5F01FB2D5AF00623553 /* ResendOtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490D5EF1FB2D5AF00623553 /* ResendOtpViewController.swift */; };
+		8490D5F31FB2E21300623553 /* RootNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490D5F21FB2E20B00623553 /* RootNavViewController.swift */; };
+		84A30E0D1FA1BF10009FE20E /* Quicksand-Bold_0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84368E831FA07F9000258F57 /* Quicksand-Bold_0.ttf */; };
+		84A30E0E1FA1BF10009FE20E /* Quicksand-Light_0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84368E821FA07F9000258F57 /* Quicksand-Light_0.ttf */; };
+		84A30E0F1FA1BF10009FE20E /* Quicksand-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84368E811FA07F9000258F57 /* Quicksand-Medium.ttf */; };
+		84A30E101FA1BF10009FE20E /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84368E801FA07F9000258F57 /* Quicksand-Regular.ttf */; };
+		84A93FC81FA9E35900662040 /* PersonalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A93FC71FA9E35800662040 /* PersonalDetailsViewController.swift */; };
+		84A93FCB1FA9E3D000662040 /* ProfessionalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A93FCA1FA9E3D000662040 /* ProfessionalDetailsViewController.swift */; };
+		84E3C8471FA218B700887105 /* LeftMenuOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E3C8461FA218B700887105 /* LeftMenuOptionTableViewCell.swift */; };
+		84E3C8491FA2227600887105 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E3C8481FA2227600887105 /* HeaderView.xib */; };
+		84FFD81E1FA3554100C0D67C /* TextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FFD81D1FA3554100C0D67C /* TextFieldView.xib */; };
+		84FFD8201FA357DE00C0D67C /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFD81F1FA357DE00C0D67C /* TextFieldView.swift */; };
+		84FFD8271FA3737200C0D67C /* WorkOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFD8251FA3737200C0D67C /* WorkOrderTableViewCell.swift */; };
+		84FFD8281FA3737200C0D67C /* WorkOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FFD8261FA3737200C0D67C /* WorkOrderTableViewCell.xib */; };
+		CA68CCDE1FA73AD2000143BB /* SearchResultHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA68CCDD1FA73AD2000143BB /* SearchResultHeaderView.xib */; };
+		CA68CCE01FA73C04000143BB /* MyWorkOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA68CCDF1FA73C04000143BB /* MyWorkOrderTableViewController.swift */; };
+		CA68CCE31FA73E4A000143BB /* SearchWorkOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA68CCE11FA73E4A000143BB /* SearchWorkOrderTableViewCell.swift */; };
+		CA68CCE41FA73E4A000143BB /* SearchWorkOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA68CCE21FA73E4A000143BB /* SearchWorkOrderTableViewCell.xib */; };
+		CA68CCE61FA73EBF000143BB /* SearchViewExpandableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA68CCE51FA73EBF000143BB /* SearchViewExpandableView.xib */; };
+		CA68CCE91FA765DC000143BB /* SearchWorkOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA68CCE81FA765DC000143BB /* SearchWorkOrderTableViewController.swift */; };
+		CA68CCEC1FA76609000143BB /* SearchOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA68CCEA1FA76609000143BB /* SearchOrderTableViewCell.swift */; };
+		CA68CCED1FA76609000143BB /* SearchOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA68CCEB1FA76609000143BB /* SearchOrderTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +87,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F2825D3BFA436721DE465AA /* Pods-iHiretech.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iHiretech.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iHiretech/Pods-iHiretech.debug.xcconfig"; sourceTree = "<group>"; };
+		3492553B89630A46C90F0D57 /* Pods_iHiretech.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iHiretech.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		53C8F7E7EB4999859BA465CA /* Pods-iHiretech.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iHiretech.release.xcconfig"; path = "Pods/Target Support Files/Pods-iHiretech/Pods-iHiretech.release.xcconfig"; sourceTree = "<group>"; };
+		728928F11FA1A1BF007686AE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		728928F41FA1A211007686AE /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		728928F71FA1A25D007686AE /* ChangePaawordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePaawordViewController.swift; sourceTree = "<group>"; };
 		8403A6B91FA0610200222ED9 /* iHiretech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iHiretech.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8403A6BC1FA0610200222ED9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8403A6BE1FA0610200222ED9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8403A6BE1FA0610200222ED9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "../New Group/ViewController.swift"; sourceTree = "<group>"; };
 		8403A6C11FA0610200222ED9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8403A6C41FA0610200222ED9 /* iHiretech.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iHiretech.xcdatamodel; sourceTree = "<group>"; };
 		8403A6C61FA0610200222ED9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +107,56 @@
 		8403A6DB1FA0610200222ED9 /* iHiretechUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iHiretechUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8403A6DF1FA0610200222ED9 /* iHiretechUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iHiretechUITests.swift; sourceTree = "<group>"; };
 		8403A6E11FA0610200222ED9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8403A6F21FA06DDB00222ED9 /* FormFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormFieldView.xib; sourceTree = "<group>"; };
+		8403A6F41FA06E3200222ED9 /* FormFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormFieldView.swift; sourceTree = "<group>"; };
+		8419929D1FA1DE4B0001E626 /* LeftMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuViewController.swift; sourceTree = "<group>"; };
+		841992A31FA1F00E0001E626 /* iHiretechNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iHiretechNavigationViewController.swift; sourceTree = "<group>"; };
+		841992A61FA1F1490001E626 /* DashBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewController.swift; sourceTree = "<group>"; };
+		841C60B61FB0A01F00945E10 /* WebServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServices.swift; sourceTree = "<group>"; };
+		84368E801FA07F9000258F57 /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
+		84368E811FA07F9000258F57 /* Quicksand-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Medium.ttf"; sourceTree = "<group>"; };
+		84368E821FA07F9000258F57 /* Quicksand-Light_0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light_0.ttf"; sourceTree = "<group>"; };
+		84368E831FA07F9000258F57 /* Quicksand-Bold_0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold_0.ttf"; sourceTree = "<group>"; };
+		843D5D3D1FA317C200292565 /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
+		843D5D3F1FA31C2400292565 /* profileDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		843D5D401FA31C2400292565 /* profileDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = profileDetailsTableViewCell.xib; sourceTree = "<group>"; };
+		843D5D431FA339A800292565 /* AttactmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttactmentTableViewCell.swift; sourceTree = "<group>"; };
+		843D5D441FA339A800292565 /* AttactmentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AttactmentTableViewCell.xib; sourceTree = "<group>"; };
+		84416A941FB198E300C45E00 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		84416A9A1FB1E59E00C45E00 /* AListAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AListAlertController.swift; sourceTree = "<group>"; };
+		84416A9D1FB1F3C200C45E00 /* VerifyOtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOtpViewController.swift; sourceTree = "<group>"; };
+		8459E71C1FA83BE70081915E /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
+		8459E71D1FA83BE70081915E /* MapTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapTableViewCell.xib; sourceTree = "<group>"; };
+		8459E7231FA859CE0081915E /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		8459E7241FA859CE0081915E /* NotificationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTableViewCell.xib; sourceTree = "<group>"; };
+		8459E7271FA85D600081915E /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		8459E72C1FA868480081915E /* OwnerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerTableViewCell.swift; sourceTree = "<group>"; };
+		8459E72D1FA868480081915E /* OwnerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OwnerTableViewCell.xib; sourceTree = "<group>"; };
+		8459E7301FA8685B0081915E /* OtherUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserTableViewCell.swift; sourceTree = "<group>"; };
+		8459E7311FA8685B0081915E /* OtherUserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OtherUserTableViewCell.xib; sourceTree = "<group>"; };
+		8459E7341FA8787E0081915E /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		8459E7371FA88F530081915E /* EditTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditTextView.xib; sourceTree = "<group>"; };
+		8459E7391FA88F730081915E /* EditTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextView.swift; sourceTree = "<group>"; };
+		847EADB81FB0479F00238C3C /* iHiretech.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iHiretech.entitlements; sourceTree = "<group>"; };
+		847EADB91FB0726400238C3C /* GoogleService-Info-2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-2.plist"; sourceTree = "<group>"; };
+		8490D5EF1FB2D5AF00623553 /* ResendOtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendOtpViewController.swift; sourceTree = "<group>"; };
+		8490D5F21FB2E20B00623553 /* RootNavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavViewController.swift; sourceTree = "<group>"; };
+		84A93FC71FA9E35800662040 /* PersonalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDetailsViewController.swift; sourceTree = "<group>"; };
+		84A93FCA1FA9E3D000662040 /* ProfessionalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionalDetailsViewController.swift; sourceTree = "<group>"; };
+		84E3C8461FA218B700887105 /* LeftMenuOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuOptionTableViewCell.swift; sourceTree = "<group>"; };
+		84E3C8481FA2227600887105 /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
+		84FFD81D1FA3554100C0D67C /* TextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldView.xib; sourceTree = "<group>"; };
+		84FFD81F1FA357DE00C0D67C /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		84FFD8251FA3737200C0D67C /* WorkOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkOrderTableViewCell.swift; sourceTree = "<group>"; };
+		84FFD8261FA3737200C0D67C /* WorkOrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkOrderTableViewCell.xib; sourceTree = "<group>"; };
+		CA68CCDD1FA73AD2000143BB /* SearchResultHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultHeaderView.xib; sourceTree = "<group>"; };
+		CA68CCDF1FA73C04000143BB /* MyWorkOrderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkOrderTableViewController.swift; sourceTree = "<group>"; };
+		CA68CCE11FA73E4A000143BB /* SearchWorkOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWorkOrderTableViewCell.swift; sourceTree = "<group>"; };
+		CA68CCE21FA73E4A000143BB /* SearchWorkOrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchWorkOrderTableViewCell.xib; sourceTree = "<group>"; };
+		CA68CCE51FA73EBF000143BB /* SearchViewExpandableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewExpandableView.xib; sourceTree = "<group>"; };
+		CA68CCE81FA765DC000143BB /* SearchWorkOrderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWorkOrderTableViewController.swift; sourceTree = "<group>"; };
+		CA68CCEA1FA76609000143BB /* SearchOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrderTableViewCell.swift; sourceTree = "<group>"; };
+		CA68CCEB1FA76609000143BB /* SearchOrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchOrderTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +164,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F75DCFB855CF8D260E5AAE7 /* Pods_iHiretech.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +185,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		51F8554CE04274A10BC0979E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2F2825D3BFA436721DE465AA /* Pods-iHiretech.debug.xcconfig */,
+				53C8F7E7EB4999859BA465CA /* Pods-iHiretech.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5E9BA7C524339B83815A7295 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3492553B89630A46C90F0D57 /* Pods_iHiretech.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		728928F01FA1A165007686AE /* SignUp VC */ = {
+			isa = PBXGroup;
+			children = (
+				728928F11FA1A1BF007686AE /* SignUpViewController.swift */,
+			);
+			path = "SignUp VC";
+			sourceTree = "<group>";
+		};
+		728928F31FA1A1E8007686AE /* ResetPassword VC */ = {
+			isa = PBXGroup;
+			children = (
+				728928F41FA1A211007686AE /* ResetPasswordViewController.swift */,
+			);
+			path = "ResetPassword VC";
+			sourceTree = "<group>";
+		};
+		728928F61FA1A22C007686AE /* ChangePassword VC */ = {
+			isa = PBXGroup;
+			children = (
+				728928F71FA1A25D007686AE /* ChangePaawordViewController.swift */,
+			);
+			path = "ChangePassword VC";
+			sourceTree = "<group>";
+		};
 		8403A6B01FA0610100222ED9 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +233,8 @@
 				8403A6D31FA0610200222ED9 /* iHiretechTests */,
 				8403A6DE1FA0610200222ED9 /* iHiretechUITests */,
 				8403A6BA1FA0610200222ED9 /* Products */,
+				51F8554CE04274A10BC0979E /* Pods */,
+				5E9BA7C524339B83815A7295 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,12 +251,15 @@
 		8403A6BB1FA0610200222ED9 /* iHiretech */ = {
 			isa = PBXGroup;
 			children = (
-				8403A6BC1FA0610200222ED9 /* AppDelegate.swift */,
-				8403A6BE1FA0610200222ED9 /* ViewController.swift */,
-				8403A6C01FA0610200222ED9 /* Main.storyboard */,
+				847EADB81FB0479F00238C3C /* iHiretech.entitlements */,
+				84368E7F1FA07F7B00258F57 /* Font */,
+				8403A6EE1FA0613300222ED9 /* Model */,
+				8403A6ED1FA0611700222ED9 /* StoryBoard */,
+				8403A6F11FA068AF00222ED9 /* Views */,
+				8403A6EF1FA0617500222ED9 /* Controllers */,
 				8403A6C61FA0610200222ED9 /* Assets.xcassets */,
-				8403A6C81FA0610200222ED9 /* LaunchScreen.storyboard */,
 				8403A6CB1FA0610200222ED9 /* Info.plist */,
+				847EADB91FB0726400238C3C /* GoogleService-Info-2.plist */,
 				8403A6C31FA0610200222ED9 /* iHiretech.xcdatamodeld */,
 			);
 			path = iHiretech;
@@ -128,6 +283,240 @@
 			path = iHiretechUITests;
 			sourceTree = "<group>";
 		};
+		8403A6ED1FA0611700222ED9 /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				8403A6C01FA0610200222ED9 /* Main.storyboard */,
+				8403A6C81FA0610200222ED9 /* LaunchScreen.storyboard */,
+			);
+			path = StoryBoard;
+			sourceTree = "<group>";
+		};
+		8403A6EE1FA0613300222ED9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8403A6BC1FA0610200222ED9 /* AppDelegate.swift */,
+				841C60B61FB0A01F00945E10 /* WebServices.swift */,
+				84416A941FB198E300C45E00 /* Validation.swift */,
+				84416A9A1FB1E59E00C45E00 /* AListAlertController.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8403A6EF1FA0617500222ED9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8490D5F11FB2E0B300623553 /* Navigation VC */,
+				84A93FC91FA9E3AA00662040 /* Professional details VC */,
+				84A93FC61FA9E31F00662040 /* Edit Profile Personal details VC */,
+				8459E7291FA867950081915E /* Chat VC */,
+				8459E7201FA859820081915E /* Notification VC */,
+				CA68CCE71FA765B6000143BB /* Search Work Order VC */,
+				84FFD8211FA3728B00C0D67C /* My Work Order VC */,
+				841992A51FA1F1330001E626 /* DashBoard */,
+				8419929C1FA1DE1F0001E626 /* Menu Controller */,
+				841992991FA1CF1A0001E626 /* Navigation Controller */,
+				728928F61FA1A22C007686AE /* ChangePassword VC */,
+				728928F31FA1A1E8007686AE /* ResetPassword VC */,
+				8490D5EE1FB2D58400623553 /* Resend OTP VC */,
+				84416A9C1FB1F39300C45E00 /* Verify OTP */,
+				728928F01FA1A165007686AE /* SignUp VC */,
+				84368E861FA0B3A800258F57 /* Login CV */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8403A6F11FA068AF00222ED9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8459E73B1FA89AE70081915E /* date view */,
+				8459E7361FA88F060081915E /* Edit Profile  */,
+				843D5D481FA352C600292565 /* Text Field */,
+				843D5D471FA352AB00292565 /* Form Field */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		841992991FA1CF1A0001E626 /* Navigation Controller */ = {
+			isa = PBXGroup;
+			children = (
+				841992A31FA1F00E0001E626 /* iHiretechNavigationViewController.swift */,
+			);
+			path = "Navigation Controller";
+			sourceTree = "<group>";
+		};
+		8419929C1FA1DE1F0001E626 /* Menu Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8419929D1FA1DE4B0001E626 /* LeftMenuViewController.swift */,
+				84E3C8461FA218B700887105 /* LeftMenuOptionTableViewCell.swift */,
+				84E3C8481FA2227600887105 /* HeaderView.xib */,
+			);
+			path = "Menu Controller";
+			sourceTree = "<group>";
+		};
+		841992A51FA1F1330001E626 /* DashBoard */ = {
+			isa = PBXGroup;
+			children = (
+				841992A61FA1F1490001E626 /* DashBoardViewController.swift */,
+				843D5D3D1FA317C200292565 /* ProfileView.xib */,
+				843D5D3F1FA31C2400292565 /* profileDetailsTableViewCell.swift */,
+				843D5D401FA31C2400292565 /* profileDetailsTableViewCell.xib */,
+				843D5D431FA339A800292565 /* AttactmentTableViewCell.swift */,
+				843D5D441FA339A800292565 /* AttactmentTableViewCell.xib */,
+			);
+			path = DashBoard;
+			sourceTree = "<group>";
+		};
+		84368E7F1FA07F7B00258F57 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				84368E831FA07F9000258F57 /* Quicksand-Bold_0.ttf */,
+				84368E821FA07F9000258F57 /* Quicksand-Light_0.ttf */,
+				84368E811FA07F9000258F57 /* Quicksand-Medium.ttf */,
+				84368E801FA07F9000258F57 /* Quicksand-Regular.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		84368E861FA0B3A800258F57 /* Login CV */ = {
+			isa = PBXGroup;
+			children = (
+				8403A6BE1FA0610200222ED9 /* ViewController.swift */,
+			);
+			path = "Login CV";
+			sourceTree = "<group>";
+		};
+		843D5D471FA352AB00292565 /* Form Field */ = {
+			isa = PBXGroup;
+			children = (
+				8403A6F21FA06DDB00222ED9 /* FormFieldView.xib */,
+				8403A6F41FA06E3200222ED9 /* FormFieldView.swift */,
+			);
+			path = "Form Field";
+			sourceTree = "<group>";
+		};
+		843D5D481FA352C600292565 /* Text Field */ = {
+			isa = PBXGroup;
+			children = (
+				84FFD81D1FA3554100C0D67C /* TextFieldView.xib */,
+				84FFD81F1FA357DE00C0D67C /* TextFieldView.swift */,
+			);
+			path = "Text Field";
+			sourceTree = "<group>";
+		};
+		84416A9C1FB1F39300C45E00 /* Verify OTP */ = {
+			isa = PBXGroup;
+			children = (
+				84416A9D1FB1F3C200C45E00 /* VerifyOtpViewController.swift */,
+			);
+			path = "Verify OTP";
+			sourceTree = "<group>";
+		};
+		8459E7201FA859820081915E /* Notification VC */ = {
+			isa = PBXGroup;
+			children = (
+				8459E7271FA85D600081915E /* NotificationViewController.swift */,
+				8459E7231FA859CE0081915E /* NotificationTableViewCell.swift */,
+				8459E7241FA859CE0081915E /* NotificationTableViewCell.xib */,
+			);
+			path = "Notification VC";
+			sourceTree = "<group>";
+		};
+		8459E7291FA867950081915E /* Chat VC */ = {
+			isa = PBXGroup;
+			children = (
+				8459E7341FA8787E0081915E /* ChatViewController.swift */,
+				8459E72C1FA868480081915E /* OwnerTableViewCell.swift */,
+				8459E72D1FA868480081915E /* OwnerTableViewCell.xib */,
+				8459E7301FA8685B0081915E /* OtherUserTableViewCell.swift */,
+				8459E7311FA8685B0081915E /* OtherUserTableViewCell.xib */,
+			);
+			path = "Chat VC";
+			sourceTree = "<group>";
+		};
+		8459E7361FA88F060081915E /* Edit Profile  */ = {
+			isa = PBXGroup;
+			children = (
+				8459E7371FA88F530081915E /* EditTextView.xib */,
+				8459E7391FA88F730081915E /* EditTextView.swift */,
+			);
+			path = "Edit Profile ";
+			sourceTree = "<group>";
+		};
+		8459E73B1FA89AE70081915E /* date view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "date view";
+			sourceTree = "<group>";
+		};
+		8490D5EE1FB2D58400623553 /* Resend OTP VC */ = {
+			isa = PBXGroup;
+			children = (
+				8490D5EF1FB2D5AF00623553 /* ResendOtpViewController.swift */,
+			);
+			path = "Resend OTP VC";
+			sourceTree = "<group>";
+		};
+		8490D5F11FB2E0B300623553 /* Navigation VC */ = {
+			isa = PBXGroup;
+			children = (
+				8490D5F21FB2E20B00623553 /* RootNavViewController.swift */,
+			);
+			path = "Navigation VC";
+			sourceTree = "<group>";
+		};
+		84A93FC61FA9E31F00662040 /* Edit Profile Personal details VC */ = {
+			isa = PBXGroup;
+			children = (
+				84A93FC71FA9E35800662040 /* PersonalDetailsViewController.swift */,
+			);
+			path = "Edit Profile Personal details VC";
+			sourceTree = "<group>";
+		};
+		84A93FC91FA9E3AA00662040 /* Professional details VC */ = {
+			isa = PBXGroup;
+			children = (
+				84A93FCA1FA9E3D000662040 /* ProfessionalDetailsViewController.swift */,
+			);
+			path = "Professional details VC";
+			sourceTree = "<group>";
+		};
+		84FFD8211FA3728B00C0D67C /* My Work Order VC */ = {
+			isa = PBXGroup;
+			children = (
+				84FFD8241FA3734600C0D67C /* Work Order TVC */,
+				CA68CCDF1FA73C04000143BB /* MyWorkOrderTableViewController.swift */,
+				CA68CCE51FA73EBF000143BB /* SearchViewExpandableView.xib */,
+				CA68CCDD1FA73AD2000143BB /* SearchResultHeaderView.xib */,
+			);
+			path = "My Work Order VC";
+			sourceTree = "<group>";
+		};
+		84FFD8241FA3734600C0D67C /* Work Order TVC */ = {
+			isa = PBXGroup;
+			children = (
+				84FFD8251FA3737200C0D67C /* WorkOrderTableViewCell.swift */,
+				84FFD8261FA3737200C0D67C /* WorkOrderTableViewCell.xib */,
+				CA68CCE11FA73E4A000143BB /* SearchWorkOrderTableViewCell.swift */,
+				CA68CCE21FA73E4A000143BB /* SearchWorkOrderTableViewCell.xib */,
+			);
+			path = "Work Order TVC";
+			sourceTree = "<group>";
+		};
+		CA68CCE71FA765B6000143BB /* Search Work Order VC */ = {
+			isa = PBXGroup;
+			children = (
+				CA68CCE81FA765DC000143BB /* SearchWorkOrderTableViewController.swift */,
+				CA68CCEA1FA76609000143BB /* SearchOrderTableViewCell.swift */,
+				CA68CCEB1FA76609000143BB /* SearchOrderTableViewCell.xib */,
+				8459E71C1FA83BE70081915E /* MapTableViewCell.swift */,
+				8459E71D1FA83BE70081915E /* MapTableViewCell.xib */,
+			);
+			path = "Search Work Order VC";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +524,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8403A6E41FA0610200222ED9 /* Build configuration list for PBXNativeTarget "iHiretech" */;
 			buildPhases = (
+				72B5EF29B9866AA37B3033C7 /* [CP] Check Pods Manifest.lock */,
 				8403A6B51FA0610200222ED9 /* Sources */,
 				8403A6B61FA0610200222ED9 /* Frameworks */,
 				8403A6B71FA0610200222ED9 /* Resources */,
+				0115362AF320EF688D635DE2 /* [CP] Embed Pods Frameworks */,
+				D060A56FF01220DFD1293729 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -197,6 +589,11 @@
 					8403A6B81FA0610200222ED9 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					8403A6CF1FA0610200222ED9 = {
 						CreatedOnToolsVersion = 9.0;
@@ -235,9 +632,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8459E7261FA859CE0081915E /* NotificationTableViewCell.xib in Resources */,
+				84A30E0D1FA1BF10009FE20E /* Quicksand-Bold_0.ttf in Resources */,
+				8459E72F1FA868480081915E /* OwnerTableViewCell.xib in Resources */,
+				8459E71F1FA83BE70081915E /* MapTableViewCell.xib in Resources */,
+				84A30E0E1FA1BF10009FE20E /* Quicksand-Light_0.ttf in Resources */,
+				84A30E0F1FA1BF10009FE20E /* Quicksand-Medium.ttf in Resources */,
+				843D5D421FA31C2400292565 /* profileDetailsTableViewCell.xib in Resources */,
+				CA68CCED1FA76609000143BB /* SearchOrderTableViewCell.xib in Resources */,
+				CA68CCDE1FA73AD2000143BB /* SearchResultHeaderView.xib in Resources */,
+				CA68CCE41FA73E4A000143BB /* SearchWorkOrderTableViewCell.xib in Resources */,
+				84A30E101FA1BF10009FE20E /* Quicksand-Regular.ttf in Resources */,
 				8403A6CA1FA0610200222ED9 /* LaunchScreen.storyboard in Resources */,
+				8403A6F31FA06DDC00222ED9 /* FormFieldView.xib in Resources */,
+				84FFD8281FA3737200C0D67C /* WorkOrderTableViewCell.xib in Resources */,
+				843D5D3E1FA317C300292565 /* ProfileView.xib in Resources */,
+				CA68CCE61FA73EBF000143BB /* SearchViewExpandableView.xib in Resources */,
+				843D5D461FA339A800292565 /* AttactmentTableViewCell.xib in Resources */,
+				84E3C8491FA2227600887105 /* HeaderView.xib in Resources */,
 				8403A6C71FA0610200222ED9 /* Assets.xcassets in Resources */,
+				8459E7331FA8685B0081915E /* OtherUserTableViewCell.xib in Resources */,
 				8403A6C21FA0610200222ED9 /* Main.storyboard in Resources */,
+				84FFD81E1FA3554100C0D67C /* TextFieldView.xib in Resources */,
+				8459E7381FA88F530081915E /* EditTextView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,14 +674,93 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0115362AF320EF688D635DE2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iHiretech/Pods-iHiretech-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		72B5EF29B9866AA37B3033C7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D060A56FF01220DFD1293729 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iHiretech/Pods-iHiretech-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8403A6B51FA0610200222ED9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				728928F81FA1A25D007686AE /* ChangePaawordViewController.swift in Sources */,
 				8403A6BF1FA0610200222ED9 /* ViewController.swift in Sources */,
+				CA68CCE01FA73C04000143BB /* MyWorkOrderTableViewController.swift in Sources */,
+				841C60B71FB0A01F00945E10 /* WebServices.swift in Sources */,
+				8459E73A1FA88F730081915E /* EditTextView.swift in Sources */,
+				84A93FCB1FA9E3D000662040 /* ProfessionalDetailsViewController.swift in Sources */,
+				CA68CCEC1FA76609000143BB /* SearchOrderTableViewCell.swift in Sources */,
+				843D5D411FA31C2400292565 /* profileDetailsTableViewCell.swift in Sources */,
+				8403A6F51FA06E3200222ED9 /* FormFieldView.swift in Sources */,
+				8459E71E1FA83BE70081915E /* MapTableViewCell.swift in Sources */,
 				8403A6BD1FA0610200222ED9 /* AppDelegate.swift in Sources */,
+				8419929E1FA1DE4B0001E626 /* LeftMenuViewController.swift in Sources */,
+				8459E7251FA859CE0081915E /* NotificationTableViewCell.swift in Sources */,
+				84E3C8471FA218B700887105 /* LeftMenuOptionTableViewCell.swift in Sources */,
+				8459E7321FA8685B0081915E /* OtherUserTableViewCell.swift in Sources */,
+				84A93FC81FA9E35900662040 /* PersonalDetailsViewController.swift in Sources */,
+				841992A71FA1F1490001E626 /* DashBoardViewController.swift in Sources */,
+				8459E7281FA85D600081915E /* NotificationViewController.swift in Sources */,
+				84FFD8271FA3737200C0D67C /* WorkOrderTableViewCell.swift in Sources */,
+				84FFD8201FA357DE00C0D67C /* TextFieldView.swift in Sources */,
+				841992A41FA1F00E0001E626 /* iHiretechNavigationViewController.swift in Sources */,
+				8459E72E1FA868480081915E /* OwnerTableViewCell.swift in Sources */,
+				8490D5F31FB2E21300623553 /* RootNavViewController.swift in Sources */,
+				8459E7351FA8787E0081915E /* ChatViewController.swift in Sources */,
+				CA68CCE31FA73E4A000143BB /* SearchWorkOrderTableViewCell.swift in Sources */,
+				84416A9B1FB1E59E00C45E00 /* AListAlertController.swift in Sources */,
+				CA68CCE91FA765DC000143BB /* SearchWorkOrderTableViewController.swift in Sources */,
+				8490D5F01FB2D5AF00623553 /* ResendOtpViewController.swift in Sources */,
+				728928F51FA1A211007686AE /* ResetPasswordViewController.swift in Sources */,
 				8403A6C51FA0610200222ED9 /* iHiretech.xcdatamodeld in Sources */,
+				728928F21FA1A1BF007686AE /* SignUpViewController.swift in Sources */,
+				84416A951FB198E300C45E00 /* Validation.swift in Sources */,
+				843D5D451FA339A800292565 /* AttactmentTableViewCell.swift in Sources */,
+				84416A9E1FB1F3C300C45E00 /* VerifyOtpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +847,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = C3Q38N8A85;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -370,6 +867,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "2c10a7cc-9f50-43a7-a437-2356c99bdfb0";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -408,6 +906,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = C3Q38N8A85;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -420,6 +919,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "2c10a7cc-9f50-43a7-a437-2356c99bdfb0";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
@@ -428,14 +928,21 @@
 		};
 		8403A6E51FA0610200222ED9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F2825D3BFA436721DE465AA /* Pods-iHiretech.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iHiretech/iHiretech.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C3Q38N8A85;
 				INFOPLIST_FILE = iHiretech/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.heypayless.iHiretech;
+				PRODUCT_BUNDLE_IDENTIFIER = com.heypayless.iHireTech;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -443,14 +950,21 @@
 		};
 		8403A6E61FA0610200222ED9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53C8F7E7EB4999859BA465CA /* Pods-iHiretech.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iHiretech/iHiretech.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C3Q38N8A85;
 				INFOPLIST_FILE = iHiretech/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.heypayless.iHiretech;
+				PRODUCT_BUNDLE_IDENTIFIER = com.heypayless.iHireTech;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
