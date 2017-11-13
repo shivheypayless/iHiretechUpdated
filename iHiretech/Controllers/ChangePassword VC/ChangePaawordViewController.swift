@@ -8,7 +8,7 @@
 
 import UIKit
 import AFViewShaker
-
+import SWRevealViewController
 class ChangePaawordViewController: UIViewController {
 
     @IBOutlet var btnResetPass: UIButton!
@@ -82,9 +82,14 @@ class ChangePaawordViewController: UIViewController {
             
             WebAPI().callJSONWebApi(API.changePassword, withHTTPMethod: .post, forPostParameters: paramerters, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
                 print(serviceResponse)
-                 self.viewOldPass.txtFieldName.text = ""
-                 self.viewNewPass.txtFieldName.text = ""
-                 self.viewConfirmPass.txtFieldName.text = ""
+                if let message = serviceResponse["msg"] as? String
+                {
+                    AListAlertController.shared.presentAlertController(message: message)
+                    {
+                        let destination = self.storyboard!.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+                        UIApplication.shared.keyWindow!.rootViewController = destination
+                    }
+                }
             })
             }
             else

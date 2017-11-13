@@ -52,17 +52,23 @@ class VerifyOtpViewController: UIViewController {
         {
          webService.callJSONWebApi(API.verifyOtp, withHTTPMethod: .post, forPostParameters: paramerters, shouldIncludeAuthorizationHeader: false, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
+            
+            if let message = serviceResponse["msg"] as? String
+            {
+                AListAlertController.shared.presentAlertController(message: message)
+                {
+                    let nav = self.storyboard!.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+                    let transition = CATransition()
+                    transition.duration = 0.5
+                    transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                    transition.type = kCATransitionFade
+                    self.navigationController?.view.layer.add(transition, forKey: nil)
+                    self.navigationController?.isNavigationBarHidden = true
+                    self.navigationController?.pushViewController(nav, animated: false)
+                    self.navigationController?.navigationBar.barTintColor = UIColor.black
 
-            let nav = self.storyboard!.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-            let transition = CATransition()
-            transition.duration = 0.5
-            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-            transition.type = kCATransitionFade
-            self.navigationController?.view.layer.add(transition, forKey: nil)
-            self.navigationController?.isNavigationBarHidden = true
-            self.navigationController?.pushViewController(nav, animated: false)
-            self.navigationController?.navigationBar.barTintColor = UIColor.black
-
+                }
+            }
          })
         }
     }

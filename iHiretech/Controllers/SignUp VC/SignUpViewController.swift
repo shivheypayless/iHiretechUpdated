@@ -99,16 +99,24 @@ class SignUpViewController: UIViewController {
             
             webService.callJSONWebApi(API.registration, withHTTPMethod: .post, forPostParameters: paramerters, shouldIncludeAuthorizationHeader: false, actionAfterServiceResponse: { (serviceResponse) in
                 print(serviceResponse)
-                let nav = self.storyboard!.instantiateViewController(withIdentifier: "VerifyOtpViewController") as! VerifyOtpViewController
-                let transition = CATransition()
-                transition.duration = 0.5
-                transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-                transition.type = kCATransitionFade
-                self.navigationController?.view.layer.add(transition, forKey: nil)
-                self.navigationController?.isNavigationBarHidden = false
-                self.navigationController?.pushViewController(nav, animated: false)
-                self.navigationController?.isNavigationBarHidden = false
-                self.navigationController?.navigationBar.barTintColor = UIColor.black
+                
+                if let message = serviceResponse["msg"] as? String
+                {
+                    AListAlertController.shared.presentAlertController(message: message)
+                    {
+                        let nav = self.storyboard!.instantiateViewController(withIdentifier: "VerifyOtpViewController") as! VerifyOtpViewController
+                        let transition = CATransition()
+                        transition.duration = 0.5
+                        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                        transition.type = kCATransitionFade
+                        self.navigationController?.view.layer.add(transition, forKey: nil)
+                        self.navigationController?.isNavigationBarHidden = false
+                        self.navigationController?.pushViewController(nav, animated: false)
+                        self.navigationController?.isNavigationBarHidden = false
+                        self.navigationController?.navigationBar.barTintColor = UIColor.black
+                    }
+                }
+              
             })
             }
             else

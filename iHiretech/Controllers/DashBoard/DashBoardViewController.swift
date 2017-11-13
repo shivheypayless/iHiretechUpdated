@@ -177,8 +177,13 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
             let data = serviceResponse["data"] as? [String:Any]
             self.getProfileDetailsDict = data!["user"] as! [String:Any]
             print(self.getProfileDetailsDict)
+            let transition = CATransition()
+            transition.duration = 0.5
+            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            transition.type = kCATransitionFade
            self.tblProfile.delegate = self
             self.tblProfile.dataSource = self
+            self.tblProfile.layer.add(transition, forKey: nil)
             self.tblProfile.reloadData()
         })
     }

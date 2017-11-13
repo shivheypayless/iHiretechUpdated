@@ -41,8 +41,8 @@ class WebAPI {
     static let shared = WebAPI()
     
     //Base URL for WebAPI(s)
-    private let baseurl = "http://172.16.2.12:8080/"//local
-    //    private let baseurl = "http://104.238.72.196:3003/"//testbed
+  //  private let baseurl = "http://172.16.2.12:8080/"//local
+    private let baseurl = "https://app.ihiretech.hplbusiness.com/" //testbed
     //    private let baseurl = "http://172.16.2.7:3003/"//live
     lazy var profileImgs = "\(baseurl)profileImgs/"
   //  lazy var postImgs = "\(baseurl)postImgs/"
@@ -130,10 +130,10 @@ class WebAPI {
                     
                     if responseData["status"] as! Int == 1 {
                         if let message = responseData["msg"] as? String {
-                        AListAlertController.shared.presentAlertController(message: message)
-                        {
+                       // AListAlertController.shared.presentAlertController(message: message)
+                    //    {
                             completionHandler(responseData)
-                        }
+                     //   }
                            
                         }
                         else {
@@ -155,7 +155,7 @@ class WebAPI {
                             }
                             else
                             {
-                                 if let message = responseData["msg"] as? String
+                                if (responseData["msg"] as? String) != nil
                                  {
                                AListAlertController.shared.presentAlertController(message: responseData["msg"] as! String, completionHandler: nil)
                             }
@@ -167,7 +167,7 @@ class WebAPI {
                         }
                         else
                         {
-                            if let message = responseData["msg"] as? String
+                            if (responseData["msg"] as? String) != nil
                             {
                              AListAlertController.shared.presentAlertController(message: responseData["msg"] as! String, completionHandler: nil)
                             }

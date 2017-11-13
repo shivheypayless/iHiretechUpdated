@@ -97,13 +97,18 @@ class ViewController: UIViewController {
                 
                  let data = serviceResponse["data"] as? [String:Any]
                 
-                let message = data!["token"] as? String
-                print(message!)
+                let tokenData = data!["token"] as? String
+                print(tokenData!)
                 
-                UserDefaults.standard.setValue("Bearer " + message!, forKey: "token")
-                
-                let destination = self.storyboard!.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
-                UIApplication.shared.keyWindow!.rootViewController = destination
+                UserDefaults.standard.setValue("Bearer " + tokenData!, forKey: "token")
+                  if let message = serviceResponse["msg"] as? String
+                  {
+                    AListAlertController.shared.presentAlertController(message: message)
+                    {
+                        let destination = self.storyboard!.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+                        UIApplication.shared.keyWindow!.rootViewController = destination
+                    }
+                }
             })
             
         }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfessionalDetailsViewController: UIViewController {
+class ProfessionalDetailsViewController: UIViewController , UIDocumentPickerDelegate {
 
     @IBOutlet var btnUploadDocument: UIButton!
     @IBOutlet var btnUploadResume: UIButton!
@@ -55,6 +55,16 @@ class ProfessionalDetailsViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
     
+    func accessDocuments()
+    {
+//        let documentPickerController = UIDocumentMenuViewController(documentTypes: [String(kUTTypePDF), String(kUTTypePlainText)], inMode: .Import)
+//        documentPickerController.delegate = self
+//        presentViewController(documentPickerController, animated: true, completion: nil)
+    }
+    
+//    func documentPicker(controller: UIDocumentPickerViewController, didPickDocumentAtURL url: NSURL)
+//    {
+//    }
     
     @IBAction func btn_PersonalDetailsAction(_ sender: UIButton)
     {
