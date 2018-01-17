@@ -34,8 +34,8 @@ class ViewController: UIViewController {
         btnSignIn.setTitleColor(UIColor.white, for: UIControlState.normal)
          btnSignIn.setAttributedTitle(attributedString, for: UIControlState.normal)
         
-        self.viewUserName.txtFieldName.text = "mirold@heypayless.com"
-        self.viewPassword.txtFieldName.text = "1234567"
+        self.viewUserName.txtFieldName.text = "work.a.counnt@gmail.com"
+        self.viewPassword.txtFieldName.text = "123456"
       
     }
 
@@ -87,9 +87,9 @@ class ViewController: UIViewController {
         if(viewsToShake.count == 0)
         {
             
-         //   paramerters = ["login": viewUserName.txtFieldName.text!, "password": viewPassword.txtFieldName.text!,"user_type":"technician","device_id":UserDefaults.standard.object(forKey: "deviceToken")!,"device_type":"ios"] as [String : Any]
+            paramerters = ["login": viewUserName.txtFieldName.text!, "password": viewPassword.txtFieldName.text!,"user_type":"technician","device_id":((UserDefaults.standard.object(forKey: "deviceToken") != nil) ?  (UserDefaults.standard.object(forKey: "deviceToken")!) : "6998E359CA0619C7B90772DEF7A70F463BF97A5F559E328E88581C802851724F"),"device_type":"ios"] as [String : Any]
             
-             paramerters = ["login": viewUserName.txtFieldName.text!, "password": viewPassword.txtFieldName.text!,"user_type":"technician","device_id":"6998E359CA0619C7B90772DEF7A70F463BF97A5F559E328E88581C802851724F","device_type":"ios"] as [String : Any]
+       //    paramerters = ["login": viewUserName.txtFieldName.text!, "password": viewPassword.txtFieldName.text!,"user_type":"technician","device_id":"6998E359CA0619C7B90772DEF7A70F463BF97A5F559E328E88581C802851724F","device_type":"ios"] as [String : Any]
             
             
             webService.callJSONWebApi(API.login, withHTTPMethod: .post, forPostParameters: paramerters, shouldIncludeAuthorizationHeader: false, actionAfterServiceResponse: { (serviceResponse) in
@@ -108,7 +108,7 @@ class ViewController: UIViewController {
                         let destination = self.storyboard!.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
                         UIApplication.shared.keyWindow!.rootViewController = destination
                     }
-                }
+                 }
             })
             
         }

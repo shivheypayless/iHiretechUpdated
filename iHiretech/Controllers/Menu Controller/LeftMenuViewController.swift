@@ -9,6 +9,7 @@
 import UIKit
 import SWRevealViewController
 
+
 class LeftMenuViewController: UIViewController {
 
     @IBOutlet var tblMenuOptions: UITableView!
@@ -113,7 +114,7 @@ extension LeftMenuViewController: UITableViewDataSource, UITableViewDelegate
             }
             else if indexPath.row == 2
             {
-                let destination = MyWorkOrderTableViewController(style: .plain)
+                let destination = AppliedRoutedTableViewController(style: .plain)
                 //  destination.storyBoard = self.storyboard
                 let nav = UINavigationController(rootViewController: destination)
                 nav.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)

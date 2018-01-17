@@ -14,13 +14,22 @@ import MapKit
 import SWRevealViewController
 import UserNotifications
 
+
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,LocationUpdateProtocol {
 
     var window: UIWindow?
     var storyBoard: UIStoryboard!
-
+    var statusLocation = Int()
+    var workOrderId = Int()
+    // var UserLocation:
+    
+    var locationTracker : LocationTracker =  LocationTracker.sharedLocationInstance() as! LocationTracker
+    var locationUpdateTimer : Timer?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+         // self.locationObjectAllocation()
         
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
         if statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
@@ -28,8 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         UIApplication.shared.statusBarStyle = .lightContent
         
-        GMSServices.provideAPIKey("AIzaSyB8JtAXzLtKMHX7iWQ49b_00qGPrzR2uJ0")
-        GMSPlacesClient.provideAPIKey("AIzaSyB8JtAXzLtKMHX7iWQ49b_00qGPrzR2uJ0")
+        GMSServices.provideAPIKey("AIzaSyBm6BnRIXEMTtviPmt5tmZ8jVgSN_tz0L4")
+        GMSPlacesClient.provideAPIKey("AIzaSyBm6BnRIXEMTtviPmt5tmZ8jVgSN_tz0L4")
 
         registerForPushNotifications()
         
@@ -58,6 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         return true
     }
+    
+
     
     func registerForPushNotifications()
     {
@@ -89,6 +100,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        print("Device Token: \(token)")
 //    }
     
+    func locationObjectAllocation(workOrderID : Int , status : Int)
+    {
+        self.statusLocation = status
+        self.workOrderId = workOrderID
+        if(UIApplication.shared.backgroundRefreshStatus == .denied)
+        {
+            // todo : Alert for The app doesn't work without the Background App Refresh enabled. To turn it on, go to Settings > General > Background App Refresh
+        }
+        else if(UIApplication.shared.backgroundRefreshStatus == .restricted)
+        {
+            //Todo : Alert for The functions of this app are limited because the Background App Refresh is disable.
+        }
+        else
+        {
+            locationTracker.startLocationTracking()
+            locationTracker.delegate = self
+            //Send the best location to server every 60 seconds
+            //You may adjust the time interval depends on the need of your app.
+            let time: TimeInterval = 30.0
+            locationUpdateTimer = Timer.scheduledTimer(timeInterval: time, target: self, selector: #selector(self.updateLocationTimer), userInfo: nil, repeats: true)
+        }
+        
+    }
+    @objc func updateLocationTimer()
+    {
+        print("Location update")
+        self.locationTracker.updateLocationToServer()
+    }
+
+    func updateLocation(toServer latitude: String!, longi Longitude: String!)
+    {
+        print(latitude)
+        print(Longitude)
+        var parameters = ["work_order_id":self.workOrderId,"status":self.statusLocation,"latitude":latitude,"longitude":Longitude] as [String : Any]
+        WebAPI().callJSONWebApi(API.shareGps, withHTTPMethod: .post, forPostParameters: parameters, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
+            print(serviceResponse)
+        })
+    }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
     {
@@ -105,7 +154,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any])
     {
-        
+        print(userInfo)
+        print((((userInfo as AnyObject).object(forKey: "data")!) as! NSDictionary))
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -134,6 +184,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Core Data stack
 
+    @available(iOS 10.0, *)
     lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation

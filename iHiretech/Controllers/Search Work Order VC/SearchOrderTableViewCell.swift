@@ -10,11 +10,23 @@ import UIKit
 
 class SearchOrderTableViewCell: UITableViewCell {
 
+    @IBOutlet var btnStartLocation: UIButton!
+    @IBOutlet var btnEndLocation: UIButton!
     @IBOutlet var btnSearch: UIButton!
     @IBOutlet var superViewBorder: UIView!
     @IBOutlet weak var btnReset: UIButton!
     @IBOutlet weak var btnSelectMiles: UIButton!
     @IBOutlet weak var btnSortClient: UIButton!
+    @IBOutlet var cnstClientHeight: NSLayoutConstraint!
+    @IBOutlet var tblClient: UITableView!
+    @IBOutlet var btnFromDate: UIButton!
+    @IBOutlet var viewFromDate: TextFieldView!
+    @IBOutlet var viewToDate: TextFieldView!
+    @IBOutlet var btnToDate: UIButton!
+    @IBOutlet var viewWordOrderNo: TextFieldView!
+    @IBOutlet var tblMiles: UITableView!
+    @IBOutlet var cnstMilesHeight: NSLayoutConstraint!
+    
     override func awakeFromNib()
     {
         super.awakeFromNib()
@@ -32,6 +44,8 @@ class SearchOrderTableViewCell: UITableViewCell {
         
         self.superViewBorder.layer.borderWidth = 1
         self.superViewBorder.layer.borderColor =  UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
+        
+       // self.btnSearch.setImage(UIImage(named:"img_Apply"), for: .normal)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

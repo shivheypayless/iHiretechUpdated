@@ -10,6 +10,14 @@ import UIKit
 
 class SearchWorkOrderTableViewCell: UITableViewCell {
 
+    @IBOutlet var viewToDate: TextFieldView!
+    @IBOutlet var viewFromDate: TextFieldView!
+    @IBOutlet var cntStatusHeight: NSLayoutConstraint!
+    @IBOutlet var UpDwnArrow: UIImageView!
+    @IBOutlet var txtWorkOrderNo: TextFieldView!
+    @IBOutlet var statusTableView: UITableView!
+    @IBOutlet var btnToDate: UIButton!
+    @IBOutlet var btnFromDate: UIButton!
     @IBOutlet var btnSelectStatus: UIButton!
     @IBOutlet var btnSearch: UIButton!
     @IBOutlet weak var btnReset: UIButton!

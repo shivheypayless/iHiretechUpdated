@@ -20,12 +20,26 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict/>
+	<key>NSCameraUsageDescription</key>
+	<string>Requires access to the camera</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>require location</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Requires access to the photo library</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Quicksand-Bold_0.ttf</string>
 		<string>Quicksand-Light_0.ttf</string>
 		<string>Quicksand-Medium.ttf</string>
 		<string>Quicksand-Regular.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>location</string>
+		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

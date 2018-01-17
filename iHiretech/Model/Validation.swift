@@ -129,6 +129,97 @@ func validationForLogin(viewList : [UIView]) -> Array<Any>
         
           return  viewsToReturn
  }
+    
+    func validationPersonalProfile(viewList : [UIView]) -> Array<Any>
+    {
+        var viewsToReturn = [UIView]()
+      
+        if((viewList[0] as! EditTextView).detailTextField.text?.isEmpty)!
+        {
+            (viewList[0]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter User Name",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[0])
+        }
+        if((viewList[1] as! EditTextView).detailTextField.text?.isEmpty)!
+        {
+            (viewList[1]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter First Name",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[1])
+        }
+        if((viewList[2] as! EditTextView).detailTextField.text?.isEmpty)!
+        {
+            (viewList[2]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter Last Name",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[2])
+        }
+        if((viewList[3] as! EditTextView).detailTextField.text?.isEmpty)!
+        {
+            (viewList[3]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter Date of birth",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[3])
+        }
+        if((viewList[4] as! EditTextView).detailTextField.text?.isEmpty)!
+        {
+            (viewList[4]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter Address Line 1",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[4])
+        }
+        if((viewList[5] as! EditTextView).detailTextField.text?.isEmpty)!
+        {
+            (viewList[5]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter Address Line 2",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[5])
+        }
+        if((viewList[6] as! EditTextView).detailTextField.text?.isEmpty)!
+        {
+            (viewList[6]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter Contact Number",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[6])
+        }
+        if((viewList[7] as! EditTextView).detailTextField.text?.isEmpty)!
+        {
+            (viewList[7]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter City",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[7])
+        }
+        if((viewList[8] as! EditTextView).detailTextField.text?.isEmpty)!
+        {
+            (viewList[8]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter State",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[8])
+        }
+        if((viewList[9] as! EditTextView).detailTextField.text?.isEmpty)!
+        {
+            (viewList[9]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter Zip",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[9])
+        }
+        if((viewList[10] as! EditTextView).detailTextField.text?.isEmpty)!
+        {
+            (viewList[10]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter Country",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[10])
+        }
+        
+        return  viewsToReturn
+        
+    }
+    
+    func validationForProfessionalUpdate(viewList : [UIView]) -> Array<Any>
+    {
+        var viewsToReturn = [UIView]()
+        
+        if((viewList[0]as!  EditTextView).detailTextField.text?.isEmpty)!
+        {
+            (viewList[0]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter Professional Title",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[0])
+        }
+        else if((viewList[1]as! EditTextView).detailTextField.text?.isEmpty)!
+        {
+            (viewList[1]as!  EditTextView).detailTextField.text = ""
+            (viewList[1]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter Professional Summary",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[1])
+        }
+        
+        if((viewList[2]as!  EditTextView).detailTextField.text?.isEmpty)!
+        {
+            (viewList[2]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter Experience",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[2])
+        }
+        
+         return  viewsToReturn
+    }
+    
+   
 
 
 func isValidEmail(testStr:String) -> Bool {

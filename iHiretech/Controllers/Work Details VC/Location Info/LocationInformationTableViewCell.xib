@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Quicksand-Bold_0.ttf">
+            <string>Quicksand-Bold</string>
+        </array>
+        <array key="Quicksand-Regular.ttf">
+            <string>Quicksand-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LocationInformationTableViewCell" rowHeight="159" id="KGk-i7-Jjw" customClass="LocationInformationTableViewCell" customModule="iHiretech" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="159"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="158.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PnR-WS-oDT">
+                        <rect key="frame" x="16" y="0.0" width="288" height="155.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Contact Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sba-uM-oPF">
+                                <rect key="frame" x="8" y="63" width="156" height="17.5"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Contact Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3g9-fb-bUC">
+                                <rect key="frame" x="8" y="92" width="152" height="17.5"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dale Tong" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DaU-mj-aDm">
+                                <rect key="frame" x="172" y="63" width="72.5" height="19"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Contact Number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bI2-J1-yf2">
+                                <rect key="frame" x="8" y="122" width="169.5" height="17.5"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="abc@abc.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2O-Q0-AaW">
+                                <rect key="frame" x="168" y="92" width="95.5" height="17.5"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6300 DIAGONAL HWY, Building 24-1 grid AH262,Boulder, CO, USA, 80301" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdh-pZ-DVl">
+                                <rect key="frame" x="8" y="16" width="272" height="35"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="303-924-3012" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opZ-jY-yOZ">
+                                <rect key="frame" x="185" y="122" width="88" height="17.5"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bI2-J1-yf2" firstAttribute="leading" secondItem="Ytg-kZ-g6b" secondAttribute="leading" constant="8" id="5vh-gX-yHf"/>
+                            <constraint firstAttribute="trailing" secondItem="cdh-pZ-DVl" secondAttribute="trailing" constant="8" id="6PM-gj-Jex"/>
+                            <constraint firstItem="cdh-pZ-DVl" firstAttribute="leading" secondItem="Ytg-kZ-g6b" secondAttribute="leading" constant="8" id="ANo-HW-TQ3"/>
+                            <constraint firstItem="bI2-J1-yf2" firstAttribute="top" secondItem="3g9-fb-bUC" secondAttribute="bottom" constant="12" id="EDn-HZ-9ZN"/>
+                            <constraint firstItem="DaU-mj-aDm" firstAttribute="leading" secondItem="sba-uM-oPF" secondAttribute="trailing" constant="8" id="L9l-3J-WRC"/>
+                            <constraint firstItem="3g9-fb-bUC" firstAttribute="top" secondItem="sba-uM-oPF" secondAttribute="bottom" constant="12" id="O9P-l6-q6E"/>
+                            <constraint firstItem="F2O-Q0-AaW" firstAttribute="centerY" secondItem="3g9-fb-bUC" secondAttribute="centerY" id="acg-T2-4wo"/>
+                            <constraint firstItem="cdh-pZ-DVl" firstAttribute="top" secondItem="Ytg-kZ-g6b" secondAttribute="top" constant="16" id="cwn-tw-nLG"/>
+                            <constraint firstItem="sba-uM-oPF" firstAttribute="top" secondItem="cdh-pZ-DVl" secondAttribute="bottom" constant="12" id="enh-aN-flO"/>
+                            <constraint firstItem="F2O-Q0-AaW" firstAttribute="leading" secondItem="3g9-fb-bUC" secondAttribute="trailing" constant="8" id="klr-Aw-fYz"/>
+                            <constraint firstItem="DaU-mj-aDm" firstAttribute="centerY" secondItem="sba-uM-oPF" secondAttribute="centerY" id="mHP-B5-LOQ"/>
+                            <constraint firstItem="opZ-jY-yOZ" firstAttribute="centerY" secondItem="bI2-J1-yf2" secondAttribute="centerY" id="oOC-iT-2kx"/>
+                            <constraint firstItem="opZ-jY-yOZ" firstAttribute="leading" secondItem="bI2-J1-yf2" secondAttribute="trailing" constant="8" id="oR2-XT-htu"/>
+                            <constraint firstItem="3g9-fb-bUC" firstAttribute="leading" secondItem="Ytg-kZ-g6b" secondAttribute="leading" constant="8" id="pVo-m7-LPt"/>
+                            <constraint firstItem="sba-uM-oPF" firstAttribute="leading" secondItem="Ytg-kZ-g6b" secondAttribute="leading" constant="8" id="xuF-vp-qrO"/>
+                            <constraint firstItem="Ytg-kZ-g6b" firstAttribute="bottom" secondItem="bI2-J1-yf2" secondAttribute="bottom" constant="16" id="zgN-Ri-ETv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ytg-kZ-g6b"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="PnR-WS-oDT" secondAttribute="bottom" constant="3" id="4L0-qY-7pZ"/>
+                    <constraint firstItem="PnR-WS-oDT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="lSF-Jh-jnC"/>
+                    <constraint firstItem="PnR-WS-oDT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="tKi-tV-GPY"/>
+                    <constraint firstAttribute="trailing" secondItem="PnR-WS-oDT" secondAttribute="trailing" constant="16" id="xYI-NV-gqu"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lblAddress" destination="cdh-pZ-DVl" id="8uF-2K-JSi"/>
+                <outlet property="lblCOntactNo" destination="opZ-jY-yOZ" id="ylO-kC-Nez"/>
+                <outlet property="lblEmail" destination="F2O-Q0-AaW" id="pT5-4H-OFK"/>
+                <outlet property="lblLocationName" destination="DaU-mj-aDm" id="0ne-vt-s83"/>
+                <outlet property="viewBorder" destination="PnR-WS-oDT" id="h8S-uJ-tbg"/>
+            </connections>
+            <point key="canvasLocation" x="84" y="48.5"/>
+        </tableViewCell>
+    </objects>
+</document>

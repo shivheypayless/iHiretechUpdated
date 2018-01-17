@@ -12,8 +12,31 @@ class ChatViewController: UIViewController {
 
     @IBOutlet var chatTextField: UITextField!
     @IBOutlet var tblChat: UITableView!
-    
+    let chatRoom = ChatView()
+     var chatHistory = [[String:Any]]()
     var conversation = ["Hello","Hi.","How are you?","I'm doing great. What have you been upto these days?","Nothing much! Just the usual corporate work life.","Ohh I see. BTW why don't you visit us for a dinner or something with Sue and kids.","Yeah sure why not!","How does next Saturday Night sound to you.","Yeah will do, as long as Sue doesn't have any other plans for the night.","Sure, I'll even notify Aisha about it","Cool","Meet up soon.","Cya"]
+    
+    var timer: Timer!
+    
+    var isTyping = false {
+        didSet {
+            guard oldValue != isTyping else {
+                return
+            }
+            guard isTyping else {
+                self.tblChat.reloadData()
+                return
+            }
+            let lastIndexPath = self.tblChat.indexPathsForVisibleRows!.sorted(by: { $0.row < $1.row }).last!
+           
+            self.tblChat.reloadData()
+            guard lastIndexPath.row == chatHistory.count - 1 else {
+                return
+            }
+            self.tblChat.scrollToRow(at: IndexPath(row: lastIndexPath.row + 1, section: 0) , at: .bottom, animated: false)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,6 +46,22 @@ class ChatViewController: UIViewController {
         self.chatTextField.layer.masksToBounds = true
         self.chatTextField.layer.borderWidth = 1
         self.chatTextField.layer.borderColor = UIColor.lightGray.cgColor
+        
+        chatTextField.addTarget(self, action: #selector(textDidChange(_:)), for: .editingChanged)
+        
+        WebAPI.shared.callJSONWebApi(.getChatHistory, withHTTPMethod: .post, forPostParameters: ["with_users_id" : "" , "work_order_id": ""], shouldIncludeAuthorizationHeader: true) { (serviceResponse) in
+            self.chatHistory = serviceResponse["msgs"] as! [[String:Any]]
+            if self.chatHistory.count != 0
+            {
+               self.tblChat.reloadData()
+            }
+         
+            SocketIOManager.sharedInstance.socketIOManagerDelegate = self
+            guard self.chatHistory.count > 0 else {
+                return
+            }
+            self.tblChat.scrollToRow(at: IndexPath(row: self.chatHistory.count - 1, section: 0), at: .bottom, animated: false)
+        }
         
         self.tblChat.register(UINib(nibName: "OwnerTableViewCell", bundle: nil) , forCellReuseIdentifier: "OwnerTableViewCell")
         self.tblChat.register(UINib(nibName: "OtherUserTableViewCell", bundle: nil) , forCellReuseIdentifier: "OtherUserTableViewCell")
@@ -34,6 +73,7 @@ class ChatViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+       // chatRoom.setupNetworkCommunication()
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
     
@@ -70,7 +110,25 @@ class ChatViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    
+    @IBAction func btn_SendMessage(_ sender: UIButton)
+    {
+        guard !chatTextField.text!.isEmpty else {
+            return
+        }
+        
+        SocketIOManager.sharedInstance.sendDataToEvent(.message, data: [
+            "to_id" : "",
+            "work_order_id": "",
+            "message": chatTextField.text!])
+        chatTextField.text = nil
+    }
+    
+    @objc func textDidChange(_ sender: UITextField) {
+        SocketIOManager.sharedInstance.sendDataToEvent(.typing, data: [:])
+    }
+    
 }
 
 extension ChatViewController : UITableViewDataSource, UITableViewDelegate
@@ -84,12 +142,14 @@ extension ChatViewController : UITableViewDataSource, UITableViewDelegate
         {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OwnerTableViewCell", for: indexPath) as! OwnerTableViewCell
             cell.lblText.text = self.conversation[indexPath.row]
+          //  cell.lblText.text = chatHistory[indexPath.row]["message"] as? String
         return cell
         }
         else
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "OtherUserTableViewCell", for: indexPath) as! OtherUserTableViewCell
             cell.lblText.text = self.conversation[indexPath.row]
+         //   cell.lblText.text = chatHistory[indexPath.row]["message"] as? String
             return cell
         }
     }
@@ -99,5 +159,39 @@ extension ChatViewController : UITableViewDataSource, UITableViewDelegate
         return UITableViewAutomaticDimension
     }
     
+}
+
+extension ChatViewController: SocketIOManagerDelegate {
+    func usersTyping(_ data: [String : Any]) {
+        isTyping = true
+        timer?.invalidate()
+        if #available(iOS 10.0, *) {
+            timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (_) in
+                self.isTyping = false
+            })
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+    
+    func messageReceived(_ data: [String : Any]) {
+        let recipient = (data["work_order_id"] as! [[String:String]]).first!
+        let chatMessage: [String:Any] = [
+              "to_id": "",
+              "work_order_id": data["work_order_id"] as! String,
+              "message": data["message"] as! String,]
+        let indexPaths = self.tblChat.indexPathsForVisibleRows?.sorted(by: { $0.row < $1.row })
+        chatHistory.append(chatMessage)
+        self.tblChat.reloadData()
+        guard let lastIndexPath = indexPaths?.last  else {
+            return
+        }
+        guard lastIndexPath.row == (isTyping ? chatHistory.count - 1 : chatHistory.count - 2) else {
+            return
+        }
+        self.tblChat.scrollToRow(at: IndexPath(row: lastIndexPath.row + 1, section: 0) , at: .bottom, animated: false)
+    }
+    
+  
 }
 

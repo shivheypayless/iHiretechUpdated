@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Quicksand-Bold_0.ttf">
+            <string>Quicksand-Bold</string>
+        </array>
+        <array key="Quicksand-Regular.ttf">
+            <string>Quicksand-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PayRateInformationTableViewCell" rowHeight="112" id="KGk-i7-Jjw" customClass="PayRateInformationTableViewCell" customModule="iHiretech" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="112"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="111.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wi4-Jw-R1I">
+                        <rect key="frame" x="16" y="0.0" width="288" height="109.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Type :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C3u-5K-hio">
+                                <rect key="frame" x="8" y="16" width="99.5" height="17.5"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hourly Rate :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FP2-zZ-3rl">
+                                <rect key="frame" x="8" y="45.5" width="83.5" height="17.5"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Per Hour" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7a-8Z-UJp">
+                                <rect key="frame" x="115.5" y="15.5" width="64" height="19"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hourly Rate Max Hours :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdJ-dR-anM">
+                                <rect key="frame" x="8" y="75" width="156.5" height="17.5"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Nd-rI-Llv">
+                                <rect key="frame" x="172.5" y="75" width="56.5" height="17.5"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 55.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpm-Me-JKg">
+                                <rect key="frame" x="100" y="46" width="41" height="17.5"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ofs-UA-fgA" firstAttribute="bottom" secondItem="WdJ-dR-anM" secondAttribute="bottom" constant="17" id="2H7-ht-fMf"/>
+                            <constraint firstItem="C3u-5K-hio" firstAttribute="leading" secondItem="ofs-UA-fgA" secondAttribute="leading" constant="8" id="7UK-ZF-qbN"/>
+                            <constraint firstItem="FP2-zZ-3rl" firstAttribute="top" secondItem="C3u-5K-hio" secondAttribute="bottom" constant="12" id="AuQ-gi-Ghc"/>
+                            <constraint firstItem="vpm-Me-JKg" firstAttribute="leading" secondItem="FP2-zZ-3rl" secondAttribute="trailing" constant="8" id="KX0-CZ-jCO"/>
+                            <constraint firstItem="WdJ-dR-anM" firstAttribute="leading" secondItem="ofs-UA-fgA" secondAttribute="leading" constant="8" id="XqX-mH-h5H"/>
+                            <constraint firstItem="0Nd-rI-Llv" firstAttribute="centerY" secondItem="WdJ-dR-anM" secondAttribute="centerY" id="bXO-MV-kSb"/>
+                            <constraint firstItem="0Nd-rI-Llv" firstAttribute="leading" secondItem="WdJ-dR-anM" secondAttribute="trailing" constant="8" id="c2t-sh-PHh"/>
+                            <constraint firstItem="y7a-8Z-UJp" firstAttribute="centerY" secondItem="C3u-5K-hio" secondAttribute="centerY" id="gOp-NM-QeF"/>
+                            <constraint firstItem="vpm-Me-JKg" firstAttribute="centerY" secondItem="FP2-zZ-3rl" secondAttribute="centerY" id="ig9-s1-qLf"/>
+                            <constraint firstItem="WdJ-dR-anM" firstAttribute="top" secondItem="FP2-zZ-3rl" secondAttribute="bottom" constant="12" id="is8-RY-Hx2"/>
+                            <constraint firstItem="FP2-zZ-3rl" firstAttribute="leading" secondItem="ofs-UA-fgA" secondAttribute="leading" constant="8" id="rhK-fu-ODv"/>
+                            <constraint firstItem="C3u-5K-hio" firstAttribute="top" secondItem="wi4-Jw-R1I" secondAttribute="top" constant="16" id="unQ-EL-Mef"/>
+                            <constraint firstItem="y7a-8Z-UJp" firstAttribute="leading" secondItem="C3u-5K-hio" secondAttribute="trailing" constant="8" id="xsF-vU-oHT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ofs-UA-fgA"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="wi4-Jw-R1I" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="4zO-2x-fYS"/>
+                    <constraint firstAttribute="bottom" secondItem="wi4-Jw-R1I" secondAttribute="bottom" constant="2" id="Nwf-e8-7YW"/>
+                    <constraint firstAttribute="trailing" secondItem="wi4-Jw-R1I" secondAttribute="trailing" constant="16" id="fmf-3u-SSH"/>
+                    <constraint firstItem="wi4-Jw-R1I" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="t12-rp-96N"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lblHourlyRate" destination="vpm-Me-JKg" id="NDH-a1-XNy"/>
+                <outlet property="lblMaxRate" destination="0Nd-rI-Llv" id="htx-Hy-edc"/>
+                <outlet property="lblPaymentType" destination="y7a-8Z-UJp" id="NwC-kO-ohZ"/>
+                <outlet property="viewBorder" destination="wi4-Jw-R1I" id="yUw-NM-re0"/>
+            </connections>
+            <point key="canvasLocation" x="90" y="48"/>
+        </tableViewCell>
+    </objects>
+</document>

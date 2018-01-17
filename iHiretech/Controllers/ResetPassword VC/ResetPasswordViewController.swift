@@ -66,7 +66,7 @@ class ResetPasswordViewController: UIViewController {
                 {
                     AListAlertController.shared.presentAlertController(message: message)
                     {
-                        let nav = self.storyboard!.instantiateViewController(withIdentifier: "VerifyOtpViewController") as! VerifyOtpViewController
+                        let nav = self.storyboard!.instantiateViewController(withIdentifier: "ForgotViewController") as! ForgotViewController
                         let transition = CATransition()
                         transition.duration = 0.5
                         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)

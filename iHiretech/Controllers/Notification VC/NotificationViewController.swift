@@ -12,9 +12,10 @@ class NotificationViewController: UIViewController {
 
     @IBOutlet var tblNotification: UITableView!
     var frmSrc = String()
+    var notificationList = [AnyObject]()
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+              getNotificationList()
         self.tblNotification.register(UINib(nibName: "NotificationTableViewCell", bundle: nil) , forCellReuseIdentifier: "NotificationTableViewCell")
         self.tblNotification.estimatedRowHeight = 90
         self.tblNotification.rowHeight = UITableViewAutomaticDimension
@@ -68,7 +69,6 @@ class NotificationViewController: UIViewController {
         else if self.frmSrc == "MyWork"
         {
             let destination = MyWorkOrderTableViewController(style: .plain)
-           // destination.storyBoard = self.storyboard
             let transition = CATransition()
             transition.duration = 0.5
             transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
@@ -93,16 +93,34 @@ class NotificationViewController: UIViewController {
             self.navigationController?.pushViewController(destination, animated: false)
         }
     }
+    
+    func getNotificationList()
+    {
+        WebAPI().callJSONWebApi(API.getNotificationList, withHTTPMethod: .get, forPostParameters: nil, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
+            print(serviceResponse)
+           let data = serviceResponse["data"] as! [String:Any]
+            let list = data["pagination_link"] as! [String:Any]
+            self.notificationList = list["data"] as! [AnyObject]
+            self.tblNotification.reloadData()
+        })
+    }
 }
 
 extension NotificationViewController : UITableViewDataSource, UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return self.notificationList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationTableViewCell", for: indexPath) as! NotificationTableViewCell
+        cell.lblOrderTitle.text = ((self.notificationList[indexPath.row])["work_order_activity"] as! String)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = dateFormatter.date(from: ((self.notificationList[indexPath.row])["updated_at"] as! String))!
+        dateFormatter.dateFormat = "dd MMM"
+        cell.lblOrderDate.text = dateFormatter.string(from: date)
+        cell.lblOrderId.text = ((self.notificationList[indexPath.row])["workOrderNumber"] as! String)
         return cell
     }
     

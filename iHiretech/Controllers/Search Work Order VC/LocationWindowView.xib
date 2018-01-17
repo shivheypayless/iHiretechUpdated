@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Quicksand-Regular.ttf">
+            <string>Quicksand-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="160" height="61"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FP9-ye-eMq">
+                    <rect key="frame" x="0.0" y="0.0" width="160" height="51"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzq-cG-x7g">
+                            <rect key="frame" x="8" y="4" width="144" height="18"/>
+                            <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pal-aa-u5m">
+                            <rect key="frame" x="8" y="26" width="144" height="18"/>
+                            <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="bzq-cG-x7g" secondAttribute="trailing" constant="8" id="4If-3Y-JD3"/>
+                        <constraint firstItem="bzq-cG-x7g" firstAttribute="top" secondItem="FP9-ye-eMq" secondAttribute="top" constant="4" id="FlB-dZ-7n5"/>
+                        <constraint firstItem="bzq-cG-x7g" firstAttribute="centerX" secondItem="FP9-ye-eMq" secondAttribute="centerX" id="GEB-US-rpr"/>
+                        <constraint firstItem="Pal-aa-u5m" firstAttribute="centerX" secondItem="FP9-ye-eMq" secondAttribute="centerX" id="HdM-d9-Xli"/>
+                        <constraint firstItem="Pal-aa-u5m" firstAttribute="leading" secondItem="FP9-ye-eMq" secondAttribute="leading" constant="8" id="Jmw-yK-Vgr"/>
+                        <constraint firstAttribute="trailing" secondItem="Pal-aa-u5m" secondAttribute="trailing" constant="8" id="SRS-Hq-mDK"/>
+                        <constraint firstItem="Pal-aa-u5m" firstAttribute="top" secondItem="bzq-cG-x7g" secondAttribute="bottom" constant="4" id="kJS-w2-Lhp"/>
+                        <constraint firstItem="bzq-cG-x7g" firstAttribute="leading" secondItem="FP9-ye-eMq" secondAttribute="leading" constant="8" id="oOP-Qh-jUM"/>
+                        <constraint firstAttribute="bottom" secondItem="Pal-aa-u5m" secondAttribute="bottom" constant="7" id="u6k-gS-EBz"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_InfoWindowArrow" translatesAutoresizingMaskIntoConstraints="NO" id="aOc-2B-cgo">
+                    <rect key="frame" x="69" y="47" width="22" height="14"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="aOc-2B-cgo" secondAttribute="height" multiplier="22:9" constant="-12.222222222222229" id="VcS-h7-bPg"/>
+                        <constraint firstAttribute="width" constant="22" id="rWd-w8-oR0"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="aOc-2B-cgo" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="8FO-pp-LsF"/>
+                <constraint firstItem="aOc-2B-cgo" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="A3G-kh-mWY"/>
+                <constraint firstItem="FP9-ye-eMq" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Jok-Tj-sLL"/>
+                <constraint firstItem="aOc-2B-cgo" firstAttribute="top" secondItem="FP9-ye-eMq" secondAttribute="bottom" constant="-4" id="Y95-Jx-5vJ"/>
+                <constraint firstItem="FP9-ye-eMq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="aC6-Fo-5tj"/>
+                <constraint firstItem="FP9-ye-eMq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="i5C-uJ-ZFv"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="165" y="-183.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="img_InfoWindowArrow" width="16" height="16"/>
+    </resources>
+</document>

@@ -10,6 +10,9 @@ import UIKit
 
 class NotificationTableViewCell: UITableViewCell {
 
+    @IBOutlet var lblOrderTitle: UILabel!
+    @IBOutlet var lblOrderDate: UILabel!
+    @IBOutlet var lblOrderId: UILabel!
     @IBOutlet var viewSuper: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()

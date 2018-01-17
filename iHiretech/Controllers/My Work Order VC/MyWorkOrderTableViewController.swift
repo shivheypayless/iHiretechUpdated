@@ -7,25 +7,40 @@
 //
 
 import UIKit
+import KLCPopup
 
 class MyWorkOrderTableViewController: UITableViewController {
     
     var collapsedSections = NSMutableSet()
-     var appdelegate = UIApplication.shared.delegate as! AppDelegate
+    var appdelegate = UIApplication.shared.delegate as! AppDelegate
     var frmSrc = String()
+    var popup = KLCPopup()
+    var upDwnArrow = UIImageView()
+    var statusTableView = UITableView()
+    var calenderPickerView = UIDatePicker()
+    var getStatusName = [AnyObject]()
+    var getWorkListData = [String:Any]()
+    var getSearchListDetails = [AnyObject]()
+    var workOrderData = [String:Any]()
+    var statusName = UIButton()
+    var statusId = Int()
+    var statusTableCnst = NSLayoutConstraint()
+    var workOrderId = Int()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-         self.navigationItem.title = "My Work Order"
+        self.tableView.dataSource = nil
+        self.tableView.delegate = nil
+        self.navigationItem.title = "My Work Order"
         self.navigationItem.titleView?.tintColor = UIColor.white
-        
+        self.statusTableCnst.constant = 0
+      //  self.tableView.estimatedRowHeight = 340
+      //  self.tableView.rowHeight = 384.0
          self.tableView.register(UINib(nibName: "WorkOrderTableViewCell", bundle: nil) , forCellReuseIdentifier: "WorkOrderTableViewCell")
         self.tableView.register(UINib(nibName: "SearchWorkOrderTableViewCell", bundle: nil) , forCellReuseIdentifier: "SearchWorkOrderTableViewCell")
         self.tableView.separatorStyle = .none
         collapsedSections.add(1)
-        
-      
+         getWorkList()
         
         let button2 =  UIBarButtonItem(image: UIImage(named: "img_Notification"), style: .plain, target: self, action: #selector(btnNotificationAction))
         
@@ -35,13 +50,7 @@ class MyWorkOrderTableViewController: UITableViewController {
         
         self.navigationItem.setRightBarButtonItems([button2,button3], animated: true)
         self.navigationItem.leftBarButtonItem = button4
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+     
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,7 +63,26 @@ class MyWorkOrderTableViewController: UITableViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
     
- 
+    func getWorkList()
+    {
+        let parameters = ["work_order_number": "" , "from_date": "" , "to_date": "", "status":"" ,"per_page":""] as! [String:AnyObject]
+        WebAPI().callJSONWebApi(API.workOrderListing, withHTTPMethod: .post, forPostParameters: parameters, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
+            print(serviceResponse)
+            let data = serviceResponse["data"] as? [String:Any]
+            self.getWorkListData = data!["work_orders"] as! [String:Any]
+            self.getStatusName = data!["statuses"] as! [AnyObject]
+            self.getSearchListDetails = self.getWorkListData["data"] as! [AnyObject]
+      //       print(self.getSearchListDetails)
+           
+            if self.getSearchListDetails.count != 0
+            {
+                print(self.getSearchListDetails.count)
+            }
+            self.tableView.dataSource = self
+            self.tableView.delegate = self
+           self.tableView.reloadData()
+        })
+    }
     
     @objc func btnNotificationAction()
     {
@@ -105,76 +133,185 @@ class MyWorkOrderTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        if tableView == self.tableView
+        {
+            return 2
+        }
+        else
+        {
+          return 1
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if section == 0
+        if tableView == self.statusTableView
         {
-         return collapsedSections.contains(section) ? 0 :  1
+            return self.getStatusName.count
         }
         else
         {
-            return 2
+            if section == 0
+            {
+                return collapsedSections.contains(section) ? 0 :  1
+            }
+            else
+            {
+                return self.getSearchListDetails.count
+            }
+            
         }
+    
     }
    
    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0
+        if tableView == self.statusTableView
         {
-          let cell = tableView.dequeueReusableCell(withIdentifier: "SearchWorkOrderTableViewCell", for: indexPath) as! SearchWorkOrderTableViewCell
-          return cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "StatesTableViewCell", for: indexPath) as! StatesTableViewCell
+            cell.lblState.text! = ((self.getStatusName[indexPath.row])["name"] as? String)!
+            return cell
         }
         else
         {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "WorkOrderTableViewCell", for: indexPath) as! WorkOrderTableViewCell
-            return cell
+            if indexPath.section == 0
+            {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SearchWorkOrderTableViewCell", for: indexPath) as! SearchWorkOrderTableViewCell
+                cell.btnFromDate.addTarget(self, action: #selector(self.DatePickerFromDate(_:)), for: UIControlEvents.touchUpInside)
+                cell.btnToDate.addTarget(self, action: #selector(self.DatePickerToDate(_:)), for: UIControlEvents.touchUpInside)
+                cell.btnSelectStatus.addTarget(self, action: #selector(self.btnStatusAction(_:)), for: UIControlEvents.touchUpInside)
+                cell.btnReset.addTarget(self, action: #selector(self.btn_ResetAction(_:)), for: UIControlEvents.touchUpInside)
+                cell.btnSearch.addTarget(self, action: #selector(self.btn_SearchAction(_:)), for: UIControlEvents.touchUpInside)
+//                cell.cntStatusHeight = self.statusTableCnst
+                self.statusName =  cell.btnSelectStatus
+//                self.statusTableCnst = cell.cntStatusHeight
+////                self.statusTableCnst.constant = 0
+                self.upDwnArrow.image = cell.UpDwnArrow.image
+                return cell
+            }
+            else
+            {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "WorkOrderTableViewCell", for: indexPath) as! WorkOrderTableViewCell
+                if self.getSearchListDetails.count != 0
+                {
+                    cell.lblWorkOrderId.text = "#\(String(describing: (self.getSearchListDetails[indexPath.row])["work_order_number"] as! String)) "
+                    let cap = ((self.getSearchListDetails[indexPath.row])["status_name"] as! String)
+                    let finalString = cap.capitalized
+                    cell.lblStatus.text = " \(finalString) "
+                    cell.lblWorkType.text = (((self.getSearchListDetails[indexPath.row])["work_category"]) as! [String:Any])["work_category_name"] as? String
+                    cell.lblLocationName.text = ((self.getSearchListDetails[indexPath.row])["location_name"] as? String)
+                    cell.lblWorkOrderDate.text = "\((self.getSearchListDetails[indexPath.row])["schedule_exact_date"] as? String ?? "2017-04-20") \((self.getSearchListDetails[indexPath.row])["schedule_exact_time"] as? String ?? "10:00")"
+                    cell.lblCLientName.text = (((self.getSearchListDetails[indexPath.row])["clients"]) as! [String:Any])["client_name"] as? String
+                    cell.lblManagerName.text = ((((self.getSearchListDetails[indexPath.row])["manager"]) as! [String:Any])["first_name"] as? String)!+" "+((((self.getSearchListDetails[indexPath.row])["manager"]) as! [String:Any])["last_name"] as? String)!
+                 
+                    if (((self.getSearchListDetails[indexPath.row])["work_order_status"] as! [String:Any])["is_routed"] as? String) == "1"
+                    {
+                       cell.lblRouted.isHidden = false
+                       cell.lblRouted.text = " Routed "
+                    }
+                    else
+                    {
+                        cell.lblRouted.isHidden = true
+                    }
+                }
+                cell.btnCancel?.removeFromSuperview()
+                cell.btnDetailView.tag = indexPath.row
+                cell.btnPrint.tag = indexPath.row
+                
+                cell.btnDetailView.addTarget(self, action: #selector(self.btnViewAction(_:)), for: .touchUpInside)
+                 cell.btnPrint.addTarget(self, action: #selector(self.btnViewAction(_:)), for: .touchUpInside)
+                return cell
+            }
+            
         }
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        if tableView == self.statusTableView
+        {
+            let status = ((self.getStatusName[indexPath.row])["name"] as? String)!
+            self.statusId = ((self.getStatusName[indexPath.row])["id"] as? Int)!
+            self.statusName.titleLabel?.text = " \(status)"
+            self.statusTableCnst.constant = 0
+            self.tableView.rowHeight = 384.0
+            self.tableView.beginUpdates()
+//            self.tableView.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .none)
+            self.tableView.endUpdates()
+//            statusRow = 0
+            self.upDwnArrow.image = UIImage(named: "minus")
+        }
+
+
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0
+        if tableView == self.statusTableView
         {
-          let headerViewArray = Bundle.main.loadNibNamed("SearchViewExpandableView", owner: self, options: nil)?[0] as! UIView
-            (headerViewArray.viewWithTag(1) as! UIView).layer.borderWidth = 1
-            (headerViewArray.viewWithTag(1) as! UIView).layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
-            var tap = UITapGestureRecognizer()
-            tap =  UITapGestureRecognizer(target: self, action: #selector(self.extendSection))
-            headerViewArray.addGestureRecognizer(tap)
-            headerViewArray.tag = section
-//          headerViewArray.layer.borderWidth = 1
-//          headerViewArray.layer.borderColor = UIColor.lightGray.cgColor
-          return headerViewArray
+            return nil
         }
         else
         {
-            let headerViewArray = Bundle.main.loadNibNamed("SearchResultHeaderView", owner: self, options: nil)?[0] as! UIView
-            
-//            headerViewArray.layer.borderWidth = 1
-//            headerViewArray.layer.borderColor = UIColor.lightGray.cgColor
-            return headerViewArray
+            if section == 0
+            {
+                let headerViewArray = Bundle.main.loadNibNamed("SearchViewExpandableView", owner: self, options: nil)?[0] as! UIView
+                (headerViewArray.viewWithTag(1) as! UIView).layer.borderWidth = 1
+                (headerViewArray.viewWithTag(1) as! UIView).layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
+                var tap = UITapGestureRecognizer()
+                tap =  UITapGestureRecognizer(target: self, action: #selector(self.extendSection))
+                headerViewArray.addGestureRecognizer(tap)
+                headerViewArray.tag = section
+                return headerViewArray
+            }
+            else
+            {
+                let headerViewArray = Bundle.main.loadNibNamed("SearchResultHeaderView", owner: self, options: nil)?[0] as! UIView
+                return headerViewArray
+            }
         }
+        
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     {
-        if section == 0
+        if tableView == self.statusTableView
         {
-          return 47.0
+            return 0
         }
         else
         {
-             return 55.0
+            if section == 0
+            {
+                return 47.0
+            }
+            else
+            {
+                return 55.0
+            }
         }
+        
     }
     
    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
    {
     if indexPath.section == 0
     {
-        return 384
+        if tableView == self.statusTableView
+        {
+           return 30
+        }
+        else
+        {
+            if statusTableCnst.constant == 0
+            {
+              return 384
+            }
+            else
+            {
+                return 468
+            }
+        }
     }
     else
     {
@@ -219,17 +356,6 @@ class MyWorkOrderTableViewController: UITableViewController {
         
     }
     
-    func closeSection(_ sender : Int)
-    {
-        self.tableView.beginUpdates()
-        let numOfRows = tableView.numberOfRows(inSection: sender)
-        let indexPaths:[NSIndexPath] = self.indexPathsForSection(section: sender, withNumberOfRows: numOfRows)
-        self.tableView.deleteRows(at: indexPaths as [IndexPath], with: .fade)
-        collapsedSections.add(sender)
-        self.tableView.endUpdates()
-        self.tableView.reloadData()
-    }
-    
     func indexPathsForSection(section: Int, withNumberOfRows numberOfRows: Int) -> [NSIndexPath] {
         var indexPaths: [NSIndexPath] = [NSIndexPath]()
         for i in 0..<numberOfRows {
@@ -241,5 +367,151 @@ class MyWorkOrderTableViewController: UITableViewController {
         
     }
     
+    
+     @objc func btnStatusAction(_ sender : UIButton)
+     {
+        if statusTableCnst.constant == 0
+        {
+        let cell_indexPath = NSIndexPath(row: 0, section: 0)
+        let tableViewCell = tableView.cellForRow(at: cell_indexPath as IndexPath) as! SearchWorkOrderTableViewCell
+//        self.tableView.rowHeight = 468.0
+        statusTableCnst = tableViewCell.cntStatusHeight
+        statusTableCnst.constant = 85.0
+//            self.tableView.beginUpdates()
+//      //      self.tableView.reloadSections(NSIndexSet(index: 2) as IndexSet, with: .none)
+//            self.tableView.endUpdates()
+//            self.tableView.reloadSectionIndexTitles()
+        self.upDwnArrow.image = UIImage(named: "plus")
+        tableViewCell.statusTableView.layer.borderWidth = 1
+        tableViewCell.statusTableView.layer.borderColor = UIColor.lightGray.cgColor
+        self.statusTableView = tableViewCell.statusTableView
+        self.statusTableView.register(UINib(nibName: "StatesTableViewCell", bundle: nil) , forCellReuseIdentifier: "StatesTableViewCell")
+        self.statusTableView.delegate = self
+        self.statusTableView.dataSource = self
+        self.statusTableView.reloadData()
+            tableView.reloadData()
+        }
+        else
+        {
+//            statusRow = 0
+            statusTableCnst.constant = 0
+//            self.tableView.rowHeight = 384.0
+//            self.tableView.beginUpdates()
+//            self.tableView.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .none)
+//            self.tableView.endUpdates()
+            tableView.reloadData()
+            self.upDwnArrow.image = UIImage(named: "minus")
+        }
+     }
+    
+    @objc func DatePickerFromDate(_ sender : UIButton)
+    {
+        view.endEditing(true)
+        var calenderView = UIView()
+        calenderView = Bundle.main.loadNibNamed("DatePickerView", owner: self, options: nil)?[0] as! UIView
+        calenderView.layer.cornerRadius = 10.0
+        calenderView.layer.masksToBounds = true
+        self.calenderPickerView = (calenderView.viewWithTag(3)! as! UIDatePicker)
+        self.calenderPickerView.datePickerMode = UIDatePickerMode.date
+        //  self.calenderPickerView.maximumDate = Date()
+        let CloseButton = calenderView.viewWithTag(1) as! UIButton
+        CloseButton.addTarget(self, action: #selector(self.btn_CloseAction(_:)), for: UIControlEvents.touchUpInside)
+        let SaveButton = calenderView.viewWithTag(2) as! UIButton
+        SaveButton.addTarget(self, action: #selector(self.btn_SaveFromAction(_:)), for: UIControlEvents.touchUpInside)
+        popup = KLCPopup(contentView: calenderView , showType: .bounceIn, dismissType: .bounceOut, maskType: .dimmed, dismissOnBackgroundTouch: true, dismissOnContentTouch: false)
+        popup.show()
+    }
+    
+    @objc func btn_SaveToAction(_ sender: UIButton)
+    {
+        popup.dismiss(true)
+        let cell_indexPath = NSIndexPath(row: 0, section: 0)
+        let tableViewCell = tableView.cellForRow(at: cell_indexPath as IndexPath) as! SearchWorkOrderTableViewCell
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-YYYY"
+        tableViewCell.viewToDate.txtFieldName.text = dateFormatter.string(from: calenderPickerView.date)
+        
+    }
+    
+    @objc func DatePickerToDate(_ sender : UIButton)
+    {
+        view.endEditing(true)
+        var calenderView = UIView()
+        calenderView = Bundle.main.loadNibNamed("DatePickerView", owner: self, options: nil)?[0] as! UIView
+        calenderView.layer.cornerRadius = 10.0
+        calenderView.layer.masksToBounds = true
+        self.calenderPickerView = (calenderView.viewWithTag(3)! as! UIDatePicker)
+        self.calenderPickerView.datePickerMode = UIDatePickerMode.date
+      //  self.calenderPickerView.maximumDate = Date()
+        let CloseButton = calenderView.viewWithTag(1) as! UIButton
+        CloseButton.addTarget(self, action: #selector(self.btn_CloseAction(_:)), for: UIControlEvents.touchUpInside)
+        let SaveButton = calenderView.viewWithTag(2) as! UIButton
+        SaveButton.addTarget(self, action: #selector(self.btn_SaveToAction(_:)), for: UIControlEvents.touchUpInside)
+        popup = KLCPopup(contentView: calenderView , showType: .bounceIn, dismissType: .bounceOut, maskType: .dimmed, dismissOnBackgroundTouch: true, dismissOnContentTouch: false)
+        popup.show()
+    }
+    
+    @objc func btn_SaveFromAction(_ sender: UIButton)
+    {
+        popup.dismiss(true)
+        let cell_indexPath = NSIndexPath(row: 0, section: 0)
+        let tableViewCell = tableView.cellForRow(at: cell_indexPath as IndexPath) as! SearchWorkOrderTableViewCell
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-YYYY"
+        tableViewCell.viewFromDate.txtFieldName.text = dateFormatter.string(from: calenderPickerView.date)
+    }
+    
+    @objc func btn_CloseAction(_ sender: UIButton)
+    {
+        popup.dismiss(true)
+    }
+    
+    @objc func btn_SearchAction(_ sender: UIButton)
+    {
+        popup.dismiss(true)
+        let cell_indexPath = NSIndexPath(row: 0, section: 0)
+        let tableViewCell = tableView.cellForRow(at: cell_indexPath as IndexPath) as! SearchWorkOrderTableViewCell
+        let parameters = ["work_order_number": tableViewCell.txtWorkOrderNo.txtFieldName.text! , "from_date": tableViewCell.viewFromDate.txtFieldName.text! , "to_date": tableViewCell.viewToDate.txtFieldName.text!, "status":  self.statusId ,"per_page":""] as! [String:AnyObject]
+        WebAPI().callJSONWebApi(API.workOrderListing, withHTTPMethod: .post, forPostParameters: parameters, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
+            print(serviceResponse)
+            let data = serviceResponse["data"] as? [String:Any]
+            self.getWorkListData = data!["work_orders"] as! [String:Any]
+            self.getStatusName = data!["statuses"] as! [AnyObject]
+            self.getSearchListDetails = self.getWorkListData["data"] as! [AnyObject]
+            //       print(self.getSearchListDetails)
+            if self.getSearchListDetails.count != 0
+            {
+                print(self.getSearchListDetails.count)
+            }
+            self.tableView.dataSource = self
+            self.tableView.delegate = self
+            self.tableView.reloadData()
+        })
+    }
+    
+    @objc func btn_ResetAction(_ sender: UIButton)
+    {
+        popup.dismiss(true)
+    }
+    
+    @objc func btnViewAction(_ sender : UIButton)
+    {
+        self.workOrderId =  ((self.getSearchListDetails[sender.tag])["work_order_id"] as! Int)
+       let nav = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "WorkOrderDetailsViewController") as! WorkOrderDetailsViewController
+         nav.workOrderId = self.workOrderId
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionFade
+        self.navigationController?.view.layer.add(transition, forKey: nil)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.pushViewController(nav, animated: false)
+    }
+
 
 }
+
+
+
