@@ -316,26 +316,27 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
                     cell.lblCLientName.text = (((self.getSearchListDetails[indexPath.row])["clients"]) as! [String:Any])["client_name"] as? String
                     cell.lblManagerName.text = ((((self.getSearchListDetails[indexPath.row])["manager"]) as! [String:Any])["first_name"] as? String)!+" "+((((self.getSearchListDetails[indexPath.row])["manager"]) as! [String:Any])["last_name"] as? String)!
                    cell.lblRouted.isHidden = true
-                  if ((self.getSearchListDetails[indexPath.row])["tech_applied_status"] as? String) != nil
-                  {
-                    let image = UIImage(named: "img_ApplyOrder")
-                    cell.btnDetailView.setImage(image, for: .normal)
-                    cell.btnDetailView.addTarget(self, action: #selector(self.btnApplyAlready(_:)), for: .touchUpInside)
                     
-                  }
+                      cell.btnDetailView.tag = indexPath.row
+
+                    if ((self.getSearchListDetails[indexPath.row])["tech_applied_status"] as? String) != nil
+                    {
+                        let image = UIImage(named: "img_ApplyOrder")
+                        cell.btnDetailView.setImage(image, for: .normal)
+                        cell.btnDetailView.addTarget(self, action: #selector(self.btnApplyAlready(_:)), for: .touchUpInside)
+                        
+                    }
+                  
                     else
-                  {
-                    let image = UIImage(named: "img_Apply")
-                    cell.btnDetailView.setImage(image, for: .normal)
-                    cell.btnDetailView.tag = indexPath.row
-                    cell.btnDetailView.addTarget(self, action: #selector(self.btnApplyAction(_:)), for: .touchUpInside)
-                  }
+                    {
+                        let image = UIImage(named: "img_Apply")
+                        cell.btnDetailView.setImage(image, for: .normal)
+                        cell.btnDetailView.tag = indexPath.row
+                        cell.btnDetailView.addTarget(self, action: #selector(self.btnApplyAction(_:)), for: .touchUpInside)
+                    }
+                    
                      cell.btnCancel?.removeFromSuperview()
-                    cell.btnDetailView.tag = indexPath.row
-//                    let image = UIImage(named: "img_Apply")
-//                   cell.btnDetailView.setImage(image, for: .normal)
-//                    cell.btnDetailView.tag = indexPath.row
-//                  cell.btnDetailView.addTarget(self, action: #selector(self.btnApplyAction(_:)), for: .touchUpInside)
+                  
                     let detail = UIImage(named: "img_View")
                     cell.btnPrint.setImage(detail, for: .normal)
                     cell.btnPrint.addTarget(self, action: #selector(self.btnViewAction(_:)), for: .touchUpInside)
@@ -672,9 +673,29 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
 
     @objc func btnApplyAction(_ sender : UIButton)
     {
+        if ((self.getSearchListDetails[sender.tag])["payment_rate_type"] as? String)! == "3"
+        {
+            self.workOrderId =  ((self.getSearchListDetails[sender.tag])["work_order_id"] as! Int)
+            let nav = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "BlendedApplyViewController") as! BlendedApplyViewController
+            nav.workOrderId = self.workOrderId
+             nav.statusName = ((self.getSearchListDetails[sender.tag])["status_name"] as! String)
+            nav.paymentRateType = ((self.getSearchListDetails[sender.tag])["payment_rate_type"] as? String)!
+            let transition = CATransition()
+            transition.duration = 0.5
+            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            transition.type = kCATransitionFade
+            self.navigationController?.view.layer.add(transition, forKey: nil)
+            self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+            self.navigationController?.navigationBar.tintColor = UIColor.white
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.pushViewController(nav, animated: false)
+        }
+        else
+        {
         self.workOrderId =  ((self.getSearchListDetails[sender.tag])["work_order_id"] as! Int)
         let nav = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "ApplyWorkViewController") as! ApplyWorkViewController
-       nav.workOrderId = self.workOrderId
+        nav.workOrderId = self.workOrderId
+            nav.statusName = ((self.getSearchListDetails[sender.tag])["status_name"] as! String)
         nav.paymentRateType = ((self.getSearchListDetails[sender.tag])["payment_rate_type"] as? String)!
         let transition = CATransition()
         transition.duration = 0.5
@@ -685,6 +706,7 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.pushViewController(nav, animated: false)
+        }
     }
     
      @objc func btnViewAction(_ sender : UIButton)

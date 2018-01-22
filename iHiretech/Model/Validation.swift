@@ -219,7 +219,35 @@ func validationForLogin(viewList : [UIView]) -> Array<Any>
          return  viewsToReturn
     }
     
-   
+    func validationForBlendedApply(viewList : [UIView]) -> Array<Any>
+    {
+        var viewsToReturn = [UIView]()
+        
+        if((viewList[0]as!  TextFieldView).txtFieldName.text?.isEmpty)!
+        {
+            (viewList[0]as! TextFieldView).txtFieldName.attributedPlaceholder = NSMutableAttributedString(string: "Enter Amount",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[0])
+        }
+         if((viewList[1]as! TextFieldView).txtFieldName.text?.isEmpty)!
+        {
+            (viewList[1]as! TextFieldView).txtFieldName.attributedPlaceholder = NSMutableAttributedString(string: "Enter Rate",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[1])
+        }
+        
+        if((viewList[2]as!  TextFieldView).txtFieldName.text?.isEmpty)!
+        {
+            (viewList[2]as! TextFieldView).txtFieldName.attributedPlaceholder = NSMutableAttributedString(string: "Enter Amount",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[2])
+        }
+        
+        if((viewList[3]as!  TextFieldView).txtFieldName.text?.isEmpty)!
+        {
+            (viewList[3]as! TextFieldView).txtFieldName.attributedPlaceholder = NSMutableAttributedString(string: "Enter Rate",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[2])
+        }
+        
+        return  viewsToReturn
+    }
 
 
 func isValidEmail(testStr:String) -> Bool {

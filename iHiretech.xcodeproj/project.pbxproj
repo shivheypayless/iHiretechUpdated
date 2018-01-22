@@ -25,6 +25,11 @@
 		841992A41FA1F00E0001E626 /* iHiretechNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841992A31FA1F00E0001E626 /* iHiretechNavigationViewController.swift */; };
 		841992A71FA1F1490001E626 /* DashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841992A61FA1F1490001E626 /* DashBoardViewController.swift */; };
 		841C60B71FB0A01F00945E10 /* WebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841C60B61FB0A01F00945E10 /* WebServices.swift */; };
+		84289ED12010B1CD00421B54 /* RatingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289ED02010B1CC00421B54 /* RatingTableViewController.swift */; };
+		84289ED42010B22400421B54 /* RatingFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289ED22010B22400421B54 /* RatingFilterTableViewCell.swift */; };
+		84289ED52010B22400421B54 /* RatingFilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84289ED32010B22400421B54 /* RatingFilterTableViewCell.xib */; };
+		84289ED82010BD0C00421B54 /* RateListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84289ED62010BD0C00421B54 /* RateListTableViewCell.swift */; };
+		84289ED92010BD0C00421B54 /* RateListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84289ED72010BD0C00421B54 /* RateListTableViewCell.xib */; };
 		84319BC12004D451000D1738 /* ExpensesFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84319BC02004D451000D1738 /* ExpensesFooterView.xib */; };
 		84319BC32004D7AD000D1738 /* ExpensesHeadersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84319BC22004D7AD000D1738 /* ExpensesHeadersView.xib */; };
 		843D5D3E1FA317C300292565 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843D5D3D1FA317C200292565 /* ProfileView.xib */; };
@@ -35,6 +40,8 @@
 		84416A951FB198E300C45E00 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84416A941FB198E300C45E00 /* Validation.swift */; };
 		84416A9B1FB1E59E00C45E00 /* AListAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84416A9A1FB1E59E00C45E00 /* AListAlertController.swift */; };
 		84416A9E1FB1F3C300C45E00 /* VerifyOtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84416A9D1FB1F3C200C45E00 /* VerifyOtpViewController.swift */; };
+		84429F3C200F2FD5001700C4 /* BlendedApplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84429F3B200F2FD5001700C4 /* BlendedApplyViewController.swift */; };
+		84429F3E200F65DC001700C4 /* AddExpensesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84429F3D200F65DC001700C4 /* AddExpensesView.xib */; };
 		844875601FC4003000D9503B /* StatesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8448755E1FC4003000D9503B /* StatesTableViewCell.swift */; };
 		844875611FC4003000D9503B /* StatesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8448755F1FC4003000D9503B /* StatesTableViewCell.xib */; };
 		844CF0DA1FCEDA7F00D83B44 /* ForgotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CF0D91FCEDA7F00D83B44 /* ForgotViewController.swift */; };
@@ -84,6 +91,11 @@
 		845D82FA2004E0BA00B2B40D /* ExpensesInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845D82F82004E0BA00B2B40D /* ExpensesInfoTableViewCell.swift */; };
 		845D82FB2004E0BA00B2B40D /* ExpensesInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845D82F92004E0BA00B2B40D /* ExpensesInfoTableViewCell.xib */; };
 		845D82FE2005E6EC00B2B40D /* ApplyWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845D82FD2005E6EB00B2B40D /* ApplyWorkViewController.swift */; };
+		8463A9F62015B5E500702C9C /* CheckInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8463A9F52015B5E500702C9C /* CheckInView.xib */; };
+		8463A9F82015B9A600702C9C /* CheckOutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8463A9F72015B9A600702C9C /* CheckOutView.xib */; };
+		8463A9FB2015BB7400702C9C /* TaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8463A9F92015BB7400702C9C /* TaskListTableViewCell.swift */; };
+		8463A9FC2015BB7400702C9C /* TaskListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8463A9FA2015BB7400702C9C /* TaskListTableViewCell.xib */; };
+		8463A9FE2015BD9700702C9C /* StartTrackingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8463A9FD2015BD9700702C9C /* StartTrackingView.xib */; };
 		846F39E7200BB97300444853 /* SearchOrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F39E6200BB97300444853 /* SearchOrderDetailViewController.swift */; };
 		846F39EA200BCAC400444853 /* SearchServiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F39E8200BCAC400444853 /* SearchServiceTableViewCell.swift */; };
 		846F39EB200BCAC400444853 /* SearchServiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846F39E9200BCAC400444853 /* SearchServiceTableViewCell.xib */; };
@@ -177,6 +189,11 @@
 		841992A31FA1F00E0001E626 /* iHiretechNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iHiretechNavigationViewController.swift; sourceTree = "<group>"; };
 		841992A61FA1F1490001E626 /* DashBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewController.swift; sourceTree = "<group>"; };
 		841C60B61FB0A01F00945E10 /* WebServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServices.swift; sourceTree = "<group>"; };
+		84289ED02010B1CC00421B54 /* RatingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingTableViewController.swift; sourceTree = "<group>"; };
+		84289ED22010B22400421B54 /* RatingFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFilterTableViewCell.swift; sourceTree = "<group>"; };
+		84289ED32010B22400421B54 /* RatingFilterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RatingFilterTableViewCell.xib; sourceTree = "<group>"; };
+		84289ED62010BD0C00421B54 /* RateListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateListTableViewCell.swift; sourceTree = "<group>"; };
+		84289ED72010BD0C00421B54 /* RateListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateListTableViewCell.xib; sourceTree = "<group>"; };
 		84319BC02004D451000D1738 /* ExpensesFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpensesFooterView.xib; sourceTree = "<group>"; };
 		84319BC22004D7AD000D1738 /* ExpensesHeadersView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpensesHeadersView.xib; sourceTree = "<group>"; };
 		84368E801FA07F9000258F57 /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
@@ -191,6 +208,8 @@
 		84416A941FB198E300C45E00 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		84416A9A1FB1E59E00C45E00 /* AListAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AListAlertController.swift; sourceTree = "<group>"; };
 		84416A9D1FB1F3C200C45E00 /* VerifyOtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOtpViewController.swift; sourceTree = "<group>"; };
+		84429F3B200F2FD5001700C4 /* BlendedApplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlendedApplyViewController.swift; sourceTree = "<group>"; };
+		84429F3D200F65DC001700C4 /* AddExpensesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddExpensesView.xib; sourceTree = "<group>"; };
 		8448755E1FC4003000D9503B /* StatesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatesTableViewCell.swift; sourceTree = "<group>"; };
 		8448755F1FC4003000D9503B /* StatesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatesTableViewCell.xib; sourceTree = "<group>"; };
 		844CF0D91FCEDA7F00D83B44 /* ForgotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotViewController.swift; sourceTree = "<group>"; };
@@ -246,6 +265,11 @@
 		845D82F82004E0BA00B2B40D /* ExpensesInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesInfoTableViewCell.swift; sourceTree = "<group>"; };
 		845D82F92004E0BA00B2B40D /* ExpensesInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpensesInfoTableViewCell.xib; sourceTree = "<group>"; };
 		845D82FD2005E6EB00B2B40D /* ApplyWorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyWorkViewController.swift; sourceTree = "<group>"; };
+		8463A9F52015B5E500702C9C /* CheckInView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckInView.xib; sourceTree = "<group>"; };
+		8463A9F72015B9A600702C9C /* CheckOutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckOutView.xib; sourceTree = "<group>"; };
+		8463A9F92015BB7400702C9C /* TaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTableViewCell.swift; sourceTree = "<group>"; };
+		8463A9FA2015BB7400702C9C /* TaskListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListTableViewCell.xib; sourceTree = "<group>"; };
+		8463A9FD2015BD9700702C9C /* StartTrackingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartTrackingView.xib; sourceTree = "<group>"; };
 		846F39E6200BB97300444853 /* SearchOrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrderDetailViewController.swift; sourceTree = "<group>"; };
 		846F39E8200BCAC400444853 /* SearchServiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServiceTableViewCell.swift; sourceTree = "<group>"; };
 		846F39E9200BCAC400444853 /* SearchServiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchServiceTableViewCell.xib; sourceTree = "<group>"; };
@@ -497,6 +521,7 @@
 		8403A6EF1FA0617500222ED9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				84289ECF2010B19700421B54 /* RatingLIsting VC */,
 				846F39E5200BB86E00444853 /* Search Work Order Details */,
 				845D82FC2005E6B300B2B40D /* Apply Order VC */,
 				84580A051FECF4D100A7FCBF /* Work Details VC */,
@@ -562,6 +587,18 @@
 				843D5D441FA339A800292565 /* AttactmentTableViewCell.xib */,
 			);
 			path = DashBoard;
+			sourceTree = "<group>";
+		};
+		84289ECF2010B19700421B54 /* RatingLIsting VC */ = {
+			isa = PBXGroup;
+			children = (
+				84289ED02010B1CC00421B54 /* RatingTableViewController.swift */,
+				84289ED22010B22400421B54 /* RatingFilterTableViewCell.swift */,
+				84289ED32010B22400421B54 /* RatingFilterTableViewCell.xib */,
+				84289ED62010BD0C00421B54 /* RateListTableViewCell.swift */,
+				84289ED72010BD0C00421B54 /* RateListTableViewCell.xib */,
+			);
+			path = "RatingLIsting VC";
 			sourceTree = "<group>";
 		};
 		84319BBB2004C9F9000D1738 /* Expenses */ = {
@@ -642,6 +679,11 @@
 			children = (
 				8450AAC21FFF8AA500675996 /* WorkspaceTableViewCell.swift */,
 				8450AAC31FFF8AA500675996 /* WorkspaceTableViewCell.xib */,
+				8463A9F52015B5E500702C9C /* CheckInView.xib */,
+				8463A9F72015B9A600702C9C /* CheckOutView.xib */,
+				8463A9F92015BB7400702C9C /* TaskListTableViewCell.swift */,
+				8463A9FA2015BB7400702C9C /* TaskListTableViewCell.xib */,
+				8463A9FD2015BD9700702C9C /* StartTrackingView.xib */,
 			);
 			path = Workspace;
 			sourceTree = "<group>";
@@ -786,6 +828,7 @@
 			isa = PBXGroup;
 			children = (
 				845D82FD2005E6EB00B2B40D /* ApplyWorkViewController.swift */,
+				84429F3B200F2FD5001700C4 /* BlendedApplyViewController.swift */,
 			);
 			path = "Apply Order VC";
 			sourceTree = "<group>";
@@ -799,6 +842,7 @@
 				846F39EC200BD32300444853 /* CustomerRateTableViewCell.swift */,
 				846F39ED200BD32300444853 /* CustomerRateTableViewCell.xib */,
 				846F39F0200BDE0B00444853 /* RatingView.xib */,
+				84429F3D200F65DC001700C4 /* AddExpensesView.xib */,
 			);
 			path = "Search Work Order Details";
 			sourceTree = "<group>";
@@ -1014,21 +1058,26 @@
 			files = (
 				8459E7261FA859CE0081915E /* NotificationTableViewCell.xib in Resources */,
 				84A30E0D1FA1BF10009FE20E /* Quicksand-Bold_0.ttf in Resources */,
+				8463A9F62015B5E500702C9C /* CheckInView.xib in Resources */,
 				84580A0B1FED145B00A7FCBF /* TabOrderCollectionViewCell.xib in Resources */,
 				8459E72F1FA868480081915E /* OwnerTableViewCell.xib in Resources */,
 				84319BC32004D7AD000D1738 /* ExpensesHeadersView.xib in Resources */,
+				84289ED92010BD0C00421B54 /* RateListTableViewCell.xib in Resources */,
+				8463A9FC2015BB7400702C9C /* TaskListTableViewCell.xib in Resources */,
 				8450AAD22003806300675996 /* ExpensesListTableViewCell.xib in Resources */,
 				846F39EB200BCAC400444853 /* SearchServiceTableViewCell.xib in Resources */,
 				8450AAB71FFBA42700675996 /* ScheduleInformationTableViewCell.xib in Resources */,
 				8459E71F1FA83BE70081915E /* MapTableViewCell.xib in Resources */,
 				8450AAAB1FFBA0B300675996 /* LocationInformationTableViewCell.xib in Resources */,
 				8450AAB31FFBA32500675996 /* CustomerInformationTableViewCell.xib in Resources */,
+				84289ED52010B22400421B54 /* RatingFilterTableViewCell.xib in Resources */,
 				84A30E0E1FA1BF10009FE20E /* Quicksand-Light_0.ttf in Resources */,
 				84A30E0F1FA1BF10009FE20E /* Quicksand-Medium.ttf in Resources */,
 				8450AAC51FFF8AA600675996 /* WorkspaceTableViewCell.xib in Resources */,
 				843D5D421FA31C2400292565 /* profileDetailsTableViewCell.xib in Resources */,
 				8450AAAF1FFBA24700675996 /* PayRateInformationTableViewCell.xib in Resources */,
 				8450AAC01FFF636600675996 /* DocumentsTableViewCell.xib in Resources */,
+				84429F3E200F65DC001700C4 /* AddExpensesView.xib in Resources */,
 				CA68CCED1FA76609000143BB /* SearchOrderTableViewCell.xib in Resources */,
 				CA68CCDE1FA73AD2000143BB /* SearchResultHeaderView.xib in Resources */,
 				CA68CCE41FA73E4A000143BB /* SearchWorkOrderTableViewCell.xib in Resources */,
@@ -1041,6 +1090,7 @@
 				846F39F1200BDE0B00444853 /* RatingView.xib in Resources */,
 				84FFD8281FA3737200C0D67C /* WorkOrderTableViewCell.xib in Resources */,
 				843D5D3E1FA317C300292565 /* ProfileView.xib in Resources */,
+				8463A9FE2015BD9700702C9C /* StartTrackingView.xib in Resources */,
 				CA68CCE61FA73EBF000143BB /* SearchViewExpandableView.xib in Resources */,
 				843D5D461FA339A800292565 /* AttactmentTableViewCell.xib in Resources */,
 				8450AAD620038F3800675996 /* TotalPaymentTableViewCell.xib in Resources */,
@@ -1050,6 +1100,7 @@
 				8450AAA71FFB9F6C00675996 /* ServiceInformationTableViewCell.xib in Resources */,
 				84E3C8491FA2227600887105 /* HeaderView.xib in Resources */,
 				845D82FB2004E0BA00B2B40D /* ExpensesInfoTableViewCell.xib in Resources */,
+				8463A9F82015B9A600702C9C /* CheckOutView.xib in Resources */,
 				84D850DE1FC2E1CE004E8D72 /* DatePickerView.xib in Resources */,
 				8403A6C71FA0610200222ED9 /* Assets.xcassets in Resources */,
 				8459E7331FA8685B0081915E /* OtherUserTableViewCell.xib in Resources */,
@@ -1137,6 +1188,7 @@
 				846F39EA200BCAC400444853 /* SearchServiceTableViewCell.swift in Sources */,
 				8403A6BF1FA0610200222ED9 /* ViewController.swift in Sources */,
 				8450AACD20037B4000675996 /* EarningTableViewCell.swift in Sources */,
+				84289ED42010B22400421B54 /* RatingFilterTableViewCell.swift in Sources */,
 				846F39E7200BB97300444853 /* SearchOrderDetailViewController.swift in Sources */,
 				CA68CCE01FA73C04000143BB /* MyWorkOrderTableViewController.swift in Sources */,
 				841C60B71FB0A01F00945E10 /* WebServices.swift in Sources */,
@@ -1151,6 +1203,7 @@
 				8459E71E1FA83BE70081915E /* MapTableViewCell.swift in Sources */,
 				8450AAC9200376CB00675996 /* LabourPaymentTableViewCell.swift in Sources */,
 				8450AAB21FFBA32500675996 /* CustomerInformationTableViewCell.swift in Sources */,
+				84289ED12010B1CD00421B54 /* RatingTableViewController.swift in Sources */,
 				846F39EE200BD32300444853 /* CustomerRateTableViewCell.swift in Sources */,
 				8403A6BD1FA0610200222ED9 /* AppDelegate.swift in Sources */,
 				84580A0D1FF0D54500A7FCBF /* ChatView.swift in Sources */,
@@ -1159,11 +1212,13 @@
 				8419929E1FA1DE4B0001E626 /* LeftMenuViewController.swift in Sources */,
 				8459E7251FA859CE0081915E /* NotificationTableViewCell.swift in Sources */,
 				8450AAAA1FFBA0B300675996 /* LocationInformationTableViewCell.swift in Sources */,
+				84429F3C200F2FD5001700C4 /* BlendedApplyViewController.swift in Sources */,
 				84E3C8471FA218B700887105 /* LeftMenuOptionTableViewCell.swift in Sources */,
 				8459E7321FA8685B0081915E /* OtherUserTableViewCell.swift in Sources */,
 				844875601FC4003000D9503B /* StatesTableViewCell.swift in Sources */,
 				84A93FC81FA9E35900662040 /* PersonalDetailsViewController.swift in Sources */,
 				841992A71FA1F1490001E626 /* DashBoardViewController.swift in Sources */,
+				8463A9FB2015BB7400702C9C /* TaskListTableViewCell.swift in Sources */,
 				845D82FA2004E0BA00B2B40D /* ExpensesInfoTableViewCell.swift in Sources */,
 				8459E7281FA85D600081915E /* NotificationViewController.swift in Sources */,
 				8450AAA61FFB9F6C00675996 /* ServiceInformationTableViewCell.swift in Sources */,
@@ -1187,6 +1242,7 @@
 				8403A6C51FA0610200222ED9 /* iHiretech.xcdatamodeld in Sources */,
 				845D82FE2005E6EC00B2B40D /* ApplyWorkViewController.swift in Sources */,
 				728928F21FA1A1BF007686AE /* SignUpViewController.swift in Sources */,
+				84289ED82010BD0C00421B54 /* RateListTableViewCell.swift in Sources */,
 				84416A951FB198E300C45E00 /* Validation.swift in Sources */,
 				843D5D451FA339A800292565 /* AttactmentTableViewCell.swift in Sources */,
 				84416A9E1FB1F3C300C45E00 /* VerifyOtpViewController.swift in Sources */,

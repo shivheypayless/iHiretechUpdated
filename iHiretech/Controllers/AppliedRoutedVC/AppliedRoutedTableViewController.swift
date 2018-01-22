@@ -35,7 +35,12 @@ class AppliedRoutedTableViewController: UITableViewController {
         getWorkList()
       
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -123,11 +128,38 @@ class AppliedRoutedTableViewController: UITableViewController {
             cell.lblCLientName.text = (((self.getSearchListDetails[indexPath.row])["clients"]) as! [String:Any])["client_name"] as? String
             cell.lblManagerName.text = ((((self.getSearchListDetails[indexPath.row])["manager"]) as! [String:Any])["first_name"] as? String)!+" "+((((self.getSearchListDetails[indexPath.row])["manager"]) as! [String:Any])["last_name"] as? String)!
             cell.lblRouted.isHidden = true
-            cell.btnDetailView.tag = indexPath.row
-            cell.btnDetailView.addTarget(self, action: #selector(btn_DetailAction(_:)), for: .touchUpInside)
+      //      cell.btnDetailView.tag = indexPath.row
+        //    cell.btnDetailView.addTarget(self, action: #selector(btn_DetailAction(_:)), for: .touchUpInside)
             cell.btnCancel.tag = indexPath.row
             cell.btnCancel.addTarget(self, action: #selector(btn_RejectAction(_:)), for: .touchUpInside)
 
+            if ((self.getSearchListDetails[indexPath.row])["tech_applied_status"] as? String) != nil
+            {
+                let image = UIImage(named: "img_ApplyOrder")
+                cell.btnDetailView.setImage(image, for: .normal)
+                cell.btnDetailView.addTarget(self, action: #selector(self.btnApplyAlready(_:)), for: .touchUpInside)
+                
+            }
+            else if ((self.getSearchListDetails[indexPath.row])["status_name"] as? String) == "routing"
+            {
+                let image = UIImage(named: "img_ApproveArrow")
+                cell.btnDetailView.setImage(image, for: .normal)
+                cell.btnDetailView.tag = indexPath.row
+                cell.btnDetailView.addTarget(self, action: #selector(self.btnApplyAction(_:)), for: .touchUpInside)
+            }
+            else
+            {
+                let image = UIImage(named: "img_Apply")
+                cell.btnDetailView.setImage(image, for: .normal)
+                cell.btnDetailView.tag = indexPath.row
+                cell.btnDetailView.addTarget(self, action: #selector(self.btnApplyAction(_:)), for: .touchUpInside)
+            }
+            cell.btnDetailView.tag = indexPath.row
+            
+            let detail = UIImage(named: "img_View")
+            cell.btnPrint.setImage(detail, for: .normal)
+            cell.btnPrint.addTarget(self, action: #selector(self.btnViewAction(_:)), for: .touchUpInside)
+        
         }
         return cell
       
@@ -152,11 +184,46 @@ class AppliedRoutedTableViewController: UITableViewController {
         })
     }
     
-     @objc func btn_DetailAction(_ sender: UIButton)
+     @objc func btnApplyAction(_ sender: UIButton)
     {
-        let nav = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "ApplyWorkViewController") as! ApplyWorkViewController
-        nav.workOrderId = Int(((self.getSearchListDetails[sender.tag])["work_order_id"] as? String)!)!
-        nav.paymentRateType = ((self.getSearchListDetails[sender.tag])["payment_rate_type"] as? String)!
+        if ((self.getSearchListDetails[sender.tag])["payment_rate_type"] as? String)! == "3"
+        {
+            let nav = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "BlendedApplyViewController") as! BlendedApplyViewController
+            nav.workOrderId = ((self.getSearchListDetails[sender.tag])["work_order_id"] as! Int)
+            nav.statusName = ((self.getSearchListDetails[sender.tag])["status_name"] as! String)
+            nav.paymentRateType = ((self.getSearchListDetails[sender.tag])["payment_rate_type"] as? String)!
+            let transition = CATransition()
+            transition.duration = 0.5
+            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            transition.type = kCATransitionFade
+            self.navigationController?.view.layer.add(transition, forKey: nil)
+            self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+            self.navigationController?.navigationBar.tintColor = UIColor.white
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.pushViewController(nav, animated: false)
+        }
+        else
+        {
+            let nav = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "ApplyWorkViewController") as! ApplyWorkViewController
+            nav.workOrderId = ((self.getSearchListDetails[sender.tag])["work_order_id"] as! Int)
+            nav.statusName = ((self.getSearchListDetails[sender.tag])["status_name"] as! String)
+            nav.paymentRateType = ((self.getSearchListDetails[sender.tag])["payment_rate_type"] as? String)!
+            let transition = CATransition()
+            transition.duration = 0.5
+            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            transition.type = kCATransitionFade
+            self.navigationController?.view.layer.add(transition, forKey: nil)
+            self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+            self.navigationController?.navigationBar.tintColor = UIColor.white
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.pushViewController(nav, animated: false)
+        }
+    }
+    
+    @objc func btnViewAction(_ sender : UIButton)
+    {
+        let nav = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "SearchOrderDetailViewController") as! SearchOrderDetailViewController
+        nav.workOrderId = ((self.getSearchListDetails[sender.tag])["work_order_id"] as! Int)
         let transition = CATransition()
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
@@ -166,6 +233,11 @@ class AppliedRoutedTableViewController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.pushViewController(nav, animated: false)
+    }
+    
+    @objc func btnApplyAlready(_ sender : UIButton)
+    {
+        AListAlertController.shared.presentAlertController(message: "You have already applied for this Work Order.", completionHandler: nil)
     }
  
 

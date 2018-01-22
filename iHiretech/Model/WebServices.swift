@@ -51,6 +51,9 @@ enum API: String
     case checkIn = "api/technician/check-in-work-order"
     case checkOut = "api/technician/check-out-work-order"
     case getNotificationList = "api/technician/get-notification-list"
+    case addExpenses = "api/technician/add-technician-expenses"
+    case approveWorkOrder = "technician/approve-routed-work-order"
+    case ratingTechnicianList = "technician/technician-rating-list"
 }
 
 

@@ -18,6 +18,7 @@ class LeftMenuViewController: UIViewController {
     @IBOutlet var lblLocation: UILabel!
     @IBOutlet var lblProfileName: UILabel!
     @IBOutlet var imgProfilePic: UIImageView!
+    var profileImage = Data()
     var LeftMenuArray = ["Work Order", "Profile", "Notification","User Setting"]
     var menuWithinOption = [["My Work Order","Search Work Order","Applied / Routed Work Order"],[],[],["Change Password","Logout"]]
     var appdelegate = UIApplication.shared.delegate as! AppDelegate
@@ -27,6 +28,8 @@ class LeftMenuViewController: UIViewController {
         super.viewDidLoad()
         self.tblMenuOptions.tableFooterView = UIView()
         appdelegate.storyBoard = self.storyboard!
+        
+     
         // Do any additional setup after loading the view.
     }
 
@@ -49,7 +52,42 @@ class LeftMenuViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-  
+    
+    func getProfilePic()
+    {
+        WebAPI().callJSONWebApi(API.getProfilePic, withHTTPMethod: .get, forPostParameters: nil, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
+            print(serviceResponse)
+            let data = serviceResponse["data"] as? [String:Any]
+            let mediaFile = data!["encoded"] as? String
+            let drp = mediaFile!.dropFirst(23)
+            print(String(drp))
+            let imageData = String(drp).data(using: String.Encoding.utf8)
+            
+            if let decodedData = NSData(base64Encoded: imageData!, options: .ignoreUnknownCharacters) {
+                print(decodedData)
+                self.profileImage = decodedData as Data
+                if self.imgProfilePic != nil
+                {
+                    DispatchQueue.global(qos: .background).async {
+                        DispatchQueue.main.async {
+                            self.imgProfilePic.image = UIImage(data: self.profileImage)
+                        }
+                    }
+                }
+              
+            }
+            else
+            {
+                DispatchQueue.global(qos: .background).async {
+                    DispatchQueue.main.async {
+                        self.imgProfilePic.image = UIImage(named: "img_EditProfilePic")
+                    }
+                }
+                
+            }
+          
+        })
+    }
 }
 
 extension LeftMenuViewController: UITableViewDataSource, UITableViewDelegate

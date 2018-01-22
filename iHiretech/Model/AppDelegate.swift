@@ -114,12 +114,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate,LocationUpdateProtocol {
         }
         else
         {
+            var time: TimeInterval = 30.0
+            if self.statusLocation == 1
+            {
             locationTracker.startLocationTracking()
             locationTracker.delegate = self
             //Send the best location to server every 60 seconds
             //You may adjust the time interval depends on the need of your app.
-            let time: TimeInterval = 30.0
             locationUpdateTimer = Timer.scheduledTimer(timeInterval: time, target: self, selector: #selector(self.updateLocationTimer), userInfo: nil, repeats: true)
+            }
+            else
+            {
+                locationTracker.stopLocationTracking()
+                locationTracker.delegate = self
+                locationUpdateTimer?.invalidate()
+                 print("Stop Update")
+                self.locationTracker.updateLocationToServer()
+            }
         }
         
     }

@@ -62,7 +62,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="328" height="204"/>
                     <subviews>
                         <textField opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="Write your comment..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3a1-5y-MDc">
-                            <rect key="frame" x="20" y="104" width="288" height="80"/>
+                            <rect key="frame" x="20" y="105.5" width="288" height="80"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="80" id="vyy-9U-iwW"/>
                             </constraints>
@@ -71,64 +71,33 @@
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2/5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RU8-GT-Nia">
-                            <rect key="frame" x="152" y="68" width="25" height="20"/>
+                            <rect key="frame" x="150.5" y="68" width="28" height="21.5"/>
                             <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QGT-Uh-4XK">
+                        <view clipsSubviews="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QGT-Uh-4XK" customClass="HCSStarRatingView">
                             <rect key="frame" x="49.5" y="16" width="229" height="40"/>
-                            <subviews>
-                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vGu-BL-YNb">
-                                    <rect key="frame" x="0.0" y="0.0" width="46" height="40"/>
-                                    <state key="normal" image="img_GrayStar"/>
-                                </button>
-                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YGc-WX-LqC">
-                                    <rect key="frame" x="46" y="0.0" width="45.5" height="40"/>
-                                    <state key="normal" image="img_GrayStar"/>
-                                </button>
-                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5F-sZ-PYu">
-                                    <rect key="frame" x="91.5" y="0.0" width="46" height="40"/>
-                                    <state key="normal" image="img_GrayStar"/>
-                                </button>
-                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOt-OF-4iC">
-                                    <rect key="frame" x="137.5" y="0.0" width="45.5" height="40"/>
-                                    <state key="normal" image="img_GrayStar"/>
-                                </button>
-                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXT-he-S9i">
-                                    <rect key="frame" x="183" y="0.0" width="46" height="40"/>
-                                    <state key="normal" image="img_GrayStar"/>
-                                </button>
-                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstItem="YGc-WX-LqC" firstAttribute="top" secondItem="QGT-Uh-4XK" secondAttribute="top" id="1j1-nX-P5r"/>
-                                <constraint firstItem="gOt-OF-4iC" firstAttribute="width" secondItem="vGu-BL-YNb" secondAttribute="width" id="26o-ke-tVs"/>
-                                <constraint firstItem="vGu-BL-YNb" firstAttribute="leading" secondItem="QGT-Uh-4XK" secondAttribute="leading" id="7b0-LI-Lae"/>
-                                <constraint firstItem="SXT-he-S9i" firstAttribute="leading" secondItem="gOt-OF-4iC" secondAttribute="trailing" id="7nx-cl-Mqg"/>
-                                <constraint firstItem="YGc-WX-LqC" firstAttribute="leading" secondItem="vGu-BL-YNb" secondAttribute="trailing" id="9x4-qt-x6s"/>
-                                <constraint firstAttribute="bottom" secondItem="vGu-BL-YNb" secondAttribute="bottom" id="AtS-BC-hWS"/>
                                 <constraint firstAttribute="width" constant="229" id="EQq-sm-fJK"/>
-                                <constraint firstItem="gOt-OF-4iC" firstAttribute="leading" secondItem="d5F-sZ-PYu" secondAttribute="trailing" id="ICb-Tj-q2Y"/>
-                                <constraint firstItem="SXT-he-S9i" firstAttribute="top" secondItem="QGT-Uh-4XK" secondAttribute="top" id="IjY-UE-cYg"/>
-                                <constraint firstItem="d5F-sZ-PYu" firstAttribute="leading" secondItem="YGc-WX-LqC" secondAttribute="trailing" id="Ime-6e-k1C"/>
-                                <constraint firstItem="gOt-OF-4iC" firstAttribute="top" secondItem="QGT-Uh-4XK" secondAttribute="top" id="Tcz-CA-r4L"/>
-                                <constraint firstItem="d5F-sZ-PYu" firstAttribute="top" secondItem="QGT-Uh-4XK" secondAttribute="top" id="UAf-xi-y2H"/>
-                                <constraint firstItem="gOt-OF-4iC" firstAttribute="leading" secondItem="d5F-sZ-PYu" secondAttribute="trailing" id="UOU-nw-eAE"/>
-                                <constraint firstItem="YGc-WX-LqC" firstAttribute="leading" secondItem="vGu-BL-YNb" secondAttribute="trailing" id="a5z-Wo-Z1d"/>
-                                <constraint firstAttribute="trailing" secondItem="SXT-he-S9i" secondAttribute="trailing" id="bPE-gr-P95"/>
-                                <constraint firstAttribute="bottom" secondItem="gOt-OF-4iC" secondAttribute="bottom" id="cX0-fw-WI3"/>
-                                <constraint firstAttribute="bottom" secondItem="YGc-WX-LqC" secondAttribute="bottom" id="e9H-G5-IMF"/>
-                                <constraint firstItem="SXT-he-S9i" firstAttribute="width" secondItem="vGu-BL-YNb" secondAttribute="width" id="eax-SF-ZIf"/>
-                                <constraint firstItem="YGc-WX-LqC" firstAttribute="width" secondItem="vGu-BL-YNb" secondAttribute="width" id="fBv-cq-Ah8"/>
-                                <constraint firstAttribute="bottom" secondItem="d5F-sZ-PYu" secondAttribute="bottom" id="hE9-V5-Tbz"/>
-                                <constraint firstAttribute="bottom" secondItem="SXT-he-S9i" secondAttribute="bottom" id="iAL-rX-mIk"/>
-                                <constraint firstItem="vGu-BL-YNb" firstAttribute="top" secondItem="QGT-Uh-4XK" secondAttribute="top" id="kkx-OP-hY6"/>
-                                <constraint firstItem="SXT-he-S9i" firstAttribute="leading" secondItem="gOt-OF-4iC" secondAttribute="trailing" id="lzh-au-Ykm"/>
-                                <constraint firstItem="d5F-sZ-PYu" firstAttribute="leading" secondItem="YGc-WX-LqC" secondAttribute="trailing" id="mze-zM-QKv"/>
-                                <constraint firstItem="d5F-sZ-PYu" firstAttribute="width" secondItem="vGu-BL-YNb" secondAttribute="width" id="pQ5-aj-c31"/>
                                 <constraint firstAttribute="height" constant="40" id="swy-5T-G8h"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
+                                    <real key="value" value="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="allowsHalfStars" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="accurateHalfStars" value="NO"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="continuous" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="image" keyPath="halfStarImage" value="img_HalfStarOrng"/>
+                                <userDefinedRuntimeAttribute type="image" keyPath="filledStarImage" value="img_OrangeStar"/>
+                                <userDefinedRuntimeAttribute type="image" keyPath="emptyStarImage" value="img_GrayStar"/>
+                            </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -161,5 +130,7 @@
     </objects>
     <resources>
         <image name="img_GrayStar" width="32" height="32"/>
+        <image name="img_HalfStarOrng" width="16" height="16"/>
+        <image name="img_OrangeStar" width="32" height="32"/>
     </resources>
 </document>

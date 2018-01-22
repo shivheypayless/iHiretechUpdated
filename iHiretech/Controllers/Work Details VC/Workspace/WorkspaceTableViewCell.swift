@@ -29,6 +29,11 @@ class WorkspaceTableViewCell: UITableViewCell {
     @IBOutlet var lblCheckOutDate: UILabel!
     @IBOutlet var lblTime: UILabel!
     @IBOutlet var lblDate: UILabel!
+    @IBOutlet var cnstrntLocationTrackingButtonHeight: NSLayoutConstraint!
+    
+    @IBOutlet var btnStartTracking: UIButton!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.viewBorder.layer.borderWidth = 1
@@ -63,6 +68,9 @@ class WorkspaceTableViewCell: UITableViewCell {
         
         self.btnCheckIn.layer.cornerRadius = 3
         self.btnCheckIn.layer.masksToBounds = true
+        
+        self.btnStartTracking.layer.cornerRadius = 3
+        self.btnStartTracking.layer.masksToBounds = true
         // Initialization code
     }
 

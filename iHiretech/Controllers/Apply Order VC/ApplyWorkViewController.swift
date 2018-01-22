@@ -28,8 +28,14 @@ class ApplyWorkViewController: UIViewController {
     var height_Yes = CGFloat()
     var workOrderId = Int()
     var paymentRateType = String()
+    var statusName = String()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if self.paymentRateType == "2"
+        {
+            lblHourlyRate.text! = "Fix Rate"
+        }
          self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
         self.viewMaxRate.layer.borderWidth = 1
         self.viewMaxRate.layer.borderColor =  UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
@@ -88,8 +94,8 @@ class ApplyWorkViewController: UIViewController {
     }
     
     @IBAction func btn_NoAction(_ sender: Any) {
-       if imgNo.image == UIImage(named:"img_RadioOff")
-       {
+//       if imgNo.image == UIImage(named:"img_RadioOff")
+//       {
          btnNo.isUserInteractionEnabled = true
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
             self.imgYes.image = UIImage(named:"img_RadioOff")
@@ -101,23 +107,12 @@ class ApplyWorkViewController: UIViewController {
             self.view.layoutIfNeeded()
         }, completion: nil)
        
-   }
-        else
-       {
-         btnNo.isUserInteractionEnabled = false
-        }
-//         else
+//   }
+//        else
 //       {
-//      self.imgNo.image = UIImage(named:"img_RadioOn")
-//      self.imgYes.image = UIImage(named:"img_RadioOff")
-//        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
-//            self.lblHourlyRate.isHidden = true
-//            self.lblMaxRate.isHidden = true
-//         self.height_Yes = self.viewAnimate.frame.size.height
-//            self.cnstHeight.constant = 50.2*self.height_Yes
-//       //     self.view.layoutIfNeeded()
-//        }, completion: nil)
+//         btnNo.isUserInteractionEnabled = false
 //        }
+
     }
     
     @IBAction func btn_YesAction(_ sender: Any) {
@@ -132,19 +127,7 @@ class ApplyWorkViewController: UIViewController {
                 self.cnstHeight.constant = 0*self.height_Yes
                 self.view.layoutIfNeeded()
             }, completion: nil)
-//        }
-//        else
-//        {
-//             self.imgYes.image = UIImage(named:"img_RadioOn")
-//            self.imgNo.image = UIImage(named:"img_RadioOff")
-//            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
-//                self.lblHourlyRate.isHidden = false
-//                self.lblMaxRate.isHidden = false
-//                self.height_Yes = self.viewAnimate.frame.size.height
-//                self.cnstHeight.constant = 50.2*self.height_Yes
-//                self.view.layoutIfNeeded()
-//            }, completion: nil)
-//        }
+
     }
     
     @IBAction func btn_ApplyAction(_ sender: UIButton) {
@@ -160,16 +143,16 @@ class ApplyWorkViewController: UIViewController {
          {
             let viewShaker = AFViewShaker(view: viewMaxRate)
             print(viewMaxRate)
-             self.txtFMaxRate.attributedPlaceholder = NSMutableAttributedString(string: "Enter Max Rate",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+             self.viewMaxRate.layer.borderColor = UIColor.red.cgColor
+            self.viewHourlyRate.layer.borderColor = UIColor.red.cgColor
             let viewShakerrate = AFViewShaker(view: viewHourlyRate)
             print(viewHourlyRate)
-             self.txtFHourlyRate.attributedPlaceholder = NSMutableAttributedString(string: "Enter Hourly Rate",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
             viewShakerrate?.shake()
             return
         }
         if self.txtFMaxRate.text! == ""
         {
-              self.txtFMaxRate.attributedPlaceholder = NSMutableAttributedString(string: "Enter Max Rate",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            self.viewMaxRate.layer.borderColor = UIColor.red.cgColor
             let viewShaker = AFViewShaker(view: viewMaxRate)
             print(viewMaxRate)
             viewShaker?.shake()
@@ -177,22 +160,22 @@ class ApplyWorkViewController: UIViewController {
         }
         else if self.txtFHourlyRate.text == ""
         {
-             self.txtFHourlyRate.attributedPlaceholder = NSMutableAttributedString(string: "Enter Hourly Rate",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            self.viewHourlyRate.layer.borderColor = UIColor.red.cgColor
             let viewShaker = AFViewShaker(view: viewHourlyRate)
             print(viewHourlyRate)
             viewShaker?.shake()
             return
         }
-        if self.paymentRateType == "2"
+        if self.paymentRateType == "1"
         {
+            self.viewMaxRate.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
+            self.viewHourlyRate.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
         paramerters = ["work_order_id": self.workOrderId,"counter_offer":1, "payment_rate_type":self.paymentRateType,"per_hour_rate": self.txtFHourlyRate.text!,"per_hour_max_hours":self.txtFMaxRate.text!,"comment":""] as [String : Any]
         }
-        else if self.paymentRateType == "1"
+        else if self.paymentRateType == "2"
         {
-             paramerters = ["work_order_id": self.workOrderId,"counter_offer":1, "payment_rate_type":self.paymentRateType,"fixed_pay_amount": self.txtFHourlyRate.text!,"per_hour_max_hours":self.txtFMaxRate.text!,"comment":""] as [String : Any]
-        }
-        else
-        {
+            self.viewMaxRate.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
+            self.viewHourlyRate.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
              paramerters = ["work_order_id": self.workOrderId,"counter_offer":1, "payment_rate_type":self.paymentRateType,"fixed_pay_amount": self.txtFHourlyRate.text!,"per_hour_max_hours":self.txtFMaxRate.text!,"comment":""] as [String : Any]
         }
         }
@@ -200,6 +183,18 @@ class ApplyWorkViewController: UIViewController {
        {
          paramerters = ["work_order_id": self.workOrderId,"counter_offer": 0] as [String : Any]
         }
+        if self.statusName == "routing"
+        {
+            WebAPI().callJSONWebApi(API.approveWorkOrder, withHTTPMethod: .post, forPostParameters: paramerters, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
+                print(serviceResponse)
+                if let message = serviceResponse["msg"] as? String
+                {
+                    AListAlertController.shared.presentAlertController(message: serviceResponse["msg"] as! String, completionHandler: nil)
+                }
+            })
+        }
+        else
+        {
         WebAPI().callJSONWebApi(API.applyWorkOrder, withHTTPMethod: .post, forPostParameters: paramerters, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
             if let message = serviceResponse["msg"] as? String
@@ -207,6 +202,7 @@ class ApplyWorkViewController: UIViewController {
            AListAlertController.shared.presentAlertController(message: serviceResponse["msg"] as! String, completionHandler: nil)
             }
         })
+        }
     }
   
 }

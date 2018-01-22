@@ -129,4 +129,19 @@ extension NotificationViewController : UITableViewDataSource, UITableViewDelegat
         return UITableViewAutomaticDimension
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let nav = self.storyboard!.instantiateViewController(withIdentifier: "WorkOrderDetailsViewController") as! WorkOrderDetailsViewController
+        nav.workOrderId = ((self.notificationList[indexPath.row])["work_order_id"] as! Int)
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionFade
+        self.navigationController?.view.layer.add(transition, forKey: nil)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.pushViewController(nav, animated: false)
+        
+    }
+    
 }
