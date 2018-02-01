@@ -27,7 +27,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HhF-47-ZoQ">
                     <rect key="frame" x="16" y="0.0" width="288" height="158"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2s3-Zt-i1e">
+                        <view tag="7" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2s3-Zt-i1e">
                             <rect key="frame" x="16" y="46" width="256" height="40"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCR-Ew-0fM">
@@ -52,7 +52,7 @@
                                 <constraint firstAttribute="trailing" secondItem="UUu-xH-FtY" secondAttribute="trailing" id="gXf-MG-VIb"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEj-3l-sbj">
+                        <view tag="8" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEj-3l-sbj">
                             <rect key="frame" x="16" y="98" width="256" height="40"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nh6-r5-EgN">
@@ -77,14 +77,14 @@
                             </constraints>
                         </view>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QSO-Ou-NHN">
-                            <rect key="frame" x="203" y="8" width="77" height="30"/>
+                            <rect key="frame" x="195" y="8" width="85" height="30"/>
                             <color key="backgroundColor" red="0.25882352939999997" green="0.70980392160000005" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="77" id="gEB-lv-Rm8"/>
+                                <constraint firstAttribute="width" constant="85" id="gEB-lv-Rm8"/>
                                 <constraint firstAttribute="height" constant="30" id="m9P-KZ-N6q"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="15"/>
-                            <state key="normal" title="Check In">
+                            <state key="normal" title="Check Out">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>

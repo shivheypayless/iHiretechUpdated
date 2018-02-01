@@ -12,23 +12,28 @@ import AFViewShaker
 import HCSStarRatingView
 import KLCPopup
 
+typealias getChatDetails = (String) -> Void
+
 class WorkOrderDetailsViewController: UIViewController , UIWebViewDelegate{
 
+    @IBOutlet var cnstViewChatBottom: NSLayoutConstraint!
+    @IBOutlet var txtSendMsg: UITextField!
+    @IBOutlet var viewChat: UIView!
+    @IBOutlet var lblOrderView: UIButton!
     @IBOutlet var lblWorkOrderId: UILabel!
-    @IBOutlet var lblOrderView: UILabel!
     @IBOutlet var tblListing: UITableView!
     @IBOutlet var tabsCollectionView: UICollectionView!
     var workOrderId = Int()
     var getWorkListData = [String:Any]()
     var chatDetails = [String:Any]()
+    var chatHistory = [AnyObject]()
     var ExpensesList = [AnyObject]()
     var documentList = [AnyObject]()
     var tabsTag = 1
     var calenderPickerView = UIDatePicker()
     var appdelegate = UIApplication.shared.delegate as! AppDelegate
     let locationManager = CLLocationManager()
-    var conversation = ["Hello","Hi.","How are you?","I'm doing great. What have you been upto these days?","Nothing much! Just the usual corporate work life.","Ohh I see. BTW why don't you visit us for a dinner or something with Sue and kids.","Yeah sure why not!","How does next Saturday Night sound to you.","Yeah will do, as long as Sue doesn't have any other plans for the night.","Sure, I'll even notify Aisha about it","Cool","Meet up soon.","Cya"]
-    
+ 
     var expenseText = UITextField()
     var expensesDescription = UITextField()
     var selectExpenses = UIButton()
@@ -41,12 +46,39 @@ class WorkOrderDetailsViewController: UIViewController , UIWebViewDelegate{
     var calenderView = UIView()
     var comment = UITextField()
     var collapsedSections = NSMutableSet()
+    
+   var checkInView = UIView()
+   var checkOutView = UIView()
+   var sendMessageId = String()
+    
+      var timer: Timer!
+    var isTyping = false {
+        didSet {
+            guard oldValue != isTyping else {
+                return
+            }
+            guard isTyping else {
+                self.tblListing.reloadData()
+                return
+            }
+            let lastIndexPath = self.tblListing.indexPathsForVisibleRows!.sorted(by: { $0.row < $1.row }).last!
+            
+            self.tblListing.reloadData()
+            guard lastIndexPath.row == chatHistory.count - 1 else {
+                return
+            }
+            self.tblListing.scrollToRow(at: IndexPath(row: lastIndexPath.row + 1, section: 0) , at: .bottom, animated: false)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.lblOrderView.layer.cornerRadius = 3
         self.lblOrderView.layer.masksToBounds = true
-        
+       // self.viewChat.isHidden = true
+        self.cnstViewChatBottom.constant = -35
+        self.txtSendMsg.addTarget(self, action: #selector(self.textDidChange(_:)), for: .editingChanged)
         self.tblListing.estimatedRowHeight = 140
         self.tblListing.rowHeight = UITableViewAutomaticDimension
          self.tblListing.register(UINib(nibName: "SearchServiceTableViewCell", bundle: nil) , forCellReuseIdentifier: "SearchServiceTableViewCell")
@@ -58,13 +90,15 @@ class WorkOrderDetailsViewController: UIViewController , UIWebViewDelegate{
         self.tblListing.register(UINib(nibName: "DocumentsTableViewCell", bundle: nil) , forCellReuseIdentifier: "DocumentsTableViewCell")
         self.tblListing.register(UINib(nibName: "OwnerTableViewCell", bundle: nil) , forCellReuseIdentifier: "OwnerTableViewCell")
         self.tblListing.register(UINib(nibName: "OtherUserTableViewCell", bundle: nil) , forCellReuseIdentifier: "OtherUserTableViewCell")
-        self.tblListing.register(UINib(nibName: "WorkspaceTableViewCell", bundle: nil) , forCellReuseIdentifier: "WorkspaceTableViewCell")
+        self.tblListing.register(UINib(nibName: "TaskListTableViewCell", bundle: nil) , forCellReuseIdentifier: "TaskListTableViewCell")
         self.tblListing.register(UINib(nibName: "LabourPaymentTableViewCell", bundle: nil) , forCellReuseIdentifier: "LabourPaymentTableViewCell")
         self.tblListing.register(UINib(nibName: "ExpensesInfoTableViewCell", bundle: nil) , forCellReuseIdentifier: "ExpensesInfoTableViewCell")
         self.tblListing.register(UINib(nibName: "EarningTableViewCell", bundle: nil) , forCellReuseIdentifier: "EarningTableViewCell")
+        self.tblListing.register(UINib(nibName: "FixPayTableViewCell", bundle: nil) , forCellReuseIdentifier: "FixPayTableViewCell")
+        self.tblListing.register(UINib(nibName: "BlendedRateTableViewCell", bundle: nil) , forCellReuseIdentifier: "BlendedRateTableViewCell")
         self.tblListing.register(UINib(nibName: "TotalPaymentTableViewCell", bundle: nil) , forCellReuseIdentifier: "TotalPaymentTableViewCell")
-       
-         self.tblListing.separatorStyle = .none
+
+        self.tblListing.separatorStyle = .none
            self.tabsCollectionView.register(UINib(nibName: "TabOrderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TabOrderCollectionViewCell")
         
         if let flowLayout = tabsCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -74,6 +108,7 @@ class WorkOrderDetailsViewController: UIViewController , UIWebViewDelegate{
         self.tabsCollectionView.delegate = self
         self.tabsCollectionView.dataSource = self
         
+         SocketIOManager.sharedInstance.socketIOManagerDelegate = self
        // collapsedSections.add(1)
         // Do any additional setup after loading the view.
     }
@@ -87,31 +122,82 @@ class WorkOrderDetailsViewController: UIViewController , UIWebViewDelegate{
         super.viewWillAppear(animated)
 
          getWorkList()
+            { (userDetails) in
+            //    self.getChatHistory()
+        }
     }
     
-    func getWorkList()
+    func getWorkList(details : @escaping getChatDetails)
     {
         let parameters = ["id": self.workOrderId] as! [String:AnyObject]
         WebAPI().callJSONWebApi(API.workOrderDetails, withHTTPMethod: .post, forPostParameters: parameters, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
             self.chatDetails = serviceResponse["data"] as! [String : Any]
             self.getWorkListData = self.chatDetails["workOrderData"] as! [String:Any]
-            self.lblWorkOrderId.text = "(ID: \(((self.getWorkListData)["work_order_number"] as? String)!) )"
+            self.lblWorkOrderId.text = "( ID: \(((self.getWorkListData)["work_order_number"] as? String)!) )"
             let cap = ((self.getWorkListData)["status_name"] as! String)
-            let finalString = cap.capitalized
-            self.lblOrderView.text = "  \(finalString)   "
+            let finalString = cap.uppercased()
+            self.lblOrderView.setTitle(" \(finalString) ", for: .normal)
             self.ExpensesList = (self.getWorkListData["tech_expenses"] as! [AnyObject])
             self.documentList = (self.getWorkListData["work_oder_document"] as! [AnyObject])
-            self.tblListing.dataSource = self
-            self.tblListing.delegate = self
+           self.tblListing.dataSource = self
+          self.tblListing.delegate = self
             self.tblListing.reloadData()
+            details("Done")
         })
+    }
+    
+    func getChatHistory()
+    {
+        let chatDetail = self.chatDetails["chatWith"] as! [String:Any]
+        print(String(describing: chatDetail["socket_id"]!))
+        let parameter = ["with_users_id":String(describing: chatDetail["socket_id"]!),"work_order_id":workOrderId] as [String:AnyObject]
+        //chatTextField.addTarget(self, action: #selector(textDidChange(_:)), for: .editingChanged)
+        WebAPI.shared.callJSONWebApi(.getChatHistory, withHTTPMethod: .post, forPostParameters: parameter, shouldIncludeAuthorizationHeader: true) { (serviceResponse) in
+            print(serviceResponse)
+            let Data = serviceResponse["data"] as! [String:AnyObject]
+            self.chatHistory = Data["messages"] as! [AnyObject]
+//            if self.chatHistory.count != 0
+//            {
+                self.tblListing.dataSource = self
+                self.tblListing.delegate = self
+             self.tblListing.reloadData()
+               // self.tblListing.reloadData()
+//            }
+//            else
+//            {
+//                 self.tblListing.reloadData()
+//            }
+            SocketIOManager.sharedInstance.socketIOManagerDelegate = self
+            guard self.chatHistory.count > 0 else {
+                return
+            }
+            self.tblListing.scrollToRow(at: IndexPath(row: self.chatHistory.count - 1, section: 0), at: .bottom, animated: false)
+        }
     }
 
     @IBAction func btn_Back(_ sender: UIBarButtonItem) {
        self.navigationController?.popViewController(animated: true)
     }
-  
+    
+    
+    @IBAction func btn_CameraAction(_ sender: UIButton) {
+    }
+    
+    @IBAction func btn_SendMessageAction(_ sender: UIButton) {
+        
+        guard !txtSendMsg.text!.isEmpty else {
+            return
+        }
+        let param = ["message": txtSendMsg.text!] as [String:Any]
+        SocketIOManager.sharedInstance.sendDataToEvent(.message, data: param)
+      //  var parameter = ["to_id" : self.sendMessageId,
+    //                     "work_order_id" : self.workOrderId,
+  //      "message": txtSendMsg.text!] as! [String:AnyObject]
+        txtSendMsg.text = nil
+        
+    }
+    
 }
 
 extension WorkOrderDetailsViewController : UICollectionViewDelegate , UICollectionViewDataSource
@@ -161,18 +247,28 @@ extension WorkOrderDetailsViewController : UICollectionViewDelegate , UICollecti
         if indexPath.row == 0
         {
             self.tabsTag = 1
+            self.cnstViewChatBottom.constant = -35
+         //    self.viewChat.isHidden = true
+         
         }
         if indexPath.row == 1
         {
             self.tabsTag = 2
+          //  self.viewChat.isHidden = false
+            self.cnstViewChatBottom.constant = 0
+               getChatHistory()
         }
         if indexPath.row == 2
         {
             self.tabsTag = 3
+            self.cnstViewChatBottom.constant = -35
+         //    self.viewChat.isHidden = true
         }
         if indexPath.row == 3
         {
             self.tabsTag = 4
+            self.cnstViewChatBottom.constant = -35
+         //    self.viewChat.isHidden = true
         }
         self.tabsCollectionView.reloadData()
         self.tblListing.reloadData()
@@ -205,9 +301,9 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
         {
             return 4
         }
-            else if self.tabsTag == 2
+        else if self.tabsTag == 3
         {
-            return 0
+            return 1
         }
         else
         {
@@ -233,7 +329,12 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
          }
             else if self.tabsTag == 2
          {
-            return self.conversation.count
+             return !isTyping ? self.chatHistory.count : self.chatHistory.count + 1
+            return self.chatHistory.count
+         }
+            else if self.tabsTag == 3
+         {
+              return (self.getWorkListData["work_order_tasks"] as! [AnyObject]).count
          }
         else
          {
@@ -260,6 +361,23 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
             cell.lblClientName.text = (((self.getWorkListData)["clients"]) as! [String:Any])["client_name"] as? String
             cell.lblManagerName.text = (((self.getWorkListData)["manager"]) as! [String:Any])["first_name"] as? String
             let technicianProcess = ((self.getWorkListData)["technician_process"] as! [String:Any])
+            let skillsArray = (self.getWorkListData["workSkill"] as? [String])!
+            if skillsArray.count != 0
+            {
+                for i in 0...(skillsArray.count)-1
+                {
+                    if skillsArray.count-1 == i
+                    {
+                        cell.lblSkills.text! = ""
+                        cell.lblSkills.text!.append("\(String(describing: skillsArray[i]))")
+                    }
+                    else
+                    {
+                        cell.lblSkills.text! = ""
+                        cell.lblSkills.text!.append("\(String(describing: skillsArray[i])) ,")
+                    }
+                }
+            }
             if ((technicianProcess)["Applied"] as? Bool) == true
             {
                 cell.btnApply.setTitle("Already Applied", for: .normal)
@@ -279,15 +397,24 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
             cell.lblName.text = ((information)["first_name"] as? String)!+" "+((information)["last_name"] as? String)!
             cell.lblEmail.text = (((self.getWorkListData)["created_data"]) as! [String:Any])["email"] as? String
             cell.btnRating.addTarget(self, action: #selector(RatingAction(_ :)), for: .touchUpInside)
-            
+            if (!(self.chatDetails["avg_rating"] is NSNull))
+            {
+            if let n = NumberFormatter().number(from: (self.chatDetails["avg_rating"] as! String)) {
+                let f = CGFloat(truncating: n)
+                cell.viewRating.value = f
+                cell.viewRating.filledStarImage = #imageLiteral(resourceName: "img_OrangeStar")
+                cell.viewRating.halfStarImage = #imageLiteral(resourceName: "img_HalfStarOrng")
+            }
+            }
+            cell.btnCustomerDetails.addTarget(self, action: #selector(self.CustomerRatingDetail(_ :)), for: .touchUpInside)
+          
             return cell
         }
         else if indexPath.section == 2
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "WorkOrderInformationTableViewCell", for: indexPath) as! WorkOrderInformationTableViewCell
-//             cell.webViewHtml.delegate = self
             do {
-                let attributedString = try? NSAttributedString(data: "   \((self.getWorkListData)["work_order_description"] as! String)".data(using: .unicode) ?? Data(), options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+                   let attributedString = try? NSAttributedString(data: ((self.getWorkListData)["work_order_description"] as! String).data(using: .unicode) ?? Data(), options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
                  cell.lblHtml.attributedText = attributedString
             } catch {
                 print(error)
@@ -337,22 +464,38 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DocumentsTableViewCell", for: indexPath) as! DocumentsTableViewCell
             cell.lblDocumentName.text = ((self.documentList[indexPath.row])["work_order_document_path"] as! String)
+         
+            cell.imgDocument.tag = indexPath.row
+            cell.imgDocument.addTarget(self, action: #selector(self.getDocument(_:)), for: .touchUpInside)
             return cell
         }
     }
         else if self.tabsTag == 2
        {
-        if indexPath.row % 2 == 0
+        if (UserDefaults.standard.object(forKey: "SocketId") as? String)! == (chatHistory[indexPath.row]["from_id"] as? String)!
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "OwnerTableViewCell", for: indexPath) as! OwnerTableViewCell
-              cell.lblText.text = self.conversation[indexPath.row]
-           // cell.lblText.text = chatHistory[indexPath.row]["message"] as? String
+         //     cell.lblText.text = self.conversation[indexPath.row]
+            cell.lblText.text = (chatHistory[indexPath.row]["msg_string"] as? String)!
+             self.sendMessageId = (chatHistory[indexPath.row]["to_id"] as? String)!
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let date = dateFormatter.date(from: ((self.chatHistory[indexPath.row])["created_at"] as! String))!
+            dateFormatter.dateFormat = "MM/dd/yyyy HH:mm a"
+            cell.lblTime.text = dateFormatter.string(from: date)
             return cell
         }
         else
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "OtherUserTableViewCell", for: indexPath) as! OtherUserTableViewCell
-             cell.lblText.text = self.conversation[indexPath.row]
+          //   cell.lblText.text = self.conversation[indexPath.row]
+            cell.lblText.text = (chatHistory[indexPath.row]["msg_string"] as? String)!
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let date = dateFormatter.date(from: ((self.chatHistory[indexPath.row])["created_at"] as! String))!
+            dateFormatter.dateFormat = "MM/dd/yyyy HH:mm a"
+            cell.lblTime.text = dateFormatter.string(from: date)
+     //       self.sendMessageId = (chatHistory[indexPath.row]["to_id"] as? String)!
             return cell
         }
        }
@@ -361,8 +504,8 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
         if indexPath.section == 0
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LabourPaymentTableViewCell", for: indexPath) as! LabourPaymentTableViewCell
-            cell.lblLabourAmount.text = "$ \((self.chatDetails)["labour_amount"] as! Double)"
-            cell.lblTotalExpenses.text = "$ \(String(describing: self.chatDetails["total_expenses"] as! Int))"
+            cell.lblLabourAmount.text = "$ \(String(describing: self.chatDetails["labour_amount"] as! Double))"
+            cell.lblTotalExpenses.text = "$ \((self.chatDetails)["totalTechnicianExpenses"] as! String)"
             cell.lblTotalWOrkingHrs.text = "\((self.chatDetails)["total_hours"] as! Double) hrs"
             cell.btnAddExpenses.addTarget(self, action: #selector(btn_AddExpenses(_ :)), for: .touchUpInside)
             return cell
@@ -371,90 +514,90 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ExpensesInfoTableViewCell", for: indexPath) as! ExpensesInfoTableViewCell
             cell.lblType.text = ((self.ExpensesList[indexPath.row])["expense_type"] as! String)
-            cell.lblAmount.text = ((self.ExpensesList[indexPath.row])["expense_amount"] as! String)
-            cell.lblTotalAmount.text = ((self.ExpensesList[indexPath.row])["expense_amount"] as! String)
+            cell.lblAmount.text = "$ \((self.ExpensesList[indexPath.row])["expense_amount"] as! String)"
+            cell.lblTotalAmount.text = "$ \((self.ExpensesList[indexPath.row])["tech_total_expenses"] as! String)"
             cell.lblDescription.text = ((self.ExpensesList[indexPath.row])["expense_description"] as! String)
-            cell.lblStatus.text = ""
+            if (((self.ExpensesList[indexPath.row])["status"] as? String)! == "-1")
+            {
+                cell.lblStatus.text = " Rejected "
+            }
+            else if(((self.ExpensesList[indexPath.row])["status"] as? String) == "1")
+            {
+                cell.lblStatus.text = " Approved "
+            }
+            else
+            {
+            cell.lblStatus.text = " Pending Approval "
+            }
             return cell
         }
         else if indexPath.section == 2
         {
+            if ((self.getWorkListData)["payment_rate_type"] as? String) == "2"
+            {
             let cell = tableView.dequeueReusableCell(withIdentifier: "EarningTableViewCell", for: indexPath) as! EarningTableViewCell
             cell.lblPerHraRate.text =  "\((self.getWorkListData)["per_hour_rate"] as? String ?? "")"
-            cell.lblMaxRate.text =  "\((self.getWorkListData)["per_hour_max_hours"] as? String ?? "")"
-            cell.lblAmount.text = "\((self.getWorkListData)["temp_amount"] as? String ?? "")"
+            if (!((self.getWorkListData)["per_hour_max_hours"] is NSNull))
+            {
+              cell.lblMaxRate.text =  "\((self.getWorkListData)["per_hour_max_hours"] as! String)"
+            }
+            if (!((self.chatDetails)["labour_amount"] is NSNull))
+            {
+             cell.lblAmount.text = "$ \(String(describing: (self.chatDetails)["labour_amount"] as! Double))"
+            }
+            cell.lblTotalEarning.text = "$ \(String(describing: (self.chatDetails)["labour_amount"] as! Double))"
             return cell
+            }
+            else if ((self.getWorkListData)["payment_rate_type"] as? String) == "1"
+            {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "FixPayTableViewCell", for: indexPath) as! FixPayTableViewCell
+                if (!((self.getWorkListData)["fixed_pay_amount"] is NSNull))
+                {
+                   cell.lblFixAmount.text = ((self.getWorkListData)["fixed_pay_amount"] as? String)!
+                }
+                return cell
+            }
+            else
+            {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "BlendedRateTableViewCell", for: indexPath) as! BlendedRateTableViewCell
+                cell.lblFirstPayableAmt.text = (((self.chatDetails)["blender"] as! [String:Any])["amountPayable1"] as? String)!
+                cell.lblSecndAmtPayable.text = (((self.chatDetails)["blender"] as! [String:Any])["amountPayable2"] as? String)!
+                cell.lblFirstMaxHours.text = (((self.chatDetails)["blender"] as! [String:Any])["maxHours1"] as? String)!
+                cell.lblsecndMaxhrs.text = (((self.chatDetails)["blender"] as! [String:Any])["maxHours2"] as? String)!
+                cell.lblFirstClockedHrs.text = (((self.chatDetails)["blender"] as! [String:Any])["clockedHours1"] as? String)!
+                cell.lblScndClocedHrs.text = String(((self.chatDetails)["blender"] as! [String:Any])["clockedHours2"] as! Double)
+                cell.lblFirstAmtEarnd.text = String(((self.chatDetails)["blender"] as! [String:Any])["amountEarned1"] as! Double)
+                cell.lblScndAmtEarned.text = String(((self.chatDetails)["blender"] as! [String:Any])["amountEarned2"] as! Double)
+                cell.lblTotalEarning.text = "$ \((self.chatDetails)["labour_amount"] as! Double)"
+                return cell
+            }
         }
         else
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TotalPaymentTableViewCell", for: indexPath) as! TotalPaymentTableViewCell
-            cell.lblTotalPayment.text = ""
-            if ((self.getWorkListData)["ihiretech_fee"] as? String) != ""
+            cell.lblTotalPayment.text = "$ \((self.chatDetails)["totalTechnicianPayment"] as! String)"
+            if ((self.chatDetails)["fee"] as? String) != ""
             {
-               cell.lblFees.text = ((self.getWorkListData)["ihiretech_fee"] as? String)!
+                cell.lblFees.text = "$ \(String((self.chatDetails)["fee"] as! Double))"
             }
-            cell.lblTechnicianpayment.text = ""
+            cell.lblTechnicianpayment.text = "$ \((self.chatDetails)["technicianPayment"] as! String)"
             return cell
         }
        }
        else
        {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WorkspaceTableViewCell", for: indexPath) as! WorkspaceTableViewCell
-
-         cell.btnCheckInDate.addTarget(self, action: #selector(self.DatePickerToDateIn(_:)), for: .touchUpInside)
-         cell.btnCheckInTime.addTarget(self, action: #selector(self.self.DatePickerToTimeIn(_:)), for: .touchUpInside)
-         cell.btnCheckOutDate.addTarget(self, action: #selector(self.DatePickerToDate(_:)), for: .touchUpInside)
-         cell.btnCheckOutTime.addTarget(self, action: #selector(self.self.DatePickerToTime(_:)), for: .touchUpInside)
-        let information = self.getWorkListData["checkin_checkout"] as! [String:Any]
-       
-         cell.btnCheckIn.addTarget(self, action: #selector(self.UpdateCheckIn(_:)), for: .touchUpInside)
-         cell.btnCheckOut.addTarget(self, action: #selector(self.UpdateCheckOut(_:)), for: .touchUpInside)
-        
-        if ((information)["checkin_date"] as? String) != nil
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskListTableViewCell", for: indexPath) as! TaskListTableViewCell
+        cell.lblTask.text = (((self.getWorkListData["work_order_tasks"] as! [AnyObject])[indexPath.row])["task_name"] as! String)
+        cell.btnCompleteTask.tag = indexPath.row
+        if ((self.getWorkListData)["status_name"] as! String) == "paid"
         {
-            cell.lblDate.text = ((information)["checkin_date"] as? String)!
-            cell.img_CheckIn.image = UIImage(named : "img_CheckReminder")
-            if ((self.getWorkListData)["status_name"] as! String) == "approved"
-            {
-                cell.btnCheckIn.isHidden = true
-                cell.btnCheckOut.isHidden = true
-                cell.cnstrntLocationTrackingButtonHeight.constant = 0
-                self.tblListing.beginUpdates()
-                self.tblListing.endUpdates()
-            }
-            else
-            {
-                cell.btnCheckIn.isHidden = false
-                cell.btnCheckOut.isHidden = false
-               cell.cnstrntLocationTrackingButtonHeight.constant = 30
-               self.tblListing.beginUpdates()
-               self.tblListing.endUpdates()
-                cell.btnStartTracking.addTarget(self, action: #selector(self.startUpdatingLocationAfterCheckin(_:)), for: .touchUpInside)
-            }
-        }
-        else
-         {
-            cell.img_CheckIn.image = UIImage(named : "img_UnCheckReminder")
-         }
-        if ((information)["checkin_time"] as? String) != nil
-        {
-            cell.lblTime.text = ((information)["checkin_time"] as? String)!
-        }
-        
-        if ((information)["checkout_date"] as? String) != nil
-        {
-            cell.lblCheckOutDate.text! = ((information)["checkout_date"] as? String)!
-            cell.imgCheckOut.image = UIImage(named : "img_CheckReminder")
+            cell.btnCompleteTask.isHidden = true
         }
         else
         {
-            cell.imgCheckOut.image = UIImage(named : "img_UnCheckReminder")
+            cell.btnCompleteTask.isHidden = false
+           cell.btnCompleteTask.addTarget(self, action: #selector(btn_CompletedtaskList(_ :)), for: .touchUpInside)
         }
-        if ((information)["checkout_time"] as? String) != nil
-        {
-            cell.lblCheckoutTime.text = ((information)["checkout_time"] as? String)!
-        }
-        
         return cell
        }
     }
@@ -529,8 +672,29 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
     else if self.tabsTag == 3
     {
         let headerViewArray = Bundle.main.loadNibNamed("CheckInView", owner: self, options: nil)?[0] as! UIView
-        (headerViewArray.viewWithTag(4) as! UILabel).text = "Task"
-        let image = (headerViewArray.viewWithTag(2) as! UIImageView).isHidden = true
+        self.checkInView = headerViewArray
+        (headerViewArray.viewWithTag(4) as! UIButton).addTarget(self, action: #selector(self.DatePickerToDateIn(_:)), for: .touchUpInside)
+        (headerViewArray.viewWithTag(6) as! UIButton).addTarget(self, action: #selector(self.self.DatePickerToTimeIn(_:)), for: .touchUpInside)
+        (headerViewArray.viewWithTag(2) as! UIButton).addTarget(self, action: #selector(self.UpdateCheckIn(_:)), for: .touchUpInside)
+        (headerViewArray.viewWithTag(9) as! UIButton).layer.cornerRadius = 3
+        (headerViewArray.viewWithTag(9) as! UIButton).layer.masksToBounds = true
+        (headerViewArray.viewWithTag(9) as! UIButton).addTarget(self, action: #selector(self.startUpdatingLocationAfterCheckin(_:)), for: .touchUpInside)
+        let information = self.getWorkListData["checkin_checkout"] as! [String:Any]
+        if ((information)["checkin_date"] as? String) != nil
+        {
+           (headerViewArray.viewWithTag(3) as! UILabel).text = ((information)["checkin_date"] as? String)!
+           (headerViewArray.viewWithTag(1) as! UIImageView).image = UIImage(named : "img_CheckReminder")
+        }
+        else
+        {
+            (headerViewArray.viewWithTag(1) as! UIImageView).image = UIImage(named : "img_UnCheckReminder")
+        }
+        if ((information)["checkin_time"] as? String) != nil
+        {
+            (headerViewArray.viewWithTag(5) as! UILabel).text = ((information)["checkin_time"] as? String)!
+        }
+        (headerViewArray.viewWithTag(2) as! UIButton).layer.cornerRadius = 3
+       (headerViewArray.viewWithTag(2) as! UIButton).layer.masksToBounds = true
         (headerViewArray.viewWithTag(7) as! UIView).layer.borderWidth = 1
         (headerViewArray.viewWithTag(7) as! UIView).layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
         (headerViewArray.viewWithTag(8) as! UIView).layer.borderWidth = 1
@@ -553,6 +717,14 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
         {
             let headerViewArray = Bundle.main.loadNibNamed("ExpensesHeadersView", owner: self, options: nil)?[0] as! UIView
             headerViewArray.frame = CGRect(x:0, y:0, width: view.frame.width, height:150)
+            if self.ExpensesList.count != 0
+            {
+             (headerViewArray.viewWithTag(10) as! UILabel).text = "Expenses"
+            }
+            else
+            {
+                (headerViewArray.viewWithTag(10) as! UILabel).text = "No Expenses Added"
+            }
             (headerViewArray.viewWithTag(1) as! UIView).layer.borderWidth = 1
             (headerViewArray.viewWithTag(1) as! UIView).layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
             return headerViewArray
@@ -592,6 +764,38 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
            let headerViewArray = Bundle.main.loadNibNamed("ExpensesFooterView", owner: self, options: nil)?[0] as! UIView
              (headerViewArray.viewWithTag(1) as! UIView).layer.borderWidth = 1
             (headerViewArray.viewWithTag(1) as! UIView).layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
+            (headerViewArray.viewWithTag(2) as! UILabel).text = "$ \((self.chatDetails)["total_expenses"] as! Double)"
+            (headerViewArray.viewWithTag(3) as! UILabel).text = "$ \(String((self.chatDetails)["total_expenses_excess"] as! Double))"
+            (headerViewArray.viewWithTag(4) as! UILabel).text = "$ \((self.chatDetails)["totalTechnicianExpenses"] as! String)"
+            return headerViewArray
+        }
+          else  if self.tabsTag == 3
+        {
+            let headerViewArray = Bundle.main.loadNibNamed("CheckOutView", owner: self, options: nil)?[0] as! UIView
+            self.checkOutView = headerViewArray
+            let information = self.getWorkListData["checkin_checkout"] as! [String:Any]
+            if ((information)["checkout_date"] as? String) != nil
+            {
+                (headerViewArray.viewWithTag(3) as! UILabel).text = ((information)["checkout_date"] as? String)!
+                (headerViewArray.viewWithTag(1) as! UIImageView).image = UIImage(named : "img_CheckReminder")
+            }
+            else
+            {
+                (headerViewArray.viewWithTag(1) as! UIImageView).image = UIImage(named : "img_UnCheckReminder")
+            }
+            if ((information)["checkout_time"] as? String) != nil
+            {
+                (headerViewArray.viewWithTag(5) as! UILabel).text = ((information)["checkout_time"] as? String)!
+            }
+            (headerViewArray.viewWithTag(2) as! UIButton).layer.cornerRadius = 3
+            (headerViewArray.viewWithTag(2) as! UIButton).layer.masksToBounds = true
+             (headerViewArray.viewWithTag(2) as! UIButton).addTarget(self, action: #selector(self.UpdateCheckOut(_:)), for: .touchUpInside)
+            (headerViewArray.viewWithTag(4) as! UIButton).addTarget(self, action: #selector(self.DatePickerToDate(_:)), for: .touchUpInside)
+            (headerViewArray.viewWithTag(6) as! UIButton).addTarget(self, action: #selector(self.DatePickerToTime(_:)), for: .touchUpInside)
+            (headerViewArray.viewWithTag(7) as! UIView).layer.borderWidth = 1
+            (headerViewArray.viewWithTag(7) as! UIView).layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
+            (headerViewArray.viewWithTag(8) as! UIView).layer.borderWidth = 1
+            (headerViewArray.viewWithTag(8) as! UIView).layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
             return headerViewArray
         }
         else
@@ -613,6 +817,22 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
         {
             return 129.0
         }
+            else if self.tabsTag == 3
+         {
+            let information = self.getWorkListData["checkin_checkout"] as! [String:Any]
+            if ((information)["checkin_date"] as? String) != nil
+            {
+               return 245.0
+            }
+            else
+            {
+                return 230.0
+            }
+         }
+         else if self.tabsTag == 2
+         {
+            return 0
+         }
         else
         {
             return 47.0
@@ -633,7 +853,12 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
         {
             return 111.0
         }
-        else
+        else if self.tabsTag == 3
+        {
+                return 158.0
+        }
+        
+            else
         {
            return 0
         }
@@ -648,7 +873,21 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
     {
         if tableView == tblListing
         {
-        return UITableViewAutomaticDimension
+            if self.tabsTag == 3
+            {
+            if (self.getWorkListData["work_order_tasks"] as! [AnyObject]).count == 0
+            {
+                return 0
+            }
+                else
+            {
+                return UITableViewAutomaticDimension
+            }
+            }
+            else
+            {
+               return UITableViewAutomaticDimension
+            }
         }
         else
         {
@@ -720,11 +959,9 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
     @objc func btn_SaveDateToOutAction(_ sender: UIButton)
     {
         popup.dismiss(true)
-        let cell_indexPath = NSIndexPath(row: 0, section: 0)
-        let tableViewCell = self.tblListing.cellForRow(at: cell_indexPath as IndexPath) as! WorkspaceTableViewCell
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-YYYY"
-        tableViewCell.lblCheckOutDate.text = dateFormatter.string(from: calenderPickerView.date)
+        (self.checkOutView.viewWithTag(3) as! UILabel).text! = dateFormatter.string(from: calenderPickerView.date)
     }
     
     @objc func btn_CloseAction(_ sender: UIButton)
@@ -753,11 +990,9 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
     @objc func btn_SaveTimeOutAction(_ sender: UIButton)
     {
         popup.dismiss(true)
-        let cell_indexPath = NSIndexPath(row: 0, section: 0)
-        let tableViewCell = self.tblListing.cellForRow(at: cell_indexPath as IndexPath) as! WorkspaceTableViewCell
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm a"
-        tableViewCell.lblCheckoutTime.text = dateFormatter.string(from: calenderPickerView.date)
+         (self.checkOutView.viewWithTag(5) as! UILabel).text! = dateFormatter.string(from: calenderPickerView.date)
     }
     
     @objc func DatePickerToDateIn(_ sender : UIGestureRecognizer)
@@ -781,11 +1016,10 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
     @objc func btn_SaveDateToInAction(_ sender: UIButton)
     {
         popup.dismiss(true)
-        let cell_indexPath = NSIndexPath(row: 0, section: 0)
-        let tableViewCell = self.tblListing.cellForRow(at: cell_indexPath as IndexPath) as! WorkspaceTableViewCell
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-YYYY"
-        tableViewCell.lblDate.text = dateFormatter.string(from: calenderPickerView.date)
+        (self.checkInView.viewWithTag(3) as! UILabel).text! = dateFormatter.string(from: calenderPickerView.date)
     }
     
     
@@ -810,11 +1044,9 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
     @objc func btn_SaveTimeInAction(_ sender: UIButton)
     {
         popup.dismiss(true)
-        let cell_indexPath = NSIndexPath(row: 0, section: 0)
-        let tableViewCell = self.tblListing.cellForRow(at: cell_indexPath as IndexPath) as! WorkspaceTableViewCell
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm a"
-        tableViewCell.lblTime.text = dateFormatter.string(from: calenderPickerView.date)
+        (self.checkInView.viewWithTag(5) as! UILabel).text! = dateFormatter.string(from: calenderPickerView.date)
     }
     
     @objc func btn_AddExpenses(_ sender: UIButton)
@@ -896,15 +1128,13 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
     
     @objc func UpdateCheckIn(_ sender: UIButton)
     {
-        let cell_indexPath = NSIndexPath(row: 0, section: 0)
-        let tableViewCell = self.tblListing.cellForRow(at: cell_indexPath as IndexPath) as! WorkspaceTableViewCell
-       
-        if tableViewCell.lblDate.text! != "Select Date" && tableViewCell.lblTime.text! != "Select Time"
+
+        if (self.checkInView.viewWithTag(3) as! UILabel).text! != "Select Date" && (self.checkInView.viewWithTag(5) as! UILabel).text! != "Select Time"
         {
-              tableViewCell.img_CheckIn.image = UIImage(named : "img_CheckReminder")
-            tableViewCell.viewCheckInDate.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
-            tableViewCell.viewCheckInTime.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
-            let parameters = ["work_order_id": self.workOrderId ,"checkin_date": tableViewCell.lblDate.text!,"checkin_time":tableViewCell.lblTime.text!] as [String:AnyObject]
+            (self.checkInView.viewWithTag(1) as! UIImageView).image = UIImage(named : "img_CheckReminder")
+            (self.checkInView.viewWithTag(7))!.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
+            (self.checkInView.viewWithTag(8))!.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
+            let parameters = ["work_order_id": self.workOrderId ,"checkin_date": (self.checkInView.viewWithTag(3) as! UILabel).text!,"checkin_time":(self.checkInView.viewWithTag(5) as! UILabel).text! ] as [String:AnyObject]
            
         WebAPI.shared.callJSONWebApi(API.checkIn, withHTTPMethod: .post, forPostParameters: parameters, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
@@ -912,45 +1142,41 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
             {
                 AListAlertController.shared.presentAlertController(message: message)
                 {
-                    tableViewCell.cnstrntLocationTrackingButtonHeight.constant = 30
-                    self.tblListing.beginUpdates()
-                    self.tblListing.endUpdates()
+                    self.tblListing.reloadData()
+                   // self.tblListing.endUpdates()
                 }
             }
         })
         }
         else
         {
-            if tableViewCell.lblDate.text! == "Select Date"
+            if (self.checkInView.viewWithTag(3) as! UILabel).text! == "Select Date"
             {
-            let viewShaker = AFViewShaker(view: tableViewCell.viewCheckInDate)
-            tableViewCell.viewCheckInDate.layer.borderColor = UIColor.red.cgColor
-            print(tableViewCell.viewCheckInDate)
+            let viewShaker = AFViewShaker(view: (self.checkInView.viewWithTag(7))!)
+                (self.checkInView.viewWithTag(7))!.layer.borderColor = UIColor.red.cgColor
             viewShaker?.shake()
             return
             }
-            else if tableViewCell.lblTime.text! == "Select Time"
+            else if (self.checkInView.viewWithTag(5) as! UILabel).text! == "Select Time"
             {
-                let viewShaker = AFViewShaker(view: tableViewCell.viewCheckInTime)
-                tableViewCell.viewCheckInTime.layer.borderColor = UIColor.red.cgColor
-                print(tableViewCell.viewCheckInTime)
+                let viewShaker = AFViewShaker(view: (self.checkInView.viewWithTag(8))!)
+                (self.checkInView.viewWithTag(8))!.layer.borderColor = UIColor.red.cgColor
                 viewShaker?.shake()
             }
             else
             {
-                 tableViewCell.viewCheckInDate.layer.borderColor = UIColor.red.cgColor
-                 tableViewCell.viewCheckInTime.layer.borderColor = UIColor.red.cgColor
+                 (self.checkInView.viewWithTag(7))!.layer.borderColor = UIColor.red.cgColor
+                 (self.checkInView.viewWithTag(8))!.layer.borderColor = UIColor.red.cgColor
             }
         }
     }
     
     @objc func startUpdatingLocationAfterCheckin(_ sender: UIButton)
     {
-        let cell_indexPath = NSIndexPath(row: 0, section: 0)
-        let tableViewCell = self.tblListing.cellForRow(at: cell_indexPath as IndexPath) as! WorkspaceTableViewCell
-        if tableViewCell.btnStartTracking.titleLabel?.text == "Start Tracking Location"
+      
+        if (self.checkInView.viewWithTag(9) as! UIButton).titleLabel?.text == "Start Location Tracking"
         {
-             tableViewCell.btnStartTracking.setTitle("Pause Tracking Location", for: .normal)
+             (self.checkInView.viewWithTag(9) as! UIButton).setTitle("Pause Location Tracking", for: .normal)
             self.locationManager.delegate = self
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse
         {
@@ -964,31 +1190,30 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
         }
         else
         {
-             tableViewCell.btnStartTracking.setTitle("Start Tracking Location", for: .normal)
+             (self.checkInView.viewWithTag(9) as! UIButton).setTitle("Start Location Tracking", for: .normal)
              self.StopSendingLocation()
         }
     }
     
     @objc func UpdateCheckOut(_ sender: UIButton)
     {
-        let cell_indexPath = NSIndexPath(row: 0, section: 0)
-        let tableViewCell = self.tblListing.cellForRow(at: cell_indexPath as IndexPath) as! WorkspaceTableViewCell
-        tableViewCell.imgCheckOut.image = UIImage(named : "img_CheckReminder")
-        if tableViewCell.lblCheckOutDate.text! != "Select Date" && tableViewCell.lblCheckoutTime.text! != "Select Time"
+//        let cell_indexPath = NSIndexPath(row: 0, section: 0)
+//        let tableViewCell = self.tblListing.cellForRow(at: cell_indexPath as IndexPath) as! WorkspaceTableViewCell
+        (self.checkOutView.viewWithTag(1) as! UIImageView).image = UIImage(named : "img_CheckReminder")
+      if (self.checkOutView.viewWithTag(3) as! UILabel).text! != "Select Date" && (self.checkOutView.viewWithTag(5) as! UILabel).text! != "Select Time"
         {
-            tableViewCell.img_CheckIn.image = UIImage(named : "img_CheckReminder")
-            tableViewCell.viewCheckOutDate.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
-            tableViewCell.viewCheckOutTIme.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
-        let parameters = ["work_order_id": self.workOrderId ,"checkout_date": tableViewCell.lblCheckOutDate.text!,"checkout_time":tableViewCell.lblCheckoutTime.text!] as [String:AnyObject]
+            (self.checkOutView.viewWithTag(1) as! UIImageView).image = UIImage(named : "img_CheckReminder")
+            (self.checkOutView.viewWithTag(7))!.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
+            (self.checkOutView.viewWithTag(8))!.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
+        let parameters = ["work_order_id": self.workOrderId ,"checkout_date": (self.checkOutView.viewWithTag(3) as! UILabel).text!,"checkout_time":(self.checkOutView.viewWithTag(5) as! UILabel).text!] as [String:AnyObject]
         WebAPI().callJSONWebApi(API.checkOut, withHTTPMethod: .post, forPostParameters: parameters, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
             if let message = serviceResponse["msg"] as? String
             {
                  AListAlertController.shared.presentAlertController(message: message)
                  {
-                    tableViewCell.cnstrntLocationTrackingButtonHeight.constant = 0
-                    self.tblListing.beginUpdates()
-                    self.tblListing.endUpdates()
+                    self.tblListing.reloadData()
+                   // self.tblListing.endUpdates()
                     self.StopSendingLocation()
                  }
             }
@@ -996,25 +1221,23 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
         }
         else
         {
-            if tableViewCell.lblCheckOutDate.text! == "Select Date"
+            if (self.checkOutView.viewWithTag(3) as! UILabel).text! == "Select Date"
             {
-                let viewShaker = AFViewShaker(view: tableViewCell.viewCheckOutDate)
-                tableViewCell.viewCheckOutDate.layer.borderColor = UIColor.red.cgColor
-                print(tableViewCell.viewCheckOutDate)
+                let viewShaker = AFViewShaker(view: (self.checkOutView.viewWithTag(7))!)
+                (self.checkOutView.viewWithTag(7))!.layer.borderColor = UIColor.red.cgColor
                 viewShaker?.shake()
                 return
             }
-            else if tableViewCell.lblCheckoutTime.text! == "Select Time"
+            else if (self.checkOutView.viewWithTag(5) as! UILabel).text! == "Select Time"
             {
-                let viewShaker = AFViewShaker(view: tableViewCell.viewCheckOutTIme)
-                tableViewCell.viewCheckOutTIme.layer.borderColor = UIColor.red.cgColor
-                print(tableViewCell.viewCheckOutTIme)
+                let viewShaker = AFViewShaker(view: (self.checkOutView.viewWithTag(8))!)
+                (self.checkOutView.viewWithTag(8))!.layer.borderColor = UIColor.red.cgColor
                 viewShaker?.shake()
             }
             else
             {
-                tableViewCell.viewCheckOutDate.layer.borderColor = UIColor.red.cgColor
-                tableViewCell.viewCheckOutTIme.layer.borderColor = UIColor.red.cgColor
+                (self.checkOutView.viewWithTag(7))!.layer.borderColor = UIColor.red.cgColor
+                (self.checkOutView.viewWithTag(8))!.layer.borderColor = UIColor.red.cgColor
             }
         }
     }
@@ -1048,8 +1271,7 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
     
     func updateRating()
     {
-       
-        let parameters = ["id": self.workOrderId , "rating": ratingView.value , "comment": comment.text!] as [String:AnyObject]
+       let parameters = ["id": self.workOrderId , "rating": ratingView.value , "comment": comment.text!] as [String:AnyObject]
         WebAPI().callJSONWebApi(API.workOrderDetails, withHTTPMethod: .post, forPostParameters: parameters, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
             if let message = serviceResponse["msg"] as? String
@@ -1118,13 +1340,53 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
         }
     }
     
+    @objc func btn_CompletedtaskList(_ sender: UIButton)
+    {
+        let parameters = ["work_order_id": self.workOrderId , "work_order_task_id": (((self.getWorkListData["work_order_tasks"] as! [AnyObject])[sender.tag])["work_order_task_id"] as! Int)] as [String:AnyObject]
+        WebAPI().callJSONWebApi(API.completedTaskList, withHTTPMethod: .post, forPostParameters: parameters, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
+            print(serviceResponse)
+            if let message = serviceResponse["msg"] as? String
+            {
+                AListAlertController.shared.presentAlertController(message: message, completionHandler: nil)
+            }
+        })
+    }
+    
+    @objc func getDocument(_ sender: UIButton)
+    {
+        let parameter = ["id": ((self.documentList[sender.tag])["work_order_document_id"] as! Double)] as [String:Any]
+        WebAPI().callJSONWebApi(API.downloadWorkOrderDocuments, withHTTPMethod: .get, forPostParameters: parameter, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
+            print(serviceResponse)
+            
+        })
+        
+    }
+    
+    @objc func CustomerRatingDetail(_ sender: UIButton)
+    {
+        let destination = RatingTableViewController(style: .plain)
+        destination.customerId = Int((self.getWorkListData)["customer_id"] as! String)!
+        destination.workOrderId = self.workOrderId
+        let nav = UINavigationController(rootViewController: destination)
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionFade
+        self.navigationController?.view.layer.add(transition, forKey: nil)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.present(nav, animated: false, completion: nil)
+     //   self.navigationController?.pushViewController(nav, animated: false)
+    }
+    
 }
 
 extension WorkOrderDetailsViewController : CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
             locationManager.startUpdatingLocation()
-            self.startUpdatingLocation()
+       //     self.startUpdatingLocation()
         }
         else if status == .denied
         {
@@ -1135,6 +1397,46 @@ extension WorkOrderDetailsViewController : CLLocationManagerDelegate{
             
         }
     }
+}
+
+extension WorkOrderDetailsViewController: SocketIOManagerDelegate {
+    func usersTyping(_ data: [String : Any]) {
+//        isTyping = true
+//        timer?.invalidate()
+//        if #available(iOS 10.0, *) {
+//            timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (_) in
+//          //      self.isTyping = false
+//            })
+//        } else {
+//            // Fallback on earlier versions
+//        }
+    }
+    
+    func messageReceived(_ data: [String : Any]) {
+        print(data)
+      //  let orderId = (data["work_order_id"] as! [[String:String]]).first!
+        let chatMessage: [String:Any] = [
+            "to_id": "",
+            "work_order_id": data["work_order_id"] as! String,
+            "message": data["message"] as! String,]
+        chatHistory.append(chatMessage as AnyObject)
+          let indexPaths = self.tblListing.indexPathsForVisibleRows?.sorted(by: { $0.row < $1.row })
+        chatHistory.append(chatMessage as AnyObject)
+        self.tblListing.reloadData()
+        guard let lastIndexPath = indexPaths?.last  else {
+            return
+        }
+        guard lastIndexPath.row == (isTyping ? chatHistory.count - 1 : chatHistory.count - 2) else {
+            return
+        }
+        self.tblListing.scrollToRow(at: IndexPath(row: lastIndexPath.row + 1, section: 0) , at: .bottom, animated: false)
+    }
+    
+    @objc func textDidChange(_ sender: UITextField) {
+      //  SocketIOManager.sharedInstance.sendDataToEvent(.typing, data: [:])
+        print("Typing...")
+    }
+    
 }
 
 

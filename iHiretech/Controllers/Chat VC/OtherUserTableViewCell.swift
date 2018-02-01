@@ -10,6 +10,7 @@ import UIKit
 
 class OtherUserTableViewCell: UITableViewCell {
 
+    @IBOutlet var lblTime: UILabel!
     @IBOutlet var viewText: UIView!
     @IBOutlet var lblText: UILabel!
     override func awakeFromNib() {

@@ -37,7 +37,6 @@ class NotificationViewController: UIViewController {
     
     @IBAction func btn_ChatAction(_ sender: UIBarButtonItem)
     {
-       
         let nav = self.storyboard!.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
         let transition = CATransition()
         transition.duration = 0.5
@@ -79,6 +78,19 @@ class NotificationViewController: UIViewController {
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.pushViewController(destination, animated: false)
         }
+        else if self.frmSrc == "Rating"
+        {
+            let destination = RatingTableViewController(style: .plain)
+            let transition = CATransition()
+            transition.duration = 0.5
+            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            transition.type = kCATransitionFade
+            self.navigationController?.view.layer.add(transition, forKey: nil)
+            self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+            self.navigationController?.navigationBar.tintColor = UIColor.white
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.pushViewController(destination, animated: false)
+        }
         else
         {
         let destination = self.storyboard!.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
@@ -100,7 +112,14 @@ class NotificationViewController: UIViewController {
             print(serviceResponse)
            let data = serviceResponse["data"] as! [String:Any]
             let list = data["pagination_link"] as! [String:Any]
-            self.notificationList = list["data"] as! [AnyObject]
+            var allData = list["data"] as! [AnyObject]
+            for i in 0...allData.count-1
+            {
+                if ((allData[i])["type"] as! String) == "App\\Notifications\\WorkOrderActivtiy"
+                {
+                    self.notificationList.append(allData[i])
+                }
+            }
             self.tblNotification.reloadData()
         })
     }

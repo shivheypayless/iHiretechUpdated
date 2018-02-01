@@ -52,10 +52,13 @@ enum API: String
     case checkOut = "api/technician/check-out-work-order"
     case getNotificationList = "api/technician/get-notification-list"
     case addExpenses = "api/technician/add-technician-expenses"
-    case approveWorkOrder = "technician/approve-routed-work-order"
-    case ratingTechnicianList = "technician/technician-rating-list"
+    case approveWorkOrder = "api/technician/approve-routed-work-order"
+    case ratingTechnicianList = "api/technician/technician-rating-list"
+    case completedTaskList = "api/technician/complete-task"
+    case filterRatingList = "api/technician/search-technician-rating-list"
+    case downloadWorkOrderDocuments = "api/technician/work_order_document"
+ //   case sendMessageChat = "api/technician/send-message"
 }
-
 
 typealias actionWithServiceResponse = ((_ serviceResponse: [String:Any])-> Void)
 
@@ -94,9 +97,9 @@ class WebAPI {
         else {
             
             if let keys = parameters?.keys {
-                var queryString = "?"
+                var queryString = "/"
                 for eachKey in keys {
-                    queryString.append("\(eachKey)=\(parameters[eachKey]!)&")
+                    queryString.append("\(parameters[eachKey]!)&")
                 }
                 request = URLRequest(url: URL(string: "\(self.baseurl)\(api.rawValue)\(queryString)")!)
             }
@@ -274,11 +277,6 @@ class WebAPI {
         if(mimeType.rawValue == "video")
         {
             AListAlertController.shared.presentAlertController(title: "iHiretech", message: "Please select image only !", completionHandler: nil)
-//            body.appendString(string: "--\(boundary)\r\n")
-//            body.appendString(string: "Content-Disposition: form-data; name=\"\(filePathKey!)\"; filename=\"asdasd22.jpg\"\r\n")
-       //     body.appendString(string: "Content-Type: image/*\r\n\r\n")
-//            body.append(UIImageJPEGRepresentation(thumbNailImg!, 1.0)! as Data)
-//            body.appendString(string: "\r\n")
         }
         
         body.appendString(string: "--\(boundary)--\r\n")
@@ -303,12 +301,7 @@ class WebAPI {
             var request = URLRequest(url: URL(string: "\(self.baseurl)\(api.rawValue)")!)
             request.httpMethod = method.rawValue
              let boundary = "Boundary-\(UUID().uuidString)"
-        //     request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-           
-//            if authorizationHeaderFlag {
-//                request.addValue(UserDefaults.standard.object(forKey: "token") as! String, forHTTPHeaderField: "Authorization")
-//            }
-         
+       
            let headers: HTTPHeaders = ["Authorization": UserDefaults.standard.object(forKey: "token")! as! String,
                                         "content-type": "multipart/form-data; boundary= \(boundary)",
                 "cache-control": "no-cache"
@@ -317,138 +310,114 @@ class WebAPI {
         //    request.httpBody = jsonData
 
           request.allHTTPHeaderFields = headers
-            Alamofire.upload(multipartFormData: { multipartFormData in
-                for (key, value) in parameters {
-                    
-                        multipartFormData.append((value as! String).data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))! ,  withName: key)
-                        
-                }
-        
-            }, with: request, encodingCompletion: {
-                encodingResult in
-                switch encodingResult {
-                case .success(let upload, _,_):
-                    upload.responseJSON { response in
-                        debugPrint("SUCCESS RESPONSE: \(response)")
-                     self.progressHUD.hide(animated: true)
-                    }
-                case .failure(let encodingError):
-                    // hide progressbas here
-                    print("ERROR RESPONSE: \(encodingError)")
-                      self.progressHUD.hide(animated: true)
-                }
-            })
-            
-//            Alamofire.upload(multipartFormData:{ multipartFormData in
+//            Alamofire.upload(multipartFormData: { multipartFormData in
 //                for (key, value) in parameters {
-//                    multipartFormData.append(jsonData, withName: key)
-//                    var fileName = String()
-//                    var fileData : Data?
-//                    if media?.count != 0
-//                    {
-//                        for fileType in 0...media.count-1
-//                        {
-//                            if ((media[fileType] as [String:AnyObject])["resume"] as? NSData) != nil
-//                            {
 //
-//                                fileName = ((media[fileType] as [String:AnyObject])["fileName"] as! String)
-//                                fileData = ((media[fileType] as [String:AnyObject])["resume"] as! Data)
-//                                 multipartFormData.append(fileData!, withName: fileName)
-//
-//                            }
-//                            if ((media[fileType] as [String:AnyObject])["general_liability_insuarance"] as? NSData) != nil
-//                            {
-//                                fileName = ((media[fileType] as [String:AnyObject])["fileName"] as! String)
-//                                fileData = ((media[fileType] as [String:AnyObject])["general_liability_insuarance"] as! Data)
-//                                 multipartFormData.append(fileData!, withName: fileName)
-//                            }
-//                            if ((media[fileType] as [String:AnyObject])["drug_test_certificate"] as? NSData) != nil
-//                            {
-//                                fileName = ((media[fileType] as [String:AnyObject])["fileName"] as! String)
-//                                fileData = ((media[fileType] as [String:AnyObject])["drug_test_certificate"] as! Data)
-//                                multipartFormData.append(fileData!, withName: fileName)
-//                            }
-//
-//                        }
-//
-//                    }
+//                        multipartFormData.append((value as! String).data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))! ,  withName: key)
 //
 //                }
-////                for (key, value) in parameters {
-////                    if let array = value as? [String]
-////                    {
-////                        do {
-////                            let jsonData = try JSONSerialization.data(withJSONObject: array, options: .prettyPrinted)
-////                            // here "jsonData" is the dictionary encoded in JSON data
-////                            multipartFormData.append(jsonData,  withName: key)
-////                            print("success")
-////                        } catch {
-////                            print(error.localizedDescription)
-////                        }
-////
-////                    }
-////                    else
-////                    {
-////
-////                        multipartFormData.append((value as! String).data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))! ,  withName: key)
-////                    }
-////                }
 //
-//            },
-//                             usingThreshold:UInt64.init(),
-//                             to: "\(self.baseurl)\(api.rawValue)",
-//                             method:.post,
-//                             headers: headers,
-//                             encodingCompletion: { encodingResult in
-//                                switch encodingResult {
-//                                case .success(let upload, _, _):
-//                                    upload.responseString(completionHandler: { response in
-//                                        print("success", response.result.value!)
-//                                          self.progressHUD.hide(animated: true)
-//                                    })
-//                                case .failure(let encodingError):
-//                                    print("en eroor :", encodingError)
-//                                      self.progressHUD.hide(animated: true)
-//                                }
+//            }, with: request, encodingCompletion: {
+//                encodingResult in
+//                switch encodingResult {
+//                case .success(let upload, _,_):
+//                    upload.responseJSON { response in
+//                        print(response)
+//                        AListAlertController.shared.presentAlertController(message: "Your profile updated successfully.", completionHandler: nil)
+//                     self.progressHUD.hide(animated: true)
+//                    }
+//                case .failure(let encodingError):
+//                    // hide progressbas here
+//                    print("ERROR RESPONSE: \(encodingError)")
+//                      self.progressHUD.hide(animated: true)
+//                }
 //            })
-//
-//            
-           
             
             
-     //       self.callWebServiceWithRequest(request, actionAfterServiceResponse: completionHandler)
+            
+            Alamofire.upload(multipartFormData:{ multipartFormData in
+                for (key, value) in parameters {
+                    
+                    multipartFormData.append((value as! String).data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))! ,  withName: key)
+                }
+                
+                var fileName = String()
+                var fileData : URL?
+                if media?.count != 0
+                {
+                    for fileType in 0...media.count-1
+                    {
+                        if ((media[fileType] as [String:AnyObject])["resume"] as? URL) != nil
+                        {
+                            fileName = ((media[fileType] as [String:AnyObject])["fileName"] as! String)
+                            print(fileName)
+                            fileData = ((media[fileType] as [String:AnyObject])["resume"] as! URL)
+                            multipartFormData.append(fileData!, withName: "resume")
+
+                        }
+                        if ((media[fileType] as [String:AnyObject])["general_liability_insuarance"] as? URL) != nil
+                        {
+                            fileName = ((media[fileType] as [String:AnyObject])["fileName"] as! String)
+                            fileData = ((media[fileType] as [String:AnyObject])["general_liability_insuarance"] as! URL)
+                              multipartFormData.append(fileData!, withName: "general_liability_insuarance")
+                        }
+                        if ((media[fileType] as [String:AnyObject])["drug_test_certificate"] as? URL) != nil
+                        {
+                            fileName = ((media[fileType] as [String:AnyObject])["fileName"] as! String)
+                            fileData = ((media[fileType] as [String:AnyObject])["drug_test_certificate"] as! URL)
+                           multipartFormData.append(fileData!, withName: "drug_test_certificate")
+                        }
+                        if ((media[fileType] as [String:AnyObject])["drug_test_certificate"] as? URL) != nil
+                        {
+                            fileName = ((media[fileType] as [String:AnyObject])["fileName"] as! String)
+                            fileData = ((media[fileType] as [String:AnyObject])["background_certificate"] as! URL)
+                             multipartFormData.append(fileData!, withName: "background_certificate")
+                           
+                        }
+                        
+                    }
+                }
+              
+            
+
         }
+        , with: request, encodingCompletion: {
+                    encodingResult in
+                    switch encodingResult {
+                    case .success(let upload, _,_):
+                        upload.responseJSON { response in
+                            print(response)
+                            AListAlertController.shared.presentAlertController(message: "Your profile updated successfully.", completionHandler: nil)
+                            self.progressHUD.hide(animated: true)
+                        }
+                    case .failure(let encodingError):
+                        // hide progressbas here
+                        print("ERROR RESPONSE: \(encodingError)")
+                        self.progressHUD.hide(animated: true)
+                    }
+            })
     }
-    
+    }
  
     private func createBodyWithParametersDocuments(media:[[String:AnyObject]]!, parameters: [String: AnyObject]?, boundary: String) -> Data {
         var body = Data()
-        
+
         if parameters != nil {
             for (key, value) in parameters! {
-             //   body.appendString(string: "--\(boundary)\r\n")
                 body.appendString(string: "\(key)")
                 body.appendString(string: "\(value)")
             }
         }
-        
+
         var fileName = String()
         var fileData : NSData?
-        
+
         if media?.count != 0
         {
             for fileType in 0...media.count-1
             {
                 if ((media[fileType] as [String:AnyObject])["resume"] as? NSData) != nil
                 {
-//                    fileName = ((media[fileType] as [String:AnyObject])["fileName"] as! String)
-//                    fileData = ((media[fileType] as [String:AnyObject])["resume"] as! NSData)
-//                    body.appendString(string: "--\(boundary)\r\n")
-//                    body.appendString(string: "Content-Disposition: form-data; name=\"resume\"; filename=\"\(fileName)\"\r\n")
-//                 //   body.appendString(string: "Content-Type: multipart/form-data; boundary= \(boundary)")
-//                    body.append(fileData! as Data)
-//                    body.appendString(string: "\r\n")
-                    
                         fileName = ((media[fileType] as [String:AnyObject])["fileName"] as! String)
                         fileData = ((media[fileType] as [String:AnyObject])["resume"] as! NSData)
                         body.appendString(string: "--\(boundary)\r\n")
@@ -474,17 +443,83 @@ class WebAPI {
                     body.appendString(string: "--\(boundary)\r\n")
                     body.appendString(string: "Content-Disposition: form-data; name=\"drug_test_certificate\"; filename=\"\(fileName)\"\r\n")
                     body.append(fileData! as Data)
-                 //   body.appendString(string: "Content-Type: multipart/form-data; boundary= \(boundary)")
                     body.appendString(string: "\r\n")
                 }
-               
+
             }
 
         }
-    
+
         body.appendString(string: "--\(boundary)--\r\n")
-        
+
         return body
+    }
+  
+    
+    public func callMultipartWebApiDocumentDetails(_ api: API, withHTTPMethod method: HTTPMethod, postMedia media:[[String:AnyObject]]!,postMediaType mediaType : multipartyMediaType?, forPostParameters parameters: [String:Any]!,shouldIncludeAuthorizationHeader authorizationHeaderFlag: Bool,actionAfterServiceResponse completionHandler: @escaping actionWithServiceResponse)
+    {
+        guard checkForNetworkConnectivity() else {
+            return
+        }
+        self.showHUD()
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        userInitiatedGlobalQueue.async {
+            var request = URLRequest(url: URL(string: "\(self.baseurl)\(api.rawValue)")!)
+            request.httpMethod = method.rawValue
+            let boundary = self.generateBoundaryString()
+            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+            if(media != nil)
+            {
+                request.httpBody = self.createBodyWithParametersDocuments(media: media, parameters: parameters! as [String : AnyObject], boundary: boundary) as Data
+            //    request.httpBody = self.createBodyWithParameters(parameters: parameters as [String : AnyObject], filePathKey: "image", mimeType: mediaType!, imageDataKey: media!, boundary: boundary) as Data
+            }
+            
+            
+            if authorizationHeaderFlag {
+                request.addValue(UserDefaults.standard.object(forKey: "token") as! String, forHTTPHeaderField: "Authorization")
+            }
+            self.callWebServiceWithRequest(request, actionAfterServiceResponse: completionHandler)
+        }
+    }
+    
+  
+        func download() {
+            let downloadUrl = String()
+            let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                let file = directoryURL.appendingPathComponent("Document.pdf", isDirectory: false)
+                return (file, [.createIntermediateDirectories, .removePreviousFile])
+            }
+            Alamofire.download(downloadUrl, method: .get, parameters: nil, encoding: JSONEncoding.default, to: destination).responseJSON { response in
+                if response.result.isSuccess {
+                  //  completion?(JSON(response.result.value as? NSDictionary ?? [:]))
+                } else {
+                  //  print(#function, error)
+                }
+            }
+        }
+  
+        
+  func load(URL: NSURL) {
+        let sessionConfig = URLSessionConfiguration.default
+        let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
+        let request = NSMutableURLRequest(url: URL as URL)
+        request.httpMethod = "GET"
+       //   let dataTask = defaultSession.dataTask(with: request) { (data, response, error) in
+        let task = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) in
+            if (error == nil) {
+                // Success
+                let statusCode = (response as! HTTPURLResponse).statusCode
+                print("Success: \(statusCode)")
+           
+            }
+            else {
+                // Failure
+                print("Failure: %@", error?.localizedDescription);
+            }
+        })
+        task.resume()
     }
     
 

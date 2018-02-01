@@ -13,6 +13,7 @@ import AFViewShaker
 
 class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelegate,UIDocumentPickerDelegate,UINavigationControllerDelegate, TagListViewDelegate {
 
+    @IBOutlet var viewUploadBackground: UIView!
     @IBOutlet var txtAreaDetailResume: UITextView!
     @IBOutlet var lblDocumentTwoname: UILabel!
     @IBOutlet var lblDocumentOneName: UILabel!
@@ -35,6 +36,8 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
     @IBOutlet var viewTitle: EditTextView!
     @IBOutlet var viewLicenses: EditTextView!
     @IBOutlet var viewExperience: EditTextView!
+    @IBOutlet var btnBackgrundUpload: UIButton!
+    @IBOutlet var lblBackgrundUpload: UILabel!
     
     @IBOutlet var viewAccountNo: EditTextView!
     @IBOutlet var viewSSN: EditTextView!
@@ -50,16 +53,15 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
     var setSkillsArray = [String]()
     var setCertificates = [String]()
     var setEquipments = [String]()
-    var resume : NSData?
-    var documentOne : NSData?
-    var documentTwo : NSData?
+    var resume : URL?
+    var documentOne : URL?
+    var documentTwo : URL?
+      var documentThree : URL?
     var uploadDocTag = Int()
     var skillsId = [String]()
     var certificateId = [String]()
     var equipmentId = [String]()
-    var uploadResumeName = String()
-    var uploadDocOneName = String()
-    var uploadDocTwoName = String()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +71,9 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
         
         self.viewCertification.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1).cgColor
         self.viewCertification.layer.borderWidth = 1
+        
+        self.viewUploadBackground.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1).cgColor
+        self.viewUploadBackground.layer.borderWidth = 1
         
         self.viewSkillTag.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1).cgColor
         self.viewSkillTag.layer.borderWidth = 1
@@ -94,6 +99,8 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
         self.btnUploadDocument.layer.cornerRadius = 3
         self.btnUploadDocument.layer.masksToBounds = true
         
+        self.btnBackgrundUpload.layer.cornerRadius = 3
+         self.btnBackgrundUpload.layer.masksToBounds = true
         getProfileDetails()
         
         viewSkillTag.clipsToBounds = true
@@ -169,24 +176,32 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
             print(url.lastPathComponent)
             if uploadDocTag == 4
             {
-                uploadResumeName = url.lastPathComponent
-                resume = NSData(contentsOf: fileName)
+              //  uploadResumeName = url.lastPathComponent
+                 resume = fileName
                 lblResumeName.text = url.lastPathComponent
                 print(resume!)
             }
-            else if uploadDocTag == 5
+           if uploadDocTag == 5
             {
-                uploadDocOneName = url.lastPathComponent
-                documentOne = NSData(contentsOf: fileName)
+         //       uploadDocOneName = url.lastPathComponent
+                documentOne = fileName
                  lblDocumentOneName.text = url.lastPathComponent
-                print(resume!)
+                print(documentOne!)
             }
-            else if uploadDocTag == 6
+            if uploadDocTag == 6
             {
-                uploadDocTwoName = url.lastPathComponent
-                documentTwo = NSData(contentsOf: fileName)
+         //       uploadDocTwoName = url.lastPathComponent
+                documentTwo = fileName
                 lblDocumentTwoname.text = url.lastPathComponent
-                print(resume!)
+                print(documentTwo!)
+            }
+            
+            if uploadDocTag == 7
+            {
+            //    uploadDocTwoName = url.lastPathComponent
+                documentThree = fileName
+                lblBackgrundUpload.text = url.lastPathComponent
+                print(documentThree!)
             }
            
         }
@@ -234,22 +249,25 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
        
         if self.resume != nil
         {
-            dict = ["resume":self.resume!,"fileName":uploadResumeName]
+            dict = ["resume":self.resume!,"fileName":lblResumeName.text!]
             fileArray.append(dict as [String : AnyObject])
         }
         if self.documentOne != nil
         {
-            dict = ["general_liability_insuarance":self.documentOne!,"fileName":uploadDocOneName]
+            dict = ["general_liability_insuarance":self.documentOne!,"fileName":lblDocumentOneName.text!]
             fileArray.append(dict as [String : AnyObject])
         }
         if self.documentTwo != nil
         {
-            dict = ["drug_test_certificate":self.documentTwo!,"fileName":uploadDocTwoName]
+            dict = ["drug_test_certificate":self.documentTwo!,"fileName":lblDocumentTwoname.text!]
             fileArray.append(dict as [String : AnyObject])
         }
-        
-//        WebAPI().callJSONWebApi(API.updateProfessionalDetails, withHTTPMethod: .post, forPostParameters: paramerters, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
-//            print(serviceResponse)
+        if self.documentThree != nil
+        {
+            dict = ["drug_test_certificate":self.documentThree!,"fileName":lblBackgrundUpload.text!]
+            fileArray.append(dict as [String : AnyObject])
+        }
+
         WebAPI().callMultipartWebApiDocuments(API.updateProfessionalDetails, withHTTPMethod: .post, postMedia: fileArray, postMediaType: multipartyMediaType.document, forPostParameters: paramerters, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
             AListAlertController.shared.presentAlertController(message: serviceResponse["msg"] as! String, completionHandler: nil)
@@ -307,6 +325,13 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
         uploadDocTag = 6
         accessDocuments()
     }
+    
+    @IBAction func btn_UploadBackgroundAction(_ sender: UIButton)
+    {
+        uploadDocTag = 7
+        accessDocuments()
+    }
+    
     
     @IBAction func btn_PersonalDetailsAction(_ sender: UIButton)
     {
@@ -428,30 +453,29 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
            
         })
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     @IBAction func btn_SkillsAction(_ sender: UITapGestureRecognizer)
     {
+        if self.cnstSkillsHeight.constant == 0
+        {
         self.cnstSkillsHeight.constant = CGFloat(30 * 3)
         self.tblSkills.delegate = self
         self.tblSkills.dataSource = self
         self.tblSkills.layer.borderWidth = 1
         self.tblSkills.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
-       // self.tblSkills.layer.cornerRadius = 4.0
         self.tblSkills.layer.masksToBounds = true
         self.tblSkills.reloadData()
+        }
+        else
+        {
+            self.cnstSkillsHeight.constant = 0
+        }
     }
     
     @IBAction func btn_CertificationAction(_ sender: UITapGestureRecognizer)
     {
+        if self.cnstCertificationHeight.constant == 0
+        {
         self.cnstCertificationHeight.constant = CGFloat(30 * 3)
         self.tblCertification.delegate = self
         self.tblCertification.dataSource = self
@@ -459,10 +483,17 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
         self.tblCertification.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
         self.tblCertification.layer.masksToBounds = true
         self.tblCertification.reloadData()
+        }
+        else
+        {
+            self.cnstCertificationHeight.constant = 0
+        }
     }
     
     @IBAction func btn_EquipmentAction(_ sender: UITapGestureRecognizer)
     {
+        if self.cnstEquipment.constant == 0
+        {
         self.cnstEquipment.constant = CGFloat(30 * 3)
         self.tblEquipment.delegate = self
         self.tblEquipment.dataSource = self
@@ -470,6 +501,11 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
         self.tblEquipment.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
         self.tblEquipment.layer.masksToBounds = true
         self.tblEquipment.reloadData()
+        }
+        else
+        {
+            self.cnstEquipment.constant = 0
+        }
     }
 }
 

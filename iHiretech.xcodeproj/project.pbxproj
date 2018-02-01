@@ -45,6 +45,10 @@
 		844875601FC4003000D9503B /* StatesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8448755E1FC4003000D9503B /* StatesTableViewCell.swift */; };
 		844875611FC4003000D9503B /* StatesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8448755F1FC4003000D9503B /* StatesTableViewCell.xib */; };
 		844CF0DA1FCEDA7F00D83B44 /* ForgotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CF0D91FCEDA7F00D83B44 /* ForgotViewController.swift */; };
+		844DE1E0201706BD007C6C9D /* FixPayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844DE1DE201706BD007C6C9D /* FixPayTableViewCell.swift */; };
+		844DE1E1201706BD007C6C9D /* FixPayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844DE1DF201706BD007C6C9D /* FixPayTableViewCell.xib */; };
+		844DE1E420170948007C6C9D /* BlendedRateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844DE1E220170948007C6C9D /* BlendedRateTableViewCell.swift */; };
+		844DE1E520170948007C6C9D /* BlendedRateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844DE1E320170948007C6C9D /* BlendedRateTableViewCell.xib */; };
 		8450AAA61FFB9F6C00675996 /* ServiceInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450AAA41FFB9F6C00675996 /* ServiceInformationTableViewCell.swift */; };
 		8450AAA71FFB9F6C00675996 /* ServiceInformationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8450AAA51FFB9F6C00675996 /* ServiceInformationTableViewCell.xib */; };
 		8450AAAA1FFBA0B300675996 /* LocationInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450AAA81FFBA0B300675996 /* LocationInformationTableViewCell.swift */; };
@@ -75,7 +79,7 @@
 		84580A0A1FED145B00A7FCBF /* TabOrderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84580A081FED145B00A7FCBF /* TabOrderCollectionViewCell.swift */; };
 		84580A0B1FED145B00A7FCBF /* TabOrderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84580A091FED145B00A7FCBF /* TabOrderCollectionViewCell.xib */; };
 		84580A0D1FF0D54500A7FCBF /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84580A0C1FF0D53D00A7FCBF /* ChatView.swift */; };
-		84580A0F1FF0EA8D00A7FCBF /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84580A0E1FF0EA8D00A7FCBF /* Chat.swift */; };
+		84580A0F1FF0EA8D00A7FCBF /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84580A0E1FF0EA8D00A7FCBF /* SocketIOManager.swift */; };
 		8459E71E1FA83BE70081915E /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8459E71C1FA83BE70081915E /* MapTableViewCell.swift */; };
 		8459E71F1FA83BE70081915E /* MapTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8459E71D1FA83BE70081915E /* MapTableViewCell.xib */; };
 		8459E7251FA859CE0081915E /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8459E7231FA859CE0081915E /* NotificationTableViewCell.swift */; };
@@ -131,6 +135,7 @@
 		84D850DE1FC2E1CE004E8D72 /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D850DD1FC2E1CE004E8D72 /* DatePickerView.xib */; };
 		84E3C8471FA218B700887105 /* LeftMenuOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E3C8461FA218B700887105 /* LeftMenuOptionTableViewCell.swift */; };
 		84E3C8491FA2227600887105 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E3C8481FA2227600887105 /* HeaderView.xib */; };
+		84EED3A3201F368E00C799AD /* SendMessageFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EED3A2201F368E00C799AD /* SendMessageFooterView.xib */; };
 		84FFD81E1FA3554100C0D67C /* TextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FFD81D1FA3554100C0D67C /* TextFieldView.xib */; };
 		84FFD8201FA357DE00C0D67C /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFD81F1FA357DE00C0D67C /* TextFieldView.swift */; };
 		84FFD8271FA3737200C0D67C /* WorkOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFD8251FA3737200C0D67C /* WorkOrderTableViewCell.swift */; };
@@ -213,6 +218,10 @@
 		8448755E1FC4003000D9503B /* StatesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatesTableViewCell.swift; sourceTree = "<group>"; };
 		8448755F1FC4003000D9503B /* StatesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatesTableViewCell.xib; sourceTree = "<group>"; };
 		844CF0D91FCEDA7F00D83B44 /* ForgotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotViewController.swift; sourceTree = "<group>"; };
+		844DE1DE201706BD007C6C9D /* FixPayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixPayTableViewCell.swift; sourceTree = "<group>"; };
+		844DE1DF201706BD007C6C9D /* FixPayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FixPayTableViewCell.xib; sourceTree = "<group>"; };
+		844DE1E220170948007C6C9D /* BlendedRateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlendedRateTableViewCell.swift; sourceTree = "<group>"; };
+		844DE1E320170948007C6C9D /* BlendedRateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlendedRateTableViewCell.xib; sourceTree = "<group>"; };
 		8450AAA41FFB9F6C00675996 /* ServiceInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInformationTableViewCell.swift; sourceTree = "<group>"; };
 		8450AAA51FFB9F6C00675996 /* ServiceInformationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceInformationTableViewCell.xib; sourceTree = "<group>"; };
 		8450AAA81FFBA0B300675996 /* LocationInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInformationTableViewCell.swift; sourceTree = "<group>"; };
@@ -243,7 +252,7 @@
 		84580A081FED145B00A7FCBF /* TabOrderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabOrderCollectionViewCell.swift; sourceTree = "<group>"; };
 		84580A091FED145B00A7FCBF /* TabOrderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabOrderCollectionViewCell.xib; sourceTree = "<group>"; };
 		84580A0C1FF0D53D00A7FCBF /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
-		84580A0E1FF0EA8D00A7FCBF /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		84580A0E1FF0EA8D00A7FCBF /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		84580A111FF105BF00A7FCBF /* SocketIO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SocketIO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84580A131FF105D700A7FCBF /* SocketIO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SocketIO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84580A151FF105F900A7FCBF /* SocketIO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SocketIO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -314,6 +323,7 @@
 		84D850DD1FC2E1CE004E8D72 /* DatePickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerView.xib; sourceTree = "<group>"; };
 		84E3C8461FA218B700887105 /* LeftMenuOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuOptionTableViewCell.swift; sourceTree = "<group>"; };
 		84E3C8481FA2227600887105 /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
+		84EED3A2201F368E00C799AD /* SendMessageFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendMessageFooterView.xib; sourceTree = "<group>"; };
 		84FFD81D1FA3554100C0D67C /* TextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldView.xib; sourceTree = "<group>"; };
 		84FFD81F1FA357DE00C0D67C /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		84FFD8251FA3737200C0D67C /* WorkOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkOrderTableViewCell.swift; sourceTree = "<group>"; };
@@ -513,7 +523,7 @@
 				84416A941FB198E300C45E00 /* Validation.swift */,
 				84416A9A1FB1E59E00C45E00 /* AListAlertController.swift */,
 				84580A0C1FF0D53D00A7FCBF /* ChatView.swift */,
-				84580A0E1FF0EA8D00A7FCBF /* Chat.swift */,
+				84580A0E1FF0EA8D00A7FCBF /* SocketIOManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -665,6 +675,19 @@
 			path = "Forgot Password";
 			sourceTree = "<group>";
 		};
+		844DE1DD201703FF007C6C9D /* Earning */ = {
+			isa = PBXGroup;
+			children = (
+				8450AACB20037B4000675996 /* EarningTableViewCell.swift */,
+				8450AACC20037B4000675996 /* EarningTableViewCell.xib */,
+				844DE1DE201706BD007C6C9D /* FixPayTableViewCell.swift */,
+				844DE1DF201706BD007C6C9D /* FixPayTableViewCell.xib */,
+				844DE1E220170948007C6C9D /* BlendedRateTableViewCell.swift */,
+				844DE1E320170948007C6C9D /* BlendedRateTableViewCell.xib */,
+			);
+			path = Earning;
+			sourceTree = "<group>";
+		};
 		8450AABC1FFF62E000675996 /* Additional documents */ = {
 			isa = PBXGroup;
 			children = (
@@ -691,11 +714,10 @@
 		8450AAC6200375EA00675996 /* Payment */ = {
 			isa = PBXGroup;
 			children = (
+				844DE1DD201703FF007C6C9D /* Earning */,
 				84319BBB2004C9F9000D1738 /* Expenses */,
 				8450AAC7200376CB00675996 /* LabourPaymentTableViewCell.swift */,
 				8450AAC8200376CB00675996 /* LabourPaymentTableViewCell.xib */,
-				8450AACB20037B4000675996 /* EarningTableViewCell.swift */,
-				8450AACC20037B4000675996 /* EarningTableViewCell.xib */,
 				8450AACF2003806300675996 /* ExpensesListTableViewCell.swift */,
 				8450AAD02003806300675996 /* ExpensesListTableViewCell.xib */,
 				8450AAD320038F3800675996 /* TotalPaymentTableViewCell.swift */,
@@ -803,6 +825,7 @@
 				8459E72D1FA868480081915E /* OwnerTableViewCell.xib */,
 				8459E7301FA8685B0081915E /* OtherUserTableViewCell.swift */,
 				8459E7311FA8685B0081915E /* OtherUserTableViewCell.xib */,
+				84EED3A2201F368E00C799AD /* SendMessageFooterView.xib */,
 			);
 			path = "Chat VC";
 			sourceTree = "<group>";
@@ -1059,6 +1082,7 @@
 				8459E7261FA859CE0081915E /* NotificationTableViewCell.xib in Resources */,
 				84A30E0D1FA1BF10009FE20E /* Quicksand-Bold_0.ttf in Resources */,
 				8463A9F62015B5E500702C9C /* CheckInView.xib in Resources */,
+				84EED3A3201F368E00C799AD /* SendMessageFooterView.xib in Resources */,
 				84580A0B1FED145B00A7FCBF /* TabOrderCollectionViewCell.xib in Resources */,
 				8459E72F1FA868480081915E /* OwnerTableViewCell.xib in Resources */,
 				84319BC32004D7AD000D1738 /* ExpensesHeadersView.xib in Resources */,
@@ -1076,8 +1100,10 @@
 				8450AAC51FFF8AA600675996 /* WorkspaceTableViewCell.xib in Resources */,
 				843D5D421FA31C2400292565 /* profileDetailsTableViewCell.xib in Resources */,
 				8450AAAF1FFBA24700675996 /* PayRateInformationTableViewCell.xib in Resources */,
+				844DE1E520170948007C6C9D /* BlendedRateTableViewCell.xib in Resources */,
 				8450AAC01FFF636600675996 /* DocumentsTableViewCell.xib in Resources */,
 				84429F3E200F65DC001700C4 /* AddExpensesView.xib in Resources */,
+				844DE1E1201706BD007C6C9D /* FixPayTableViewCell.xib in Resources */,
 				CA68CCED1FA76609000143BB /* SearchOrderTableViewCell.xib in Resources */,
 				CA68CCDE1FA73AD2000143BB /* SearchResultHeaderView.xib in Resources */,
 				CA68CCE41FA73E4A000143BB /* SearchWorkOrderTableViewCell.xib in Resources */,
@@ -1186,6 +1212,7 @@
 				728928F81FA1A25D007686AE /* ChangePaawordViewController.swift in Sources */,
 				84580A071FECF77800A7FCBF /* WorkOrderDetailsViewController.swift in Sources */,
 				846F39EA200BCAC400444853 /* SearchServiceTableViewCell.swift in Sources */,
+				844DE1E420170948007C6C9D /* BlendedRateTableViewCell.swift in Sources */,
 				8403A6BF1FA0610200222ED9 /* ViewController.swift in Sources */,
 				8450AACD20037B4000675996 /* EarningTableViewCell.swift in Sources */,
 				84289ED42010B22400421B54 /* RatingFilterTableViewCell.swift in Sources */,
@@ -1195,12 +1222,13 @@
 				8459E73A1FA88F730081915E /* EditTextView.swift in Sources */,
 				84A93FCB1FA9E3D000662040 /* ProfessionalDetailsViewController.swift in Sources */,
 				CA68CCEC1FA76609000143BB /* SearchOrderTableViewCell.swift in Sources */,
-				84580A0F1FF0EA8D00A7FCBF /* Chat.swift in Sources */,
+				84580A0F1FF0EA8D00A7FCBF /* SocketIOManager.swift in Sources */,
 				843D5D411FA31C2400292565 /* profileDetailsTableViewCell.swift in Sources */,
 				8450AABA1FFBA6B100675996 /* WorkOrderInformationTableViewCell.swift in Sources */,
 				8403A6F51FA06E3200222ED9 /* FormFieldView.swift in Sources */,
 				8450AABF1FFF636600675996 /* DocumentsTableViewCell.swift in Sources */,
 				8459E71E1FA83BE70081915E /* MapTableViewCell.swift in Sources */,
+				844DE1E0201706BD007C6C9D /* FixPayTableViewCell.swift in Sources */,
 				8450AAC9200376CB00675996 /* LabourPaymentTableViewCell.swift in Sources */,
 				8450AAB21FFBA32500675996 /* CustomerInformationTableViewCell.swift in Sources */,
 				84289ED12010B1CD00421B54 /* RatingTableViewController.swift in Sources */,

@@ -40,8 +40,7 @@ class DashBoardViewController: UIViewController {
         getProfileDetails { (userDetails) in
             self.getProfilePic()
         }
-      //  getProfileDetails()
-        
+     
         self.tblProfile.estimatedRowHeight = 60
         self.tblProfile.rowHeight = UITableViewAutomaticDimension
          self.tblProfile.register(UINib(nibName: "profileDetailsTableViewCell", bundle: nil) , forCellReuseIdentifier: "profileDetailsTableViewCell")
@@ -60,10 +59,7 @@ class DashBoardViewController: UIViewController {
         super.viewWillAppear(animated)
        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
-    
-   // override func viewDidLayoutSubviews() {
-    
- //   }
+
 
     @IBAction func btn_NotificationAction(_ sender: UIBarButtonItem)
     {
@@ -227,8 +223,11 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
         let headerViewArray = Bundle.main.loadNibNamed("ProfileView", owner: self, options: nil)?[0] as! UIView
         let editView = headerViewArray.viewWithTag(1)!
         (headerViewArray.viewWithTag(3) as! UILabel).text = (((self.getProfileDetailsDict)["first_name"]!)as? String)!+" "+(((self.getProfileDetailsDict)["last_name"]!) as? String)!
+        UserDefaults.standard.setValue((((self.getProfileDetailsDict)["first_name"]!)as! String)+" "+(((self.getProfileDetailsDict)["last_name"]!) as! String), forKey: "ProfileName")
         (headerViewArray.viewWithTag(4) as! UILabel).text = (self.getProfileDetailsDict)["universal_id"] as? String
-        
+        UserDefaults.standard.setValue((((self.getProfileDetailsDict)["universal_id"]!) as! String), forKey: "Id")
+        UserDefaults.standard.setValue((((self.getProfileDetailsDict)["city"]!) as! String), forKey: "Location")
+        UserDefaults.standard.setValue((((self.getProfileDetailsDict)["socket_id"]!) as! String), forKey: "SocketId")
          (headerViewArray.viewWithTag(2) as! UIImageView).layer.cornerRadius =  (headerViewArray.viewWithTag(2) as! UIImageView).frame.size.height/2
          (headerViewArray.viewWithTag(2) as! UIImageView).layer.masksToBounds = true
          (headerViewArray.viewWithTag(2) as! UIImageView).layoutIfNeeded()
@@ -302,7 +301,6 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
     
     func getProfilePic()
     {
-
         WebAPI().callJSONWebApi(API.getProfilePic, withHTTPMethod: .get, forPostParameters: nil, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
             let data = serviceResponse["data"] as? [String:Any]

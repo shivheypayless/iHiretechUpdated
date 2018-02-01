@@ -26,7 +26,7 @@ class MyWorkOrderTableViewController: UITableViewController {
     var statusId = Int()
     var statusTableCnst = NSLayoutConstraint()
     var workOrderId = Int()
-
+    var noDataFOund = UILabel()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = nil
@@ -237,13 +237,9 @@ class MyWorkOrderTableViewController: UITableViewController {
             self.statusTableCnst.constant = 0
             self.tableView.rowHeight = 384.0
             self.tableView.beginUpdates()
-//            self.tableView.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .none)
             self.tableView.endUpdates()
-//            statusRow = 0
             self.upDwnArrow.image = UIImage(named: "minus")
         }
-
-
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -335,6 +331,15 @@ class MyWorkOrderTableViewController: UITableViewController {
             let shouldCollapse: Bool = !collapsedSections.contains(section)
             if shouldCollapse
             {
+                if self.getSearchListDetails.count == 0
+                {
+                    self.noDataFOund.text = ""
+                    self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 110, width: 200, height: 14))
+                  //  label.textAlignment = NSTextAlignment.center
+                    self.noDataFOund.text = "No Search Found"
+                    self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+                    self.view.addSubview(self.noDataFOund)
+                }
                 (sender.view!.viewWithTag(2) as! UIImageView).image = UIImage(named: "plus")
                 (sender.view!.viewWithTag(2) as! UIImageView).layoutIfNeeded()
                 let numOfRows = tableView.numberOfRows(inSection: section)
@@ -344,6 +349,14 @@ class MyWorkOrderTableViewController: UITableViewController {
             }
             else
             {
+                if self.getSearchListDetails.count == 0
+                {
+                    self.noDataFOund.text = ""
+                self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 490, width: 200, height: 16))
+                self.noDataFOund.text = "No Search Found"
+                self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+                self.view.addSubview(self.noDataFOund)
+                }
                 (sender.view!.viewWithTag(2) as! UIImageView).image = UIImage(named: "minus")
                 (sender.view!.viewWithTag(2) as! UIImageView).layoutIfNeeded()
                 let indexPaths: [NSIndexPath] = self.indexPathsForSection(section: section, withNumberOfRows: 1)
@@ -377,10 +390,6 @@ class MyWorkOrderTableViewController: UITableViewController {
 //        self.tableView.rowHeight = 468.0
         statusTableCnst = tableViewCell.cntStatusHeight
         statusTableCnst.constant = 85.0
-//            self.tableView.beginUpdates()
-//      //      self.tableView.reloadSections(NSIndexSet(index: 2) as IndexSet, with: .none)
-//            self.tableView.endUpdates()
-//            self.tableView.reloadSectionIndexTitles()
         self.upDwnArrow.image = UIImage(named: "plus")
         tableViewCell.statusTableView.layer.borderWidth = 1
         tableViewCell.statusTableView.layer.borderColor = UIColor.lightGray.cgColor
@@ -395,10 +404,7 @@ class MyWorkOrderTableViewController: UITableViewController {
         {
 //            statusRow = 0
             statusTableCnst.constant = 0
-//            self.tableView.rowHeight = 384.0
-//            self.tableView.beginUpdates()
-//            self.tableView.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .none)
-//            self.tableView.endUpdates()
+
             tableView.reloadData()
             self.upDwnArrow.image = UIImage(named: "minus")
         }
@@ -479,9 +485,14 @@ class MyWorkOrderTableViewController: UITableViewController {
             self.getStatusName = data!["statuses"] as! [AnyObject]
             self.getSearchListDetails = self.getWorkListData["data"] as! [AnyObject]
             //       print(self.getSearchListDetails)
-            if self.getSearchListDetails.count != 0
+            if self.getSearchListDetails.count == 0
             {
-                print(self.getSearchListDetails.count)
+                    self.noDataFOund.isHidden = false
+                    self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 490, width: 200, height: 16))
+                  //  self.noDataFOund.textAlignment = NSTextAlignment.center
+                    self.noDataFOund.text = "No Search Found"
+                    self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+                    self.view.addSubview(self.noDataFOund)
             }
             self.tableView.dataSource = self
             self.tableView.delegate = self
@@ -496,7 +507,8 @@ class MyWorkOrderTableViewController: UITableViewController {
     
     @objc func btnViewAction(_ sender : UIButton)
     {
-        self.workOrderId =  ((self.getSearchListDetails[sender.tag])["work_order_id"] as! Int)
+       self.workOrderId =  ((self.getSearchListDetails[sender.tag])["work_order_id"] as! Int)
+        print(self.workOrderId)
        let nav = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "WorkOrderDetailsViewController") as! WorkOrderDetailsViewController
          nav.workOrderId = self.workOrderId
         let transition = CATransition()

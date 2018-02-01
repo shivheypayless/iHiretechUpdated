@@ -17,6 +17,7 @@ class SearchServiceTableViewCell: UITableViewCell {
     @IBOutlet var lblOrderId: UILabel!
     @IBOutlet var lblManagerName: UILabel!
     @IBOutlet var btnApply: UIButton!
+    @IBOutlet var lblSkills: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

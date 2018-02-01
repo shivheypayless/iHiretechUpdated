@@ -103,8 +103,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network, DE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VK1-zF-D30">
-                                <rect key="frame" x="78" y="105" width="78" height="16.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Network, DE" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VK1-zF-D30">
+                                <rect key="frame" x="78" y="105" width="202" height="17"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="13"/>
                                 <nil key="highlightedColor"/>
@@ -134,16 +134,20 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Gfb-lo-67f" firstAttribute="top" secondItem="WbE-LP-sSG" secondAttribute="bottom" constant="13" id="1Lt-jW-dvK"/>
                             <constraint firstItem="kMb-AP-W9o" firstAttribute="top" secondItem="xkR-f4-7sR" secondAttribute="bottom" constant="12" id="5rT-YI-Nbs"/>
                             <constraint firstItem="Gfb-lo-67f" firstAttribute="centerY" secondItem="WO4-UG-Oyt" secondAttribute="centerY" constant="1" id="6Yn-Jr-P0x"/>
+                            <constraint firstItem="VK1-zF-D30" firstAttribute="top" secondItem="Sbl-pY-jsz" secondAttribute="bottom" constant="12.5" id="Bfh-2m-XaA"/>
                             <constraint firstItem="4XG-cK-Jrs" firstAttribute="top" secondItem="biN-XB-mCc" secondAttribute="top" constant="16" id="CIA-7f-9d1"/>
                             <constraint firstItem="WO4-UG-Oyt" firstAttribute="top" secondItem="WbE-LP-sSG" secondAttribute="bottom" constant="12" id="COw-2a-yLY"/>
                             <constraint firstItem="avD-un-R92" firstAttribute="trailing" secondItem="Gfb-lo-67f" secondAttribute="trailing" constant="8" id="ElL-3H-3PU"/>
                             <constraint firstItem="WR6-Kh-3wS" firstAttribute="leading" secondItem="Sbl-pY-jsz" secondAttribute="trailing" constant="8" id="GXN-4a-hBJ"/>
                             <constraint firstItem="8Ht-Im-1VQ" firstAttribute="centerY" secondItem="4XG-cK-Jrs" secondAttribute="centerY" id="HBv-My-dS4"/>
+                            <constraint firstItem="kMb-AP-W9o" firstAttribute="top" secondItem="VK1-zF-D30" secondAttribute="bottom" constant="12.5" id="ITT-VT-4un"/>
                             <constraint firstItem="OvV-lz-hjR" firstAttribute="top" secondItem="4XG-cK-Jrs" secondAttribute="bottom" constant="12" id="Kbz-HJ-Dvt"/>
                             <constraint firstItem="avD-un-R92" firstAttribute="bottom" secondItem="jZZ-z5-blY" secondAttribute="bottom" constant="16.5" id="NMh-6K-ZX1"/>
                             <constraint firstItem="jZZ-z5-blY" firstAttribute="top" secondItem="Gfb-lo-67f" secondAttribute="bottom" constant="16" id="Nv9-m1-fpW"/>
+                            <constraint firstItem="avD-un-R92" firstAttribute="trailing" secondItem="VK1-zF-D30" secondAttribute="trailing" constant="8" id="Os2-g0-jCK"/>
                             <constraint firstItem="kMb-AP-W9o" firstAttribute="leading" secondItem="avD-un-R92" secondAttribute="leading" constant="8" id="S0R-8q-sal"/>
                             <constraint firstItem="VK1-zF-D30" firstAttribute="centerY" secondItem="xkR-f4-7sR" secondAttribute="centerY" id="Tio-nA-HiC"/>
                             <constraint firstItem="2rF-CV-UpM" firstAttribute="leading" secondItem="kMb-AP-W9o" secondAttribute="trailing" constant="8" id="UZX-su-tHQ"/>
@@ -185,6 +189,7 @@
                 <outlet property="lblManagerName" destination="WR6-Kh-3wS" id="u98-Qr-apn"/>
                 <outlet property="lblOrderId" destination="8Ht-Im-1VQ" id="vul-Gj-QjA"/>
                 <outlet property="lblServiceTitle" destination="2rF-CV-UpM" id="0An-Rd-RTZ"/>
+                <outlet property="lblSkills" destination="Gfb-lo-67f" id="t5Z-z1-586"/>
                 <outlet property="lblTypeOfWork" destination="Ba2-hl-qav" id="CY3-rm-uoq"/>
                 <outlet property="viewBorder" destination="biN-XB-mCc" id="zNY-Ez-Y7b"/>
             </connections>

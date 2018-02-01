@@ -29,6 +29,16 @@ class LeftMenuViewController: UIViewController {
         self.tblMenuOptions.tableFooterView = UIView()
         appdelegate.storyBoard = self.storyboard!
         
+        if UserDefaults.standard.object(forKey: "Id") as? String != nil
+        {
+            self.lblUserId.text! = (UserDefaults.standard.object(forKey: "Id") as? String)!
+            self.lblLocation.text! = (UserDefaults.standard.object(forKey: "Location") as? String)!
+            self.lblProfileName.text! = (UserDefaults.standard.object(forKey: "ProfileName") as? String)!
+        }
+        imgProfilePic.layer.cornerRadius =  imgProfilePic.frame.size.height/2
+        imgProfilePic.layer.masksToBounds = true
+        imgProfilePic.layoutIfNeeded()
+        getProfilePic()
      
         // Do any additional setup after loading the view.
     }

@@ -37,7 +37,7 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
      var markerArray = [LocationMarker]()
      var selfMarker = LocationMarker()
     var workOrderId = Int()
-    
+    var noDataFOund = UILabel()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -489,6 +489,15 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
             let shouldCollapse: Bool = !collapsedSections.contains(section)
             if shouldCollapse
             {
+                if self.getSearchListDetails.count == 0
+                {
+                    self.noDataFOund.text = ""
+                    self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 450, width: 200, height: 16))
+                   // label.textAlignment = NSTextAlignment.center
+                   self.noDataFOund.text = "No Search Found"
+                    self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+                    self.view.addSubview(self.noDataFOund)
+                }
                 (sender.view!.viewWithTag(2) as! UIImageView).image = UIImage(named: "plus")
                 (sender.view!.viewWithTag(2) as! UIImageView).layoutIfNeeded()
                 let numOfRows = tableView.numberOfRows(inSection: section)
@@ -498,6 +507,15 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
             }
             else
             {
+                if self.getSearchListDetails.count == 0
+                {
+                    self.noDataFOund.text = ""
+                    self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 910, width: 200, height: 16))
+                    // label.textAlignment = NSTextAlignment.center
+                    self.noDataFOund.text = "No Search Found"
+                    self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+                    self.view.addSubview(self.noDataFOund)
+                }
                 (sender.view!.viewWithTag(2) as! UIImageView).image = UIImage(named: "minus")
                 (sender.view!.viewWithTag(2) as! UIImageView).layoutIfNeeded()
                 let indexPaths: [NSIndexPath] = self.indexPathsForSection(section: section, withNumberOfRows: 1)
@@ -660,6 +678,15 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
             self.getWorkListData = data!["work_orders"] as! [String:Any]
             self.getStatusName = data!["clients"] as! [AnyObject]
             self.getSearchListDetails = self.getWorkListData["data"] as! [AnyObject]
+            if self.getSearchListDetails.count == 0
+            {
+                self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 910, width: 200, height: 16))
+            //    label.textAlignment = NSTextAlignment.center
+                self.noDataFOund.text = "No Search Found"
+                self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+                self.view.addSubview(self.noDataFOund)
+                print(self.getSearchListDetails.count)
+            }
             self.tableView.dataSource = self
             self.tableView.delegate = self
             self.tableView.reloadData()

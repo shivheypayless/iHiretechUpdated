@@ -1,23 +1,25 @@
 //
-//  ServiceInformationTableViewCell.swift
+//  BlendedRateTableViewCell.swift
 //  iHiretech
 //
-//  Created by Admin on 02/01/18.
+//  Created by Admin on 23/01/18.
 //  Copyright © 2018 Admin. All rights reserved.
 //
 
 import UIKit
 
-class ServiceInformationTableViewCell: UITableViewCell {
+class BlendedRateTableViewCell: UITableViewCell {
 
-    @IBOutlet var lblSkills: UILabel!
+    @IBOutlet var lblTotalEarning: UILabel!
+    @IBOutlet var lblScndAmtEarned: UILabel!
+    @IBOutlet var lblScndClocedHrs: UILabel!
+    @IBOutlet var lblsecndMaxhrs: UILabel!
+    @IBOutlet var lblSecndAmtPayable: UILabel!
+    @IBOutlet var lblFirstAmtEarnd: UILabel!
+    @IBOutlet var lblFirstClockedHrs: UILabel!
+    @IBOutlet var lblFirstMaxHours: UILabel!
+    @IBOutlet var lblFirstPayableAmt: UILabel!
     @IBOutlet var viewBorder: UIView!
-    @IBOutlet var lblTypeOfWork: UILabel!
-    @IBOutlet var lblServiceTitle: UILabel!
-    @IBOutlet var lblLocation: UILabel!
-    @IBOutlet var lblManagerName: UILabel!
-    @IBOutlet var lblClientName: UILabel!
-    @IBOutlet var lblOrderId: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         self.viewBorder.layer.borderWidth = 1

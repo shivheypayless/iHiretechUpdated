@@ -10,6 +10,7 @@ import UIKit
 
 class RatingFilterTableViewCell: UITableViewCell {
 
+    @IBOutlet var btnFiveStar: UIButton!
     @IBOutlet var viewBorder: UIView!
     @IBOutlet var btnSearch: UIButton!
     @IBOutlet var btnTodate: UIButton!
@@ -25,7 +26,6 @@ class RatingFilterTableViewCell: UITableViewCell {
     @IBOutlet var btnTwoStar: UIButton!
     @IBOutlet var btnThreeStar: UIButton!
     @IBOutlet var btnFourStar: UIButton!
-    @IBOutlet var btnFiveStar: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

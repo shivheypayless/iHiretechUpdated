@@ -52,7 +52,7 @@ class PersonalDetailsViewController: UIViewController {
 //        {
         self.viewContactNumber.detailTextField.addTarget(self, action: #selector(self.textFieldTextChangedTrend(_:)), for: UIControlEvents.editingChanged)
 //        }
-        
+         self.cnstStateHeight.constant = 0
           self.stateTableView.register(UINib(nibName: "StatesTableViewCell", bundle: nil) , forCellReuseIdentifier: "StatesTableViewCell")
         // Do any additional setup after loading the view.
     }
@@ -169,8 +169,9 @@ class PersonalDetailsViewController: UIViewController {
     
     @IBAction func btn_StateAction(_ sender: UIButton)
     {
-       // self.stateTableView.isHidden = false
-        self.cnstStateHeight.constant = CGFloat(30 * 3)
+        if self.cnstStateHeight.constant == 0
+        {
+        self.cnstStateHeight.constant = 100
         self.stateTableView.layer.borderWidth = 1
         self.stateTableView.layer.borderColor = UIColor.lightGray.cgColor
       //  self.stateTableView.layer.cornerRadius = 6.0
@@ -178,6 +179,11 @@ class PersonalDetailsViewController: UIViewController {
         self.stateTableView.delegate = self
         self.stateTableView.dataSource = self
         self.stateTableView.reloadData()
+        }
+        else
+        {
+            self.cnstStateHeight.constant = 0
+        }
     }
     
     @IBAction func btn_DateAction(_ sender: UIButton)

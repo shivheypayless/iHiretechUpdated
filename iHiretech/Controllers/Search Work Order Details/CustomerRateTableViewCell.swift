@@ -7,14 +7,12 @@
 //
 
 import UIKit
+import HCSStarRatingView
 
 class CustomerRateTableViewCell: UITableViewCell {
     
-    @IBOutlet var btnStarFive: UIButton!
-    @IBOutlet var btnStarFour: UIButton!
-    @IBOutlet var btnStarThree: UIButton!
-    @IBOutlet var btnStarTwo: UIButton!
-    @IBOutlet var btnStarOne: UIButton!
+    @IBOutlet var btnCustomerDetails: UIButton!
+    @IBOutlet var viewRating: HCSStarRatingView!
     @IBOutlet var btnRating: UIButton!
     @IBOutlet var imgProfile: UIImageView!
     @IBOutlet var lblLocation: UILabel!

@@ -13,7 +13,7 @@ class AppliedRoutedTableViewController: UITableViewController {
      var appdelegate = UIApplication.shared.delegate as! AppDelegate
     var getWorkListData = [String:Any]()
     var getSearchListDetails = [AnyObject]()
-    
+    var noDataFound = UILabel()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -54,9 +54,17 @@ class AppliedRoutedTableViewController: UITableViewController {
             self.getWorkListData = data!["work_orders"] as! [String:Any]
             self.getSearchListDetails = self.getWorkListData["data"] as! [AnyObject]
           
-            if self.getSearchListDetails.count != 0
+            if self.getSearchListDetails.count == 0
             {
                 print(self.getSearchListDetails.count)
+                if self.getSearchListDetails.count == 0
+                {
+                     self.noDataFound.textAlignment = .center
+                    self.noDataFound = UILabel(frame: CGRect(x: self.view.center.x - (150), y: 120, width: 150, height: 16))
+                     self.noDataFound.text = "No Search Found"
+                     self.noDataFound.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+                    self.view.addSubview( self.noDataFound)
+                }
             }
             self.tableView.dataSource = self
             self.tableView.delegate = self

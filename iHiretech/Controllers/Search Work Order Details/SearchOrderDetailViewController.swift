@@ -8,14 +8,16 @@
 
 import UIKit
 import KLCPopup
-
+import HCSStarRatingView
 
 class SearchOrderDetailViewController: UIViewController {
 
+    @IBOutlet var viewChat: UIView!
+    @IBOutlet var txtSendMsg: UITextField!
     @IBOutlet var tblListing: UITableView!
     @IBOutlet var tabCollectionView: UICollectionView!
     @IBOutlet var lblOrderId: UILabel!
-    @IBOutlet var lblStatus: UILabel!
+    @IBOutlet var lblStatus: UIButton!
     var workOrderId = Int()
     var getWorkListData = [String:Any]()
     var chatDetails = [String:Any]()
@@ -70,10 +72,10 @@ class SearchOrderDetailViewController: UIViewController {
             print(serviceResponse)
             self.chatDetails = serviceResponse["data"] as! [String : Any]
             self.getWorkListData = self.chatDetails["workOrderData"] as! [String:Any]
-            self.lblOrderId.text = "(ID: \(((self.getWorkListData)["work_order_number"] as? String)!))"
+            self.lblOrderId.text = "( ID: \(((self.getWorkListData)["work_order_number"] as? String)!))"
             let cap = ((self.getWorkListData)["status_name"] as! String)
-            let finalString = cap.capitalized
-            self.lblStatus.text = "  \(finalString)   "
+            let finalString = cap.uppercased()
+            self.lblStatus.setTitle("  \(finalString)  ", for: .normal)
             self.ExpensesList = (self.getWorkListData["tech_expenses"] as! [AnyObject])
             self.documentList = (self.getWorkListData["work_oder_document"] as! [AnyObject])
             self.tblListing.dataSource = self
@@ -97,7 +99,13 @@ class SearchOrderDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func btn_CameraAction(_ sender: UIButton) {
+    }
+    
+    
+    @IBAction func btn_SendMessage(_ sender: UIButton) {
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -212,7 +220,23 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
                 cell.lblServiceTitle.text = (((self.getWorkListData)["work_order_title"]) as? String)!
                 cell.lblClientName.text = (((self.getWorkListData)["clients"]) as! [String:Any])["client_name"] as? String
                 cell.lblManagerName.text = (((self.getWorkListData)["manager"]) as! [String:Any])["first_name"] as? String
-            
+                let skillsArray = (self.getWorkListData["workSkill"] as? [String])!
+                if skillsArray.count != 0
+                {
+                    for i in 0...(skillsArray.count)-1
+                    {
+                        if skillsArray.count-1 == i
+                        {
+                            cell.lblSkills.text! = ""
+                            cell.lblSkills.text!.append("\(String(describing: skillsArray[i]))")
+                        }
+                        else
+                        {
+                            cell.lblSkills.text! = ""
+                            cell.lblSkills.text!.append("\(String(describing: skillsArray[i])) ,")
+                        }
+                    }
+                }
                 return cell
             }
             else if indexPath.section == 1
@@ -223,21 +247,24 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
                 let information = self.chatDetails["chatWith"] as! [String:Any]
                 cell.lblName.text = ((information)["first_name"] as? String)!+" "+((information)["last_name"] as? String)!
                 cell.lblEmail.text = (((self.getWorkListData)["created_data"]) as! [String:Any])["email"] as? String
-               
-                
+                if (!(self.chatDetails["avg_rating"] is NSNull))
+                {
+                cell.viewStarRating.value = (self.chatDetails["avg_rating"] as? CGFloat)!
+                cell.viewStarRating.filledStarImage = #imageLiteral(resourceName: "img_OrangeStar")
+                cell.viewStarRating.halfStarImage = #imageLiteral(resourceName: "img_HalfStarOrng")
+                }
+               cell.btnCustomerDetails.addTarget(self, action: #selector(self.CustomerRatingDetail(_ :)), for: .touchUpInside)
                 return cell
             }
             else if indexPath.section == 2
             {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "WorkOrderInformationTableViewCell", for: indexPath) as! WorkOrderInformationTableViewCell
-               
                 do {
                     let attributedString = try? NSAttributedString(data: ((self.getWorkListData)["work_order_description"] as! String).data(using: .unicode) ?? Data(), options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
                     cell.lblHtml.attributedText = attributedString
                 } catch {
                     print(error)
                 }
-                
                 return cell
             }
             else if indexPath.section == 3
@@ -436,6 +463,22 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.pushViewController(nav, animated: false)
         }
+    }
+    
+    @objc func CustomerRatingDetail(_ sender: UIButton)
+    {
+        let destination = RatingTableViewController(style: .plain)
+        destination.customerId = Int((self.getWorkListData)["customer_id"] as! String)!
+        let nav = UINavigationController(rootViewController: destination)
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionFade
+        self.navigationController?.view.layer.add(transition, forKey: nil)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.revealViewController().setFront(nav, animated: true)
     }
 }
 

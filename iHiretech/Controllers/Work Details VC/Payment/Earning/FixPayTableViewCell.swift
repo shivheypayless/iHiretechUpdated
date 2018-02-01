@@ -1,20 +1,21 @@
 //
-//  TaskListTableViewCell.swift
+//  FixPayTableViewCell.swift
 //  iHiretech
 //
-//  Created by Admin on 22/01/18.
+//  Created by Admin on 23/01/18.
 //  Copyright © 2018 Admin. All rights reserved.
 //
 
 import UIKit
 
-class TaskListTableViewCell: UITableViewCell {
+class FixPayTableViewCell: UITableViewCell {
 
-    @IBOutlet var lblTask: UILabel!
-    @IBOutlet var imgCheckUnCheck: UIImageView!
-    @IBOutlet var btnCompleteTask: UIButton!
+    @IBOutlet var viewBorder: UIView!
+    @IBOutlet var lblFixAmount: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.viewBorder.layer.borderWidth = 1
+        self.viewBorder.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
         // Initialization code
     }
 

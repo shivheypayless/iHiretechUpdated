@@ -122,6 +122,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="gc6-A5-aWw" firstAttribute="top" secondItem="mCk-2M-WSS" secondAttribute="bottom" constant="13" id="1HV-Kj-Vj1"/>
                             <constraint firstItem="6gp-W9-HxW" firstAttribute="bottom" secondItem="bj8-Z3-vKK" secondAttribute="bottom" constant="13.5" id="3Hy-dM-hz6"/>
                             <constraint firstItem="0a2-TK-RnD" firstAttribute="top" secondItem="MT5-Sr-4rH" secondAttribute="bottom" constant="12" id="3U1-Cg-dGw"/>
                             <constraint firstItem="KDf-75-3F2" firstAttribute="leading" secondItem="6gp-W9-HxW" secondAttribute="leading" constant="8" id="6J4-WU-1gW"/>
@@ -130,6 +131,7 @@
                             <constraint firstItem="bj8-Z3-vKK" firstAttribute="leading" secondItem="6gp-W9-HxW" secondAttribute="leading" constant="8" id="Awi-3y-uKQ"/>
                             <constraint firstItem="uLK-pr-nfG" firstAttribute="centerY" secondItem="QDi-j0-7rQ" secondAttribute="centerY" id="Dhp-7R-Kw9"/>
                             <constraint firstItem="mCk-2M-WSS" firstAttribute="leading" secondItem="6gp-W9-HxW" secondAttribute="leading" constant="8" id="EVs-tz-tgh"/>
+                            <constraint firstItem="6gp-W9-HxW" firstAttribute="bottom" secondItem="gc6-A5-aWw" secondAttribute="bottom" constant="12.5" id="EYd-cr-P9a"/>
                             <constraint firstItem="QDi-j0-7rQ" firstAttribute="leading" secondItem="6gp-W9-HxW" secondAttribute="leading" constant="8" id="Fdi-Bi-DKA"/>
                             <constraint firstItem="QDi-j0-7rQ" firstAttribute="top" secondItem="Kvd-qQ-IPO" secondAttribute="top" constant="16" id="GC8-ST-Evi"/>
                             <constraint firstItem="Q6l-Wh-Pe3" firstAttribute="top" secondItem="hl8-A6-jWE" secondAttribute="bottom" constant="12" id="GQJ-kf-0Z1"/>
@@ -173,6 +175,7 @@
                 <outlet property="lblManagerName" destination="Wyj-dK-BHQ" id="gCP-ct-P4w"/>
                 <outlet property="lblOrderId" destination="uLK-pr-nfG" id="f8H-p7-o5l"/>
                 <outlet property="lblServiceTitle" destination="e6R-iy-4yF" id="uAr-mf-Nij"/>
+                <outlet property="lblSkills" destination="gc6-A5-aWw" id="EoP-DB-cbr"/>
                 <outlet property="lblTypeOfWork" destination="fqA-kG-0dB" id="lZ2-7A-asx"/>
                 <outlet property="viewBorder" destination="Kvd-qQ-IPO" id="aoY-Zf-NNy"/>
             </connections>

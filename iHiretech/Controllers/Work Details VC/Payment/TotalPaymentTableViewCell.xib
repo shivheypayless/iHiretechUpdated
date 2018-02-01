@@ -96,7 +96,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="lblFees" destination="geh-Y7-CY6" id="w2l-el-QJ2"/>
-                <outlet property="lblTechnicianpayment" destination="62e-WN-u80" id="xTR-nP-FAw"/>
+                <outlet property="lblTechnicianpayment" destination="fzz-RW-LAG" id="NaA-k8-AVm"/>
                 <outlet property="lblTotalPayment" destination="k5w-4q-Y9W" id="hcP-VZ-too"/>
                 <outlet property="viewBorder" destination="akq-Kv-DWV" id="QVU-Hp-P8V"/>
             </connections>

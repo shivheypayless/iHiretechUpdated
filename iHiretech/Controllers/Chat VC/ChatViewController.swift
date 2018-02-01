@@ -13,7 +13,7 @@ class ChatViewController: UIViewController {
     @IBOutlet var chatTextField: UITextField!
     @IBOutlet var tblChat: UITableView!
     let chatRoom = ChatView()
-     var chatHistory = [[String:Any]]()
+     var chatHistory = [AnyObject]()
     var conversation = ["Hello","Hi.","How are you?","I'm doing great. What have you been upto these days?","Nothing much! Just the usual corporate work life.","Ohh I see. BTW why don't you visit us for a dinner or something with Sue and kids.","Yeah sure why not!","How does next Saturday Night sound to you.","Yeah will do, as long as Sue doesn't have any other plans for the night.","Sure, I'll even notify Aisha about it","Cool","Meet up soon.","Cya"]
     
     var timer: Timer!
@@ -48,21 +48,7 @@ class ChatViewController: UIViewController {
         self.chatTextField.layer.borderColor = UIColor.lightGray.cgColor
         
         chatTextField.addTarget(self, action: #selector(textDidChange(_:)), for: .editingChanged)
-        
-        WebAPI.shared.callJSONWebApi(.getChatHistory, withHTTPMethod: .post, forPostParameters: ["with_users_id" : "" , "work_order_id": ""], shouldIncludeAuthorizationHeader: true) { (serviceResponse) in
-            self.chatHistory = serviceResponse["msgs"] as! [[String:Any]]
-            if self.chatHistory.count != 0
-            {
-               self.tblChat.reloadData()
-            }
-         
-            SocketIOManager.sharedInstance.socketIOManagerDelegate = self
-            guard self.chatHistory.count > 0 else {
-                return
-            }
-            self.tblChat.scrollToRow(at: IndexPath(row: self.chatHistory.count - 1, section: 0), at: .bottom, animated: false)
-        }
-        
+      getChatHistory()
         self.tblChat.register(UINib(nibName: "OwnerTableViewCell", bundle: nil) , forCellReuseIdentifier: "OwnerTableViewCell")
         self.tblChat.register(UINib(nibName: "OtherUserTableViewCell", bundle: nil) , forCellReuseIdentifier: "OtherUserTableViewCell")
         self.tblChat.estimatedRowHeight = 40
@@ -78,6 +64,34 @@ class ChatViewController: UIViewController {
     }
     
 
+    
+    func getChatHistory()
+    {
+      //  let chatDetail = self.chatDetails["chatWith"] as! [String:Any]
+     //   print(String(describing: chatDetail["socket_id"]!))
+        let parameter = ["with_users_id":"873f51a0f9d0b0871df292dccfeb0964","work_order_id":"612"] as! [String:AnyObject]
+        //chatTextField.addTarget(self, action: #selector(textDidChange(_:)), for: .editingChanged)
+        WebAPI.shared.callJSONWebApi(.getChatHistory, withHTTPMethod: .post, forPostParameters: parameter, shouldIncludeAuthorizationHeader: true) { (serviceResponse) in
+            print(serviceResponse)
+            let Data = serviceResponse["data"] as! [String:AnyObject]
+            self.chatHistory = Data["messages"] as! [AnyObject]
+            if self.chatHistory.count != 0
+            {
+                self.tblChat.dataSource = self
+                self.tblChat.delegate = self
+                self.tblChat.reloadData()
+            }
+            else
+            {
+                self.tblChat.reloadData()
+            }
+            SocketIOManager.sharedInstance.socketIOManagerDelegate = self
+            guard self.chatHistory.count > 0 else {
+                return
+            }
+            self.tblChat.scrollToRow(at: IndexPath(row: self.chatHistory.count - 1, section: 0), at: .bottom, animated: false)
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -134,22 +148,22 @@ class ChatViewController: UIViewController {
 extension ChatViewController : UITableViewDataSource, UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.conversation.count
+        return self.chatHistory.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row % 2 == 0
         {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OwnerTableViewCell", for: indexPath) as! OwnerTableViewCell
-            cell.lblText.text = self.conversation[indexPath.row]
-          //  cell.lblText.text = chatHistory[indexPath.row]["message"] as? String
+          //  cell.lblText.text = self.conversation[indexPath.row]
+            cell.lblText.text = chatHistory[indexPath.row]["msg_string"] as? String
         return cell
         }
         else
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "OtherUserTableViewCell", for: indexPath) as! OtherUserTableViewCell
-            cell.lblText.text = self.conversation[indexPath.row]
-         //   cell.lblText.text = chatHistory[indexPath.row]["message"] as? String
+      //      cell.lblText.text = self.conversation[indexPath.row]
+            cell.lblText.text = chatHistory[indexPath.row]["msg_string"] as? String
             return cell
         }
     }
@@ -176,12 +190,12 @@ extension ChatViewController: SocketIOManagerDelegate {
     
     func messageReceived(_ data: [String : Any]) {
         let recipient = (data["work_order_id"] as! [[String:String]]).first!
-        let chatMessage: [String:Any] = [
+        let chatMessage = [
               "to_id": "",
               "work_order_id": data["work_order_id"] as! String,
-              "message": data["message"] as! String,]
+              "message": data["message"] as! String]
         let indexPaths = self.tblChat.indexPathsForVisibleRows?.sorted(by: { $0.row < $1.row })
-        chatHistory.append(chatMessage)
+        chatHistory.append(chatMessage as AnyObject)
         self.tblChat.reloadData()
         guard let lastIndexPath = indexPaths?.last  else {
             return
