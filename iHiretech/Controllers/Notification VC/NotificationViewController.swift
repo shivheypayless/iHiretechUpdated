@@ -140,6 +140,14 @@ extension NotificationViewController : UITableViewDataSource, UITableViewDelegat
         dateFormatter.dateFormat = "dd MMM"
         cell.lblOrderDate.text = dateFormatter.string(from: date)
         cell.lblOrderId.text = ((self.notificationList[indexPath.row])["workOrderNumber"] as! String)
+        if  ((self.notificationList[indexPath.row])["read_at"]) is NSNull
+        {
+            cell.viewSuper.backgroundColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1)
+        }
+        else
+        {
+            cell.viewSuper.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
+        }
         return cell
     }
     
@@ -149,6 +157,14 @@ extension NotificationViewController : UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if  ((self.notificationList[indexPath.row])["read_at"]) is NSNull
+        {
+          //   cell.viewSuper.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
+        }
+        else
+        {
+            
+        }
         let nav = self.storyboard!.instantiateViewController(withIdentifier: "WorkOrderDetailsViewController") as! WorkOrderDetailsViewController
         nav.workOrderId = ((self.notificationList[indexPath.row])["work_order_id"] as! Int)
         let transition = CATransition()

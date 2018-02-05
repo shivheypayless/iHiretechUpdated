@@ -8,10 +8,11 @@
 
 import UIKit
 import SWRevealViewController
-
+import HCSStarRatingView
 
 class LeftMenuViewController: UIViewController {
 
+    @IBOutlet var viewStar: HCSStarRatingView!
     @IBOutlet var tblMenuOptions: UITableView!
     @IBOutlet var lblUserId: UILabel!
     @IBOutlet var lblUserJob: UILabel!
@@ -28,7 +29,15 @@ class LeftMenuViewController: UIViewController {
         super.viewDidLoad()
         self.tblMenuOptions.tableFooterView = UIView()
         appdelegate.storyBoard = self.storyboard!
-        
+    //    if (!(self.chatDetails["avg_rating"] is NSNull))
+     //   {
+      //      if let n = NumberFormatter().number(from: (self.chatDetails["avg_rating"] as! String)) {
+            //    let f = CGFloat(truncating: "n")
+            //    viewStar.value = f
+                viewStar.filledStarImage = #imageLiteral(resourceName: "img_OrangeStar")
+                viewStar.halfStarImage = #imageLiteral(resourceName: "img_HalfStarOrng")
+        //    }
+     //   }
         if UserDefaults.standard.object(forKey: "Id") as? String != nil
         {
             self.lblUserId.text! = (UserDefaults.standard.object(forKey: "Id") as? String)!
@@ -61,6 +70,29 @@ class LeftMenuViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func btn_DetailRating(_ sender: UIButton)
+    {
+        let destination = RatingTableViewController(style: .plain)
+        destination.frmSrc = "LeftMenu"
+        // destination.storyBoard = self.storyboard
+         destination.customerId = Int(UserDefaults.standard.object(forKey: "UserId") as! String)!
+        let nav = UINavigationController(rootViewController: destination)
+        nav.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+        nav.navigationBar.tintColor = UIColor.white
+        nav.navigationBar.isTranslucent = false
+        self.revealViewController().setFront(nav, animated: true)
+           self.revealViewController().revealToggle(animated: true)
+//        let transition = CATransition()
+//        transition.duration = 0.5
+//        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+//        transition.type = kCATransitionFade
+//        self.navigationController?.view.layer.add(transition, forKey: nil)
+//        self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+//        self.navigationController?.navigationBar.tintColor = UIColor.white
+//        self.navigationController?.navigationBar.isTranslucent = false
+//        self.navigationController?.present(nav, animated: false, completion: nil)
     }
     
     func getProfilePic()

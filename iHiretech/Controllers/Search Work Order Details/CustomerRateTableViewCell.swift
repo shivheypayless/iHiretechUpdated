@@ -11,6 +11,7 @@ import HCSStarRatingView
 
 class CustomerRateTableViewCell: UITableViewCell {
     
+    @IBOutlet var btnChatWithManager: UIButton!
     @IBOutlet var btnCustomerDetails: UIButton!
     @IBOutlet var viewRating: HCSStarRatingView!
     @IBOutlet var btnRating: UIButton!
@@ -28,6 +29,9 @@ class CustomerRateTableViewCell: UITableViewCell {
         
         self.btnChat.layer.cornerRadius = 3
         self.btnChat.layer.masksToBounds = true
+        
+        self.btnChatWithManager.layer.cornerRadius = 3
+        self.btnChatWithManager.layer.masksToBounds = true
         
         self.btnRating.layer.cornerRadius = 3
         self.btnRating.layer.masksToBounds = true

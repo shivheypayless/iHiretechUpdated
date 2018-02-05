@@ -24,9 +24,30 @@ class SearchOrderDetailViewController: UIViewController {
     var ExpensesList = [AnyObject]()
     var documentList = [AnyObject]()
     var tabsTag = 1
+    var chatHistory = [AnyObject]()
    
-    var conversation = ["Hello","Hi.","How are you?","I'm doing great. What have you been upto these days?","Nothing much! Just the usual corporate work life.","Ohh I see. BTW why don't you visit us for a dinner or something with Sue and kids.","Yeah sure why not!","How does next Saturday Night sound to you.","Yeah will do, as long as Sue doesn't have any other plans for the night.","Sure, I'll even notify Aisha about it","Cool","Meet up soon.","Cya"]
     
+    var sendMessageId = String()
+    
+    var timer: Timer!
+    var isTyping = false {
+        didSet {
+            guard oldValue != isTyping else {
+                return
+            }
+            guard isTyping else {
+                self.tblListing.reloadData()
+                return
+            }
+            let lastIndexPath = self.tblListing.indexPathsForVisibleRows!.sorted(by: { $0.row < $1.row }).last!
+            
+            self.tblListing.reloadData()
+            guard lastIndexPath.row == chatHistory.count - 1 else {
+                return
+            }
+            self.tblListing.scrollToRow(at: IndexPath(row: lastIndexPath.row + 1, section: 0) , at: .bottom, animated: false)
+        }
+    }
     
     var tabs = ["Work Order Details","Messages"]
     override func viewDidLoad() {
@@ -84,6 +105,35 @@ class SearchOrderDetailViewController: UIViewController {
         })
     }
 
+    func getChatHistory()
+    {
+        let chatDetail = self.chatDetails["chatWith"] as! [String:Any]
+        print(String(describing: chatDetail["socket_id"]!))
+        let parameter = ["with_users_id":String(describing: chatDetail["socket_id"]!),"work_order_id":workOrderId] as [String:AnyObject]
+        //chatTextField.addTarget(self, action: #selector(textDidChange(_:)), for: .editingChanged)
+        WebAPI.shared.callJSONWebApi(.getChatHistory, withHTTPMethod: .post, forPostParameters: parameter, shouldIncludeAuthorizationHeader: true) { (serviceResponse) in
+            print(serviceResponse)
+            let Data = serviceResponse["data"] as! [String:AnyObject]
+            self.chatHistory = Data["messages"] as! [AnyObject]
+            //            if self.chatHistory.count != 0
+            //            {
+            self.tblListing.dataSource = self
+            self.tblListing.delegate = self
+            self.tblListing.reloadData()
+            // self.tblListing.reloadData()
+            //            }
+            //            else
+            //            {
+            //                 self.tblListing.reloadData()
+            //            }
+            SocketIOManager.sharedInstance.socketIOManagerDelegate = self
+            guard self.chatHistory.count > 0 else {
+                return
+            }
+            self.tblListing.scrollToRow(at: IndexPath(row: self.chatHistory.count - 1, section: 0), at: .bottom, animated: false)
+        }
+    }
+
 
     @IBAction func btn_NotifictionAction(_ sender: UIBarButtonItem) {
     }
@@ -104,6 +154,21 @@ class SearchOrderDetailViewController: UIViewController {
     
     
     @IBAction func btn_SendMessage(_ sender: UIButton) {
+        self.view.endEditing(true)
+        guard !txtSendMsg.text!.isEmpty else {
+            return
+        }
+        let param = ["message": txtSendMsg.text!] as [String:Any]
+        SocketIOManager.sharedInstance.sendDataToEvent(.message, data: param)
+        let parameter = ["to_id" : self.sendMessageId,
+                         "work_order_id" : self.workOrderId,
+                         "message": txtSendMsg.text!] as [String:AnyObject]
+        
+        WebAPI().callJSONWebApi(API.sendMessageChat, withHTTPMethod: .post, forPostParameters: parameter, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
+            print(serviceResponse)
+        })
+        
+        txtSendMsg.text = nil
     }
     
     /*
@@ -201,7 +266,7 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
         }
       else if self.tabsTag == 2
       {
-          return self.conversation.count
+            return !isTyping ? self.chatHistory.count : self.chatHistory.count + 1
       }
         else
       {
@@ -254,6 +319,15 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
                 cell.viewStarRating.halfStarImage = #imageLiteral(resourceName: "img_HalfStarOrng")
                 }
                cell.btnCustomerDetails.addTarget(self, action: #selector(self.CustomerRatingDetail(_ :)), for: .touchUpInside)
+                if (((self.getWorkListData)["created_by"]) as? String) !=  (((self.getWorkListData)["manager_id"]) as? String)
+                {
+                    cell.btnChatWithManager.isHidden = false
+                    cell.btnChatWithManager.addTarget(self, action: #selector(self.btnChatView(_ :)), for: .touchUpInside)
+                }
+                else
+                {
+                    cell.btnChatWithManager.isHidden = true
+                }
                 return cell
             }
             else if indexPath.section == 2
@@ -314,17 +388,22 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
         }
        else
         {
-            if indexPath.row % 2 == 0
+            if (UserDefaults.standard.object(forKey: "SocketId") as? String)! == (chatHistory[indexPath.row]["from_id"] as? String)!
             {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "OwnerTableViewCell", for: indexPath) as! OwnerTableViewCell
-                cell.lblText.text = self.conversation[indexPath.row]
-                // cell.lblText.text = chatHistory[indexPath.row]["message"] as? String
+                //     cell.lblText.text = self.conversation[indexPath.row]
+                cell.lblText.text = (chatHistory[indexPath.row]["msg_string"] as? String)!
+                self.sendMessageId = (chatHistory[indexPath.row]["to_id"] as? String)!
+                cell.lblTime.text = UTCToLocal(date: ((self.chatHistory[indexPath.row])["created_at"] as! String))
                 return cell
             }
             else
             {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "OtherUserTableViewCell", for: indexPath) as! OtherUserTableViewCell
-                cell.lblText.text = self.conversation[indexPath.row]
+                //   cell.lblText.text = self.conversation[indexPath.row]
+                cell.lblText.text = (chatHistory[indexPath.row]["msg_string"] as? String)!
+                cell.lblTime.text = UTCToLocal(date: ((self.chatHistory[indexPath.row])["created_at"] as! String))
+                //       self.sendMessageId = (chatHistory[indexPath.row]["to_id"] as? String)!
                 return cell
             }
         }
@@ -480,5 +559,93 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
         self.navigationController?.navigationBar.isTranslucent = false
         self.revealViewController().setFront(nav, animated: true)
     }
+    
+    @objc func btnChatView(_ sender: UIButton)
+    {
+        self.tabsTag = 2
+        self.tabCollectionView.reloadData()
+        self.tblListing.reloadData()
+    }
+}
+
+extension SearchOrderDetailViewController: SocketIOManagerDelegate {
+    func usersTyping(_ data: [String : Any]) {
+        //        isTyping = true
+        //        timer?.invalidate()
+        //        if #available(iOS 10.0, *) {
+        //            timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (_) in
+        //          //      self.isTyping = false
+        //            })
+        //        } else {
+        //            // Fallback on earlier versions
+        //        }
+    }
+    
+    func messageReceived(_ data: String) {
+        print(data)
+        let chatMessage = convertToDictionary(text: data)! as [String:AnyObject]
+        print(chatMessage)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        var orderId = String()
+        if chatMessage["work_order_id"] is String
+        {
+            orderId = chatMessage["work_order_id"] as! String
+        }
+        else
+        {
+            orderId = String(describing: chatMessage["work_order_id"] as! Int)
+        }
+        if orderId == String(self.workOrderId)
+        {
+            let chat = [
+                "msg_string": chatMessage["message"] as! String,
+                "from_id" : chatMessage["msgFrom"] as! String,
+                "to_id" : chatMessage["msgTo"] as! String,
+                "created_at" : dateFormatter.string(from: Date()),
+                //    "work_order_id" : chatMessage["work_order_id"] as! Int
+                ] as [String : Any]
+            self.chatHistory.append(chat as AnyObject as AnyObject)
+            print(self.chatHistory)
+            let indexPaths = self.tblListing.indexPathsForVisibleRows?.sorted(by: { $0.row < $1.row })
+            
+            self.tblListing.reloadData()
+            guard let lastIndexPath = indexPaths?.last  else {
+                return
+            }
+            guard lastIndexPath.row == (isTyping ? chatHistory.count - 1 : chatHistory.count - 2) else {
+                return
+            }
+            self.tblListing.scrollToRow(at: IndexPath(row: lastIndexPath.row + 1, section: 0) , at: .bottom, animated: false)
+        }
+    }
+    
+    @objc func textDidChange(_ sender: UITextField) {
+        print("Typing...")
+    }
+    
+    func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
+    }
+    
+    func UTCToLocal(date:String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        
+        let dt = dateFormatter.date(from: date)
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateFormat = "MM/dd/yyyy HH:mm a"
+        
+        return dateFormatter.string(from: dt!)
+    }
+    
 }
 

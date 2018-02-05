@@ -9,13 +9,13 @@
 import SocketIO
 
 enum Event: String {
-    case typing = "typing"
+ //   case typing = "typing"
     case message = "message_sent"
 }
 
 protocol SocketIOManagerDelegate: class {
     func usersTyping(_ data: [String:Any])
-    func messageReceived(_ data: [String:Any])
+    func messageReceived(_ data: String)
 }
 
 class SocketIOManager {
@@ -25,17 +25,16 @@ class SocketIOManager {
     weak var socketIOManagerDelegate: SocketIOManagerDelegate!
     
     func establishConnection() {
-
         socket.connect()
         print("connection established....")
         socket.onAny { (socketEvent) in
             print(socketEvent.event)
             switch Event(rawValue: socketEvent.event) {
-            case .typing?:
-                self.socketIOManagerDelegate.usersTyping(socketEvent.items?.first as! [String:Any])
+//            case .typing?:
+//                self.socketIOManagerDelegate.usersTyping(socketEvent.items?.first as! [String:Any])
             case .message?:
-              self.socketIOManagerDelegate.messageReceived(socketEvent.items?.first as! [String:Any])
-                 NotificationCenter.default.post(name: NSNotification.Name("MessageReceived"), object: nil, userInfo: socketEvent.items?.first as? [String:Any])
+                self.socketIOManagerDelegate.messageReceived(socketEvent.items?.first as! String)
+               //  NotificationCenter.default.post(name: NSNotification.Name("MessageReceived"), object: nil, userInfo: socketEvent.event)
             default:
                 print("Done")
             }

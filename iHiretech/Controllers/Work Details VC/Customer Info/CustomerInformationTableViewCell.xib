@@ -122,6 +122,18 @@
                                     <userDefinedRuntimeAttribute type="image" keyPath="emptyStarImage" value="img_GrayStar"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Qc-Lv-gr2">
+                                <rect key="frame" x="86" y="138" width="152" height="30"/>
+                                <color key="backgroundColor" red="0.25882352939999997" green="0.70980392160000005" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="4do-Bw-I7n"/>
+                                    <constraint firstAttribute="width" constant="152" id="A6T-CH-wx8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="15"/>
+                                <state key="normal" title="Chat With Manager">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -140,8 +152,10 @@
                             <constraint firstItem="tV9-fX-yAh" firstAttribute="leading" secondItem="SUx-zZ-TBF" secondAttribute="leading" constant="16" id="h6A-yo-daC"/>
                             <constraint firstItem="dxi-1D-cx5" firstAttribute="leading" secondItem="SUx-zZ-TBF" secondAttribute="leading" constant="16" id="h7c-kS-zvi"/>
                             <constraint firstItem="SUx-zZ-TBF" firstAttribute="bottom" secondItem="tV9-fX-yAh" secondAttribute="bottom" constant="13.5" id="hY3-qT-HY5"/>
+                            <constraint firstItem="3Qc-Lv-gr2" firstAttribute="centerY" secondItem="dxi-1D-cx5" secondAttribute="centerY" id="lR2-c1-jOJ"/>
                             <constraint firstItem="PJ0-p4-7B5" firstAttribute="centerY" secondItem="0hO-wD-6v5" secondAttribute="centerY" id="leM-I6-P1v"/>
                             <constraint firstItem="0hO-wD-6v5" firstAttribute="leading" secondItem="SUx-zZ-TBF" secondAttribute="leading" constant="16" id="lnR-XO-GBr"/>
+                            <constraint firstItem="3Qc-Lv-gr2" firstAttribute="leading" secondItem="dxi-1D-cx5" secondAttribute="trailing" constant="24" id="nwJ-CM-m96"/>
                             <constraint firstItem="0hO-wD-6v5" firstAttribute="top" secondItem="qeF-ii-4gP" secondAttribute="bottom" constant="24" id="pDE-l5-fIz"/>
                             <constraint firstItem="WjF-nv-LGJ" firstAttribute="top" secondItem="3Vs-ys-wde" secondAttribute="bottom" constant="8" id="qfo-dM-2oK"/>
                             <constraint firstItem="WjF-nv-LGJ" firstAttribute="leading" secondItem="qeF-ii-4gP" secondAttribute="trailing" constant="12" id="quH-Uo-4nc"/>
@@ -160,6 +174,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="btnChat" destination="dxi-1D-cx5" id="IF3-Cm-j0d"/>
+                <outlet property="btnChatWithManager" destination="3Qc-Lv-gr2" id="uI1-8p-Czg"/>
                 <outlet property="btnCustomerDetails" destination="ORg-m3-wGd" id="gmT-ky-Nhe"/>
                 <outlet property="imgProfile" destination="qeF-ii-4gP" id="ztQ-Em-LnY"/>
                 <outlet property="lblContactNo" destination="cbj-uE-ruq" id="GCo-7f-gSK"/>

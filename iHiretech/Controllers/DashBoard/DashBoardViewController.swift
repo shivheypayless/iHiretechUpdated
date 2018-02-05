@@ -228,6 +228,7 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
         UserDefaults.standard.setValue((((self.getProfileDetailsDict)["universal_id"]!) as! String), forKey: "Id")
         UserDefaults.standard.setValue((((self.getProfileDetailsDict)["city"]!) as! String), forKey: "Location")
         UserDefaults.standard.setValue((((self.getProfileDetailsDict)["socket_id"]!) as! String), forKey: "SocketId")
+        UserDefaults.standard.setValue(((self.getProfileDetailsDict)["user_id"] as! String), forKey: "UserId")
          (headerViewArray.viewWithTag(2) as! UIImageView).layer.cornerRadius =  (headerViewArray.viewWithTag(2) as! UIImageView).frame.size.height/2
          (headerViewArray.viewWithTag(2) as! UIImageView).layer.masksToBounds = true
          (headerViewArray.viewWithTag(2) as! UIImageView).layoutIfNeeded()

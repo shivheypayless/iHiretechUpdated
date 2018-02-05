@@ -57,7 +57,6 @@ enum API: String
     case completedTaskList = "api/technician/complete-task"
     case filterRatingList = "api/technician/search-technician-rating-list"
     case downloadWorkOrderDocuments = "api/technician/work_order_document"
- //   case sendMessageChat = "api/technician/send-message"
 }
 
 typealias actionWithServiceResponse = ((_ serviceResponse: [String:Any])-> Void)
@@ -307,34 +306,7 @@ class WebAPI {
                 "cache-control": "no-cache"
             ]
             request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
-        //    request.httpBody = jsonData
 
-          request.allHTTPHeaderFields = headers
-//            Alamofire.upload(multipartFormData: { multipartFormData in
-//                for (key, value) in parameters {
-//
-//                        multipartFormData.append((value as! String).data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))! ,  withName: key)
-//
-//                }
-//
-//            }, with: request, encodingCompletion: {
-//                encodingResult in
-//                switch encodingResult {
-//                case .success(let upload, _,_):
-//                    upload.responseJSON { response in
-//                        print(response)
-//                        AListAlertController.shared.presentAlertController(message: "Your profile updated successfully.", completionHandler: nil)
-//                     self.progressHUD.hide(animated: true)
-//                    }
-//                case .failure(let encodingError):
-//                    // hide progressbas here
-//                    print("ERROR RESPONSE: \(encodingError)")
-//                      self.progressHUD.hide(animated: true)
-//                }
-//            })
-            
-            
-            
             Alamofire.upload(multipartFormData:{ multipartFormData in
                 for (key, value) in parameters {
                     
@@ -377,9 +349,7 @@ class WebAPI {
                         
                     }
                 }
-              
-            
-
+    
         }
         , with: request, encodingCompletion: {
                     encodingResult in
@@ -399,91 +369,7 @@ class WebAPI {
     }
     }
  
-    private func createBodyWithParametersDocuments(media:[[String:AnyObject]]!, parameters: [String: AnyObject]?, boundary: String) -> Data {
-        var body = Data()
-
-        if parameters != nil {
-            for (key, value) in parameters! {
-                body.appendString(string: "\(key)")
-                body.appendString(string: "\(value)")
-            }
-        }
-
-        var fileName = String()
-        var fileData : NSData?
-
-        if media?.count != 0
-        {
-            for fileType in 0...media.count-1
-            {
-                if ((media[fileType] as [String:AnyObject])["resume"] as? NSData) != nil
-                {
-                        fileName = ((media[fileType] as [String:AnyObject])["fileName"] as! String)
-                        fileData = ((media[fileType] as [String:AnyObject])["resume"] as! NSData)
-                        body.appendString(string: "--\(boundary)\r\n")
-                        body.appendString(string: "Content-Disposition: form-data; name=\"resume\"; filename=\"\(fileName)\"\r\n")
-                        body.appendString(string: "Content-Type: application/pdf\r\n\r\n")
-                        body.append(fileData! as Data)
-                        body.appendString(string: "\r\n")
-                }
-                if ((media[fileType] as [String:AnyObject])["general_liability_insuarance"] as? NSData) != nil
-                {
-                    fileName = ((media[fileType] as [String:AnyObject])["fileName"] as! String)
-                     fileData = ((media[fileType] as [String:AnyObject])["general_liability_insuarance"] as! NSData)
-                    body.appendString(string: "--\(boundary)\r\n")
-                    body.appendString(string: "Content-Disposition: form-data; name=\"general_liability_insuarance\"; filename=\"\(fileName)\"\r\n")
-                    body.append(fileData! as Data)
-                 //   body.appendString(string: "Content-Type: multipart/form-data; boundary= \(boundary)")
-                    body.appendString(string: "\r\n")
-                }
-                if ((media[fileType] as [String:AnyObject])["drug_test_certificate"] as? NSData) != nil
-                {
-                    fileName = ((media[fileType] as [String:AnyObject])["fileName"] as! String)
-                     fileData = ((media[fileType] as [String:AnyObject])["drug_test_certificate"] as! NSData)
-                    body.appendString(string: "--\(boundary)\r\n")
-                    body.appendString(string: "Content-Disposition: form-data; name=\"drug_test_certificate\"; filename=\"\(fileName)\"\r\n")
-                    body.append(fileData! as Data)
-                    body.appendString(string: "\r\n")
-                }
-
-            }
-
-        }
-
-        body.appendString(string: "--\(boundary)--\r\n")
-
-        return body
-    }
-  
-    
-    public func callMultipartWebApiDocumentDetails(_ api: API, withHTTPMethod method: HTTPMethod, postMedia media:[[String:AnyObject]]!,postMediaType mediaType : multipartyMediaType?, forPostParameters parameters: [String:Any]!,shouldIncludeAuthorizationHeader authorizationHeaderFlag: Bool,actionAfterServiceResponse completionHandler: @escaping actionWithServiceResponse)
-    {
-        guard checkForNetworkConnectivity() else {
-            return
-        }
-        self.showHUD()
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
-        userInitiatedGlobalQueue.async {
-            var request = URLRequest(url: URL(string: "\(self.baseurl)\(api.rawValue)")!)
-            request.httpMethod = method.rawValue
-            let boundary = self.generateBoundaryString()
-            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-            if(media != nil)
-            {
-                request.httpBody = self.createBodyWithParametersDocuments(media: media, parameters: parameters! as [String : AnyObject], boundary: boundary) as Data
-            //    request.httpBody = self.createBodyWithParameters(parameters: parameters as [String : AnyObject], filePathKey: "image", mimeType: mediaType!, imageDataKey: media!, boundary: boundary) as Data
-            }
-            
-            
-            if authorizationHeaderFlag {
-                request.addValue(UserDefaults.standard.object(forKey: "token") as! String, forHTTPHeaderField: "Authorization")
-            }
-            self.callWebServiceWithRequest(request, actionAfterServiceResponse: completionHandler)
-        }
-    }
-    
-  
+ 
         func download() {
             let downloadUrl = String()
             let destination: DownloadRequest.DownloadFileDestination = { _, _ in
@@ -577,10 +463,7 @@ extension WebAPI {
     // check for internet access
     fileprivate func checkForNetworkConnectivity() -> Bool {
         guard self.currentReachabilityStatus != .notReachable else {
-//            let alertController = UIAlertController(title: "TrenderAlert", message: "Please check your internet connection !", preferredStyle: UIAlertControllerStyle.alert)
-//            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in })
-//            alertController.addAction(okAction)
-//            UIApplication.shared.keyWindow!.rootViewController!.present(alertController, animated: true, completion: nil)
+
             AListAlertController.shared.presentAlertController(title: "Connection Problem", message: "Please check your internet connection !", completionHandler: nil)
             return false
         }

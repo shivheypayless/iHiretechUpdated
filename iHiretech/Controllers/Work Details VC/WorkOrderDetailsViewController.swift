@@ -185,17 +185,21 @@ class WorkOrderDetailsViewController: UIViewController , UIWebViewDelegate{
     }
     
     @IBAction func btn_SendMessageAction(_ sender: UIButton) {
-        
+        self.view.endEditing(true)
         guard !txtSendMsg.text!.isEmpty else {
             return
         }
         let param = ["message": txtSendMsg.text!] as [String:Any]
         SocketIOManager.sharedInstance.sendDataToEvent(.message, data: param)
-      //  var parameter = ["to_id" : self.sendMessageId,
-    //                     "work_order_id" : self.workOrderId,
-  //      "message": txtSendMsg.text!] as! [String:AnyObject]
-        txtSendMsg.text = nil
+        let parameter = ["to_id" : self.sendMessageId,
+                         "work_order_id" : self.workOrderId,
+                         "message": txtSendMsg.text!] as [String:AnyObject]
         
+        WebAPI().callJSONWebApi(API.sendMessageChat, withHTTPMethod: .post, forPostParameters: parameter, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
+            print(serviceResponse)
+        })
+        
+        txtSendMsg.text = nil
     }
     
 }
@@ -330,7 +334,6 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
             else if self.tabsTag == 2
          {
              return !isTyping ? self.chatHistory.count : self.chatHistory.count + 1
-            return self.chatHistory.count
          }
             else if self.tabsTag == 3
          {
@@ -407,7 +410,16 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
             }
             }
             cell.btnCustomerDetails.addTarget(self, action: #selector(self.CustomerRatingDetail(_ :)), for: .touchUpInside)
-          
+            cell.btnChat.addTarget(self, action: #selector(self.btnChatView(_ :)), for: .touchUpInside)
+            if (((self.getWorkListData)["created_by"]) as? String) !=  (((self.getWorkListData)["manager_id"]) as? String)
+            {
+                cell.btnChatWithManager.isHidden = false
+                cell.btnChatWithManager.addTarget(self, action: #selector(self.btnChatView(_ :)), for: .touchUpInside)
+            }
+            else
+            {
+                cell.btnChatWithManager.isHidden = true
+            }
             return cell
         }
         else if indexPath.section == 2
@@ -472,17 +484,14 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
     }
         else if self.tabsTag == 2
        {
+        
         if (UserDefaults.standard.object(forKey: "SocketId") as? String)! == (chatHistory[indexPath.row]["from_id"] as? String)!
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "OwnerTableViewCell", for: indexPath) as! OwnerTableViewCell
          //     cell.lblText.text = self.conversation[indexPath.row]
             cell.lblText.text = (chatHistory[indexPath.row]["msg_string"] as? String)!
              self.sendMessageId = (chatHistory[indexPath.row]["to_id"] as? String)!
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            let date = dateFormatter.date(from: ((self.chatHistory[indexPath.row])["created_at"] as! String))!
-            dateFormatter.dateFormat = "MM/dd/yyyy HH:mm a"
-            cell.lblTime.text = dateFormatter.string(from: date)
+            cell.lblTime.text = UTCToLocal(date: ((self.chatHistory[indexPath.row])["created_at"] as! String))
             return cell
         }
         else
@@ -490,11 +499,12 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
             let cell = tableView.dequeueReusableCell(withIdentifier: "OtherUserTableViewCell", for: indexPath) as! OtherUserTableViewCell
           //   cell.lblText.text = self.conversation[indexPath.row]
             cell.lblText.text = (chatHistory[indexPath.row]["msg_string"] as? String)!
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            let date = dateFormatter.date(from: ((self.chatHistory[indexPath.row])["created_at"] as! String))!
-            dateFormatter.dateFormat = "MM/dd/yyyy HH:mm a"
-            cell.lblTime.text = dateFormatter.string(from: date)
+        //    let dateFormatter = DateFormatter()
+         //   dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+          //  let date = dateFormatter.date(from: ((self.chatHistory[indexPath.row])["created_at"] as! String))!
+       //     dateFormatter.dateFormat = "MM/dd/yyyy HH:mm a"
+         //   cell.lblTime.text = dateFormatter.string(from: date)
+            cell.lblTime.text = UTCToLocal(date: ((self.chatHistory[indexPath.row])["created_at"] as! String))
      //       self.sendMessageId = (chatHistory[indexPath.row]["to_id"] as? String)!
             return cell
         }
@@ -667,7 +677,11 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
     }
     else if self.tabsTag == 2
     {
-        return nil
+         let headerViewArray = Bundle.main.loadNibNamed("ChatUserView", owner: self, options: nil)?[0] as! UIView
+        let information = self.chatDetails["chatWith"] as! [String:Any]
+       (headerViewArray.viewWithTag(2) as! UILabel).text = ((information)["first_name"] as? String)!+" "+((information)["last_name"] as? String)!
+       //(headerViewArray.viewWithTag(1) as! UIImageView).image = UIImage(named : "img_CheckReminder")
+        return headerViewArray
     }
     else if self.tabsTag == 3
     {
@@ -694,7 +708,7 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
             (headerViewArray.viewWithTag(5) as! UILabel).text = ((information)["checkin_time"] as? String)!
         }
         (headerViewArray.viewWithTag(2) as! UIButton).layer.cornerRadius = 3
-       (headerViewArray.viewWithTag(2) as! UIButton).layer.masksToBounds = true
+        (headerViewArray.viewWithTag(2) as! UIButton).layer.masksToBounds = true
         (headerViewArray.viewWithTag(7) as! UIView).layer.borderWidth = 1
         (headerViewArray.viewWithTag(7) as! UIView).layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
         (headerViewArray.viewWithTag(8) as! UIView).layer.borderWidth = 1
@@ -762,7 +776,7 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
         if self.tabsTag == 4 && section == 1
         {
            let headerViewArray = Bundle.main.loadNibNamed("ExpensesFooterView", owner: self, options: nil)?[0] as! UIView
-             (headerViewArray.viewWithTag(1) as! UIView).layer.borderWidth = 1
+            (headerViewArray.viewWithTag(1) as! UIView).layer.borderWidth = 1
             (headerViewArray.viewWithTag(1) as! UIView).layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
             (headerViewArray.viewWithTag(2) as! UILabel).text = "$ \((self.chatDetails)["total_expenses"] as! Double)"
             (headerViewArray.viewWithTag(3) as! UILabel).text = "$ \(String((self.chatDetails)["total_expenses_excess"] as! Double))"
@@ -831,7 +845,7 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
          }
          else if self.tabsTag == 2
          {
-            return 0
+            return 70.0
          }
         else
         {
@@ -895,48 +909,7 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
         }
     }
     
-    @objc func extendSection(_ sender : UIGestureRecognizer)
-    {
-        // self.collapsableTableView.reloadData()
-        let section = sender.view!.tag
-        print(section)
-            self.tblListing.beginUpdates()
-            let shouldCollapse: Bool = collapsedSections.contains(section)
-            if shouldCollapse
-            {
-                (sender.view!.viewWithTag(2) as! UIImageView).image = UIImage(named: "plus")
-                (sender.view!.viewWithTag(2) as! UIImageView).layoutIfNeeded()
-                let numOfRows = tblListing.numberOfRows(inSection: section)
-                let indexPaths:[NSIndexPath] = self.indexPathsForSection(section: section, withNumberOfRows: numOfRows)
-                self.tblListing.deleteRows(at: indexPaths as [IndexPath], with: .fade)
-                collapsedSections.add(section)
-            }
-            else
-            {
-                (sender.view!.viewWithTag(2) as! UIImageView).image = UIImage(named: "minus")
-                (sender.view!.viewWithTag(2) as! UIImageView).layoutIfNeeded()
-                 let numOfRows = tblListing.numberOfRows(inSection: section)
-                let indexPaths: [NSIndexPath] = self.indexPathsForSection(section: section, withNumberOfRows: numOfRows)
-                self.tblListing.insertRows(at: indexPaths as [IndexPath], with: .fade)
-                collapsedSections.remove(section)
-                print(collapsedSections)
-            }
-            self.tblListing.reloadData()
-         //   self.tblListing.endUpdates()
-    }
-    
-  
-    
-    func indexPathsForSection(section: Int, withNumberOfRows numberOfRows: Int) -> [NSIndexPath] {
-        var indexPaths: [NSIndexPath] = [NSIndexPath]()
-        for i in 0..<numberOfRows {
-            let indexPath: NSIndexPath = NSIndexPath(row: i, section: section)
-            indexPaths.append(indexPath)
-        }
-        print(indexPaths)
-        return indexPaths
-        
-    }
+
     
     @objc func DatePickerToDate(_ sender : UIGestureRecognizer)
     {
@@ -1357,7 +1330,6 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
         let parameter = ["id": ((self.documentList[sender.tag])["work_order_document_id"] as! Double)] as [String:Any]
         WebAPI().callJSONWebApi(API.downloadWorkOrderDocuments, withHTTPMethod: .get, forPostParameters: parameter, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
-            
         })
         
     }
@@ -1378,6 +1350,15 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.present(nav, animated: false, completion: nil)
      //   self.navigationController?.pushViewController(nav, animated: false)
+    }
+    
+    @objc func btnChatView(_ sender: UIButton)
+    {
+        self.tabsTag = 2
+         self.tabsCollectionView.reloadData()
+        self.cnstViewChatBottom.constant = 0
+        getChatHistory()
+       
     }
     
 }
@@ -1412,16 +1393,34 @@ extension WorkOrderDetailsViewController: SocketIOManagerDelegate {
 //        }
     }
     
-    func messageReceived(_ data: [String : Any]) {
+    func messageReceived(_ data: String) {
         print(data)
-      //  let orderId = (data["work_order_id"] as! [[String:String]]).first!
-        let chatMessage: [String:Any] = [
-            "to_id": "",
-            "work_order_id": data["work_order_id"] as! String,
-            "message": data["message"] as! String,]
-        chatHistory.append(chatMessage as AnyObject)
+        let chatMessage = convertToDictionary(text: data)! as [String:AnyObject]
+        print(chatMessage)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        var orderId = String()
+        if chatMessage["work_order_id"] is String
+        {
+            orderId = chatMessage["work_order_id"] as! String
+        }
+        else
+        {
+            orderId = String(describing: chatMessage["work_order_id"] as! Int)
+        }
+        if orderId == String(self.workOrderId)
+        {
+       let chat = [
+            "msg_string": chatMessage["message"] as! String,
+            "from_id" : chatMessage["msgFrom"] as! String,
+            "to_id" : chatMessage["msgTo"] as! String,
+            "created_at" : dateFormatter.string(from: Date()),
+        //    "work_order_id" : chatMessage["work_order_id"] as! Int
+        ] as [String : Any]
+        self.chatHistory.append(chat as AnyObject as AnyObject)
+        print(self.chatHistory)
           let indexPaths = self.tblListing.indexPathsForVisibleRows?.sorted(by: { $0.row < $1.row })
-        chatHistory.append(chatMessage as AnyObject)
+          
         self.tblListing.reloadData()
         guard let lastIndexPath = indexPaths?.last  else {
             return
@@ -1430,11 +1429,35 @@ extension WorkOrderDetailsViewController: SocketIOManagerDelegate {
             return
         }
         self.tblListing.scrollToRow(at: IndexPath(row: lastIndexPath.row + 1, section: 0) , at: .bottom, animated: false)
+        }
     }
     
     @objc func textDidChange(_ sender: UITextField) {
       //  SocketIOManager.sharedInstance.sendDataToEvent(.typing, data: [:])
         print("Typing...")
+    }
+    
+    func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
+    }
+    
+    func UTCToLocal(date:String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        
+        let dt = dateFormatter.date(from: date)
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateFormat = "MM/dd/yyyy HH:mm a"
+        
+        return dateFormatter.string(from: dt!)
     }
     
 }

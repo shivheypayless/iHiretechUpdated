@@ -85,7 +85,7 @@ class ChatViewController: UIViewController {
             {
                 self.tblChat.reloadData()
             }
-            SocketIOManager.sharedInstance.socketIOManagerDelegate = self
+            //SocketIOManager.sharedInstance.socketIOManagerDelegate = self
             guard self.chatHistory.count > 0 else {
                 return
             }
@@ -140,7 +140,7 @@ class ChatViewController: UIViewController {
     }
     
     @objc func textDidChange(_ sender: UITextField) {
-        SocketIOManager.sharedInstance.sendDataToEvent(.typing, data: [:])
+      //  SocketIOManager.sharedInstance.sendDataToEvent(.typing, data: [:])
     }
     
 }
@@ -175,37 +175,37 @@ extension ChatViewController : UITableViewDataSource, UITableViewDelegate
     
 }
 
-extension ChatViewController: SocketIOManagerDelegate {
-    func usersTyping(_ data: [String : Any]) {
-        isTyping = true
-        timer?.invalidate()
-        if #available(iOS 10.0, *) {
-            timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (_) in
-                self.isTyping = false
-            })
-        } else {
-            // Fallback on earlier versions
-        }
-    }
-    
-    func messageReceived(_ data: [String : Any]) {
-        let recipient = (data["work_order_id"] as! [[String:String]]).first!
-        let chatMessage = [
-              "to_id": "",
-              "work_order_id": data["work_order_id"] as! String,
-              "message": data["message"] as! String]
-        let indexPaths = self.tblChat.indexPathsForVisibleRows?.sorted(by: { $0.row < $1.row })
-        chatHistory.append(chatMessage as AnyObject)
-        self.tblChat.reloadData()
-        guard let lastIndexPath = indexPaths?.last  else {
-            return
-        }
-        guard lastIndexPath.row == (isTyping ? chatHistory.count - 1 : chatHistory.count - 2) else {
-            return
-        }
-        self.tblChat.scrollToRow(at: IndexPath(row: lastIndexPath.row + 1, section: 0) , at: .bottom, animated: false)
-    }
-    
-  
-}
+//extension ChatViewController: SocketIOManagerDelegate {
+//    func usersTyping(_ data: [String : Any]) {
+//        isTyping = true
+//        timer?.invalidate()
+//        if #available(iOS 10.0, *) {
+//            timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (_) in
+//                self.isTyping = false
+//            })
+//        } else {
+//            // Fallback on earlier versions
+//        }
+//    }
+//    
+//    func messageReceived(_ data: [String:Any]) {
+////        let recipient = (data["work_order_id"] as! [[String:String]]).first!
+////        let chatMessage = [
+////              "to_id": "",
+////              "work_order_id": data["work_order_id"] as! String,
+////              "message": data["message"] as! String]
+//        let indexPaths = self.tblChat.indexPathsForVisibleRows?.sorted(by: { $0.row < $1.row })
+////        chatHistory.append(chatMessage as AnyObject)
+//        self.tblChat.reloadData()
+//        guard let lastIndexPath = indexPaths?.last  else {
+//            return
+//        }
+//        guard lastIndexPath.row == (isTyping ? chatHistory.count - 1 : chatHistory.count - 2) else {
+//            return
+//        }
+//        self.tblChat.scrollToRow(at: IndexPath(row: lastIndexPath.row + 1, section: 0) , at: .bottom, animated: false)
+//    }
+//    
+//  
+//}
 

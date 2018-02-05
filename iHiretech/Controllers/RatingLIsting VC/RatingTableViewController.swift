@@ -8,9 +8,10 @@
 
 import UIKit
 import KLCPopup
+import SWRevealViewController
 
 class RatingTableViewController: UITableViewController {
-    
+    var frmSrc = String()
      var appdelegate = UIApplication.shared.delegate as! AppDelegate
      var ratingList = [AnyObject]()
      var customerId = Int()
@@ -43,8 +44,6 @@ class RatingTableViewController: UITableViewController {
         
         getRatingList()
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,7 +110,18 @@ class RatingTableViewController: UITableViewController {
     
     @objc func btnbackAction()
     {
-        self.navigationController?.dismiss(animated: true, completion: nil)
+        if self.frmSrc == "LeftMenu"
+        {
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let destination = storyBoard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+            let nav = UINavigationController(rootViewController: destination)
+            nav.navigationBar.isHidden = true
+            self.revealViewController().setFront(nav, animated: true)
+        }
+        else
+        {
+            self.navigationController?.dismiss(animated: true, completion: nil)
+        }
        //  self.navigationController?.popViewController(animated: true)
     }
 

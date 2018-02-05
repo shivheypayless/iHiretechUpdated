@@ -112,6 +112,7 @@
 		84A30E0E1FA1BF10009FE20E /* Quicksand-Light_0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84368E821FA07F9000258F57 /* Quicksand-Light_0.ttf */; };
 		84A30E0F1FA1BF10009FE20E /* Quicksand-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84368E811FA07F9000258F57 /* Quicksand-Medium.ttf */; };
 		84A30E101FA1BF10009FE20E /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84368E801FA07F9000258F57 /* Quicksand-Regular.ttf */; };
+		84A7FCAD20244E8100235F03 /* ChatUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A7FCAC20244E3400235F03 /* ChatUserView.xib */; };
 		84A93FC81FA9E35900662040 /* PersonalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A93FC71FA9E35800662040 /* PersonalDetailsViewController.swift */; };
 		84A93FCB1FA9E3D000662040 /* ProfessionalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A93FCA1FA9E3D000662040 /* ProfessionalDetailsViewController.swift */; };
 		84B3D307200CDEAE007FBF46 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B3D306200CDEAE007FBF46 /* MapKit.framework */; };
@@ -289,6 +290,7 @@
 		847EADB91FB0726400238C3C /* GoogleService-Info-2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-2.plist"; sourceTree = "<group>"; };
 		8490D5EF1FB2D5AF00623553 /* ResendOtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendOtpViewController.swift; sourceTree = "<group>"; };
 		8490D5F21FB2E20B00623553 /* RootNavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavViewController.swift; sourceTree = "<group>"; };
+		84A7FCAC20244E3400235F03 /* ChatUserView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatUserView.xib; sourceTree = "<group>"; };
 		84A93FC71FA9E35800662040 /* PersonalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDetailsViewController.swift; sourceTree = "<group>"; };
 		84A93FCA1FA9E3D000662040 /* ProfessionalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionalDetailsViewController.swift; sourceTree = "<group>"; };
 		84B3D2FD200CB45F007FBF46 /* BackgroundTaskManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BackgroundTaskManager.h; sourceTree = "<group>"; };
@@ -826,6 +828,7 @@
 				8459E7301FA8685B0081915E /* OtherUserTableViewCell.swift */,
 				8459E7311FA8685B0081915E /* OtherUserTableViewCell.xib */,
 				84EED3A2201F368E00C799AD /* SendMessageFooterView.xib */,
+				84A7FCAC20244E3400235F03 /* ChatUserView.xib */,
 			);
 			path = "Chat VC";
 			sourceTree = "<group>";
@@ -1090,6 +1093,7 @@
 				8463A9FC2015BB7400702C9C /* TaskListTableViewCell.xib in Resources */,
 				8450AAD22003806300675996 /* ExpensesListTableViewCell.xib in Resources */,
 				846F39EB200BCAC400444853 /* SearchServiceTableViewCell.xib in Resources */,
+				84A7FCAD20244E8100235F03 /* ChatUserView.xib in Resources */,
 				8450AAB71FFBA42700675996 /* ScheduleInformationTableViewCell.xib in Resources */,
 				8459E71F1FA83BE70081915E /* MapTableViewCell.xib in Resources */,
 				8450AAAB1FFBA0B300675996 /* LocationInformationTableViewCell.xib in Resources */,
