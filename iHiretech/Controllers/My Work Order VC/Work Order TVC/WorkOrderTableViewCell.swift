@@ -26,6 +26,19 @@ class WorkOrderTableViewCell: UITableViewCell {
      var appdelegate = UIApplication.shared.delegate as! AppDelegate
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.btnCancel.layer.cornerRadius = 3
+        self.btnCancel.layer.masksToBounds = true
+        self.btnCancel.layer.borderWidth = 1
+        self.btnCancel.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
+        self.btnDetailView.layer.cornerRadius = 3
+        self.btnDetailView.layer.masksToBounds = true
+        self.btnDetailView.layer.borderWidth = 1
+        self.btnDetailView.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
+        self.btnPrint.layer.cornerRadius = 3
+        self.btnPrint.layer.masksToBounds = true
+        self.btnPrint.layer.borderWidth = 1
+        self.btnPrint.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
         self.viewSearch.layer.cornerRadius = 3
         self.viewSearch.layer.masksToBounds = true
         self.viewSearch.layer.borderWidth = 1

@@ -503,31 +503,6 @@ class WebAPI {
             })
     }
     }
- 
- 
-      
-  
-        
-  func load(URL: NSURL) {
-        let sessionConfig = URLSessionConfiguration.default
-        let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
-        let request = NSMutableURLRequest(url: URL as URL)
-        request.httpMethod = "GET"
-       //   let dataTask = defaultSession.dataTask(with: request) { (data, response, error) in
-        let task = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) in
-            if (error == nil) {
-                // Success
-                let statusCode = (response as! HTTPURLResponse).statusCode
-                print("Success: \(statusCode)")
-           
-            }
-            else {
-                // Failure
-                print("Failure: %@", error?.localizedDescription);
-            }
-        })
-        task.resume()
-    }
     
 
 }

@@ -140,6 +140,7 @@
 		84E3C8471FA218B700887105 /* LeftMenuOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E3C8461FA218B700887105 /* LeftMenuOptionTableViewCell.swift */; };
 		84E3C8491FA2227600887105 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E3C8481FA2227600887105 /* HeaderView.xib */; };
 		84EED3A3201F368E00C799AD /* SendMessageFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EED3A2201F368E00C799AD /* SendMessageFooterView.xib */; };
+		84FD4F2D202B59E3008EEDFA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84FD4F2C202B59E3008EEDFA /* Images.xcassets */; };
 		84FFD81E1FA3554100C0D67C /* TextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FFD81D1FA3554100C0D67C /* TextFieldView.xib */; };
 		84FFD8201FA357DE00C0D67C /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFD81F1FA357DE00C0D67C /* TextFieldView.swift */; };
 		84FFD8271FA3737200C0D67C /* WorkOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFD8251FA3737200C0D67C /* WorkOrderTableViewCell.swift */; };
@@ -332,6 +333,7 @@
 		84E3C8461FA218B700887105 /* LeftMenuOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuOptionTableViewCell.swift; sourceTree = "<group>"; };
 		84E3C8481FA2227600887105 /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		84EED3A2201F368E00C799AD /* SendMessageFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendMessageFooterView.xib; sourceTree = "<group>"; };
+		84FD4F2C202B59E3008EEDFA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		84FFD81D1FA3554100C0D67C /* TextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldView.xib; sourceTree = "<group>"; };
 		84FFD81F1FA357DE00C0D67C /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		84FFD8251FA3737200C0D67C /* WorkOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkOrderTableViewCell.swift; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 				847EADB91FB0726400238C3C /* GoogleService-Info-2.plist */,
 				8403A6C31FA0610200222ED9 /* iHiretech.xcdatamodeld */,
 				84580A161FF12E6E00A7FCBF /* iHiretech-Bridging-Header.h */,
+				84FD4F2C202B59E3008EEDFA /* Images.xcassets */,
 			);
 			path = iHiretech;
 			sourceTree = "<group>";
@@ -1154,6 +1157,7 @@
 				8459E7331FA8685B0081915E /* OtherUserTableViewCell.xib in Resources */,
 				8403A6C21FA0610200222ED9 /* Main.storyboard in Resources */,
 				84FFD81E1FA3554100C0D67C /* TextFieldView.xib in Resources */,
+				84FD4F2D202B59E3008EEDFA /* Images.xcassets in Resources */,
 				8459E7381FA88F530081915E /* EditTextView.xib in Resources */,
 				84580A041FEBD59200A7FCBF /* LocationWindowView.xib in Resources */,
 			);
@@ -1470,6 +1474,7 @@
 			baseConfigurationReference = 2F2825D3BFA436721DE465AA /* Pods-iHiretech.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = iHiretech/iHiretech.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1486,7 +1491,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "iHiretech/iHiretech-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1495,6 +1500,7 @@
 			baseConfigurationReference = 53C8F7E7EB4999859BA465CA /* Pods-iHiretech.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = iHiretech/iHiretech.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1510,7 +1516,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "iHiretech/iHiretech-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
