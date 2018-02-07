@@ -47,13 +47,8 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
          self.statusTableCnst.constant = 0
          self.milesTableCnst.constant = 0
         
-        let button2 =  UIBarButtonItem(image: UIImage(named: "img_Notification"), style: .plain, target: self, action: #selector(SearchWorkOrderTableViewController.btnNotificationAction))
-        
-        let button3 =  UIBarButtonItem(image: UIImage(named: "img_Chat"), style: .plain, target: self, action: #selector(SearchWorkOrderTableViewController.btnChatAction))
-        
         let button4 =  UIBarButtonItem(image: UIImage(named: "img_Back"), style: .plain, target: self, action: #selector(SearchWorkOrderTableViewController.btnbackAction))
 
-        self.navigationItem.setRightBarButtonItems([button2,button3], animated: true)
         self.navigationItem.leftBarButtonItem = button4
         self.tableView.register(UINib(nibName: "SearchOrderTableViewCell", bundle: nil) , forCellReuseIdentifier: "SearchOrderTableViewCell")
         self.tableView.register(UINib(nibName: "WorkOrderTableViewCell", bundle: nil) , forCellReuseIdentifier: "WorkOrderTableViewCell")
@@ -189,20 +184,7 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
         self.navigationController?.pushViewController(nav, animated: false)
     }
     
-    @objc func btnChatAction(_ sender: UIButton)
-    {
-        let nav = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionFade
-        self.navigationController?.view.layer.add(transition, forKey: nil)
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.pushViewController(nav, animated: false)
-    }
-    
+  
     @objc func btnbackAction()
     {
         let destination = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
@@ -318,15 +300,13 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
                    cell.lblRouted.isHidden = true
                     
                       cell.btnDetailView.tag = indexPath.row
-
+                    
                     if ((self.getSearchListDetails[indexPath.row])["tech_applied_status"] as? String) != nil
                     {
                         let image = UIImage(named: "img_ApplyOrder")
                         cell.btnDetailView.setImage(image, for: .normal)
                         cell.btnDetailView.addTarget(self, action: #selector(self.btnApplyAlready(_:)), for: .touchUpInside)
-                        
                     }
-                  
                     else
                     {
                         let image = UIImage(named: "img_Apply")
@@ -336,10 +316,16 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
                     }
                     
                      cell.btnCancel?.removeFromSuperview()
-                  
+                   //  cell.btnPrint?.removeFromSuperview()
                     let detail = UIImage(named: "img_View")
                     cell.btnPrint.setImage(detail, for: .normal)
                     cell.btnPrint.addTarget(self, action: #selector(self.btnViewAction(_:)), for: .touchUpInside)
+                    
+                    if indexPath.row == self.getSearchListDetails.count - 1 { // last cell
+                        //if totalItems > privateList.count { //removing totalItems for always service call
+                        loadMoreItems()
+                        //}
+                    }
                 }
                 return cell
             }
@@ -755,6 +741,24 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
     @objc func btnApplyAlready(_ sender : UIButton)
     {
         AListAlertController.shared.presentAlertController(message: "You have already applied for this Work Order.", completionHandler: nil)
+    }
+    
+    func loadMoreItems()
+    {
+        if !((self.getWorkListData)["next_page_url"] is NSNull)
+        {
+            WebAPI().callJSONWebApiPagination("\((self.getWorkListData)["next_page_url"] as! String)", withHTTPMethod: .post, forPostParameters: nil, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
+                print(serviceResponse)
+                let data = serviceResponse["data"] as? [String:Any]
+                self.getWorkListData = data!["work_orders"] as! [String:Any]
+                self.getStatusName = data!["statuses"] as! [AnyObject]
+                self.getSearchListDetails = self.getWorkListData["data"] as! [AnyObject]
+                self.getSearchListDetails.append(contentsOf: self.getWorkListData["data"] as! [AnyObject])
+                self.tableView.dataSource = self
+                self.tableView.delegate = self
+                self.tableView.reloadData()
+            })
+        }
     }
 
 }

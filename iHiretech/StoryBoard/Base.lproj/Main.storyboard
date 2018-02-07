@@ -896,20 +896,6 @@
                         <barButtonItem key="leftBarButtonItem" image="img_Menu" id="quG-kF-bTG">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem image="img_Notification" id="r1F-lA-z8W">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="btn_NotificationAction:" destination="lT8-Gi-Hdl" id="yOA-zt-Idz"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="img_Chat" id="h54-3K-Z4t">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="btn_ChatAction:" destination="lT8-Gi-Hdl" id="kEv-a6-M4x"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="btnMenuAction" destination="quG-kF-bTG" id="sGU-7X-61y"/>
@@ -953,12 +939,6 @@
                                 <action selector="btn_BackAction:" destination="nfr-es-MrS" id="Ojb-8r-lOj"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="img_Chat" id="uKX-dI-lHB">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="btn_ChatAction:" destination="nfr-es-MrS" id="gFV-yS-2Nx"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
@@ -977,67 +957,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1x6-hP-Sid">
-                                <rect key="frame" x="8" y="76" width="359" height="513.5"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1x6-hP-Sid">
+                                <rect key="frame" x="8" y="76" width="359" height="583"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="7dP-8e-nPJ" id="sJ1-eL-Ccs"/>
-                                    <outlet property="delegate" destination="7dP-8e-nPJ" id="MQw-qW-EhL"/>
-                                </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4lF-Qt-QNb">
-                                <rect key="frame" x="0.0" y="605.5" width="375" height="61.5"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xqb-E0-UeK">
-                                        <rect key="frame" x="337" y="16" width="30" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="Xqb-E0-UeK" secondAttribute="height" multiplier="1:1" id="SH2-7f-LI9"/>
-                                            <constraint firstAttribute="height" constant="30" id="iAa-Jl-5Yf"/>
-                                        </constraints>
-                                        <state key="normal" backgroundImage="img_sendChat"/>
-                                        <connections>
-                                            <action selector="btn_SendMessage:" destination="7dP-8e-nPJ" eventType="touchUpInside" id="cEl-Yn-6Tn"/>
-                                        </connections>
-                                    </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n0n-UY-o5D">
-                                        <rect key="frame" x="57" y="12" width="264" height="37.5"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAg-2U-NcX">
-                                        <rect key="frame" x="8" y="19" width="33" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="YAg-2U-NcX" secondAttribute="height" multiplier="1:1" constant="8" id="jg1-YE-m5q"/>
-                                            <constraint firstAttribute="height" constant="25" id="p3v-gH-tLa"/>
-                                        </constraints>
-                                        <state key="normal" backgroundImage="img_Camera"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="n0n-UY-o5D" secondAttribute="bottom" constant="12" id="2dZ-cB-ndW"/>
-                                    <constraint firstItem="YAg-2U-NcX" firstAttribute="leading" secondItem="4lF-Qt-QNb" secondAttribute="leading" constant="8" id="2pS-ZO-bBu"/>
-                                    <constraint firstItem="n0n-UY-o5D" firstAttribute="top" secondItem="4lF-Qt-QNb" secondAttribute="top" constant="12" id="5tO-Xz-UYs"/>
-                                    <constraint firstItem="Xqb-E0-UeK" firstAttribute="leading" secondItem="n0n-UY-o5D" secondAttribute="trailing" constant="16" id="6uJ-ST-kci"/>
-                                    <constraint firstItem="n0n-UY-o5D" firstAttribute="centerY" secondItem="4lF-Qt-QNb" secondAttribute="centerY" id="CdG-7F-3s1"/>
-                                    <constraint firstItem="n0n-UY-o5D" firstAttribute="leading" secondItem="YAg-2U-NcX" secondAttribute="trailing" constant="16" id="DzH-Bk-7gq"/>
-                                    <constraint firstAttribute="trailing" secondItem="Xqb-E0-UeK" secondAttribute="trailing" constant="8" id="NkP-OA-9UN"/>
-                                    <constraint firstItem="YAg-2U-NcX" firstAttribute="centerY" secondItem="4lF-Qt-QNb" secondAttribute="centerY" id="lmQ-Rz-Jh4"/>
-                                    <constraint firstItem="Xqb-E0-UeK" firstAttribute="centerY" secondItem="4lF-Qt-QNb" secondAttribute="centerY" id="uJU-Jl-zq0"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="4lF-Qt-QNb" firstAttribute="bottom" secondItem="wHT-fl-dnZ" secondAttribute="bottom" id="00i-aV-9mx"/>
-                            <constraint firstItem="4lF-Qt-QNb" firstAttribute="height" secondItem="M0B-Nu-KgK" secondAttribute="height" multiplier="0.092" id="8By-eN-4eq"/>
                             <constraint firstItem="wHT-fl-dnZ" firstAttribute="trailing" secondItem="1x6-hP-Sid" secondAttribute="trailing" constant="8" id="CgQ-K7-dSD"/>
-                            <constraint firstItem="4lF-Qt-QNb" firstAttribute="top" secondItem="1x6-hP-Sid" secondAttribute="bottom" constant="16" id="Ed7-mY-Qc6"/>
-                            <constraint firstItem="4lF-Qt-QNb" firstAttribute="trailing" secondItem="wHT-fl-dnZ" secondAttribute="trailing" id="Evd-Wf-QbQ"/>
                             <constraint firstItem="1x6-hP-Sid" firstAttribute="leading" secondItem="wHT-fl-dnZ" secondAttribute="leading" constant="8" id="bgU-2E-wUE"/>
-                            <constraint firstItem="4lF-Qt-QNb" firstAttribute="leading" secondItem="wHT-fl-dnZ" secondAttribute="leading" id="mq3-v4-iCc"/>
                             <constraint firstItem="1x6-hP-Sid" firstAttribute="top" secondItem="wHT-fl-dnZ" secondAttribute="top" constant="12" id="w5n-Cd-djS"/>
+                            <constraint firstItem="wHT-fl-dnZ" firstAttribute="bottom" secondItem="1x6-hP-Sid" secondAttribute="bottom" constant="8" id="xEt-ze-WPg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wHT-fl-dnZ"/>
                     </view>
@@ -1048,16 +978,9 @@
                                 <action selector="btn_backAction:" destination="7dP-8e-nPJ" id="BY2-VQ-o1G"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="img_Notification" id="lCa-Or-452">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="btn_NotificationAction:" destination="7dP-8e-nPJ" id="iPB-7t-ISS"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="chatTextField" destination="n0n-UY-o5D" id="QHu-Eo-fis"/>
                         <outlet property="tblChat" destination="1x6-hP-Sid" id="TF4-OW-7It"/>
                     </connections>
                 </viewController>
@@ -1390,20 +1313,6 @@
                                 <action selector="btn_BackAction:" destination="qgz-1K-mTU" id="VXS-VI-ybT"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem image="img_Notification" id="ttI-Ik-XBg">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="btn_NotificationAction:" destination="qgz-1K-mTU" id="q6v-rB-fch"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="img_Chat" id="SO3-xQ-H7E">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="btn_ChatAction:" destination="qgz-1K-mTU" id="3JH-eg-lh1"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
@@ -2204,20 +2113,6 @@
                                 <action selector="btn_BackAction:" destination="HRe-Xi-NKu" id="Dad-Qr-hIj"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem image="img_Notification" id="17F-7z-JSS">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="btn_NotifcationAction:" destination="HRe-Xi-NKu" id="Lfp-Ml-SfO"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="img_Chat" id="6ol-bD-GAy">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="btn_ChatAction:" destination="HRe-Xi-NKu" id="imK-Mf-O8J"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
@@ -2299,10 +2194,6 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="0jW-YG-dgm" id="s62-lA-BY6"/>
-                                    <outlet property="delegate" destination="0jW-YG-dgm" id="gTD-NV-Ri8"/>
-                                </connections>
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="f4Q-aE-rNB">
                                 <rect key="frame" x="0.0" y="202" width="375" height="418.5"/>
@@ -2322,12 +2213,24 @@
                                             <action selector="btn_SendMessageAction:" destination="0jW-YG-dgm" eventType="touchUpInside" id="jrQ-I9-hfV"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0V5-SI-94g">
-                                        <rect key="frame" x="57" y="12" width="264" height="22.5"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cYd-7S-99b">
+                                        <rect key="frame" x="49" y="6" width="280" height="34.5"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0V5-SI-94g">
+                                                <rect key="frame" x="8" y="8" width="264" height="18"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="0V5-SI-94g" secondAttribute="bottom" constant="8" id="JgJ-fn-RZ6"/>
+                                            <constraint firstItem="0V5-SI-94g" firstAttribute="leading" secondItem="cYd-7S-99b" secondAttribute="leading" constant="8" id="Wdc-8e-oas"/>
+                                            <constraint firstItem="0V5-SI-94g" firstAttribute="top" secondItem="cYd-7S-99b" secondAttribute="top" constant="8" id="xXc-tI-bno"/>
+                                            <constraint firstAttribute="trailing" secondItem="0V5-SI-94g" secondAttribute="trailing" constant="8" id="zjZ-Y7-2gv"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PMv-7e-b6o">
                                         <rect key="frame" x="8" y="11" width="33" height="25"/>
                                         <constraints>
@@ -2342,15 +2245,14 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="0V5-SI-94g" secondAttribute="bottom" constant="12" id="1Cx-05-Syn"/>
-                                    <constraint firstItem="0V5-SI-94g" firstAttribute="leading" secondItem="PMv-7e-b6o" secondAttribute="trailing" constant="16" id="FiE-Gh-dpL"/>
-                                    <constraint firstItem="0V5-SI-94g" firstAttribute="centerY" secondItem="TTl-WZ-ZZU" secondAttribute="centerY" id="HUd-ln-u90"/>
-                                    <constraint firstItem="sdj-c4-eGd" firstAttribute="leading" secondItem="0V5-SI-94g" secondAttribute="trailing" constant="16" id="K3V-p0-8TQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="cYd-7S-99b" secondAttribute="bottom" constant="6" id="J2T-m8-LQc"/>
+                                    <constraint firstItem="cYd-7S-99b" firstAttribute="leading" secondItem="PMv-7e-b6o" secondAttribute="trailing" constant="8" id="JnW-Nf-cUO"/>
                                     <constraint firstItem="PMv-7e-b6o" firstAttribute="centerY" secondItem="TTl-WZ-ZZU" secondAttribute="centerY" id="Ssv-16-xl8"/>
-                                    <constraint firstItem="0V5-SI-94g" firstAttribute="top" secondItem="TTl-WZ-ZZU" secondAttribute="top" constant="12" id="ciO-rs-2YK"/>
                                     <constraint firstItem="PMv-7e-b6o" firstAttribute="leading" secondItem="TTl-WZ-ZZU" secondAttribute="leading" constant="8" id="i4j-vk-fC2"/>
                                     <constraint firstItem="sdj-c4-eGd" firstAttribute="centerY" secondItem="TTl-WZ-ZZU" secondAttribute="centerY" id="mAy-tC-dYY"/>
+                                    <constraint firstItem="cYd-7S-99b" firstAttribute="top" secondItem="TTl-WZ-ZZU" secondAttribute="top" constant="6" id="oWF-Hg-inB"/>
                                     <constraint firstAttribute="trailing" secondItem="sdj-c4-eGd" secondAttribute="trailing" constant="8" id="u5E-JA-VY5"/>
+                                    <constraint firstItem="sdj-c4-eGd" firstAttribute="leading" secondItem="cYd-7S-99b" secondAttribute="trailing" constant="8" id="uHF-ix-D8d"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work Order Status :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJE-RZ-eu4">
@@ -2414,6 +2316,7 @@
                         <outlet property="tblListing" destination="f4Q-aE-rNB" id="GVU-BI-m89"/>
                         <outlet property="txtSendMsg" destination="0V5-SI-94g" id="0Ee-rH-CwT"/>
                         <outlet property="viewChat" destination="TTl-WZ-ZZU" id="rXa-AB-Fth"/>
+                        <outlet property="viewMsgBorder" destination="cYd-7S-99b" id="8OG-BR-aCG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FeV-60-StU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2458,10 +2361,6 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="0jW-YG-dgm" id="wcG-5s-hmJ"/>
-                                    <outlet property="delegate" destination="0jW-YG-dgm" id="kam-L2-4CS"/>
-                                </connections>
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CdK-j0-4mo">
                                 <rect key="frame" x="0.0" y="202.5" width="375" height="418"/>
@@ -2481,12 +2380,6 @@
                                             <action selector="btn_SendMessage:" destination="ljZ-IL-BMS" eventType="touchUpInside" id="KYS-Uj-WdT"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hdd-oL-xOo">
-                                        <rect key="frame" x="57" y="12" width="264" height="22.5"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="spN-WG-eQT">
                                         <rect key="frame" x="8" y="11.5" width="33" height="25"/>
                                         <constraints>
@@ -2498,18 +2391,35 @@
                                             <action selector="btn_CameraAction:" destination="ljZ-IL-BMS" eventType="touchUpInside" id="cOb-3j-eRn"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uGT-BU-M3p">
+                                        <rect key="frame" x="49" y="6" width="280" height="34.5"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fUG-3R-lot">
+                                                <rect key="frame" x="8" y="8" width="264" height="18"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="fUG-3R-lot" secondAttribute="bottom" constant="8" id="Aco-3Y-TEA"/>
+                                            <constraint firstAttribute="trailing" secondItem="fUG-3R-lot" secondAttribute="trailing" constant="8" id="bcN-la-NfE"/>
+                                            <constraint firstItem="fUG-3R-lot" firstAttribute="top" secondItem="uGT-BU-M3p" secondAttribute="top" constant="8" id="diy-yz-aQD"/>
+                                            <constraint firstItem="fUG-3R-lot" firstAttribute="leading" secondItem="uGT-BU-M3p" secondAttribute="leading" constant="8" id="oMr-I6-10m"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="OQt-U0-9Kf" firstAttribute="leading" secondItem="uGT-BU-M3p" secondAttribute="trailing" constant="8" id="HF4-BI-MBa"/>
                                     <constraint firstAttribute="trailing" secondItem="OQt-U0-9Kf" secondAttribute="trailing" constant="8" id="K7R-nh-tik"/>
                                     <constraint firstItem="spN-WG-eQT" firstAttribute="leading" secondItem="0b8-UX-ZnW" secondAttribute="leading" constant="8" id="L28-MM-3gH"/>
-                                    <constraint firstItem="Hdd-oL-xOo" firstAttribute="top" secondItem="0b8-UX-ZnW" secondAttribute="top" constant="12" id="UKf-DF-BZK"/>
+                                    <constraint firstItem="uGT-BU-M3p" firstAttribute="top" secondItem="0b8-UX-ZnW" secondAttribute="top" constant="6" id="L90-sH-OJq"/>
+                                    <constraint firstItem="uGT-BU-M3p" firstAttribute="leading" secondItem="spN-WG-eQT" secondAttribute="trailing" constant="8" id="UUt-4i-HIW"/>
                                     <constraint firstItem="OQt-U0-9Kf" firstAttribute="centerY" secondItem="0b8-UX-ZnW" secondAttribute="centerY" id="WKD-pC-LCx"/>
+                                    <constraint firstAttribute="bottom" secondItem="uGT-BU-M3p" secondAttribute="bottom" constant="6" id="an9-fG-XQ6"/>
                                     <constraint firstItem="spN-WG-eQT" firstAttribute="centerY" secondItem="0b8-UX-ZnW" secondAttribute="centerY" id="cnF-D1-vyu"/>
-                                    <constraint firstAttribute="bottom" secondItem="Hdd-oL-xOo" secondAttribute="bottom" constant="12" id="gF0-dT-Av0"/>
-                                    <constraint firstItem="OQt-U0-9Kf" firstAttribute="leading" secondItem="Hdd-oL-xOo" secondAttribute="trailing" constant="16" id="n4k-vL-1mL"/>
-                                    <constraint firstItem="Hdd-oL-xOo" firstAttribute="centerY" secondItem="0b8-UX-ZnW" secondAttribute="centerY" id="nES-gG-IWe"/>
-                                    <constraint firstItem="Hdd-oL-xOo" firstAttribute="leading" secondItem="spN-WG-eQT" secondAttribute="trailing" constant="16" id="w1f-Xx-6Of"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Odw-FF-FMU">
@@ -2554,34 +2464,64 @@
                                 <action selector="btn_BackAction:" destination="ljZ-IL-BMS" id="7pU-Eg-yak"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem image="img_Notification" id="kNh-cq-Yim">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="btn_NotifictionAction:" destination="ljZ-IL-BMS" id="4YM-FS-8mi"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="img_Chat" id="myr-ce-zxQ">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="btn_ChatAction:" destination="ljZ-IL-BMS" id="XE5-ln-vOA"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="cnstViewChatBottom" destination="f7l-is-3tE" id="DsT-J0-WeE"/>
                         <outlet property="lblOrderId" destination="QvV-vZ-xDR" id="3lD-VX-Vw4"/>
                         <outlet property="lblStatus" destination="Odw-FF-FMU" id="r14-P7-LrG"/>
                         <outlet property="tabCollectionView" destination="lay-p0-nLs" id="oCC-dA-n6L"/>
                         <outlet property="tblListing" destination="CdK-j0-4mo" id="loy-H8-vAX"/>
-                        <outlet property="txtSendMsg" destination="Hdd-oL-xOo" id="WhE-hg-90E"/>
+                        <outlet property="txtSendMsg" destination="fUG-3R-lot" id="2cI-Zo-6hL"/>
                         <outlet property="viewChat" destination="0b8-UX-ZnW" id="NK7-P4-ID4"/>
+                        <outlet property="viewMsgBorder" destination="uGT-BU-M3p" id="8sK-9C-nJB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OnY-bi-29x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="8720.7999999999993" y="744.3778110944528"/>
+        </scene>
+        <!--Document View Controller-->
+        <scene sceneID="hPG-za-5mI">
+            <objects>
+                <viewController storyboardIdentifier="DocumentViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="noW-4Q-drP" customClass="DocumentViewController" customModule="iHiretech" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1UX-zu-zXQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1V9-YH-AON">
+                                <rect key="frame" x="8" y="72" width="359" height="587"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="noW-4Q-drP" id="t7O-9i-abt"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3JK-IS-Aoc" firstAttribute="bottom" secondItem="1V9-YH-AON" secondAttribute="bottom" constant="8" id="2b6-Xo-x5Y"/>
+                            <constraint firstItem="1V9-YH-AON" firstAttribute="top" secondItem="3JK-IS-Aoc" secondAttribute="top" constant="8" id="B6Y-TG-86u"/>
+                            <constraint firstItem="1V9-YH-AON" firstAttribute="leading" secondItem="3JK-IS-Aoc" secondAttribute="leading" constant="8" id="Iqz-n8-38R"/>
+                            <constraint firstItem="3JK-IS-Aoc" firstAttribute="trailing" secondItem="1V9-YH-AON" secondAttribute="trailing" constant="8" id="o8O-LR-NzQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3JK-IS-Aoc"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="i5E-IY-MP7">
+                        <barButtonItem key="leftBarButtonItem" image="img_Back" id="Eua-5N-TEW">
+                            <color key="tintColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="btn_backAction:" destination="noW-4Q-drP" id="KSc-gB-c7h"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="viewDocument" destination="1V9-YH-AON" id="LX1-sJ-Tl6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hy8-gQ-Jrq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9505" y="720"/>
         </scene>
         <!--Apply Work Order-->
         <scene sceneID="Pey-Mb-hHh">
@@ -2834,20 +2774,6 @@
                                 <action selector="btn_backAction:" destination="aMV-Il-quA" id="ret-eM-pW5"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem image="img_Notification" id="59n-qe-bjM">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="btn_NotificationAction:" destination="aMV-Il-quA" id="ZFw-lv-CUB"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="img_Chat" id="v42-xH-FpV">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="btn_ChatAction:" destination="aMV-Il-quA" id="YmF-DP-kAT"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
@@ -3145,20 +3071,6 @@
                                 <action selector="btn_Back:" destination="kHP-s5-gW3" id="wBd-yw-Eel"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem image="img_Notification" id="Fz6-A2-qka">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="btn_Notification:" destination="kHP-s5-gW3" id="M3g-ey-Xrt"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="img_Chat" id="ewg-lu-XYd">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="btn_Chat:" destination="kHP-s5-gW3" id="tmz-XN-Jdm"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
@@ -3216,7 +3128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Avk-jz-NRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9403" y="1298"/>
+            <point key="canvasLocation" x="9359" y="1469"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="V84-AB-cm9">

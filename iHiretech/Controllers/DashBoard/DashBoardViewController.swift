@@ -9,11 +9,13 @@
 import UIKit
 import SWRevealViewController
 import SystemConfiguration
+import MIBadgeButton_Swift
 
 typealias actionWithServiceResponseImage = ((_ serviceResponse: [String:Any])-> Void)
 
 typealias getUserDetails = (String) -> Void
 class DashBoardViewController: UIViewController {
+  
   
     @IBOutlet var tblProfile: UITableView!
     @IBOutlet var btnMenuAction: UIBarButtonItem!
@@ -21,7 +23,8 @@ class DashBoardViewController: UIViewController {
     var getProfileUserdata = [String:Any]()
     var getCompleteData = [String:Any]()
     var profileImage = Data()
-    
+    var btnNotification : MIBadgeButton!
+    var btnChat : MIBadgeButton!
     var profileDetailsAray = ["Profession Title:","Profession Summary:","Skills:","Certificates:","Equipments:","Licensees:","Experience:","Phone No:","Email:","Address:"]
     var subTitleDetails = ["Smith Johnson","New","Analog Line , AT&T Phone System - verify correct settings on PBX","No Data","No Data","No Data","5 Years","381-324-432 EXT :123","smith@example.com","213 Hanover Street, New York, NY,USA,1001"]
     
@@ -40,7 +43,32 @@ class DashBoardViewController: UIViewController {
         getProfileDetails { (userDetails) in
             self.getProfilePic()
         }
-     
+        let rightView = UIView(frame: CGRect(x: 0, y: 20, width: 100, height: 25))
+        
+        rightView.backgroundColor = UIColor.clear
+        
+        btnChat = MIBadgeButton(frame: CGRect(x: 40, y: 0, width: 18, height:20))
+        btnChat.badgeBackgroundColor = UIColor.black
+        btnChat.imageView?.image = UIImage(named: "img_Chat")
+        btnChat.setBackgroundImage(UIImage(named: "img_Chat"), for: .normal)
+        btnChat.tag=101
+        btnChat.addTarget(self, action: #selector(btn_ChatAction(_ :)), for: UIControlEvents.touchUpInside)
+        rightView.addSubview(btnChat)
+        
+        btnNotification = MIBadgeButton(frame: CGRect(x: 80, y: 0,width: 18, height: 20))
+         btnNotification.badgeBackgroundColor = UIColor.black
+        btnNotification.setBackgroundImage(UIImage(named: "img_Notification"), for: .normal)
+        btnNotification.imageView?.image = UIImage(named: "img_Notification")
+        btnNotification.tag=102
+        btnNotification.addTarget(self, action: #selector(btn_NotificationAction(_ :)), for: UIControlEvents.touchUpInside)
+        rightView.addSubview(btnNotification)
+        
+        let rightBtn = UIBarButtonItem(customView: rightView)
+        self.navigationItem.rightBarButtonItem = rightBtn
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.getUnreadCount), name: NSNotification.Name(rawValue: "MessageReceived"), object: nil)
+        
+      //  self.btnNoti = MIBadgeButton()
         self.tblProfile.estimatedRowHeight = 60
         self.tblProfile.rowHeight = UITableViewAutomaticDimension
          self.tblProfile.register(UINib(nibName: "profileDetailsTableViewCell", bundle: nil) , forCellReuseIdentifier: "profileDetailsTableViewCell")
@@ -59,10 +87,32 @@ class DashBoardViewController: UIViewController {
         super.viewWillAppear(animated)
        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
-
-
-    @IBAction func btn_NotificationAction(_ sender: UIBarButtonItem)
+    
+    @objc func getUnreadCount()
     {
+        if self.btnChat.badgeString == "0"
+        {
+            self.btnChat.badgeString = ""
+        }
+        else
+        {
+            self.btnChat.badgeString = "\((self.getCompleteData["message_count"] as! Int) + 1)"
+        }
+    }
+
+    @objc func btn_NotificationAction(_ sender: UIBarButtonItem)
+    {
+       if self.btnChat.badgeString != "0"
+       {
+         self.btnChat.badgeString = "\((self.getCompleteData["message_count"] as! Int) - 1)"
+       }
+        else
+       {
+        self.btnChat.badgeString = ""
+        }
+        WebAPI().callJSONWebApi(API.markAllAsRead, withHTTPMethod: .get, forPostParameters: nil, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
+            print(serviceResponse)
+        })
         let nav = self.storyboard!.instantiateViewController(withIdentifier: "NotificationViewController") as! NotificationViewController
         let transition = CATransition()
         transition.duration = 0.5
@@ -75,7 +125,7 @@ class DashBoardViewController: UIViewController {
         self.navigationController?.pushViewController(nav, animated: false)
     }
     
-    @IBAction func btn_ChatAction(_ sender: UIBarButtonItem)
+    @objc func btn_ChatAction(_ sender: UIBarButtonItem)
     {
         let nav = self.storyboard!.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
         let transition = CATransition()
@@ -287,15 +337,28 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
             self.getProfileDetailsDict = self.getCompleteData["UserProfile"] as! [String:Any]
        //     print(self.getProfileDetailsDict["tech_meta"]!)
             self.getProfileUserdata = self.getCompleteData["user"] as! [String:Any]
+          //  UserDefaults.standard.setValue((self.getCompleteData["message_count"] as! Int), forKey: "UnreadAlertMsg")
+            if self.getCompleteData["message_count"] as! Int == 0
+            {
+                self.btnChat.badgeString = ""
+            }
+            else
+            {
+            self.btnChat.badgeString = "\(self.getCompleteData["message_count"] as! Int)"
+            }
+            if self.getCompleteData["notification_count"] as! Int == 0
+           {
+               self.btnNotification.badgeString = ""
+           }
+            else
+            {
+                self.btnNotification.badgeString = "\(self.getCompleteData["notification_count"] as! Int)"
+            }
             let transition = CATransition()
             transition.duration = 0.5
             transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
             transition.type = kCATransitionFade
-           self.tblProfile.delegate = self
-            self.tblProfile.dataSource = self
             self.tblProfile.layer.add(transition, forKey: nil)
-            self.tblProfile.reloadData()
-            
              details("Done")
         })
     }
@@ -304,16 +367,27 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
     {
         WebAPI().callJSONWebApi(API.getProfilePic, withHTTPMethod: .get, forPostParameters: nil, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
-            let data = serviceResponse["data"] as? [String:Any]
-            let mediaFile = data!["encoded"] as? String
-            let drp = mediaFile!.dropFirst(23)
-            print(String(drp))
-            let imageData = String(drp).data(using: String.Encoding.utf8)
+            let data = serviceResponse["data"]
+            if (data is [String:Any])
+            {
+                let mediaFile = (data as! [String:Any])["encoded"] as! String
+                 var afterEqualsTo = String()
+                if let index = (mediaFile.range(of: ",")?.upperBound)
+                {
+                    afterEqualsTo = String(mediaFile.suffix(from: index))
+                  //  print(afterEqualsTo)
+                }
+
+            let imageData = String(afterEqualsTo).data(using: String.Encoding.utf8)
             
            if let decodedData = NSData(base64Encoded: imageData!, options: .ignoreUnknownCharacters) {
                print(decodedData)
             self.profileImage = decodedData as Data
             }
+            }
+            self.tblProfile.delegate = self
+            self.tblProfile.dataSource = self
+             self.tblProfile.reloadData()
         })
     }
 

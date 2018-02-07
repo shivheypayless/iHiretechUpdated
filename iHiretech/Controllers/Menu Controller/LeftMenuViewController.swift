@@ -84,26 +84,24 @@ class LeftMenuViewController: UIViewController {
         nav.navigationBar.isTranslucent = false
         self.revealViewController().setFront(nav, animated: true)
            self.revealViewController().revealToggle(animated: true)
-//        let transition = CATransition()
-//        transition.duration = 0.5
-//        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-//        transition.type = kCATransitionFade
-//        self.navigationController?.view.layer.add(transition, forKey: nil)
-//        self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
-//        self.navigationController?.navigationBar.tintColor = UIColor.white
-//        self.navigationController?.navigationBar.isTranslucent = false
-//        self.navigationController?.present(nav, animated: false, completion: nil)
+
     }
     
     func getProfilePic()
     {
         WebAPI().callJSONWebApi(API.getProfilePic, withHTTPMethod: .get, forPostParameters: nil, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
-            let data = serviceResponse["data"] as? [String:Any]
-            let mediaFile = data!["encoded"] as? String
-            let drp = mediaFile!.dropFirst(23)
-            print(String(drp))
-            let imageData = String(drp).data(using: String.Encoding.utf8)
+            let data = serviceResponse["data"]
+            if (data is [String:Any])
+            {
+                let mediaFile = (data as! [String:Any])["encoded"] as! String
+                var afterEqualsTo = String()
+                if let index = (mediaFile.range(of: ",")?.upperBound)
+                {
+                    afterEqualsTo = String(mediaFile.suffix(from: index))
+                 //   print(afterEqualsTo)
+                }
+            let imageData = String(afterEqualsTo).data(using: String.Encoding.utf8)
             
             if let decodedData = NSData(base64Encoded: imageData!, options: .ignoreUnknownCharacters) {
                 print(decodedData)
@@ -127,7 +125,7 @@ class LeftMenuViewController: UIViewController {
                 }
                 
             }
-          
+            }
         })
     }
 }

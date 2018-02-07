@@ -18,18 +18,18 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OwnerTableViewCell" rowHeight="91" id="KGk-i7-Jjw" customClass="OwnerTableViewCell" customModule="iHiretech" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="209" height="91"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OwnerTableViewCell" rowHeight="81" id="KGk-i7-Jjw" customClass="OwnerTableViewCell" customModule="iHiretech" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="209" height="81"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="209" height="90.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="209" height="80.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2CP-Np-b96">
-                        <rect key="frame" x="125.5" y="8" width="67.5" height="48"/>
+                        <rect key="frame" x="125.5" y="8" width="67.5" height="37.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5R-2y-Egq">
-                                <rect key="frame" x="16" y="15.5" width="35.5" height="17.5"/>
+                                <rect key="frame" x="16" y="10" width="35.5" height="17.5"/>
                                 <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -37,14 +37,14 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.81960784313725488" blue="0.65098039215686276" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="R5R-2y-Egq" firstAttribute="top" secondItem="2CP-Np-b96" secondAttribute="top" constant="15.5" id="9uz-N9-Xzj"/>
+                            <constraint firstItem="R5R-2y-Egq" firstAttribute="top" secondItem="2CP-Np-b96" secondAttribute="top" constant="10" id="9uz-N9-Xzj"/>
                             <constraint firstItem="R5R-2y-Egq" firstAttribute="leading" secondItem="2CP-Np-b96" secondAttribute="leading" constant="16" id="AdH-Yh-tma"/>
-                            <constraint firstAttribute="bottom" secondItem="R5R-2y-Egq" secondAttribute="bottom" constant="15" id="cFE-sf-FYz"/>
+                            <constraint firstAttribute="bottom" secondItem="R5R-2y-Egq" secondAttribute="bottom" constant="10" id="cFE-sf-FYz"/>
                             <constraint firstAttribute="trailing" secondItem="R5R-2y-Egq" secondAttribute="trailing" constant="16" id="zKd-PW-qu5"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RG0-Gu-bg7">
-                        <rect key="frame" x="157.5" y="64" width="35.5" height="17.5"/>
+                        <rect key="frame" x="157.5" y="53.5" width="35.5" height="17.5"/>
                         <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -54,8 +54,8 @@
                     <constraint firstAttribute="trailing" secondItem="RG0-Gu-bg7" secondAttribute="trailing" constant="16" id="8ZJ-Ai-0iX"/>
                     <constraint firstAttribute="trailing" secondItem="2CP-Np-b96" secondAttribute="trailing" constant="16" id="HP1-qg-gdC"/>
                     <constraint firstItem="RG0-Gu-bg7" firstAttribute="top" secondItem="2CP-Np-b96" secondAttribute="bottom" constant="8" id="ZD2-Y7-lAK"/>
+                    <constraint firstAttribute="bottom" secondItem="RG0-Gu-bg7" secondAttribute="bottom" constant="9.5" id="azs-kg-HQH"/>
                     <constraint firstItem="2CP-Np-b96" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="fXt-Ah-h94"/>
-                    <constraint firstAttribute="bottom" secondItem="RG0-Gu-bg7" secondAttribute="bottom" constant="9" id="tcV-av-qO5"/>
                     <constraint firstItem="2CP-Np-b96" firstAttribute="width" relation="lessThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.85" id="v8q-M5-tfB"/>
                 </constraints>
             </tableViewCellContentView>
@@ -65,7 +65,7 @@
                 <outlet property="lblTime" destination="RG0-Gu-bg7" id="02M-UM-J4K"/>
                 <outlet property="viewText" destination="2CP-Np-b96" id="Dpc-mW-wU0"/>
             </connections>
-            <point key="canvasLocation" x="25.5" y="-126.5"/>
+            <point key="canvasLocation" x="25.5" y="-131.5"/>
         </tableViewCell>
     </objects>
 </document>

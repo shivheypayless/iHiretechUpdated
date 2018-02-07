@@ -30,18 +30,13 @@ class RatingTableViewController: UITableViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        let button2 =  UIBarButtonItem(image: UIImage(named: "img_Notification"), style: .plain, target: self, action: #selector(SearchWorkOrderTableViewController.btnNotificationAction))
-        let button3 =  UIBarButtonItem(image: UIImage(named: "img_Chat"), style: .plain, target: self, action: #selector(SearchWorkOrderTableViewController.btnChatAction))
         let button4 =  UIBarButtonItem(image: UIImage(named: "img_Back"), style: .plain, target: self, action: #selector(SearchWorkOrderTableViewController.btnbackAction))
-        self.navigationItem.setRightBarButtonItems([button2,button3], animated: true)
-          button3.tintColor = UIColor.white
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         self.navigationItem.leftBarButtonItem = button4
          self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         self.tableView.register(UINib(nibName: "RatingFilterTableViewCell", bundle: nil) , forCellReuseIdentifier: "RatingFilterTableViewCell")
         self.tableView.register(UINib(nibName: "RateListTableViewCell", bundle: nil) , forCellReuseIdentifier: "RateListTableViewCell")
         self.tableView.separatorStyle = .none
-        
         getRatingList()
 
     }
@@ -169,26 +164,38 @@ class RatingTableViewController: UITableViewController {
                 cell.viewRating.filledStarImage = #imageLiteral(resourceName: "img_OrangeStar")
                 cell.viewRating.halfStarImage = #imageLiteral(resourceName: "img_HalfStarOrng")
             }
-            let img_url = (self.ratingList[indexPath.row]["userpic"] as! String)
-            if img_url == "" {
-                
+           if (self.ratingList[indexPath.row]["userpic"] is NSNull)
+           {
+            cell.imgProfilePic.image = UIImage(named: "img_EditProfilePic")
+           }
+            else
+           {
+            let mediaFile = self.ratingList[indexPath.row]["userpic"] as! String
+            let drp = mediaFile.dropFirst(23)
+            print(String(drp))
+            let imageData = String(drp).data(using: String.Encoding.utf8)
+            var profileImage = Data()
+            if let decodedData = NSData(base64Encoded: imageData!, options: .ignoreUnknownCharacters) {
+                print(decodedData)
+                profileImage = decodedData as Data
+            }
+            if profileImage != nil
+            {
                 DispatchQueue.global(qos: .background).async {
                     DispatchQueue.main.async {
-                        cell.imgProfilePic.image = UIImage(named: "img_selectProfilePic")
+                        cell.imgProfilePic.image = UIImage(data: profileImage)
                     }
                 }
-                
             }
             else
             {
                 DispatchQueue.global(qos: .background).async {
-                    let data = try? Data(contentsOf: URL(string: img_url)!)
-                    if data != nil {
-                        DispatchQueue.main.async {
-                             cell.imgProfilePic.image = UIImage(data: data!)
-                        }
+                    DispatchQueue.main.async {
+                        cell.imgProfilePic.image = UIImage(named: "img_EditProfilePic")
                     }
                 }
+                
+            }
             }
             return cell
         }

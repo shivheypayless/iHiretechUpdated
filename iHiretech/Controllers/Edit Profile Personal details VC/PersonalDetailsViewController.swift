@@ -256,14 +256,19 @@ class PersonalDetailsViewController: UIViewController {
     
     func getProfilePic()
     {
-        
         WebAPI().callJSONWebApi(API.getProfilePic, withHTTPMethod: .get, forPostParameters: nil, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
-            let data = serviceResponse["data"] as? [String:Any]
-            let mediaFile = data!["encoded"] as? String
-            let drp = mediaFile!.dropFirst(23)
-            print(String(drp))
-            let imageData = String(drp).data(using: String.Encoding.utf8)
+            let data = serviceResponse["data"]
+            if (data is [String:Any])
+            {
+                let mediaFile = (data as! [String:Any])["encoded"] as! String
+                var afterEqualsTo = String()
+                if let index = (mediaFile.range(of: ",")?.upperBound)
+                {
+                    afterEqualsTo = String(mediaFile.suffix(from: index))
+                    print(afterEqualsTo)
+                }
+            let imageData = String(afterEqualsTo).data(using: String.Encoding.utf8)
             
             if let decodedData = NSData(base64Encoded: imageData!, options: .ignoreUnknownCharacters) {
                 print(decodedData)
@@ -283,6 +288,7 @@ class PersonalDetailsViewController: UIViewController {
                             self.imgSelectedProfilePic.image = UIImage(named: "img_EditProfilePic")
                         }
                     }
+            }
             }
             }
         })

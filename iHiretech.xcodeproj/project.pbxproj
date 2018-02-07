@@ -112,6 +112,9 @@
 		84A30E0E1FA1BF10009FE20E /* Quicksand-Light_0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84368E821FA07F9000258F57 /* Quicksand-Light_0.ttf */; };
 		84A30E0F1FA1BF10009FE20E /* Quicksand-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84368E811FA07F9000258F57 /* Quicksand-Medium.ttf */; };
 		84A30E101FA1BF10009FE20E /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84368E801FA07F9000258F57 /* Quicksand-Regular.ttf */; };
+		84A5765A202AF8FF0043CB41 /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A57658202AF8F60043CB41 /* ChatListTableViewCell.swift */; };
+		84A5765B202AF9000043CB41 /* ChatListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A57659202AF8F70043CB41 /* ChatListTableViewCell.xib */; };
+		84A5765E202B231B0043CB41 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5765D202B231A0043CB41 /* DocumentViewController.swift */; };
 		84A7FCAD20244E8100235F03 /* ChatUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A7FCAC20244E3400235F03 /* ChatUserView.xib */; };
 		84A93FC81FA9E35900662040 /* PersonalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A93FC71FA9E35800662040 /* PersonalDetailsViewController.swift */; };
 		84A93FCB1FA9E3D000662040 /* ProfessionalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A93FCA1FA9E3D000662040 /* ProfessionalDetailsViewController.swift */; };
@@ -290,6 +293,9 @@
 		847EADB91FB0726400238C3C /* GoogleService-Info-2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-2.plist"; sourceTree = "<group>"; };
 		8490D5EF1FB2D5AF00623553 /* ResendOtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendOtpViewController.swift; sourceTree = "<group>"; };
 		8490D5F21FB2E20B00623553 /* RootNavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavViewController.swift; sourceTree = "<group>"; };
+		84A57658202AF8F60043CB41 /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListTableViewCell.swift; sourceTree = "<group>"; };
+		84A57659202AF8F70043CB41 /* ChatListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatListTableViewCell.xib; sourceTree = "<group>"; };
+		84A5765D202B231A0043CB41 /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		84A7FCAC20244E3400235F03 /* ChatUserView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatUserView.xib; sourceTree = "<group>"; };
 		84A93FC71FA9E35800662040 /* PersonalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDetailsViewController.swift; sourceTree = "<group>"; };
 		84A93FCA1FA9E3D000662040 /* ProfessionalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionalDetailsViewController.swift; sourceTree = "<group>"; };
@@ -533,6 +539,7 @@
 		8403A6EF1FA0617500222ED9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				84A5765C202B22F20043CB41 /* WebView Download */,
 				84289ECF2010B19700421B54 /* RatingLIsting VC */,
 				846F39E5200BB86E00444853 /* Search Work Order Details */,
 				845D82FC2005E6B300B2B40D /* Apply Order VC */,
@@ -815,6 +822,8 @@
 				8459E7271FA85D600081915E /* NotificationViewController.swift */,
 				8459E7231FA859CE0081915E /* NotificationTableViewCell.swift */,
 				8459E7241FA859CE0081915E /* NotificationTableViewCell.xib */,
+				84A57658202AF8F60043CB41 /* ChatListTableViewCell.swift */,
+				84A57659202AF8F70043CB41 /* ChatListTableViewCell.xib */,
 			);
 			path = "Notification VC";
 			sourceTree = "<group>";
@@ -887,6 +896,14 @@
 				8490D5F21FB2E20B00623553 /* RootNavViewController.swift */,
 			);
 			path = "Navigation VC";
+			sourceTree = "<group>";
+		};
+		84A5765C202B22F20043CB41 /* WebView Download */ = {
+			isa = PBXGroup;
+			children = (
+				84A5765D202B231A0043CB41 /* DocumentViewController.swift */,
+			);
+			path = "WebView Download";
 			sourceTree = "<group>";
 		};
 		84A93FC61FA9E31F00662040 /* Edit Profile Personal details VC */ = {
@@ -1093,6 +1110,7 @@
 				8463A9FC2015BB7400702C9C /* TaskListTableViewCell.xib in Resources */,
 				8450AAD22003806300675996 /* ExpensesListTableViewCell.xib in Resources */,
 				846F39EB200BCAC400444853 /* SearchServiceTableViewCell.xib in Resources */,
+				84A5765B202AF9000043CB41 /* ChatListTableViewCell.xib in Resources */,
 				84A7FCAD20244E8100235F03 /* ChatUserView.xib in Resources */,
 				8450AAB71FFBA42700675996 /* ScheduleInformationTableViewCell.xib in Resources */,
 				8459E71F1FA83BE70081915E /* MapTableViewCell.xib in Resources */,
@@ -1235,11 +1253,13 @@
 				844DE1E0201706BD007C6C9D /* FixPayTableViewCell.swift in Sources */,
 				8450AAC9200376CB00675996 /* LabourPaymentTableViewCell.swift in Sources */,
 				8450AAB21FFBA32500675996 /* CustomerInformationTableViewCell.swift in Sources */,
+				84A5765E202B231B0043CB41 /* DocumentViewController.swift in Sources */,
 				84289ED12010B1CD00421B54 /* RatingTableViewController.swift in Sources */,
 				846F39EE200BD32300444853 /* CustomerRateTableViewCell.swift in Sources */,
 				8403A6BD1FA0610200222ED9 /* AppDelegate.swift in Sources */,
 				84580A0D1FF0D54500A7FCBF /* ChatView.swift in Sources */,
 				8450AAC41FFF8AA600675996 /* WorkspaceTableViewCell.swift in Sources */,
+				84A5765A202AF8FF0043CB41 /* ChatListTableViewCell.swift in Sources */,
 				84580A021FEA963600A7FCBF /* AppliedRoutedTableViewController.swift in Sources */,
 				8419929E1FA1DE4B0001E626 /* LeftMenuViewController.swift in Sources */,
 				8459E7251FA859CE0081915E /* NotificationTableViewCell.swift in Sources */,

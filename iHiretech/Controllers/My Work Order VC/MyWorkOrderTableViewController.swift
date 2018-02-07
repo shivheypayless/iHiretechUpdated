@@ -42,13 +42,7 @@ class MyWorkOrderTableViewController: UITableViewController {
         collapsedSections.add(1)
          getWorkList()
         
-        let button2 =  UIBarButtonItem(image: UIImage(named: "img_Notification"), style: .plain, target: self, action: #selector(btnNotificationAction))
-        
-        let button3 =  UIBarButtonItem(image: UIImage(named: "img_Chat"), style: .plain, target: self, action: #selector(btnChatAction))
-        
         let button4 =  UIBarButtonItem(image: UIImage(named: "img_Back"), style: .plain, target: self, action: #selector(btnbackAction))
-        
-        self.navigationItem.setRightBarButtonItems([button2,button3], animated: true)
         self.navigationItem.leftBarButtonItem = button4
      
     }
@@ -84,20 +78,6 @@ class MyWorkOrderTableViewController: UITableViewController {
         })
     }
     
-    @objc func btnNotificationAction()
-    {
-        let nav = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "NotificationViewController") as! NotificationViewController
-        nav.frmSrc = "MyWork"
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionFade
-        self.navigationController?.view.layer.add(transition, forKey: nil)
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.pushViewController(nav, animated: false)
-    }
     
     @objc func btnChatAction()
     {
@@ -216,10 +196,15 @@ class MyWorkOrderTableViewController: UITableViewController {
                 }
                 cell.btnCancel?.removeFromSuperview()
                 cell.btnDetailView.tag = indexPath.row
-                cell.btnPrint.tag = indexPath.row
+                cell.btnPrint?.removeFromSuperview()
                 
                 cell.btnDetailView.addTarget(self, action: #selector(self.btnViewAction(_:)), for: .touchUpInside)
-                 cell.btnPrint.addTarget(self, action: #selector(self.btnViewAction(_:)), for: .touchUpInside)
+              //   cell.btnPrint.addTarget(self, action: #selector(self.btnViewAction(_:)), for: .touchUpInside)
+                if indexPath.row == self.getSearchListDetails.count - 1 { // last cell
+                    //if totalItems > privateList.count { //removing totalItems for always service call
+                    loadMoreItems()
+                    //}
+                }
                 return cell
             }
             
@@ -522,6 +507,24 @@ class MyWorkOrderTableViewController: UITableViewController {
         self.navigationController?.pushViewController(nav, animated: false)
     }
 
+    func loadMoreItems()
+    {
+        if !((self.getWorkListData)["next_page_url"] is NSNull)
+        {
+            let parameters = ["work_order_number": "" , "from_date": "" , "to_date": "", "status":"" ,"per_page":""] as [String:AnyObject]
+        WebAPI().callJSONWebApiPagination("\((self.getWorkListData)["next_page_url"] as! String)", withHTTPMethod: .post, forPostParameters: parameters, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
+            print(serviceResponse)
+            let data = serviceResponse["data"] as? [String:Any]
+            self.getWorkListData = data!["work_orders"] as! [String:Any]
+            self.getStatusName = data!["statuses"] as! [AnyObject]
+            self.getSearchListDetails = self.getWorkListData["data"] as! [AnyObject]
+            self.getSearchListDetails.append(contentsOf: self.getWorkListData["data"] as! [AnyObject])
+            self.tableView.dataSource = self
+            self.tableView.delegate = self
+            self.tableView.reloadData()
+        })
+        }
+    }
 
 }
 

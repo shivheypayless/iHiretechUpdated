@@ -12,6 +12,7 @@ class NotificationViewController: UIViewController {
 
     @IBOutlet var tblNotification: UITableView!
     var frmSrc = String()
+    var getAllData = [String:Any]()
     var notificationList = [AnyObject]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,18 +109,12 @@ class NotificationViewController: UIViewController {
     
     func getNotificationList()
     {
+     //   let param = ["page":"1"]
         WebAPI().callJSONWebApi(API.getNotificationList, withHTTPMethod: .get, forPostParameters: nil, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
            let data = serviceResponse["data"] as! [String:Any]
-            let list = data["pagination_link"] as! [String:Any]
-            var allData = list["data"] as! [AnyObject]
-            for i in 0...allData.count-1
-            {
-                if ((allData[i])["type"] as! String) == "App\\Notifications\\WorkOrderActivtiy"
-                {
-                    self.notificationList.append(allData[i])
-                }
-            }
+            self.getAllData = data["pagination_link"] as! [String:Any]
+            self.notificationList = self.getAllData["data"] as! [AnyObject]
             self.tblNotification.reloadData()
         })
     }
@@ -140,13 +135,9 @@ extension NotificationViewController : UITableViewDataSource, UITableViewDelegat
         dateFormatter.dateFormat = "dd MMM"
         cell.lblOrderDate.text = dateFormatter.string(from: date)
         cell.lblOrderId.text = ((self.notificationList[indexPath.row])["workOrderNumber"] as! String)
-        if  ((self.notificationList[indexPath.row])["read_at"]) is NSNull
-        {
-            cell.viewSuper.backgroundColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1)
-        }
-        else
-        {
-            cell.viewSuper.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
+      
+        if indexPath.row == self.notificationList.count - 1 { // last cell
+            loadMoreItems()
         }
         return cell
     }
@@ -157,14 +148,7 @@ extension NotificationViewController : UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if  ((self.notificationList[indexPath.row])["read_at"]) is NSNull
-        {
-          //   cell.viewSuper.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
-        }
-        else
-        {
-            
-        }
+       
         let nav = self.storyboard!.instantiateViewController(withIdentifier: "WorkOrderDetailsViewController") as! WorkOrderDetailsViewController
         nav.workOrderId = ((self.notificationList[indexPath.row])["work_order_id"] as! Int)
         let transition = CATransition()
@@ -177,6 +161,20 @@ extension NotificationViewController : UITableViewDataSource, UITableViewDelegat
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.pushViewController(nav, animated: false)
         
+    }
+    
+    func loadMoreItems()
+    {
+        if !((self.getAllData)["next_page_url"] is NSNull)
+        {
+        WebAPI().callJSONWebApiPagination("\((self.getAllData)["next_page_url"] as! String)", withHTTPMethod: .get, forPostParameters: nil, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
+            print(serviceResponse)
+            let data = serviceResponse["data"] as! [String:Any]
+            self.getAllData = data["pagination_link"] as! [String:Any]
+            self.notificationList.append(contentsOf: self.getAllData["data"] as! [AnyObject])
+            self.tblNotification.reloadData()
+        })
+        }
     }
     
 }

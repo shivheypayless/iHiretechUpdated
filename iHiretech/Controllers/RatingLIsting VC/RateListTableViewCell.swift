@@ -17,7 +17,9 @@ class RateListTableViewCell: UITableViewCell {
     @IBOutlet var viewRating: HCSStarRatingView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        imgProfilePic.layer.cornerRadius =  imgProfilePic.frame.size.height/2
+        imgProfilePic.layer.masksToBounds = true
+        imgProfilePic.layoutIfNeeded()
         self.viewBorder.layer.borderWidth = 1
         self.viewBorder.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
        

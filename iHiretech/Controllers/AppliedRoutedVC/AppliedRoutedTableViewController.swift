@@ -24,13 +24,8 @@ class AppliedRoutedTableViewController: UITableViewController {
         self.tableView.register(UINib(nibName: "WorkOrderTableViewCell", bundle: nil) , forCellReuseIdentifier: "WorkOrderTableViewCell")
         self.tableView.separatorStyle = .none
         
-        let button2 =  UIBarButtonItem(image: UIImage(named: "img_Notification"), style: .plain, target: self, action: #selector(btnNotificationAction))
-        
-        let button3 =  UIBarButtonItem(image: UIImage(named: "img_Chat"), style: .plain, target: self, action: #selector(btnChatAction))
-        
         let button4 =  UIBarButtonItem(image: UIImage(named: "img_Back"), style: .plain, target: self, action: #selector(btnbackAction))
         
-        self.navigationItem.setRightBarButtonItems([button2,button3], animated: true)
         self.navigationItem.leftBarButtonItem = button4
         getWorkList()
       
@@ -60,7 +55,7 @@ class AppliedRoutedTableViewController: UITableViewController {
                 if self.getSearchListDetails.count == 0
                 {
                      self.noDataFound.textAlignment = .center
-                    self.noDataFound = UILabel(frame: CGRect(x: self.view.center.x - (150), y: 120, width: 150, height: 16))
+                    self.noDataFound = UILabel(frame: CGRect(x: self.view.center.x - (60), y: 60, width: 150, height: 16))
                      self.noDataFound.text = "No Search Found"
                      self.noDataFound.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
                     self.view.addSubview( self.noDataFound)
@@ -70,36 +65,6 @@ class AppliedRoutedTableViewController: UITableViewController {
             self.tableView.delegate = self
             self.tableView.reloadData()
         })
-    }
-    
-    
-    @objc func btnNotificationAction()
-    {
-        let nav = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "NotificationViewController") as! NotificationViewController
-        nav.frmSrc = "MyWork"
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionFade
-        self.navigationController?.view.layer.add(transition, forKey: nil)
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.pushViewController(nav, animated: false)
-    }
-    
-    @objc func btnChatAction()
-    {
-        let nav = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionFade
-        self.navigationController?.view.layer.add(transition, forKey: nil)
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.pushViewController(nav, animated: false)
     }
     
     @objc func btnbackAction()
@@ -167,7 +132,11 @@ class AppliedRoutedTableViewController: UITableViewController {
             let detail = UIImage(named: "img_View")
             cell.btnPrint.setImage(detail, for: .normal)
             cell.btnPrint.addTarget(self, action: #selector(self.btnViewAction(_:)), for: .touchUpInside)
-        
+            if indexPath.row == self.getSearchListDetails.count - 1 { // last cell
+                //if totalItems > privateList.count { //removing totalItems for always service call
+                loadMoreItems()
+                //}
+            }
         }
         return cell
       
@@ -247,6 +216,23 @@ class AppliedRoutedTableViewController: UITableViewController {
     {
         AListAlertController.shared.presentAlertController(message: "You have already applied for this Work Order.", completionHandler: nil)
     }
- 
+
+    func loadMoreItems()
+    {
+        if !((self.getWorkListData)["next_page_url"] is NSNull)
+        {
+            WebAPI().callJSONWebApiPagination("\((self.getWorkListData)["next_page_url"] as! String)", withHTTPMethod: .get, forPostParameters: nil, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
+                print(serviceResponse)
+                let data = serviceResponse["data"] as? [String:Any]
+                self.getWorkListData = data!["work_orders"] as! [String:Any]
+                self.getSearchListDetails = self.getWorkListData["data"] as! [AnyObject]
+                self.getSearchListDetails.append(contentsOf: self.getWorkListData["data"] as! [AnyObject])
+                self.tableView.dataSource = self
+                self.tableView.delegate = self
+                self.tableView.reloadData()
+            })
+        }
+    }
+
 
 }

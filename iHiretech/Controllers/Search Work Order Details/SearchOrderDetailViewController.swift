@@ -12,6 +12,8 @@ import HCSStarRatingView
 
 class SearchOrderDetailViewController: UIViewController {
 
+    @IBOutlet var viewMsgBorder: UIView!
+    @IBOutlet var cnstViewChatBottom: NSLayoutConstraint!
     @IBOutlet var viewChat: UIView!
     @IBOutlet var txtSendMsg: UITextField!
     @IBOutlet var tblListing: UITableView!
@@ -25,8 +27,8 @@ class SearchOrderDetailViewController: UIViewController {
     var documentList = [AnyObject]()
     var tabsTag = 1
     var chatHistory = [AnyObject]()
-   
-    
+   var socketId = String()
+    var custManager = 1
     var sendMessageId = String()
     
     var timer: Timer!
@@ -52,13 +54,17 @@ class SearchOrderDetailViewController: UIViewController {
     var tabs = ["Work Order Details","Messages"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewMsgBorder.layer.borderWidth = 1
+        self.viewMsgBorder.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
+        self.viewMsgBorder.layer.cornerRadius = 3
+        self.viewMsgBorder.layer.masksToBounds = true
         
         self.lblStatus.layer.cornerRadius = 3
         self.lblStatus.layer.masksToBounds = true
         
         self.tblListing.estimatedRowHeight = 140
         self.tblListing.rowHeight = UITableViewAutomaticDimension
-       
+        self.cnstViewChatBottom.constant = -35
         self.tblListing.register(UINib(nibName: "ServiceInformationTableViewCell", bundle: nil) , forCellReuseIdentifier: "ServiceInformationTableViewCell")
         self.tblListing.register(UINib(nibName: "CustomerInformationTableViewCell", bundle: nil) , forCellReuseIdentifier: "CustomerInformationTableViewCell")
         self.tblListing.register(UINib(nibName: "WorkOrderInformationTableViewCell", bundle: nil) , forCellReuseIdentifier: "WorkOrderInformationTableViewCell")
@@ -66,24 +72,43 @@ class SearchOrderDetailViewController: UIViewController {
         self.tblListing.register(UINib(nibName: "LocationInformationTableViewCell", bundle: nil) , forCellReuseIdentifier: "LocationInformationTableViewCell")
         self.tblListing.register(UINib(nibName: "PayRateInformationTableViewCell", bundle: nil) , forCellReuseIdentifier: "PayRateInformationTableViewCell")
         self.tblListing.register(UINib(nibName: "DocumentsTableViewCell", bundle: nil) , forCellReuseIdentifier: "DocumentsTableViewCell")
-       
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: NSNotification.Name.UIKeyboardWillShow,
+            object: nil
+        )
+        getWorkList()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: NSNotification.Name.UIKeyboardWillHide,
+            object: nil
+        )
         self.tblListing.separatorStyle = .none
         self.tabCollectionView.register(UINib(nibName: "TabOrderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TabOrderCollectionViewCell")
         
         if let flowLayout = tabCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.estimatedItemSize = CGSize(width: 1,height: 1)
         }
-        
-        self.tabCollectionView.delegate = self
-        self.tabCollectionView.dataSource = self
-
-        // Do any additional setup after loading the view.
-    }
+      }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        getWorkList()
+    }
+    
+    @objc
+    func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            cnstViewChatBottom.constant = keyboardHeight - viewChat.frame.height
+        }
+    }
+    @objc
+    func keyboardWillHide(_ notification: Notification) {
+        cnstViewChatBottom.constant = 0
     }
     
     func getWorkList()
@@ -99,33 +124,51 @@ class SearchOrderDetailViewController: UIViewController {
             self.lblStatus.setTitle("  \(finalString)  ", for: .normal)
             self.ExpensesList = (self.getWorkListData["tech_expenses"] as! [AnyObject])
             self.documentList = (self.getWorkListData["work_oder_document"] as! [AnyObject])
+           
+            self.tblListing.dataSource = self
+            self.tblListing.delegate = self
+            self.tabCollectionView.delegate = self
+            self.tabCollectionView.dataSource = self
+            self.tblListing.reloadData()
+            self.tabCollectionView.reloadData()
+        })
+    }
+    
+    func getChatHistoryManager()
+    {
+        self.socketId = ((((self.getWorkListData)["manager"]) as! [String:Any])["socket_id"] as! String)
+        let parameter = ["with_users_id":((((self.getWorkListData)["manager"]) as! [String:Any])["socket_id"] as! String),"work_order_id":workOrderId] as [String:AnyObject]
+        WebAPI.shared.callJSONWebApi(.getChatHistory, withHTTPMethod: .post, forPostParameters: parameter, shouldIncludeAuthorizationHeader: true) { (serviceResponse) in
+            print(serviceResponse)
+            let Data = serviceResponse["data"] as! [String:AnyObject]
+            self.chatHistory = Data["messages"] as! [AnyObject]
             self.tblListing.dataSource = self
             self.tblListing.delegate = self
             self.tblListing.reloadData()
-        })
+            SocketIOManager.sharedInstance.socketIOManagerDelegate = self
+            guard self.chatHistory.count > 0 else {
+                return
+            }
+            self.tblListing.scrollToRow(at: IndexPath(row: self.chatHistory.count - 1, section: 0), at: .bottom, animated: false)
+        }
     }
 
     func getChatHistory()
     {
         let chatDetail = self.chatDetails["chatWith"] as! [String:Any]
         print(String(describing: chatDetail["socket_id"]!))
-        let parameter = ["with_users_id":String(describing: chatDetail["socket_id"]!),"work_order_id":workOrderId] as [String:AnyObject]
+        self.socketId = String(describing: chatDetail["socket_id"]!)
+        let parameter = ["with_users_id": self.socketId,"work_order_id":workOrderId] as [String:AnyObject]
         //chatTextField.addTarget(self, action: #selector(textDidChange(_:)), for: .editingChanged)
         WebAPI.shared.callJSONWebApi(.getChatHistory, withHTTPMethod: .post, forPostParameters: parameter, shouldIncludeAuthorizationHeader: true) { (serviceResponse) in
             print(serviceResponse)
             let Data = serviceResponse["data"] as! [String:AnyObject]
             self.chatHistory = Data["messages"] as! [AnyObject]
-            //            if self.chatHistory.count != 0
-            //            {
+           
             self.tblListing.dataSource = self
             self.tblListing.delegate = self
             self.tblListing.reloadData()
-            // self.tblListing.reloadData()
-            //            }
-            //            else
-            //            {
-            //                 self.tblListing.reloadData()
-            //            }
+           
             SocketIOManager.sharedInstance.socketIOManagerDelegate = self
             guard self.chatHistory.count > 0 else {
                 return
@@ -154,7 +197,6 @@ class SearchOrderDetailViewController: UIViewController {
     
     
     @IBAction func btn_SendMessage(_ sender: UIButton) {
-        self.view.endEditing(true)
         guard !txtSendMsg.text!.isEmpty else {
             return
         }
@@ -189,6 +231,7 @@ extension SearchOrderDetailViewController : UICollectionViewDelegate , UICollect
         return self.tabs.count
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TabOrderCollectionViewCell", for: indexPath) as! TabOrderCollectionViewCell
         cell.lblTabName.text = self.tabs[indexPath.row]
@@ -199,6 +242,28 @@ extension SearchOrderDetailViewController : UICollectionViewDelegate , UICollect
         else if self.tabsTag == 2 && indexPath.row == 1
         {
             cell.scrollVIew.isHidden = false
+            let chatDetail = self.chatDetails["chatWith"] as! [String:Any]
+            if self.socketId != ""
+            {
+                if !(chatDetail["socket_id"] is NSNull)
+                {
+                    if (chatDetail["socket_id"] as! String) == self.socketId
+                    {
+                        getChatHistory()
+                        self.cnstViewChatBottom.constant = 0
+                    }
+                    else
+                    {
+                        getChatHistoryManager()
+                        self.cnstViewChatBottom.constant = 0
+                    }
+                }
+                else
+                {
+                    getChatHistoryManager()
+                    self.cnstViewChatBottom.constant = 0
+                }
+            }
         }
         else
         {
@@ -222,10 +287,13 @@ extension SearchOrderDetailViewController : UICollectionViewDelegate , UICollect
         if indexPath.row == 0
         {
             self.tabsTag = 1
+             self.cnstViewChatBottom.constant = -35
         }
         if indexPath.row == 1
         {
             self.tabsTag = 2
+             self.cnstViewChatBottom.constant = 0
+            getChatHistory()
         }
        
         self.tabCollectionView.reloadData()
@@ -255,7 +323,7 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
         }
       else
         {
-            return 0
+            return 1
         }
     }
     
@@ -284,7 +352,7 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
                 cell.lblOrderId.text = ((self.getWorkListData)["work_order_number"] as? String)!
                 cell.lblServiceTitle.text = (((self.getWorkListData)["work_order_title"]) as? String)!
                 cell.lblClientName.text = (((self.getWorkListData)["clients"]) as! [String:Any])["client_name"] as? String
-                cell.lblManagerName.text = (((self.getWorkListData)["manager"]) as! [String:Any])["first_name"] as? String
+                cell.lblManagerName.text = ((((self.getWorkListData)["manager"]) as! [String:Any])["first_name"] as? String)!+" "+((((self.getWorkListData)["manager"]) as! [String:Any])["last_name"] as? String)!
                 let skillsArray = (self.getWorkListData["workSkill"] as? [String])!
                 if skillsArray.count != 0
                 {
@@ -322,11 +390,49 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
                 if (((self.getWorkListData)["created_by"]) as? String) !=  (((self.getWorkListData)["manager_id"]) as? String)
                 {
                     cell.btnChatWithManager.isHidden = false
-                    cell.btnChatWithManager.addTarget(self, action: #selector(self.btnChatView(_ :)), for: .touchUpInside)
+                    cell.btnChatWithManager.addTarget(self, action: #selector(self.btnChatViewManager(_ :)), for: .touchUpInside)
                 }
                 else
                 {
                     cell.btnChatWithManager.isHidden = true
+                }
+                
+                if ((((self.getWorkListData)["created_data"]) as! [String:Any])["userpic"] is NSNull)
+                {
+                    cell.imgProfile.image = UIImage(named: "img_EditProfilePic")
+                }
+                else
+                {
+                    let mediaFile = ((((self.getWorkListData)["created_data"]) as! [String:Any])["userpic"] as? String)!
+                    var afterEqualsTo = String()
+                    if let index = (mediaFile.range(of: ",")?.upperBound)
+                    {
+                        afterEqualsTo = String(mediaFile.suffix(from: index))
+                    //    print(afterEqualsTo)
+                    }
+                    let imageData = String(afterEqualsTo).data(using: String.Encoding.utf8)
+                    var profileImage = Data()
+                    if let decodedData = NSData(base64Encoded: imageData!, options: .ignoreUnknownCharacters) {
+               //         print(decodedData)
+                        profileImage = decodedData as Data
+                    }
+                    if profileImage != nil
+                    {
+                        DispatchQueue.global(qos: .background).async {
+                            DispatchQueue.main.async {
+                                cell.imgProfile.image = UIImage(data: profileImage)
+                            }
+                        }
+                    }
+                    else
+                    {
+                        DispatchQueue.global(qos: .background).async {
+                            DispatchQueue.main.async {
+                                cell.imgProfile.image = UIImage(named: "img_EditProfilePic")
+                            }
+                        }
+                        
+                    }
                 }
                 return cell
             }
@@ -382,7 +488,10 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
             else
             {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DocumentsTableViewCell", for: indexPath) as! DocumentsTableViewCell
-                cell.lblDocumentName.text = ((self.documentList[indexPath.row])["work_order_document_path"] as! String)
+                
+                cell.lblDocumentName.text = ((((self.getWorkListData)["document_name"]) as! [AnyObject])[indexPath.row] as! String)
+                cell.imgDocument.tag = indexPath.row
+                cell.imgDocument.addTarget(self, action: #selector(self.getDocument(_:)), for: .touchUpInside)
                 return cell
             }
         }
@@ -393,7 +502,7 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
                 let cell = tableView.dequeueReusableCell(withIdentifier: "OwnerTableViewCell", for: indexPath) as! OwnerTableViewCell
                 //     cell.lblText.text = self.conversation[indexPath.row]
                 cell.lblText.text = (chatHistory[indexPath.row]["msg_string"] as? String)!
-                self.sendMessageId = (chatHistory[indexPath.row]["to_id"] as? String)!
+                 self.sendMessageId = (chatHistory[indexPath.row]["to_id"] as? String)!
                 cell.lblTime.text = UTCToLocal(date: ((self.chatHistory[indexPath.row])["created_at"] as! String))
                 return cell
             }
@@ -456,7 +565,58 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
         }
         else
         {
-            return nil
+            let headerViewArray = Bundle.main.loadNibNamed("ChatUserView", owner: self, options: nil)?[0] as! UIView
+            if self.custManager == 1
+            {
+                let information = self.chatDetails["chatWith"] as! [String:Any]
+                (headerViewArray.viewWithTag(2) as! UILabel).text = ((information)["first_name"] as? String)!+" "+((information)["last_name"] as? String)!
+            }
+            else
+            {
+            (headerViewArray.viewWithTag(2) as! UILabel).text = ((((self.getWorkListData)["manager"]) as! [String:Any])["first_name"] as? String)!+" "+((((self.getWorkListData)["manager"]) as! [String:Any])["last_name"] as? String)!
+            }
+            (headerViewArray.viewWithTag(1) as! UIImageView).layer.cornerRadius =  (headerViewArray.viewWithTag(1) as! UIImageView).frame.size.height/2
+            (headerViewArray.viewWithTag(1) as! UIImageView).layer.masksToBounds = true
+            (headerViewArray.viewWithTag(1) as! UIImageView).layoutIfNeeded()
+            if ((((self.getWorkListData)["manager"]) as! [String:Any])["pic"] is NSNull)
+            {
+                (headerViewArray.viewWithTag(1) as! UIImageView).image = UIImage(named: "img_EditProfilePic")
+            }
+            else
+            {
+                let mediaFile = (((self.getWorkListData)["manager"]) as! [String:Any])["pic"] as! String
+                var afterEqualsTo = String()
+                if let index = (mediaFile.range(of: ",")?.upperBound)
+                {
+                    afterEqualsTo = String(mediaFile.suffix(from: index))
+                   // print(afterEqualsTo)
+                }
+                let imageData = String(afterEqualsTo).data(using: String.Encoding.utf8)
+                var profileImage = Data()
+                if let decodedData = NSData(base64Encoded: imageData!, options: .ignoreUnknownCharacters) {
+             //       print(decodedData)
+                    profileImage = decodedData as Data
+                }
+                if profileImage != nil
+                {
+                    DispatchQueue.global(qos: .background).async {
+                        DispatchQueue.main.async {
+                            (headerViewArray.viewWithTag(1) as! UIImageView).image = UIImage(data: profileImage)
+                        }
+                    }
+                }
+                else
+                {
+                    DispatchQueue.global(qos: .background).async {
+                        DispatchQueue.main.async {
+                            (headerViewArray.viewWithTag(1) as! UIImageView).image = UIImage(named: "img_EditProfilePic")
+                        }
+                    }
+                    
+                }
+            }
+            //(headerViewArray.viewWithTag(1) as! UIImageView).image = UIImage(named : "img_CheckReminder")
+            return headerViewArray
         }
     
     }
@@ -477,9 +637,9 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     {
-        if self.tabsTag == 4 && section == 1
+        if self.tabsTag == 2
         {
-            return 129.0
+            return 70.0
         }
         else
         {
@@ -563,8 +723,27 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
     @objc func btnChatView(_ sender: UIButton)
     {
         self.tabsTag = 2
+        self.custManager = 1
+         self.cnstViewChatBottom.constant = 0
         self.tabCollectionView.reloadData()
         self.tblListing.reloadData()
+    }
+    
+    @objc func btnChatViewManager(_ sender: UIButton)
+    {
+        self.tabsTag = 2
+        self.custManager = 2
+        self.tabCollectionView.reloadData()
+        self.cnstViewChatBottom.constant = 0
+        getChatHistoryManager()
+    }
+    
+    @objc func getDocument(_ sender: UIButton) {
+        let downloadUrl = "http://172.16.2.68:8001/api/technician/work_order_document/\(((self.documentList[sender.tag])["work_order_document_id"] as! Int))"
+        let destination = self.storyboard?.instantiateViewController(withIdentifier: "DocumentViewController") as! DocumentViewController
+        destination.url = URL(string: downloadUrl)!
+        self.navigationController?.pushViewController(destination, animated: true)
+        
     }
 }
 
@@ -602,7 +781,7 @@ extension SearchOrderDetailViewController: SocketIOManagerDelegate {
                 "msg_string": chatMessage["message"] as! String,
                 "from_id" : chatMessage["msgFrom"] as! String,
                 "to_id" : chatMessage["msgTo"] as! String,
-                "created_at" : dateFormatter.string(from: Date()),
+                "created_at" : chatMessage["dateTime"] as! String
                 //    "work_order_id" : chatMessage["work_order_id"] as! Int
                 ] as [String : Any]
             self.chatHistory.append(chat as AnyObject as AnyObject)

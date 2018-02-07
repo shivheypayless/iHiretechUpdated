@@ -57,6 +57,9 @@ enum API: String
     case completedTaskList = "api/technician/complete-task"
     case filterRatingList = "api/technician/search-technician-rating-list"
     case downloadWorkOrderDocuments = "api/technician/work_order_document"
+    case getChatNotificationList = "api/technician/get_users_msg_list"
+    case markAllAsRead = "api/technician/mark_all_as_read"
+    case markUserMsgRead = "api/technician/users_message_work_order"
 }
 
 typealias actionWithServiceResponse = ((_ serviceResponse: [String:Any])-> Void)
@@ -65,7 +68,7 @@ class WebAPI {
     
     //Static property to access Singleton Class
     static let shared = WebAPI()
-    
+     var window: UIWindow?
     //Base URL for WebAPI(s)
   //  private let baseurl = "http://172.16.2.62:8001/"//local
      private let baseurl = "http://172.16.2.68:8001/" // local
@@ -91,7 +94,10 @@ class WebAPI {
         if method == .post {
             //print(parameters)
             request = URLRequest(url: URL(string: "\(self.baseurl)\(api.rawValue)")!)
-            request.httpBody = try! JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+            if parameters != nil
+            {
+               request.httpBody = try! JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+            }
         }
         else {
             
@@ -125,6 +131,128 @@ class WebAPI {
         }
     }
     
+    public func callJSONWebApiPagination(_ api: String, withHTTPMethod method: HTTPMethod, forPostParameters parameters: [String:Any]!,shouldIncludeAuthorizationHeader authorizationHeaderFlag: Bool,actionAfterServiceResponse completionHandler: @escaping actionWithServiceResponse)
+    {
+        var request: URLRequest!
+        
+        if method == .post {
+            //print(parameters)
+            request = URLRequest(url: URL(string: "\(api)")!)
+          //  request.httpBody = try! JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+        }
+        else {
+            
+            if let keys = parameters?.keys {
+                var queryString = "/"
+                for eachKey in keys {
+                    queryString.append("\(parameters[eachKey]!)&")
+                }
+                request = URLRequest(url: URL(string: "\(api)\(queryString)")!)
+            }
+            else {
+                request = URLRequest(url: URL(string: "\(api)")!)
+            }
+            
+        }
+        
+        print(request.url!)
+        request.httpMethod = method.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        if authorizationHeaderFlag {
+            request.setValue(UserDefaults.standard.object(forKey: "token") as? String, forHTTPHeaderField: "Authorization")
+        }
+        guard checkForNetworkConnectivity() else {
+            return
+        }
+        
+       // showHUD()
+        userInteractiveGlobalQueue.async {
+            
+            self.callWebServiceWithRequestPagination(request, actionAfterServiceResponse: completionHandler)
+        }
+    }
+    
+    private func callWebServiceWithRequestPagination(_ request: URLRequest, actionAfterServiceResponse completionHandler: @escaping actionWithServiceResponse) {
+        let dataTask = defaultSession.dataTask(with: request) { (data, response, error) in
+            DispatchQueue.main.async {
+               
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                guard error == nil else {
+                    AListAlertController.shared.presentAlertController(message: (error?.localizedDescription)!, completionHandler: nil)
+                    return
+                }
+                do {
+                    let responseData = try JSONSerialization.jsonObject(with: data!, options:JSONSerialization.ReadingOptions.allowFragments) as! [String:Any]
+                    print(responseData)
+                    
+                    if responseData["status"] as! Int == 1 {
+                        if let message = responseData["msg"] as? String {
+                          
+                            completionHandler(responseData)
+                            
+                        }
+                        else {
+                            completionHandler(responseData)
+                        }
+                    }
+                    else {
+                        if responseData["status"] as! Int == 0
+                        {
+                            if let data = responseData["data"] as? [String:Any]
+                            {
+                                if let message = data["email"] as? [AnyObject]
+                                {
+                                    if let mess = message[0] as? String
+                                    {
+                                        AListAlertController.shared.presentAlertController(message: mess , completionHandler: nil)
+                                    }
+                                }
+                                else if let message = data["image"] as? [AnyObject]
+                                {
+                                    if let mess = message[0] as? String
+                                    {
+                                        AListAlertController.shared.presentAlertController(message: mess , completionHandler: nil)
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (responseData["msg"] as? String) != nil
+                                {
+                                    AListAlertController.shared.presentAlertController(message: responseData["msg"] as! String, completionHandler: nil)
+                                }
+                                else
+                                {
+                                    completionHandler(responseData)
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (responseData["msg"] as? String) != nil
+                            {
+                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                let destination = storyboard.instantiateViewController(withIdentifier: "RootNavViewController") as! RootNavViewController
+                                UIApplication.shared.keyWindow!.rootViewController = destination
+                            }
+                            else
+                            {
+                                completionHandler(responseData)
+                            }
+                        }
+                    }
+                }
+                catch
+                {
+                    AListAlertController.shared.presentAlertController(message: error.localizedDescription, completionHandler: nil)
+                }
+            }
+        }
+        dataTask.resume()
+    }
+    
+    
     func buildQueryString(_ parameters: [String:String],baseURL url: String) -> String {
         var queryString = String()
         for eachParameter in parameters.keys {
@@ -138,6 +266,10 @@ class WebAPI {
     private func callWebServiceWithRequest(_ request: URLRequest, actionAfterServiceResponse completionHandler: @escaping actionWithServiceResponse) {
         let dataTask = defaultSession.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
+                if((String(describing: request)).contains("celebrity/celebrityRequest")) || ((String(describing: request)).contains("trophy/getTrophyById"))
+                {
+                    
+                }
                 self.progressHUD.hide(animated: true)
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 guard error == nil else {
@@ -196,7 +328,10 @@ class WebAPI {
                         {
                             if (responseData["msg"] as? String) != nil
                             {
-                             AListAlertController.shared.presentAlertController(message: responseData["msg"] as! String, completionHandler: nil)
+                            // AListAlertController.shared.presentAlertController(message: responseData["msg"] as! String, completionHandler: nil)
+                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                let destination = storyboard.instantiateViewController(withIdentifier: "RootNavViewController") as! RootNavViewController
+                                UIApplication.shared.keyWindow!.rootViewController = destination
                             }
                             else
                             {
@@ -306,7 +441,7 @@ class WebAPI {
                 "cache-control": "no-cache"
             ]
             request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
-
+            request.allHTTPHeaderFields = headers
             Alamofire.upload(multipartFormData:{ multipartFormData in
                 for (key, value) in parameters {
                     
@@ -370,21 +505,7 @@ class WebAPI {
     }
  
  
-        func download() {
-            let downloadUrl = String()
-            let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-                let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                let file = directoryURL.appendingPathComponent("Document.pdf", isDirectory: false)
-                return (file, [.createIntermediateDirectories, .removePreviousFile])
-            }
-            Alamofire.download(downloadUrl, method: .get, parameters: nil, encoding: JSONEncoding.default, to: destination).responseJSON { response in
-                if response.result.isSuccess {
-                  //  completion?(JSON(response.result.value as? NSDictionary ?? [:]))
-                } else {
-                  //  print(#function, error)
-                }
-            }
-        }
+      
   
         
   func load(URL: NSURL) {

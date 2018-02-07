@@ -33,8 +33,12 @@ class SocketIOManager {
 //            case .typing?:
 //                self.socketIOManagerDelegate.usersTyping(socketEvent.items?.first as! [String:Any])
             case .message?:
-                self.socketIOManagerDelegate.messageReceived(socketEvent.items?.first as! String)
-               //  NotificationCenter.default.post(name: NSNotification.Name("MessageReceived"), object: nil, userInfo: socketEvent.event)
+                if (self.socketIOManagerDelegate != nil)
+                {
+            self.socketIOManagerDelegate.messageReceived(socketEvent.items?.first as! String)
+                NotificationCenter.default.post(name: NSNotification.Name("MessageReceived"), object: nil)
+                }
+                
             default:
                 print("Done")
             }

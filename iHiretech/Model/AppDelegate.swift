@@ -15,8 +15,15 @@ import SWRevealViewController
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,LocationUpdateProtocol {
-
+class AppDelegate: UIResponder, UIApplicationDelegate,LocationUpdateProtocol, SocketIOManagerDelegate {
+    func usersTyping(_ data: [String : Any]) {
+        
+    }
+    
+    func messageReceived(_ data: String) {
+        
+    }
+  
     var window: UIWindow?
     var storyBoard: UIStoryboard!
     var statusLocation = Int()
@@ -55,15 +62,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,LocationUpdateProtocol {
             self.window!.rootViewController = destination
             self.window!.makeKeyAndVisible()
         }
-
-        
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let destination = storyboard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
-////        let destination = SearchWorkOrderTableViewController(style: .plain)
-//        window = UIWindow()
-//        self.window?.rootViewController = destination
-      //  self.window?.makeKeyAndVisible()
-        // Override point for customization after application launch.
         return true
     }
     
@@ -87,17 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,LocationUpdateProtocol {
             UIApplication.shared.registerForRemoteNotifications()
         }
     }
-    
-    
-//    func application(_ application: UIApplication,
-//                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-//        let tokenParts = deviceToken.map { data -> String in
-//            return String(format: "%02.2hhx", data)
-//        }
-//
-//        let token = tokenParts.joined()
-//        print("Device Token: \(token)")
-//    }
+
     
     func locationObjectAllocation(workOrderID : Int , status : Int)
     {
@@ -165,7 +153,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate,LocationUpdateProtocol {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any])
     {
         print(userInfo)
-        print((((userInfo as AnyObject).object(forKey: "data")!) as! NSDictionary))
+      //  print(((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_id") as! Int))
+        if ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_status") as! String) == "1"
+        {
+            let storyboardRoot = UIStoryboard(name: "Main", bundle: nil)
+            let destinationRoot = storyboardRoot.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+            self.window!.rootViewController = destinationRoot
+            self.window!.makeKeyAndVisible()
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let destination = storyboard.instantiateViewController(withIdentifier: "SearchOrderDetailViewController") as! SearchOrderDetailViewController
+            if ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "flag") as! String) == "chat"
+            {
+                destination.tabsTag = 2
+                destination.workOrderId = Int((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_id") as! String)!
+                destination.txtSendMsg.text! = ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "title") as! String)
+                destination.socketId = ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "to_user") as! String)
+            }
+            else
+            {
+                destination.tabsTag = 1
+                destination.workOrderId = Int((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_id") as! String)!
+            }
+            
+            (destinationRoot.frontViewController as! UINavigationController).navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+            (destinationRoot.frontViewController as! UINavigationController).navigationBar.tintColor = UIColor.white
+            (destinationRoot.frontViewController as! UINavigationController).navigationBar.isTranslucent = false
+            (destinationRoot.frontViewController as! UINavigationController).pushViewController(destination, animated: false)
+        }
+        else
+        {
+        let storyboardRoot = UIStoryboard(name: "Main", bundle: nil)
+        let destinationRoot = storyboardRoot.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+        self.window!.rootViewController = destinationRoot
+        self.window!.makeKeyAndVisible()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let destination = storyboard.instantiateViewController(withIdentifier: "WorkOrderDetailsViewController") as! WorkOrderDetailsViewController
+        if ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "flag") as! String) == "chat"
+        {
+           destination.tabsTag = 2
+            destination.workOrderId = Int((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_id") as! String)!
+         //   destination.txtSendMsg.text! = ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "title") as! String)
+            destination.socketId = ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "to_user") as! String)
+        }
+        else
+        {
+            destination.tabsTag = 1
+            destination.workOrderId = Int((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_id") as! String)!
+        }
+       
+        (destinationRoot.frontViewController as! UINavigationController).navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+        (destinationRoot.frontViewController as! UINavigationController).navigationBar.tintColor = UIColor.white
+        (destinationRoot.frontViewController as! UINavigationController).navigationBar.isTranslucent = false
+        (destinationRoot.frontViewController as! UINavigationController).pushViewController(destination, animated: false)
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -176,16 +216,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate,LocationUpdateProtocol {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        // SocketIOManager.sharedInstance.establishConnection()
           SocketIOManager.sharedInstance.closeConnection()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        SocketIOManager.sharedInstance.establishConnection()
+        SocketIOManager.sharedInstance.socketIOManagerDelegate = self
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
          SocketIOManager.sharedInstance.establishConnection()
+        SocketIOManager.sharedInstance.socketIOManagerDelegate = self
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

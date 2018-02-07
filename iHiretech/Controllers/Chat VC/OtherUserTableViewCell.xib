@@ -18,18 +18,18 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OtherUserTableViewCell" rowHeight="90" id="KGk-i7-Jjw" customClass="OtherUserTableViewCell" customModule="iHiretech" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OtherUserTableViewCell" rowHeight="81" id="KGk-i7-Jjw" customClass="OtherUserTableViewCell" customModule="iHiretech" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="81"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="80.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9tR-PI-unc">
-                        <rect key="frame" x="8" y="8" width="67.5" height="48"/>
+                        <rect key="frame" x="8" y="8" width="67.5" height="37.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tM-0v-wHw">
-                                <rect key="frame" x="16" y="15.5" width="35.5" height="17.5"/>
+                                <rect key="frame" x="16" y="10" width="35.5" height="17.5"/>
                                 <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -37,26 +37,26 @@
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="2tM-0v-wHw" secondAttribute="bottom" constant="15" id="2iD-C5-Lz9"/>
+                            <constraint firstAttribute="bottom" secondItem="2tM-0v-wHw" secondAttribute="bottom" constant="10" id="2iD-C5-Lz9"/>
                             <constraint firstItem="2tM-0v-wHw" firstAttribute="leading" secondItem="9tR-PI-unc" secondAttribute="leading" constant="16" id="C5O-fh-kYa"/>
                             <constraint firstAttribute="trailing" secondItem="2tM-0v-wHw" secondAttribute="trailing" constant="16" id="a3c-ie-dGn"/>
-                            <constraint firstItem="2tM-0v-wHw" firstAttribute="top" secondItem="9tR-PI-unc" secondAttribute="top" constant="15.5" id="gzd-71-nGF"/>
+                            <constraint firstItem="2tM-0v-wHw" firstAttribute="top" secondItem="9tR-PI-unc" secondAttribute="top" constant="10" id="gzd-71-nGF"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYO-nm-U8Q">
-                        <rect key="frame" x="16" y="64" width="35.5" height="17.5"/>
+                        <rect key="frame" x="16" y="53.5" width="35.5" height="17.5"/>
                         <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="rYO-nm-U8Q" secondAttribute="bottom" constant="9.5" id="BNm-8P-oxi"/>
                     <constraint firstItem="9tR-PI-unc" firstAttribute="width" relation="lessThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.85" id="IPW-QU-8qA"/>
                     <constraint firstItem="rYO-nm-U8Q" firstAttribute="top" secondItem="9tR-PI-unc" secondAttribute="bottom" constant="8" id="NgI-qu-uiJ"/>
                     <constraint firstItem="9tR-PI-unc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="U04-zn-T28"/>
                     <constraint firstItem="rYO-nm-U8Q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="oGF-SY-t2y"/>
                     <constraint firstItem="9tR-PI-unc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="qPh-eH-wMg"/>
-                    <constraint firstAttribute="bottom" secondItem="rYO-nm-U8Q" secondAttribute="bottom" constant="8" id="tPN-LL-Lab"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -65,7 +65,7 @@
                 <outlet property="lblTime" destination="rYO-nm-U8Q" id="3SR-Ns-Twh"/>
                 <outlet property="viewText" destination="9tR-PI-unc" id="2Pj-YV-Yu8"/>
             </connections>
-            <point key="canvasLocation" x="34" y="77"/>
+            <point key="canvasLocation" x="36" y="63.5"/>
         </tableViewCell>
     </objects>
 </document>
