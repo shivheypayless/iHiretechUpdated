@@ -45,6 +45,7 @@ class VerifyOtpViewController: UIViewController {
         if viewOtp.txtFieldName.text! == ""
         {
             let viewShaker = AFViewShaker(view: viewOtp)
+             viewOtp.txtFieldName.attributedPlaceholder = NSMutableAttributedString(string: "Enter OTP Code",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
             print(viewOtp)
             viewShaker?.shake()
         }

@@ -89,7 +89,7 @@ class ViewController: UIViewController {
             
             paramerters = ["login": viewUserName.txtFieldName.text!, "password": viewPassword.txtFieldName.text!,"user_type":"technician","device_id":((UserDefaults.standard.object(forKey: "deviceToken") != nil) ?  (UserDefaults.standard.object(forKey: "deviceToken")!) : "6998E359CA0619C7B90772DEF7A70F463BF97A5F559E328E88581C802851724F"),"device_type":"ios"] as [String : Any]
             
-     //        paramerters = ["login": viewUserName.txtFieldName.text!, "password": viewPassword.txtFieldName.text!,"user_type":"technician","device_id":(UserDefaults.standard.object(forKey: "deviceToken")!),"device_type":"ios"] as [String : Any]
+         //    paramerters = ["login": viewUserName.txtFieldName.text!, "password": viewPassword.txtFieldName.text!,"user_type":"technician","device_id":(UserDefaults.standard.object(forKey: "deviceToken")!),"device_type":"ios"] as [String : Any]
             
        //    paramerters = ["login": viewUserName.txtFieldName.text!, "password": viewPassword.txtFieldName.text!,"user_type":"technician","device_id":"6998E359CA0619C7B90772DEF7A70F463BF97A5F559E328E88581C802851724F","device_type":"ios"] as [String : Any]
             

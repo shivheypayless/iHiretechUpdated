@@ -11,6 +11,7 @@ import AFViewShaker
 
 class BlendedApplyViewController: UIViewController {
 
+    @IBOutlet var cnstViewClose: NSLayoutConstraint!
     @IBOutlet var btnYes: UIButton!
     @IBOutlet var btnNo: UIButton!
     @IBOutlet var imgYes: UIImageView!
@@ -35,7 +36,8 @@ class BlendedApplyViewController: UIViewController {
         self.btnApply.layer.cornerRadius = 3
         self.btnApply.layer.masksToBounds = true
         self.height_Yes = self.viewAnimate.frame.size.height
-        self.cnstAnimateViewHeight.constant = 92.2*self.height_Yes
+       // self.cnstAnimateViewHeight.constant = 100.2*self.height_Yes
+        self.cnstViewClose.constant = 0
         // Do any additional setup after loading the view.
     }
 
@@ -82,7 +84,8 @@ class BlendedApplyViewController: UIViewController {
                 self.imgYes.image = UIImage(named:"img_RadioOff")
                 self.imgNo.image = UIImage(named:"img_RadioOn")
                 self.height_Yes = self.viewAnimate.frame.size.height
-                self.cnstAnimateViewHeight.constant = 300.2*self.height_Yes
+               // self.cnstAnimateViewHeight.constant = 300.2*self.height_Yes
+                self.cnstViewClose.constant = 0
                 self.view.layoutIfNeeded()
             }, completion: nil)
             
@@ -100,7 +103,8 @@ class BlendedApplyViewController: UIViewController {
         self.imgNo.image = UIImage(named:"img_RadioOff")
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
             self.height_Yes = self.viewAnimate.frame.size.height
-            self.cnstAnimateViewHeight.constant = 0*self.height_Yes
+          //  self.cnstAnimateViewHeight.constant = 0*self.height_Yes
+            self.cnstViewClose.constant = 460
             self.view.layoutIfNeeded()
         }, completion: nil)
         

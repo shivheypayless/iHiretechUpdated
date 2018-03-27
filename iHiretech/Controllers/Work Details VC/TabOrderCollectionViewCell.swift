@@ -9,7 +9,10 @@
 import UIKit
 
 class TabOrderCollectionViewCell: UICollectionViewCell {
-    @IBOutlet var scrollVIew: UIView!
+  //  @IBOutlet var swipeView: UIView!
+    
+    @IBOutlet var swipeView: UIView!
+    
     @IBOutlet var cnstViewWidth: NSLayoutConstraint!
     @IBOutlet var lblTabName: UILabel!
     override func awakeFromNib() {

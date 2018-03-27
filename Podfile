@@ -7,7 +7,7 @@ target 'iHiretech' do
 
   # Pods for iHiretech
 
-  pod 'TPKeyboardAvoiding'
+pod 'TPKeyboardAvoiding'
 pod 'KLCPopup'
 pod ‘SWRevealViewController’
 pod 'GoogleMaps'

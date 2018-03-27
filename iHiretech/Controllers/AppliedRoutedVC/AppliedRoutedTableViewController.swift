@@ -93,7 +93,10 @@ class AppliedRoutedTableViewController: UITableViewController {
         if self.getSearchListDetails.count != 0
         {
             cell.lblWorkOrderId.text = "#\(String(describing: (self.getSearchListDetails[indexPath.row])["work_order_number"] as! String)) "
+            if !((self.getSearchListDetails[indexPath.row])["tech_applied_status"] is NSNull)
+            {
             cell.lblStatus.text = " \(String(describing: (self.getSearchListDetails[indexPath.row])["tech_applied_status"] as! String)) "
+            }
             cell.lblWorkType.text = (((self.getSearchListDetails[indexPath.row])["work_category"]) as! [String:Any])["work_category_name"] as? String
             cell.lblLocationName.text = ((self.getSearchListDetails[indexPath.row])["location_name"] as? String)
             cell.lblWorkOrderDate.text = "\((self.getSearchListDetails[indexPath.row])["schedule_exact_date"] as? String ?? "2017-04-20") \((self.getSearchListDetails[indexPath.row])["schedule_exact_time"] as? String ?? "10:00")"

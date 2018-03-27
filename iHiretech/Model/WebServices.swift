@@ -71,8 +71,8 @@ class WebAPI {
      var window: UIWindow?
     //Base URL for WebAPI(s)
   //  private let baseurl = "http://172.16.2.62:8001/"//local
-     private let baseurl = "http://172.16.2.68:8001/" // local
-  //  private let baseurl = "https://app.ihiretech.hplbusiness.com/" //testbed
+  //   private let baseurl = "http://172.16.2.68:8001/" // local
+    private let baseurl = "https://app.ihiretech.hplbusiness.com/" //testbed
     //    private let baseurl = "http://172.16.2.7:3003/"//live
    // lazy var profileImgs = "\(baseurl)profileImgs/"
   //  lazy var postImgs = "\(baseurl)postImgs/"
@@ -123,11 +123,54 @@ class WebAPI {
         guard checkForNetworkConnectivity() else {
             return
         }
-        
-        showHUD()
+         DispatchQueue.main.async {
+           self.showHUD()
+        }
         userInteractiveGlobalQueue.async {
             
             self.callWebServiceWithRequest(request, actionAfterServiceResponse: completionHandler)
+        }
+    }
+    
+    public func callJSONWebApiWithoutLoader(_ api: API, withHTTPMethod method: HTTPMethod, forPostParameters parameters: [String:Any]!,shouldIncludeAuthorizationHeader authorizationHeaderFlag: Bool,actionAfterServiceResponse completionHandler: @escaping actionWithServiceResponse)
+    {
+        var request: URLRequest!
+        if method == .post {
+            //print(parameters)
+            request = URLRequest(url: URL(string: "\(self.baseurl)\(api.rawValue)")!)
+            if parameters != nil
+            {
+                request.httpBody = try! JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+            }
+        }
+        else {
+            
+            if let keys = parameters?.keys {
+                var queryString = "/"
+                for eachKey in keys {
+                    queryString.append("\(parameters[eachKey]!)&")
+                }
+                request = URLRequest(url: URL(string: "\(self.baseurl)\(api.rawValue)\(queryString)")!)
+            }
+            else {
+                request = URLRequest(url: URL(string: "\(self.baseurl)\(api.rawValue)")!)
+            }
+            
+        }
+        print(request.url!)
+        request.httpMethod = method.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        if authorizationHeaderFlag {
+            request.setValue(UserDefaults.standard.object(forKey: "token") as? String, forHTTPHeaderField: "Authorization")
+        }
+        guard checkForNetworkConnectivity() else {
+            return
+        }
+        
+        userInteractiveGlobalQueue.async {
+            
+            self.callWebServiceWithRequestPagination(request, actionAfterServiceResponse: completionHandler)
         }
     }
     
@@ -136,7 +179,6 @@ class WebAPI {
         var request: URLRequest!
         
         if method == .post {
-            //print(parameters)
             request = URLRequest(url: URL(string: "\(api)")!)
           //  request.httpBody = try! JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
         }
@@ -166,7 +208,6 @@ class WebAPI {
             return
         }
         
-       // showHUD()
         userInteractiveGlobalQueue.async {
             
             self.callWebServiceWithRequestPagination(request, actionAfterServiceResponse: completionHandler)
@@ -261,15 +302,10 @@ class WebAPI {
         return "\(url)?\(queryString)"
     }
 
-    
 //perform dataTask(s) for Web Service(s)
     private func callWebServiceWithRequest(_ request: URLRequest, actionAfterServiceResponse completionHandler: @escaping actionWithServiceResponse) {
         let dataTask = defaultSession.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
-                if((String(describing: request)).contains("celebrity/celebrityRequest")) || ((String(describing: request)).contains("trophy/getTrophyById"))
-                {
-                    
-                }
                 self.progressHUD.hide(animated: true)
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 guard error == nil else {

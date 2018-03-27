@@ -126,6 +126,14 @@ class LeftMenuViewController: UIViewController {
                 
             }
             }
+            else
+            {
+                DispatchQueue.global(qos: .background).async {
+                    DispatchQueue.main.async {
+                        self.imgProfilePic.image = UIImage(named: "img_EditProfilePic")
+                    }
+                }
+            }
         })
     }
 }

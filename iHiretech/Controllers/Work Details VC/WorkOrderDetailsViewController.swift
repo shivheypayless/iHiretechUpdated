@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import KLCPopup
 import AFViewShaker
-import HCSStarRatingView
+import HCSStarRatingView//
 import KLCPopup
 import Alamofire
 
@@ -73,8 +72,10 @@ class WorkOrderDetailsViewController: UIViewController , UIWebViewDelegate , URL
         }
     }
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
+     
         self.viewMsgBorder.layer.borderWidth = 1
         self.viewMsgBorder.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
         self.viewMsgBorder.layer.cornerRadius = 2
@@ -85,12 +86,14 @@ class WorkOrderDetailsViewController: UIViewController , UIWebViewDelegate , URL
         self.txtSendMsg.addTarget(self, action: #selector(self.textDidChange(_:)), for: .editingChanged)
         self.tblListing.estimatedRowHeight = 140
         self.tblListing.rowHeight = UITableViewAutomaticDimension
-         self.tblListing.register(UINib(nibName: "SearchServiceTableViewCell", bundle: nil) , forCellReuseIdentifier: "SearchServiceTableViewCell")
-         self.tblListing.register(UINib(nibName: "CustomerRateTableViewCell", bundle: nil) , forCellReuseIdentifier: "CustomerRateTableViewCell")
-         self.tblListing.register(UINib(nibName: "WorkOrderInformationTableViewCell", bundle: nil) , forCellReuseIdentifier: "WorkOrderInformationTableViewCell")
-         self.tblListing.register(UINib(nibName: "ScheduleInformationTableViewCell", bundle: nil) , forCellReuseIdentifier: "ScheduleInformationTableViewCell")
-         self.tblListing.register(UINib(nibName: "LocationInformationTableViewCell", bundle: nil) , forCellReuseIdentifier: "LocationInformationTableViewCell")
-         self.tblListing.register(UINib(nibName: "PayRateInformationTableViewCell", bundle: nil) , forCellReuseIdentifier: "PayRateInformationTableViewCell")
+        //  self.tabsCollectionView.delegate = self
+        //  self.tabsCollectionView.dataSource = self
+        self.tblListing.register(UINib(nibName: "SearchServiceTableViewCell", bundle: nil) , forCellReuseIdentifier: "SearchServiceTableViewCell")
+        self.tblListing.register(UINib(nibName: "CustomerRateTableViewCell", bundle: nil) , forCellReuseIdentifier: "CustomerRateTableViewCell")
+        self.tblListing.register(UINib(nibName: "WorkOrderInformationTableViewCell", bundle: nil) , forCellReuseIdentifier: "WorkOrderInformationTableViewCell")
+        self.tblListing.register(UINib(nibName: "ScheduleInformationTableViewCell", bundle: nil) , forCellReuseIdentifier: "ScheduleInformationTableViewCell")
+        self.tblListing.register(UINib(nibName: "LocationInformationTableViewCell", bundle: nil) , forCellReuseIdentifier: "LocationInformationTableViewCell")
+        self.tblListing.register(UINib(nibName: "PayRateInformationTableViewCell", bundle: nil) , forCellReuseIdentifier: "PayRateInformationTableViewCell")
         self.tblListing.register(UINib(nibName: "DocumentsTableViewCell", bundle: nil) , forCellReuseIdentifier: "DocumentsTableViewCell")
         self.tblListing.register(UINib(nibName: "OwnerTableViewCell", bundle: nil) , forCellReuseIdentifier: "OwnerTableViewCell")
         self.tblListing.register(UINib(nibName: "OtherUserTableViewCell", bundle: nil) , forCellReuseIdentifier: "OtherUserTableViewCell")
@@ -101,13 +104,9 @@ class WorkOrderDetailsViewController: UIViewController , UIWebViewDelegate , URL
         self.tblListing.register(UINib(nibName: "FixPayTableViewCell", bundle: nil) , forCellReuseIdentifier: "FixPayTableViewCell")
         self.tblListing.register(UINib(nibName: "BlendedRateTableViewCell", bundle: nil) , forCellReuseIdentifier: "BlendedRateTableViewCell")
         self.tblListing.register(UINib(nibName: "TotalPaymentTableViewCell", bundle: nil) , forCellReuseIdentifier: "TotalPaymentTableViewCell")
-
-        self.tblListing.separatorStyle = .none
-           self.tabsCollectionView.register(UINib(nibName: "TabOrderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TabOrderCollectionViewCell")
         
-        if let flowLayout = tabsCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.estimatedItemSize = CGSize(width: 1,height: 1)
-        }
+        self.tblListing.separatorStyle = .none
+     
         
         NotificationCenter.default.addObserver(
             self,
@@ -122,11 +121,7 @@ class WorkOrderDetailsViewController: UIViewController , UIWebViewDelegate , URL
             name: NSNotification.Name.UIKeyboardWillHide,
             object: nil
         )
-       
         
-         SocketIOManager.sharedInstance.socketIOManagerDelegate = self
-       // collapsedSections.add(1)
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -134,14 +129,17 @@ class WorkOrderDetailsViewController: UIViewController , UIWebViewDelegate , URL
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-         getWorkList()
-          //  { (userDetails) in
-            //    self.getChatHistory()
-      //  }
-    }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.tabsCollectionView.register(UINib(nibName: "TabOrderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TabOrderCollectionViewCell")
+//        if let flowLayout = tabsCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+//            flowLayout.estimatedItemSize = CGSize(width: 1,height: 1)
+//        }
+       
+        getWorkList()
+    }
+ 
     
     @objc
     func keyboardWillShow(_ notification: Notification) {
@@ -186,22 +184,24 @@ class WorkOrderDetailsViewController: UIViewController , UIWebViewDelegate , URL
     {
         let parameters = ["id": self.workOrderId] as! [String:AnyObject]
         WebAPI().callJSONWebApi(API.workOrderDetails, withHTTPMethod: .post, forPostParameters: parameters, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
-            print(serviceResponse)
+           // print(serviceResponse)
             self.chatDetails = serviceResponse["data"] as! [String : Any]
             self.getWorkListData = self.chatDetails["workOrderData"] as! [String:Any]
-            self.lblWorkOrderId.text = "( ID: \(((self.getWorkListData)["work_order_number"] as? String)!) )"
+           
             let cap = ((self.getWorkListData)["status_name"] as! String)
             let finalString = cap.uppercased()
-            self.lblOrderView.setTitle(" \(finalString) ", for: .normal)
+          
             self.ExpensesList = (self.getWorkListData["tech_expenses"] as! [AnyObject])
             self.documentList = (self.getWorkListData["work_oder_document"] as! [AnyObject])
-           self.tblListing.dataSource = self
-           self.tblListing.delegate = self
-            self.tabsCollectionView.delegate = self
-            self.tabsCollectionView.dataSource = self
-            self.tblListing.reloadData()
-            self.tabsCollectionView.reloadData()
-           // details("Done")
+            
+            DispatchQueue.main.async {
+                self.lblWorkOrderId.text = "( ID: \(((self.getWorkListData)["work_order_number"] as? String)!) )"
+                self.lblOrderView.setTitle(" \(finalString) ", for: .normal)
+                self.tblListing.reloadData()
+                self.tabsCollectionView.delegate = self
+                self.tabsCollectionView.dataSource = self
+                self.tabsCollectionView.reloadData()
+            }
         })
     }
     
@@ -209,13 +209,15 @@ class WorkOrderDetailsViewController: UIViewController , UIWebViewDelegate , URL
     {
         self.socketId = ((((self.getWorkListData)["manager"]) as! [String:Any])["socket_id"] as! String)
         let parameter = ["with_users_id": self.socketId,"work_order_id":workOrderId] as [String:AnyObject]
-        WebAPI.shared.callJSONWebApi(.getChatHistory, withHTTPMethod: .post, forPostParameters: parameter, shouldIncludeAuthorizationHeader: true) { (serviceResponse) in
+        WebAPI.shared.callJSONWebApiWithoutLoader(.getChatHistory, withHTTPMethod: .post, forPostParameters: parameter, shouldIncludeAuthorizationHeader: true) { (serviceResponse) in
             print(serviceResponse)
             let Data = serviceResponse["data"] as! [String:AnyObject]
             self.chatHistory = Data["messages"] as! [AnyObject]
+           
             self.tblListing.dataSource = self
             self.tblListing.delegate = self
             self.tblListing.reloadData()
+          
             SocketIOManager.sharedInstance.socketIOManagerDelegate = self
             guard self.chatHistory.count > 0 else {
                 return
@@ -229,18 +231,21 @@ class WorkOrderDetailsViewController: UIViewController , UIWebViewDelegate , URL
       //  print(String(describing: chatDetail["socket_id"]!))
         self.socketId = chatDetail["socket_id"] as! String
         let parameter = ["with_users_id": self.socketId,"work_order_id":workOrderId] as [String:AnyObject]
-        WebAPI.shared.callJSONWebApi(.getChatHistory, withHTTPMethod: .post, forPostParameters: parameter, shouldIncludeAuthorizationHeader: true) { (serviceResponse) in
+        WebAPI.shared.callJSONWebApiWithoutLoader(.getChatHistory, withHTTPMethod: .post, forPostParameters: parameter, shouldIncludeAuthorizationHeader: true) { (serviceResponse) in
             print(serviceResponse)
             let Data = serviceResponse["data"] as! [String:AnyObject]
             self.chatHistory = Data["messages"] as! [AnyObject]
-                self.tblListing.dataSource = self
-                self.tblListing.delegate = self
+            
+             self.tblListing.dataSource = self
+             self.tblListing.delegate = self
              self.tblListing.reloadData()
             SocketIOManager.sharedInstance.socketIOManagerDelegate = self
             guard self.chatHistory.count > 0 else {
                 return
             }
+            // DispatchQueue.main.async {
             self.tblListing.scrollToRow(at: IndexPath(row: self.chatHistory.count - 1, section: 0), at: .bottom, animated: false)
+         //   }
         }
     }
 
@@ -272,76 +277,66 @@ class WorkOrderDetailsViewController: UIViewController , UIWebViewDelegate , URL
     
 }
 
-extension WorkOrderDetailsViewController : UICollectionViewDelegate , UICollectionViewDataSource
+extension WorkOrderDetailsViewController : UICollectionViewDelegate , UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.tabs.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+     {
          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TabOrderCollectionViewCell", for: indexPath) as! TabOrderCollectionViewCell
         cell.lblTabName.text = self.tabs[indexPath.row]
         if self.tabsTag == 1 && indexPath.row == 0
         {
-             cell.scrollVIew.isHidden = false
+             cell.swipeView.isHidden = false
         }
         else if self.tabsTag == 2 && indexPath.row == 1
         {
-            cell.scrollVIew.isHidden = false
+            cell.swipeView.isHidden = false
             let chatDetail = self.chatDetails["chatWith"] as! [String:Any]
-            if self.socketId != ""
+         
+              if (self.socketId != "") && (!(chatDetail["socket_id"] is NSNull)) && ((chatDetail["socket_id"] as! String) == self.socketId)
             {
-              if !(chatDetail["socket_id"] is NSNull)
-            {
-                if (chatDetail["socket_id"] as! String) == self.socketId
-                {
                     getChatHistory()
                     self.cnstViewChatBottom.constant = 0
-                }
-                else
-                {
-                    getChatHistoryManager()
-                    self.cnstViewChatBottom.constant = 0
-                }
             }
                 else
             {
                 getChatHistoryManager()
                 self.cnstViewChatBottom.constant = 0
             }
-            }
         }
         else if self.tabsTag == 3 && indexPath.row == 2
         {
-            cell.scrollVIew.isHidden = false
+            cell.swipeView.isHidden = false
         }
         else if self.tabsTag == 4 && indexPath.row == 3
         {
-            cell.scrollVIew.isHidden = false
+            cell.swipeView.isHidden = false
         }
         else
         {
-            cell.scrollVIew.isHidden = true
+            cell.swipeView.isHidden = true
         }
-        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! TabOrderCollectionViewCell
        self.view.endEditing(true)
-        if cell.scrollVIew.isHidden == true
+        if cell.swipeView.isHidden == true
         {
-            cell.scrollVIew.isHidden = false
+            cell.swipeView.isHidden = false
         }
         else
         {
-            cell.scrollVIew.isHidden = true
+            cell.swipeView.isHidden = true
         }
         if indexPath.row == 0
         {
             self.tabsTag = 1
-            self.cnstViewChatBottom.constant = -35
+            self.cnstViewChatBottom.constant = -45
         }
         if indexPath.row == 1
         {
@@ -352,13 +347,13 @@ extension WorkOrderDetailsViewController : UICollectionViewDelegate , UICollecti
         if indexPath.row == 2
         {
             self.tabsTag = 3
-            self.cnstViewChatBottom.constant = -35
+            self.cnstViewChatBottom.constant = -45
          //    self.viewChat.isHidden = true
         }
         if indexPath.row == 3
         {
             self.tabsTag = 4
-            self.cnstViewChatBottom.constant = -35
+            self.cnstViewChatBottom.constant = -45
          //    self.viewChat.isHidden = true
         }
         self.tabsCollectionView.reloadData()
@@ -366,7 +361,24 @@ extension WorkOrderDetailsViewController : UICollectionViewDelegate , UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.height)
+      //  return CGSize(width: self.tabsCollectionView.frame.width/2, height: self.tabsCollectionView.frame.height)
+        if indexPath.row == 0
+        {
+            return CGSize(width: 150, height: self.tabsCollectionView.frame.height)
+        }
+        else if indexPath.row == 1
+        {
+            return CGSize(width: 100, height: self.tabsCollectionView.frame.height)
+        }
+        else if indexPath.row == 2
+        {
+            return CGSize(width: 100, height: self.tabsCollectionView.frame.height)
+        }
+        else
+        {
+            return CGSize(width: 100, height: self.tabsCollectionView.frame.height)
+        }
+     
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -428,7 +440,7 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
          }
         else
          {
-            return 1
+            return self.getWorkListData.count > 0 ? 1 : 0
          }
         }
         else
@@ -484,12 +496,13 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
             cell.lblContactNo.text = ((self.getWorkListData)["location_contact_phone_number"] as? String)!
             cell.lblLocation.text = ((self.getWorkListData)["location_country"] as? String)!
             let information = self.chatDetails["chatWith"] as! [String:Any]
+            self.sendMessageId = (information["socket_id"] as? String)!
             cell.lblName.text = ((information)["first_name"] as? String)!+" "+((information)["last_name"] as? String)!
             cell.lblEmail.text = (((self.getWorkListData)["created_data"]) as! [String:Any])["email"] as? String
             cell.btnRating.addTarget(self, action: #selector(RatingAction(_ :)), for: .touchUpInside)
             if (!(self.chatDetails["avg_rating"] is NSNull))
             {
-            if let n = NumberFormatter().number(from: (self.chatDetails["avg_rating"] as! String)) {
+            if let n = NumberFormatter().number(from: String(self.chatDetails["avg_rating"] as! Int)) {
                 let f = CGFloat(truncating: n)
                 cell.viewRating.value = f
                 cell.viewRating.filledStarImage = #imageLiteral(resourceName: "img_OrangeStar")
@@ -513,18 +526,20 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
             }
             else
             {
+                
                 let mediaFile = ((((self.getWorkListData)["created_data"]) as! [String:Any])["userpic"] as? String)!
                 var afterEqualsTo = String()
                 if let index = (mediaFile.range(of: ",")?.upperBound)
                 {
                     afterEqualsTo = String(mediaFile.suffix(from: index))
-              //      print(afterEqualsTo)
+                    print(afterEqualsTo)
                 }
+                
+               
                 let imageData = String(afterEqualsTo).data(using: String.Encoding.utf8)
                 var profileImage = Data()
                 if let decodedData = NSData(base64Encoded: imageData!, options: .ignoreUnknownCharacters) {
-            //        print(decodedData)
-                    profileImage = decodedData as Data
+                     profileImage = decodedData as Data
                 }
                 if profileImage != nil
                 {
@@ -550,8 +565,9 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "WorkOrderInformationTableViewCell", for: indexPath) as! WorkOrderInformationTableViewCell
             do {
-                   let attributedString = try? NSAttributedString(data: ((self.getWorkListData)["work_order_description"] as! String).data(using: .unicode) ?? Data(), options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
-                 cell.lblHtml.attributedText = attributedString
+               let attributedString = try? NSAttributedString(data: ((self.getWorkListData)["work_order_description"] as! String).data(using: .unicode) ?? Data(), options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+              
+          cell.lblHtml.attributedText = attributedString
             } catch {
                 print(error)
             }
@@ -563,8 +579,8 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
             let cell = tableView.dequeueReusableCell(withIdentifier: "WorkOrderInformationTableViewCell", for: indexPath) as! WorkOrderInformationTableViewCell
          
             do {
-                let attributedString = try? NSAttributedString(data: "   \((self.getWorkListData)["additional_expenses"] as! String)".data(using: .unicode) ?? Data(), options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
-                cell.lblHtml.attributedText = attributedString
+               let attributedString = try? NSAttributedString(data: "   \((self.getWorkListData)["additional_expenses"] as! String)".data(using: .unicode) ?? Data(), options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+              cell.lblHtml.attributedText = attributedString
             } catch {
                 print(error)
             }
@@ -592,8 +608,22 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
             let cell = tableView.dequeueReusableCell(withIdentifier: "PayRateInformationTableViewCell", for: indexPath) as! PayRateInformationTableViewCell
             let information = self.chatDetails["chatWith"] as! [String:Any]
             cell.lblPaymentType.text = ((information)["first_name"] as? String)!
-            cell.lblMaxRate.text = String(describing: (information)["per_hour_max_hours"] as? Int)
-            cell.lblHourlyRate.text = String(describing:(information)["per_hour_rate"] as? Float)
+            if !((self.getWorkListData)["per_hour_max_hours"] is NSNull)
+            {
+               cell.lblMaxRate.text = String((self.getWorkListData)["per_hour_max_hours"] as! Int)
+            }
+            else
+            {
+                 cell.lblMaxRate.text = "-"
+            }
+            if !((self.getWorkListData)["per_hour_rate"] is NSNull)
+            {
+              cell.lblHourlyRate.text = ((self.getWorkListData)["per_hour_rate"] as! String)
+            }
+            else
+            {
+                cell.lblHourlyRate.text = "-"
+            }
             return cell
         }
         else
@@ -607,7 +637,6 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
     }
         else if self.tabsTag == 2
        {
-        
         if (UserDefaults.standard.object(forKey: "SocketId") as? String)! == (chatHistory[indexPath.row]["from_id"] as? String)!
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "OwnerTableViewCell", for: indexPath) as! OwnerTableViewCell
@@ -644,11 +673,11 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
             cell.lblAmount.text = "$ \((self.ExpensesList[indexPath.row])["expense_amount"] as! String)"
             cell.lblTotalAmount.text = "$ \((self.ExpensesList[indexPath.row])["tech_total_expenses"] as! String)"
             cell.lblDescription.text = ((self.ExpensesList[indexPath.row])["expense_description"] as! String)
-            if (((self.ExpensesList[indexPath.row])["status"] as? String)! == "-1")
+            if (((self.ExpensesList[indexPath.row])["status"] as? Int)! == -1)
             {
                 cell.lblStatus.text = " Rejected "
             }
-            else if(((self.ExpensesList[indexPath.row])["status"] as? String) == "1")
+            else if(((self.ExpensesList[indexPath.row])["status"] as? Int) == 1)
             {
                 cell.lblStatus.text = " Approved "
             }
@@ -660,13 +689,13 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
         }
         else if indexPath.section == 2
         {
-            if ((self.getWorkListData)["payment_rate_type"] as? String) == "2"
+            if ((self.getWorkListData)["payment_rate_type"] as? Int) == 2
             {
             let cell = tableView.dequeueReusableCell(withIdentifier: "EarningTableViewCell", for: indexPath) as! EarningTableViewCell
             cell.lblPerHraRate.text =  "\((self.getWorkListData)["per_hour_rate"] as? String ?? "")"
             if (!((self.getWorkListData)["per_hour_max_hours"] is NSNull))
             {
-              cell.lblMaxRate.text =  "\((self.getWorkListData)["per_hour_max_hours"] as! String)"
+              cell.lblMaxRate.text =  "\((self.getWorkListData)["per_hour_max_hours"] as! Int)"
             }
             if (!((self.chatDetails)["labour_amount"] is NSNull))
             {
@@ -675,7 +704,7 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
             cell.lblTotalEarning.text = "$ \(String(describing: (self.chatDetails)["labour_amount"] as! Double))"
             return cell
             }
-            else if ((self.getWorkListData)["payment_rate_type"] as? String) == "1"
+            else if ((self.getWorkListData)["payment_rate_type"] as? Int) == 1
             {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "FixPayTableViewCell", for: indexPath) as! FixPayTableViewCell
                 if (!((self.getWorkListData)["fixed_pay_amount"] is NSNull))
@@ -820,6 +849,7 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
                 afterEqualsTo = String(mediaFile.suffix(from: index))
                // print(afterEqualsTo)
             }
+            
             let imageData = String(afterEqualsTo).data(using: String.Encoding.utf8)
             var profileImage = Data()
             if let decodedData = NSData(base64Encoded: imageData!, options: .ignoreUnknownCharacters) {
@@ -1490,9 +1520,8 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
     }
     
     
-    
      @objc func getDocument(_ sender: UIButton) {
-        let downloadUrl = "http://172.16.2.68:8001/api/technician/work_order_document/\(((self.documentList[sender.tag])["work_order_document_id"] as! Int))"
+        let downloadUrl = "https://app.ihiretech.hplbusiness.com/api/technician/work_order_document/\(((self.documentList[sender.tag])["work_order_document_id"] as! Int))"
         let destination = self.storyboard?.instantiateViewController(withIdentifier: "DocumentViewController") as! DocumentViewController
         destination.url = URL(string: downloadUrl)!
         self.navigationController?.pushViewController(destination, animated: true)

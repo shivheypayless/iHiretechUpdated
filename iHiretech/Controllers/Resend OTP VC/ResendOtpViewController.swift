@@ -42,6 +42,7 @@ class ResendOtpViewController: UIViewController {
         if viewEmail.txtFieldName.text! == ""
         {
             let viewShaker = AFViewShaker(view: viewEmail)
+            viewEmail.txtFieldName.attributedPlaceholder = NSMutableAttributedString(string: "Enter Email Address",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
             print(viewEmail)
             viewShaker?.shake()
         }

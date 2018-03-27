@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,LocationUpdateProtocol, So
     func usersTyping(_ data: [String : Any]) {
         
     }
-    
     func messageReceived(_ data: String) {
         
     }
@@ -39,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,LocationUpdateProtocol, So
         
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
         if statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
-            statusBar.backgroundColor = UIColor.black
+            statusBar.backgroundColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
         }
         UIApplication.shared.statusBarStyle = .lightContent
         
@@ -154,6 +153,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,LocationUpdateProtocol, So
     {
         print(userInfo)
       //  print(((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_id") as! Int))
+        if UserDefaults.standard.object(forKey: "UnreadAlert") != nil
+        {
+           application.applicationIconBadgeNumber = (UserDefaults.standard.object(forKey: "UnreadAlert")! as! Int)
+        }
+      
         if ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_status") as! String) == "1"
         {
             let storyboardRoot = UIStoryboard(name: "Main", bundle: nil)
@@ -198,7 +202,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,LocationUpdateProtocol, So
         else
         {
             destination.tabsTag = 1
-            destination.workOrderId = Int((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_id") as! String)!
+            destination.workOrderId = Int(((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_id") as? String)!)!
         }
        
         (destinationRoot.frontViewController as! UINavigationController).navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)

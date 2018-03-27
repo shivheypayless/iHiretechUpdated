@@ -21,7 +21,7 @@ protocol SocketIOManagerDelegate: class {
 class SocketIOManager {
     
     static let sharedInstance = SocketIOManager()
-    var socket: SocketIOClient = SocketIOClient(socketURL: URL(string: "http://172.16.2.68:8890")!)
+    var socket: SocketIOClient = SocketIOClient(socketURL: URL(string: "https://ihiretech.hplbusiness.com:8890")!)
     weak var socketIOManagerDelegate: SocketIOManagerDelegate!
     
     func establishConnection() {
@@ -30,15 +30,12 @@ class SocketIOManager {
         socket.onAny { (socketEvent) in
             print(socketEvent.event)
             switch Event(rawValue: socketEvent.event) {
-//            case .typing?:
-//                self.socketIOManagerDelegate.usersTyping(socketEvent.items?.first as! [String:Any])
             case .message?:
                 if (self.socketIOManagerDelegate != nil)
                 {
             self.socketIOManagerDelegate.messageReceived(socketEvent.items?.first as! String)
                 NotificationCenter.default.post(name: NSNotification.Name("MessageReceived"), object: nil)
                 }
-                
             default:
                 print("Done")
             }

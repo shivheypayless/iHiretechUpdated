@@ -672,6 +672,23 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
                 self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
                 self.view.addSubview(self.noDataFOund)
                 print(self.getSearchListDetails.count)
+                self.locationManager.startUpdatingLocation()
+                 self.markerArray.removeAll()
+             
+            }
+            if self.getSearchListDetails.count != 0
+            {
+                print(self.getSearchListDetails.count)
+                self.locationManager.delegate = self
+                if CLLocationManager.authorizationStatus() == .authorizedWhenInUse
+                {
+                    self.locationManager.startUpdatingLocation()
+                }
+                else
+                {
+                    self.locationManager.requestWhenInUseAuthorization()
+                    
+                }
             }
             self.tableView.dataSource = self
             self.tableView.delegate = self
@@ -686,13 +703,13 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
 
     @objc func btnApplyAction(_ sender : UIButton)
     {
-        if ((self.getSearchListDetails[sender.tag])["payment_rate_type"] as? String)! == "3"
+        if ((self.getSearchListDetails[sender.tag])["payment_rate_type"] as? Int)! == 3
         {
             self.workOrderId =  ((self.getSearchListDetails[sender.tag])["work_order_id"] as! Int)
             let nav = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "BlendedApplyViewController") as! BlendedApplyViewController
             nav.workOrderId = self.workOrderId
              nav.statusName = ((self.getSearchListDetails[sender.tag])["status_name"] as! String)
-            nav.paymentRateType = ((self.getSearchListDetails[sender.tag])["payment_rate_type"] as? String)!
+            nav.paymentRateType = String((self.getSearchListDetails[sender.tag])["payment_rate_type"] as! Int)
             let transition = CATransition()
             transition.duration = 0.5
             transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
@@ -709,7 +726,7 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
         let nav = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "ApplyWorkViewController") as! ApplyWorkViewController
         nav.workOrderId = self.workOrderId
             nav.statusName = ((self.getSearchListDetails[sender.tag])["status_name"] as! String)
-        nav.paymentRateType = ((self.getSearchListDetails[sender.tag])["payment_rate_type"] as? String)!
+            nav.paymentRateType = String((self.getSearchListDetails[sender.tag])["payment_rate_type"] as! Int)
         let transition = CATransition()
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)

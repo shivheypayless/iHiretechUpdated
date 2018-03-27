@@ -36,6 +36,14 @@ class ChatViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
        // chatRoom.setupNetworkCommunication()
+        if self.notificationList.count == 0
+        {
+        self.noDataFound.textAlignment = .center
+        self.noDataFound = UILabel(frame: CGRect(x: self.view.center.x - (60), y: 60, width: 150, height: 16))
+        self.noDataFound.text = "No Notification Found"
+        self.noDataFound.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+        self.view.addSubview( self.noDataFound)
+        }
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
     
@@ -71,14 +79,7 @@ class ChatViewController: UIViewController {
             self.tblChat.reloadData()
             details("done")
             }
-            else
-            {
-                    self.noDataFound.textAlignment = .center
-                    self.noDataFound = UILabel(frame: CGRect(x: self.view.center.x - (60), y: 60, width: 150, height: 16))
-                    self.noDataFound.text = "No Notification Found"
-                    self.noDataFound.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
-                    self.view.addSubview( self.noDataFound)
-            }
+          
         })
     }
 

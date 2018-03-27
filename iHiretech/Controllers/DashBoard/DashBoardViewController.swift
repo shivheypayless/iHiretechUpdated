@@ -97,6 +97,7 @@ class DashBoardViewController: UIViewController {
         else
         {
             self.btnChat.badgeString = "\((self.getCompleteData["message_count"] as! Int) + 1)"
+            UserDefaults.standard.setValue((self.getCompleteData["message_count"] as! Int), forKey: "UnreadAlert")
         }
     }
 
@@ -104,7 +105,10 @@ class DashBoardViewController: UIViewController {
     {
        if self.btnChat.badgeString != "0"
        {
+//        if !(self.getCompleteData["message_count"] is NSNull)
+//        {
          self.btnChat.badgeString = "\((self.getCompleteData["message_count"] as! Int) - 1)"
+      //  }
        }
         else
        {
@@ -251,9 +255,17 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
             }
             else if indexPath.row == 9
             {
-                if let address = (((self.getProfileDetailsDict)["address_line_1"]) as? String)
+                if !(((self.getProfileDetailsDict)["address_line_1"]) is NSNull) && !(((self.getProfileDetailsDict)["address_line_2"]) is NSNull)
                 {
                  cell.lblSubTitle.text = "\(((self.getProfileDetailsDict)["address_line_1"]!) as! String) , \(((self.getProfileDetailsDict)["address_line_2"]!) as! String)"
+                }
+                else if !(((self.getProfileDetailsDict)["address_line_1"]) is NSNull)
+                {
+                     cell.lblSubTitle.text = (((self.getProfileDetailsDict)["address_line_1"]!) as! String)
+                }
+                else
+                {
+                    cell.lblSubTitle.text = "-"
                 }
             }
         
@@ -278,7 +290,7 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
         UserDefaults.standard.setValue((((self.getProfileDetailsDict)["universal_id"]!) as! String), forKey: "Id")
         UserDefaults.standard.setValue((((self.getProfileDetailsDict)["city"]!) as! String), forKey: "Location")
         UserDefaults.standard.setValue((((self.getProfileDetailsDict)["socket_id"]!) as! String), forKey: "SocketId")
-        UserDefaults.standard.setValue(((self.getProfileDetailsDict)["user_id"] as! String), forKey: "UserId")
+        UserDefaults.standard.setValue(((self.getProfileDetailsDict)["user_id"] as! Int), forKey: "UserId")
          (headerViewArray.viewWithTag(2) as! UIImageView).layer.cornerRadius =  (headerViewArray.viewWithTag(2) as! UIImageView).frame.size.height/2
          (headerViewArray.viewWithTag(2) as! UIImageView).layer.masksToBounds = true
          (headerViewArray.viewWithTag(2) as! UIImageView).layoutIfNeeded()
@@ -385,6 +397,7 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
             self.profileImage = decodedData as Data
             }
             }
+            
             self.tblProfile.delegate = self
             self.tblProfile.dataSource = self
              self.tblProfile.reloadData()

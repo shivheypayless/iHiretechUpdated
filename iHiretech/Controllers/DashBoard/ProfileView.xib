@@ -28,7 +28,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_Background" translatesAutoresizingMaskIntoConstraints="NO" id="cX5-9f-cuo">
                     <rect key="frame" x="0.0" y="0.0" width="300" height="170"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_ProfileLeftMenu" translatesAutoresizingMaskIntoConstraints="NO" id="NP5-aI-YDE">
+                <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_EditProfilePic" translatesAutoresizingMaskIntoConstraints="NO" id="NP5-aI-YDE">
                     <rect key="frame" x="110" y="20" width="80" height="80"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="NP5-aI-YDE" secondAttribute="height" multiplier="1:1" id="Qh0-Rr-bFs"/>
@@ -95,6 +95,6 @@
     <resources>
         <image name="img_Background" width="320" height="205"/>
         <image name="img_Edit" width="11" height="11"/>
-        <image name="img_ProfileLeftMenu" width="52" height="52"/>
+        <image name="img_EditProfilePic" width="114" height="114"/>
     </resources>
 </document>
