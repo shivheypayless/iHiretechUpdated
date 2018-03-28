@@ -133,9 +133,6 @@
 		84B3D32E200CE88C007FBF46 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B3D32D200CE88C007FBF46 /* GLKit.framework */; };
 		84B3D330200CE898007FBF46 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B3D32F200CE898007FBF46 /* SystemConfiguration.framework */; };
 		84B3D332200CE8A3007FBF46 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B3D331200CE8A3007FBF46 /* AVFoundation.framework */; };
-		84B3D333200CE9FE007FBF46 /* BackgroundTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B3D2FF200CB45F007FBF46 /* BackgroundTaskManager.m */; };
-		84B3D334200CE9FE007FBF46 /* LocationShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B3D301200CB45F007FBF46 /* LocationShareModel.m */; };
-		84B3D335200CE9FE007FBF46 /* LocationTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B3D300200CB45F007FBF46 /* LocationTracker.m */; };
 		84D850DE1FC2E1CE004E8D72 /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D850DD1FC2E1CE004E8D72 /* DatePickerView.xib */; };
 		84E3C8471FA218B700887105 /* LeftMenuOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E3C8461FA218B700887105 /* LeftMenuOptionTableViewCell.swift */; };
 		84E3C8491FA2227600887105 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E3C8481FA2227600887105 /* HeaderView.xib */; };
@@ -145,6 +142,10 @@
 		84FFD8201FA357DE00C0D67C /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFD81F1FA357DE00C0D67C /* TextFieldView.swift */; };
 		84FFD8271FA3737200C0D67C /* WorkOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FFD8251FA3737200C0D67C /* WorkOrderTableViewCell.swift */; };
 		84FFD8281FA3737200C0D67C /* WorkOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FFD8261FA3737200C0D67C /* WorkOrderTableViewCell.xib */; };
+		CA400F54206A2FA7001526EC /* BackgroundTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA400F4E206A2FA7001526EC /* BackgroundTaskManager.m */; };
+		CA400F55206A2FA7001526EC /* Directions.geojson in Resources */ = {isa = PBXBuildFile; fileRef = CA400F4F206A2FA7001526EC /* Directions.geojson */; };
+		CA400F56206A2FA7001526EC /* LocationShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA400F51206A2FA7001526EC /* LocationShareModel.m */; };
+		CA400F57206A2FA7001526EC /* LocationTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = CA400F53206A2FA7001526EC /* LocationTracker.m */; };
 		CA68CCDE1FA73AD2000143BB /* SearchResultHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA68CCDD1FA73AD2000143BB /* SearchResultHeaderView.xib */; };
 		CA68CCE01FA73C04000143BB /* MyWorkOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA68CCDF1FA73C04000143BB /* MyWorkOrderTableViewController.swift */; };
 		CA68CCE31FA73E4A000143BB /* SearchWorkOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA68CCE11FA73E4A000143BB /* SearchWorkOrderTableViewCell.swift */; };
@@ -300,13 +301,6 @@
 		84A7FCAC20244E3400235F03 /* ChatUserView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatUserView.xib; sourceTree = "<group>"; };
 		84A93FC71FA9E35800662040 /* PersonalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDetailsViewController.swift; sourceTree = "<group>"; };
 		84A93FCA1FA9E3D000662040 /* ProfessionalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionalDetailsViewController.swift; sourceTree = "<group>"; };
-		84B3D2FD200CB45F007FBF46 /* BackgroundTaskManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BackgroundTaskManager.h; sourceTree = "<group>"; };
-		84B3D2FE200CB45F007FBF46 /* LocationTracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationTracker.h; sourceTree = "<group>"; };
-		84B3D2FF200CB45F007FBF46 /* BackgroundTaskManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BackgroundTaskManager.m; sourceTree = "<group>"; };
-		84B3D300200CB45F007FBF46 /* LocationTracker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationTracker.m; sourceTree = "<group>"; };
-		84B3D301200CB45F007FBF46 /* LocationShareModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationShareModel.m; sourceTree = "<group>"; };
-		84B3D302200CB45F007FBF46 /* Directions.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = Directions.geojson; sourceTree = "<group>"; };
-		84B3D303200CB460007FBF46 /* LocationShareModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationShareModel.h; sourceTree = "<group>"; };
 		84B3D305200CDE94007FBF46 /* AFViewShaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AFViewShaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B3D306200CDEAE007FBF46 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		84B3D309200CDF0D007FBF46 /* TPKeyboardAvoiding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TPKeyboardAvoiding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -338,6 +332,13 @@
 		84FFD81F1FA357DE00C0D67C /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		84FFD8251FA3737200C0D67C /* WorkOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkOrderTableViewCell.swift; sourceTree = "<group>"; };
 		84FFD8261FA3737200C0D67C /* WorkOrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkOrderTableViewCell.xib; sourceTree = "<group>"; };
+		CA400F4D206A2FA7001526EC /* BackgroundTaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundTaskManager.h; sourceTree = "<group>"; };
+		CA400F4E206A2FA7001526EC /* BackgroundTaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundTaskManager.m; sourceTree = "<group>"; };
+		CA400F4F206A2FA7001526EC /* Directions.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Directions.geojson; sourceTree = "<group>"; };
+		CA400F50206A2FA7001526EC /* LocationShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationShareModel.h; sourceTree = "<group>"; };
+		CA400F51206A2FA7001526EC /* LocationShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationShareModel.m; sourceTree = "<group>"; };
+		CA400F52206A2FA7001526EC /* LocationTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTracker.h; sourceTree = "<group>"; };
+		CA400F53206A2FA7001526EC /* LocationTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTracker.m; sourceTree = "<group>"; };
 		CA68CCDD1FA73AD2000143BB /* SearchResultHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultHeaderView.xib; sourceTree = "<group>"; };
 		CA68CCDF1FA73C04000143BB /* MyWorkOrderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkOrderTableViewController.swift; sourceTree = "<group>"; };
 		CA68CCE11FA73E4A000143BB /* SearchWorkOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWorkOrderTableViewCell.swift; sourceTree = "<group>"; };
@@ -528,7 +529,7 @@
 		8403A6EE1FA0613300222ED9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				84B3D2FC200CB42E007FBF46 /* GPSLocation */,
+				CA400F4C206A2FA7001526EC /* GPSLocation */,
 				8403A6BC1FA0610200222ED9 /* AppDelegate.swift */,
 				841C60B61FB0A01F00945E10 /* WebServices.swift */,
 				84416A941FB198E300C45E00 /* Validation.swift */,
@@ -927,21 +928,6 @@
 			path = "Professional details VC";
 			sourceTree = "<group>";
 		};
-		84B3D2FC200CB42E007FBF46 /* GPSLocation */ = {
-			isa = PBXGroup;
-			children = (
-				84B3D2FD200CB45F007FBF46 /* BackgroundTaskManager.h */,
-				84B3D2FF200CB45F007FBF46 /* BackgroundTaskManager.m */,
-				84B3D302200CB45F007FBF46 /* Directions.geojson */,
-				84B3D303200CB460007FBF46 /* LocationShareModel.h */,
-				84B3D301200CB45F007FBF46 /* LocationShareModel.m */,
-				84B3D2FE200CB45F007FBF46 /* LocationTracker.h */,
-				84B3D300200CB45F007FBF46 /* LocationTracker.m */,
-			);
-			name = GPSLocation;
-			path = "/Users/admin/Documents/iHiretech 2/iHiretech/Model/GPSLocation";
-			sourceTree = "<absolute>";
-		};
 		84FFD8211FA3728B00C0D67C /* My Work Order VC */ = {
 			isa = PBXGroup;
 			children = (
@@ -962,6 +948,20 @@
 				CA68CCE21FA73E4A000143BB /* SearchWorkOrderTableViewCell.xib */,
 			);
 			path = "Work Order TVC";
+			sourceTree = "<group>";
+		};
+		CA400F4C206A2FA7001526EC /* GPSLocation */ = {
+			isa = PBXGroup;
+			children = (
+				CA400F4D206A2FA7001526EC /* BackgroundTaskManager.h */,
+				CA400F4E206A2FA7001526EC /* BackgroundTaskManager.m */,
+				CA400F4F206A2FA7001526EC /* Directions.geojson */,
+				CA400F50206A2FA7001526EC /* LocationShareModel.h */,
+				CA400F51206A2FA7001526EC /* LocationShareModel.m */,
+				CA400F52206A2FA7001526EC /* LocationTracker.h */,
+				CA400F53206A2FA7001526EC /* LocationTracker.m */,
+			);
+			path = GPSLocation;
 			sourceTree = "<group>";
 		};
 		CA68CCE71FA765B6000143BB /* Search Work Order VC */ = {
@@ -1140,6 +1140,7 @@
 				844875611FC4003000D9503B /* StatesTableViewCell.xib in Resources */,
 				846F39F1200BDE0B00444853 /* RatingView.xib in Resources */,
 				84FFD8281FA3737200C0D67C /* WorkOrderTableViewCell.xib in Resources */,
+				CA400F55206A2FA7001526EC /* Directions.geojson in Resources */,
 				843D5D3E1FA317C300292565 /* ProfileView.xib in Resources */,
 				8463A9FE2015BD9700702C9C /* StartTrackingView.xib in Resources */,
 				CA68CCE61FA73EBF000143BB /* SearchViewExpandableView.xib in Resources */,
@@ -1232,9 +1233,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84B3D333200CE9FE007FBF46 /* BackgroundTaskManager.m in Sources */,
-				84B3D334200CE9FE007FBF46 /* LocationShareModel.m in Sources */,
-				84B3D335200CE9FE007FBF46 /* LocationTracker.m in Sources */,
 				728928F81FA1A25D007686AE /* ChangePaawordViewController.swift in Sources */,
 				84580A071FECF77800A7FCBF /* WorkOrderDetailsViewController.swift in Sources */,
 				846F39EA200BCAC400444853 /* SearchServiceTableViewCell.swift in Sources */,
@@ -1243,10 +1241,12 @@
 				8450AACD20037B4000675996 /* EarningTableViewCell.swift in Sources */,
 				84289ED42010B22400421B54 /* RatingFilterTableViewCell.swift in Sources */,
 				846F39E7200BB97300444853 /* SearchOrderDetailViewController.swift in Sources */,
+				CA400F54206A2FA7001526EC /* BackgroundTaskManager.m in Sources */,
 				CA68CCE01FA73C04000143BB /* MyWorkOrderTableViewController.swift in Sources */,
 				841C60B71FB0A01F00945E10 /* WebServices.swift in Sources */,
 				8459E73A1FA88F730081915E /* EditTextView.swift in Sources */,
 				84A93FCB1FA9E3D000662040 /* ProfessionalDetailsViewController.swift in Sources */,
+				CA400F57206A2FA7001526EC /* LocationTracker.m in Sources */,
 				CA68CCEC1FA76609000143BB /* SearchOrderTableViewCell.swift in Sources */,
 				84580A0F1FF0EA8D00A7FCBF /* SocketIOManager.swift in Sources */,
 				843D5D411FA31C2400292565 /* profileDetailsTableViewCell.swift in Sources */,
@@ -1296,6 +1296,7 @@
 				844CF0DA1FCEDA7F00D83B44 /* ForgotViewController.swift in Sources */,
 				728928F51FA1A211007686AE /* ResetPasswordViewController.swift in Sources */,
 				8403A6C51FA0610200222ED9 /* iHiretech.xcdatamodeld in Sources */,
+				CA400F56206A2FA7001526EC /* LocationShareModel.m in Sources */,
 				845D82FE2005E6EC00B2B40D /* ApplyWorkViewController.swift in Sources */,
 				728928F21FA1A1BF007686AE /* SignUpViewController.swift in Sources */,
 				84289ED82010BD0C00421B54 /* RateListTableViewCell.swift in Sources */,
@@ -1486,7 +1487,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.heypayless.iHireTech;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2d883a71-b432-499a-a778-e2bfbca412cd";
+				PROVISIONING_PROFILE = "74beca97-9a5e-450a-8d2e-f0b79344b195";
 				PROVISIONING_PROFILE_SPECIFIER = "iHireTech:AppstoreDist";
 				SWIFT_OBJC_BRIDGING_HEADER = "iHiretech/iHiretech-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1512,7 +1513,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.heypayless.iHireTech;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2d883a71-b432-499a-a778-e2bfbca412cd";
+				PROVISIONING_PROFILE = "74beca97-9a5e-450a-8d2e-f0b79344b195";
 				PROVISIONING_PROFILE_SPECIFIER = "iHireTech:AppstoreDist";
 				SWIFT_OBJC_BRIDGING_HEADER = "iHiretech/iHiretech-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
