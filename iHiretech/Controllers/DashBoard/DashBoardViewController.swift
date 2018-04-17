@@ -25,7 +25,7 @@ class DashBoardViewController: UIViewController {
     var profileImage = Data()
     var btnNotification : MIBadgeButton!
     var btnChat : MIBadgeButton!
-    var profileDetailsAray = ["Profession Title:","Profession Summary:","Skills:","Certificates:","Equipments:","Licensees:","Experience:","Phone No:","Email:","Address:"]
+    var profileDetailsAray = ["Profession Title:","Profession Summary:","Attach Resume:","Skills:","Certificates:","Equipments:","Licensees:","Experience:","Phone No:","Email:","Address:"]
     var subTitleDetails = ["Smith Johnson","New","Analog Line , AT&T Phone System - verify correct settings on PBX","No Data","No Data","No Data","5 Years","381-324-432 EXT :123","smith@example.com","213 Hanover Street, New York, NY,USA,1001"]
     
     override var preferredStatusBarStyle: UIStatusBarStyle
@@ -179,25 +179,27 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
             }
             else if indexPath.row == 3
             {
-                let skillsArray = (self.getCompleteData["certification"] as? [String])!
+                cell.lblSubTitle.text! = ""
+                let skillsArray = (self.getCompleteData["skills"] as? [String])!
                 if skillsArray.count != 0
                 {
-                for i in 0...(skillsArray.count)-1
-                {
-                     if skillsArray.count-1 == i
+                    for i in 0...(skillsArray.count)-1
                     {
-                        cell.lblSubTitle.text!.append("\(String(describing: skillsArray[i]))")
+                        if skillsArray.count-1 == i
+                        {
+                            cell.lblSubTitle.text!.append("\(String(describing: skillsArray[i]))")
+                        }
+                        else
+                        {
+                            cell.lblSubTitle.text!.append("\(String(describing: skillsArray[i])) ,")
+                        }
                     }
-                    else
-                    {
-                        cell.lblSubTitle.text!.append("\(String(describing: skillsArray[i])) ,")
-                    }
-                }
                 }
             }
             else if indexPath.row == 4
             {
-                let skillsArray = (self.getCompleteData["equipment"] as? [String])!
+                 cell.lblSubTitle.text! = ""
+                let skillsArray = (self.getCompleteData["certification"] as? [String])!
                 if skillsArray.count != 0
                 {
                 for i in 0...(skillsArray.count)-1
@@ -215,6 +217,26 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
             }
             else if indexPath.row == 5
             {
+                 cell.lblSubTitle.text! = ""
+                let skillsArray = (self.getCompleteData["equipment"] as? [String])!
+                if skillsArray.count != 0
+                {
+                for i in 0...(skillsArray.count)-1
+                {
+                     if skillsArray.count-1 == i
+                    {
+                        cell.lblSubTitle.text!.append("\(String(describing: skillsArray[i]))")
+                    }
+                    else
+                    {
+                        cell.lblSubTitle.text!.append("\(String(describing: skillsArray[i])) ,")
+                    }
+                }
+                }
+            }
+            else if indexPath.row == 6
+            {
+                 cell.lblSubTitle.text! = ""
                 let skillsArray = (self.getCompleteData["license"] as? [String])!
                 if skillsArray.count != 0
                 {
@@ -231,7 +253,7 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
                 }
                 }
             }
-            else if indexPath.row == 6
+            else if indexPath.row == 7
             {
                 if let tech = (self.getProfileDetailsDict["tech_meta"] as? [String:Any])
                 {
@@ -239,7 +261,7 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
                 cell.lblSubTitle.text = (self.getProfileDetailsDict["tech_meta"]! as! [String:Any])["experience"] as? String
                 }
             }
-            else if indexPath.row == 7
+            else if indexPath.row == 8
             {
                 if let contact = (((self.getProfileDetailsDict)["contact_number_1"]) as? String)
                 {
@@ -249,11 +271,11 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
                 cell.lblSubTitle.text = truncated
                 }
             }
-            else if indexPath.row == 8
+            else if indexPath.row == 9
             {
                cell.lblSubTitle.text = (self.getProfileUserdata)["email"] as? String
             }
-            else if indexPath.row == 9
+            else if indexPath.row == 10
             {
                 if !(((self.getProfileDetailsDict)["address_line_1"]) is NSNull) && !(((self.getProfileDetailsDict)["address_line_2"]) is NSNull)
                 {

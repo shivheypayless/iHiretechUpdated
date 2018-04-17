@@ -31,27 +31,27 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8q-Zk-6vc">
                         <rect key="frame" x="16" y="0.0" width="294" height="288.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Email Id :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wE8-ur-0Jj">
-                                <rect key="frame" x="16" y="104" width="58" height="17.5"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Id :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wE8-ur-0Jj">
+                                <rect key="frame" x="16" y="104" width="54" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Contact Number :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nyc-d7-cQ8">
-                                <rect key="frame" x="16" y="183.5" width="112" height="17.5"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Number :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nyc-d7-cQ8">
+                                <rect key="frame" x="16" y="182.5" width="105.5" height="19.5"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2t-Wf-VGY">
-                                <rect key="frame" x="16" y="214" width="62" height="16.5"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                                <rect key="frame" x="16" y="214.5" width="58" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="302-368-5656 EXT :2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcc-6H-9Zq">
-                                <rect key="frame" x="136" y="183.5" width="133.5" height="17.5"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="302-368-5656 EXT :2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcc-6H-9Zq">
+                                <rect key="frame" x="129.5" y="184.5" width="125" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="13"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_ProfileLeftMenu" translatesAutoresizingMaskIntoConstraints="NO" id="sDA-qd-LV0">
@@ -62,18 +62,18 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Krishna Prasad" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xh-qp-6YK">
-                                <rect key="frame" x="104" y="16" width="136" height="23.5"/>
+                                <rect key="frame" x="104" y="16" width="145.5" height="25"/>
                                 <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="20"/>
                                 <color key="textColor" red="0.98039215690000003" green="0.46666666670000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="abc@abc.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIq-WM-qao">
-                                <rect key="frame" x="82" y="104" width="96" height="19"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="abc@abc.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIq-WM-qao">
+                                <rect key="frame" x="78" y="104" width="208" height="18"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="14"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kds-gj-i3D">
-                                <rect key="frame" x="16" y="137.5" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kds-gj-i3D">
+                                <rect key="frame" x="16" y="136.5" width="46" height="30"/>
                                 <color key="backgroundColor" red="0.25882352939999997" green="0.70980392160000005" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Eqq-Oz-rc1"/>
@@ -84,9 +84,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Newark, DE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Cv-MM-ucy">
-                                <rect key="frame" x="86" y="214.5" width="74" height="16.5"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Newark, DE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Cv-MM-ucy">
+                                <rect key="frame" x="82" y="214" width="204" height="17"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="13"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kB2-NP-lCn">
@@ -102,7 +102,7 @@
                                 </state>
                             </button>
                             <view clipsSubviews="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wbX-CX-O2z" customClass="HCSStarRatingView">
-                                <rect key="frame" x="92" y="47.5" width="173" height="40"/>
+                                <rect key="frame" x="92" y="49" width="173" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K9S-vv-lWA">
                                         <rect key="frame" x="0.0" y="0.0" width="173" height="40"/>
@@ -134,8 +134,8 @@
                                     <userDefinedRuntimeAttribute type="image" keyPath="emptyStarImage" value="img_GrayStar"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xxj-LB-r7U">
-                                <rect key="frame" x="86" y="137" width="152" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xxj-LB-r7U">
+                                <rect key="frame" x="86" y="136" width="152" height="30"/>
                                 <color key="backgroundColor" red="0.25882352939999997" green="0.70980392160000005" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="gRn-D6-Upx"/>
@@ -153,12 +153,15 @@
                             <constraint firstItem="sDA-qd-LV0" firstAttribute="leading" secondItem="c8q-Zk-6vc" secondAttribute="leading" constant="16" id="2B9-Gy-d3f"/>
                             <constraint firstItem="M2t-Wf-VGY" firstAttribute="top" secondItem="nyc-d7-cQ8" secondAttribute="bottom" constant="12" id="2T2-Of-nYl"/>
                             <constraint firstItem="kB2-NP-lCn" firstAttribute="centerX" secondItem="ce7-jX-Eef" secondAttribute="centerX" id="2kT-iS-4j2"/>
+                            <constraint firstItem="nIq-WM-qao" firstAttribute="top" secondItem="wbX-CX-O2z" secondAttribute="bottom" constant="15" id="7ph-WW-z59"/>
                             <constraint firstItem="Kds-gj-i3D" firstAttribute="leading" secondItem="ce7-jX-Eef" secondAttribute="leading" constant="16" id="9u1-Kq-hXb"/>
                             <constraint firstItem="9Cv-MM-ucy" firstAttribute="leading" secondItem="M2t-Wf-VGY" secondAttribute="trailing" constant="8" id="BgZ-CW-Jlp"/>
                             <constraint firstItem="xxj-LB-r7U" firstAttribute="centerY" secondItem="Kds-gj-i3D" secondAttribute="centerY" id="FIn-Mb-kF4"/>
                             <constraint firstItem="nIq-WM-qao" firstAttribute="leading" secondItem="wE8-ur-0Jj" secondAttribute="trailing" constant="8" id="K7H-R2-Woj"/>
                             <constraint firstItem="9Cv-MM-ucy" firstAttribute="centerY" secondItem="M2t-Wf-VGY" secondAttribute="centerY" id="Ki2-jt-u5V"/>
+                            <constraint firstItem="xxj-LB-r7U" firstAttribute="top" secondItem="nIq-WM-qao" secondAttribute="bottom" constant="14" id="N2s-5V-yQj"/>
                             <constraint firstItem="kB2-NP-lCn" firstAttribute="top" secondItem="9Cv-MM-ucy" secondAttribute="bottom" constant="14" id="Ohm-M4-1fw"/>
+                            <constraint firstItem="ce7-jX-Eef" firstAttribute="trailing" secondItem="9Cv-MM-ucy" secondAttribute="trailing" constant="8" id="Oru-tO-B8c"/>
                             <constraint firstItem="nyc-d7-cQ8" firstAttribute="top" secondItem="Kds-gj-i3D" secondAttribute="bottom" constant="16" id="QPF-RK-uOP"/>
                             <constraint firstItem="6xh-qp-6YK" firstAttribute="leading" secondItem="sDA-qd-LV0" secondAttribute="trailing" constant="24" id="T3A-bK-s9P"/>
                             <constraint firstItem="6xh-qp-6YK" firstAttribute="top" secondItem="sDA-qd-LV0" secondAttribute="top" id="TmG-CT-4qh"/>
@@ -166,10 +169,12 @@
                             <constraint firstItem="wE8-ur-0Jj" firstAttribute="leading" secondItem="ce7-jX-Eef" secondAttribute="leading" constant="16" id="VoW-Qq-bvY"/>
                             <constraint firstItem="wbX-CX-O2z" firstAttribute="top" secondItem="6xh-qp-6YK" secondAttribute="bottom" constant="8" id="Xf0-2k-YIa"/>
                             <constraint firstItem="Kds-gj-i3D" firstAttribute="top" secondItem="wE8-ur-0Jj" secondAttribute="bottom" constant="16" id="ahb-VF-Kyw"/>
+                            <constraint firstItem="ce7-jX-Eef" firstAttribute="trailing" secondItem="nIq-WM-qao" secondAttribute="trailing" constant="8" id="bcr-99-6Cr"/>
                             <constraint firstItem="wE8-ur-0Jj" firstAttribute="top" secondItem="sDA-qd-LV0" secondAttribute="bottom" constant="24" id="cbd-rF-NJj"/>
                             <constraint firstItem="ce7-jX-Eef" firstAttribute="bottom" secondItem="kB2-NP-lCn" secondAttribute="bottom" constant="12.5" id="fGt-na-WuI"/>
                             <constraint firstItem="sDA-qd-LV0" firstAttribute="top" secondItem="c8q-Zk-6vc" secondAttribute="top" constant="16" id="fQ6-uL-qJK"/>
                             <constraint firstItem="wbX-CX-O2z" firstAttribute="leading" secondItem="sDA-qd-LV0" secondAttribute="trailing" constant="12" id="iKw-HL-cr3"/>
+                            <constraint firstItem="9Cv-MM-ucy" firstAttribute="top" secondItem="nyc-d7-cQ8" secondAttribute="bottom" constant="12" id="qMM-EE-4X4"/>
                             <constraint firstItem="M2t-Wf-VGY" firstAttribute="leading" secondItem="ce7-jX-Eef" secondAttribute="leading" constant="16" id="skh-5A-hcS"/>
                             <constraint firstItem="nIq-WM-qao" firstAttribute="centerY" secondItem="wE8-ur-0Jj" secondAttribute="centerY" id="xOn-V1-0kv"/>
                             <constraint firstItem="nyc-d7-cQ8" firstAttribute="leading" secondItem="ce7-jX-Eef" secondAttribute="leading" constant="16" id="xgG-vV-fc2"/>

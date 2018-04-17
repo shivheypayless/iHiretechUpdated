@@ -304,7 +304,7 @@ class PersonalDetailsViewController: UIViewController {
     func uploadPersonalDetails()
     {
         let obj_Validation = Validation()
-        let viewArray : [UIView] = [viewUserName,viewFirstname,viewLastName,viewDate,viewAdressLineOne,viewAddressLineTwo,viewContactNumber,viewCity,viewState,viewZip,viewCountry]
+        let viewArray : [UIView] = [viewUserName,viewFirstname,viewLastName,viewDate,viewAdressLineOne,viewContactNumber,viewCity,viewState,viewZip,viewCountry]
         let viewsToShake = obj_Validation.validationPersonalProfile(viewList: viewArray)
         var paramerters = [String:Any]()
         if(viewsToShake.count == 0)

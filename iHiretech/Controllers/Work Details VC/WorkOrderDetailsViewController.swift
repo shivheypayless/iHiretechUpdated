@@ -590,8 +590,14 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
         else if indexPath.section == 4
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleInformationTableViewCell", for: indexPath) as! ScheduleInformationTableViewCell
-            cell.lblDate.text = ((self.getWorkListData)["schedule_exact_date"] as? String)!
-            cell.lblTime.text = ((self.getWorkListData)["schedule_exact_time"] as? String)!
+            if !((self.getWorkListData)["schedule_exact_date"] is NSNull)
+            {
+              cell.lblDate.text = ((self.getWorkListData)["schedule_exact_date"] as? String)!
+            }
+            if !((self.getWorkListData)["schedule_exact_time"] is NSNull)
+            {
+                cell.lblTime.text = ((self.getWorkListData)["schedule_exact_time"] as? String)!
+            }
             return cell
         }
         else if indexPath.section == 5

@@ -10,7 +10,7 @@ import UIKit
 
 class AListAlertController: UIAlertController {
     
-    static let shared = AListAlertController(title: "iHiretech", message: nil, preferredStyle: .alert)
+    static let shared = AListAlertController(title: "Techadox", message: nil, preferredStyle: .alert)
     var actionAfterDismiss: (()->Void)!
      var appdelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -27,7 +27,7 @@ class AListAlertController: UIAlertController {
         addAction(okAction)
     }
     
-    func presentAlertController(title: String = "iHiretech", message: String, completionHandler: (()->Void)?) {
+    func presentAlertController(title: String = "Techadox", message: String, completionHandler: (()->Void)?) {
         self.title = title
         self.message = message
         actionAfterDismiss = completionHandler

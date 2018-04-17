@@ -39,8 +39,8 @@ class ChatViewController: UIViewController {
         if self.notificationList.count == 0
         {
         self.noDataFound.textAlignment = .center
-        self.noDataFound = UILabel(frame: CGRect(x: self.view.center.x - (60), y: 60, width: 150, height: 16))
-        self.noDataFound.text = "No Notification Found"
+        self.noDataFound = UILabel(frame: CGRect(x: self.view.center.x - (60), y: 60, width: 150, height: 12))
+        self.noDataFound.text = "No message Found"
         self.noDataFound.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
         self.view.addSubview( self.noDataFound)
         }
@@ -53,17 +53,6 @@ class ChatViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-//    func markMessageAsRead()
-//    {
-//        let param = ["work_order_id": ((self.notificationList[indexPath.row]["work_order_number"] as! [String:AnyObject])["work_order_id"] as! Int)] as [String:Any]
-//        WebAPI().callJSONWebApi(API.markUserMsgRead, withHTTPMethod: .get, forPostParameters: param, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
-//            print(serviceResponse)
-//           if (UserDefaults.standard.object(forKey: "UnreadAlertMsg")! as! Int) != 0
-//           {
-//            UserDefaults.standard.setValue((UserDefaults.standard.object(forKey: "UnreadAlertMsg")! as! Int - 1), forKey: "UnreadAlertMsg")
-//            }
-//        })
-//    }
     
     func getNotificationList(details : @escaping getMarkRead)
     {
@@ -72,6 +61,7 @@ class ChatViewController: UIViewController {
             self.notificationList = serviceResponse["data"] as! [AnyObject]
             if self.notificationList.count != 0
             {
+                 self.noDataFound.isHidden = true
           //  self.getAllData =
         //    self.notificationList = self.getAllData["data"] as! [AnyObject]
             self.tblChat.dataSource = self

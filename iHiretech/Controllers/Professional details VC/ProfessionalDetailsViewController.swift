@@ -230,7 +230,6 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
         var paramerters = [String:Any]()
         if(viewsToShake.count == 0)
         {
-            
          if self.skillsId.count != 0
             {
 

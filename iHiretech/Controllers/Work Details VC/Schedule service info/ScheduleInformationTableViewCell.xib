@@ -20,36 +20,36 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ScheduleInformationTableViewCell" rowHeight="81" id="KGk-i7-Jjw" customClass="ScheduleInformationTableViewCell" customModule="iHiretech" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="81"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ScheduleInformationTableViewCell" rowHeight="71" id="KGk-i7-Jjw" customClass="ScheduleInformationTableViewCell" customModule="iHiretech" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="80.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="70.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YbO-da-umj">
-                        <rect key="frame" x="16" y="0.0" width="288" height="77.5"/>
+                        <rect key="frame" x="16" y="0.0" width="288" height="67.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pia-G2-hAh">
-                                <rect key="frame" x="8" y="16" width="37.5" height="17.5"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                                <rect key="frame" x="8" y="16" width="32.5" height="15"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBd-VB-Yg4">
-                                <rect key="frame" x="8" y="45.5" width="38.5" height="17.5"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                                <rect key="frame" x="8" y="43" width="33" height="15"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="07 Apr 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ofb-UG-Ju6">
-                                <rect key="frame" x="53.5" y="15.5" width="83" height="19"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="15"/>
+                                <rect key="frame" x="48.5" y="15.5" width="72" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="13"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09:00 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l7j-Ur-8KG">
-                                <rect key="frame" x="55" y="46" width="62" height="17.5"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="14"/>
+                                <rect key="frame" x="49.5" y="43.5" width="53" height="15"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -58,11 +58,12 @@
                             <constraint firstItem="Ofb-UG-Ju6" firstAttribute="leading" secondItem="pia-G2-hAh" secondAttribute="trailing" constant="8" id="4Vl-Qr-3Rk"/>
                             <constraint firstItem="vBd-VB-Yg4" firstAttribute="top" secondItem="pia-G2-hAh" secondAttribute="bottom" constant="12" id="DfB-ft-8ZU"/>
                             <constraint firstItem="pia-G2-hAh" firstAttribute="leading" secondItem="3NJ-ac-oG4" secondAttribute="leading" constant="8" id="Jmo-oA-Ll2"/>
+                            <constraint firstItem="3NJ-ac-oG4" firstAttribute="bottom" secondItem="vBd-VB-Yg4" secondAttribute="bottom" constant="9.5" id="Mnh-mB-aCT"/>
                             <constraint firstItem="pia-G2-hAh" firstAttribute="top" secondItem="YbO-da-umj" secondAttribute="top" constant="16" id="RIr-Yi-4KG"/>
                             <constraint firstItem="l7j-Ur-8KG" firstAttribute="leading" secondItem="vBd-VB-Yg4" secondAttribute="trailing" constant="8" id="Y5l-vH-8sX"/>
                             <constraint firstItem="Ofb-UG-Ju6" firstAttribute="centerY" secondItem="pia-G2-hAh" secondAttribute="centerY" id="bu3-7R-a6D"/>
+                            <constraint firstItem="3NJ-ac-oG4" firstAttribute="bottom" secondItem="l7j-Ur-8KG" secondAttribute="bottom" constant="9" id="iD9-ly-lNh"/>
                             <constraint firstItem="l7j-Ur-8KG" firstAttribute="centerY" secondItem="vBd-VB-Yg4" secondAttribute="centerY" id="sK2-7s-Qxf"/>
-                            <constraint firstItem="3NJ-ac-oG4" firstAttribute="bottom" secondItem="vBd-VB-Yg4" secondAttribute="bottom" constant="14.5" id="t1r-6O-a4A"/>
                             <constraint firstItem="vBd-VB-Yg4" firstAttribute="leading" secondItem="3NJ-ac-oG4" secondAttribute="leading" constant="8" id="yDF-wa-d06"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3NJ-ac-oG4"/>
@@ -81,7 +82,7 @@
                 <outlet property="lblTime" destination="l7j-Ur-8KG" id="pZP-iG-y9R"/>
                 <outlet property="viewBorder" destination="YbO-da-umj" id="waS-KO-SqS"/>
             </connections>
-            <point key="canvasLocation" x="85" y="91.5"/>
+            <point key="canvasLocation" x="85" y="86.5"/>
         </tableViewCell>
     </objects>
 </document>

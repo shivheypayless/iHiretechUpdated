@@ -20,54 +20,54 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ServiceInformationTableViewCell" rowHeight="229" id="KGk-i7-Jjw" customClass="ServiceInformationTableViewCell" customModule="iHiretech" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="229"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ServiceInformationTableViewCell" rowHeight="207" id="KGk-i7-Jjw" customClass="ServiceInformationTableViewCell" customModule="iHiretech" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="207"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="228.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="206.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kvd-qQ-IPO">
-                        <rect key="frame" x="16" y="0.0" width="288" height="224.5"/>
+                        <rect key="frame" x="16" y="0.0" width="288" height="202.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work Order ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QDi-j0-7rQ">
-                                <rect key="frame" x="8" y="16" width="96" height="17.5"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                                <rect key="frame" x="8" y="16" width="82.5" height="15"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Client Name :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MT5-Sr-4rH">
-                                <rect key="frame" x="8" y="45.5" width="85.5" height="17.5"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                                <rect key="frame" x="8" y="43" width="73.5" height="15"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Title :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6l-Wh-Pe3">
-                                <rect key="frame" x="8" y="134" width="84.5" height="17.5"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Service Title :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6l-Wh-Pe3">
+                                <rect key="frame" x="8" y="124" width="72.5" height="15"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type Of Work :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCk-2M-WSS">
-                                <rect key="frame" x="8" y="163.5" width="96" height="17.5"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                                <rect key="frame" x="8" y="151" width="82" height="15"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Networking" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqA-kG-0dB">
-                                <rect key="frame" x="112" y="163" width="79" height="17.5"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Networking" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqA-kG-0dB">
+                                <rect key="frame" x="98" y="151" width="182" height="15"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#2017000100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uLK-pr-nfG">
-                                <rect key="frame" x="112" y="15.5" width="93.5" height="19"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="15"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network Tech - BOulder CO  " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6R-iy-4yF">
-                                <rect key="frame" x="100.5" y="134.5" width="178.5" height="16.5"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="#2017000100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uLK-pr-nfG">
+                                <rect key="frame" x="98.5" y="15.5" width="181.5" height="16.5"/>
                                 <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="13"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network Tech - BOulder CO  " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6R-iy-4yF">
+                                <rect key="frame" x="88.5" y="125" width="191.5" height="14"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="11"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -76,37 +76,37 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="No Skills Specified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gc6-A5-aWw">
-                                <rect key="frame" x="72" y="194" width="208" height="18"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="14"/>
+                                <rect key="frame" x="64.5" y="179" width="215.5" height="15"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skill Set :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bj8-Z3-vKK">
-                                <rect key="frame" x="8" y="193" width="55.5" height="18"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                                <rect key="frame" x="8" y="178" width="48" height="15"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manager Name :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0a2-TK-RnD">
-                                <rect key="frame" x="8" y="75" width="108" height="17.5"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Manager Name :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0a2-TK-RnD">
+                                <rect key="frame" x="8" y="70" width="92.5" height="15"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Krishna Prasad" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wyj-dK-BHQ">
-                                <rect key="frame" x="124" y="75" width="102" height="17.5"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Krishna Prasad" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wyj-dK-BHQ">
+                                <rect key="frame" x="108.5" y="70" width="171.5" height="15"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDf-75-3F2">
-                                <rect key="frame" x="8" y="104.5" width="62.5" height="17.5"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
+                                <rect key="frame" x="8" y="97" width="53.5" height="15"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Network, DE" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hl8-A6-jWE">
-                                <rect key="frame" x="78" y="105" width="218" height="17"/>
+                                <rect key="frame" x="69" y="97.5" width="227" height="14.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="13"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="11"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -114,32 +114,37 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NCR Corp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOx-Rb-jQ0">
-                                <rect key="frame" x="102" y="46" width="65" height="17.5"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="NCR Corp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOx-Rb-jQ0">
+                                <rect key="frame" x="90" y="43" width="190" height="15"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gc6-A5-aWw" firstAttribute="top" secondItem="mCk-2M-WSS" secondAttribute="bottom" constant="13" id="1HV-Kj-Vj1"/>
-                            <constraint firstItem="6gp-W9-HxW" firstAttribute="bottom" secondItem="bj8-Z3-vKK" secondAttribute="bottom" constant="13.5" id="3Hy-dM-hz6"/>
                             <constraint firstItem="0a2-TK-RnD" firstAttribute="top" secondItem="MT5-Sr-4rH" secondAttribute="bottom" constant="12" id="3U1-Cg-dGw"/>
                             <constraint firstItem="KDf-75-3F2" firstAttribute="leading" secondItem="6gp-W9-HxW" secondAttribute="leading" constant="8" id="6J4-WU-1gW"/>
+                            <constraint firstItem="6gp-W9-HxW" firstAttribute="bottom" secondItem="bj8-Z3-vKK" secondAttribute="bottom" constant="9.5" id="6tU-wA-qsb"/>
                             <constraint firstItem="hl8-A6-jWE" firstAttribute="centerY" secondItem="KDf-75-3F2" secondAttribute="centerY" id="8hH-rX-T7I"/>
                             <constraint firstItem="e6R-iy-4yF" firstAttribute="leading" secondItem="Q6l-Wh-Pe3" secondAttribute="trailing" constant="8" id="9ai-QR-a1R"/>
                             <constraint firstItem="bj8-Z3-vKK" firstAttribute="leading" secondItem="6gp-W9-HxW" secondAttribute="leading" constant="8" id="Awi-3y-uKQ"/>
                             <constraint firstItem="uLK-pr-nfG" firstAttribute="centerY" secondItem="QDi-j0-7rQ" secondAttribute="centerY" id="Dhp-7R-Kw9"/>
+                            <constraint firstItem="6gp-W9-HxW" firstAttribute="trailing" secondItem="e6R-iy-4yF" secondAttribute="trailing" constant="8" id="EPv-32-yqf"/>
                             <constraint firstItem="mCk-2M-WSS" firstAttribute="leading" secondItem="6gp-W9-HxW" secondAttribute="leading" constant="8" id="EVs-tz-tgh"/>
-                            <constraint firstItem="6gp-W9-HxW" firstAttribute="bottom" secondItem="gc6-A5-aWw" secondAttribute="bottom" constant="12.5" id="EYd-cr-P9a"/>
                             <constraint firstItem="QDi-j0-7rQ" firstAttribute="leading" secondItem="6gp-W9-HxW" secondAttribute="leading" constant="8" id="Fdi-Bi-DKA"/>
                             <constraint firstItem="QDi-j0-7rQ" firstAttribute="top" secondItem="Kvd-qQ-IPO" secondAttribute="top" constant="16" id="GC8-ST-Evi"/>
                             <constraint firstItem="Q6l-Wh-Pe3" firstAttribute="top" secondItem="hl8-A6-jWE" secondAttribute="bottom" constant="12" id="GQJ-kf-0Z1"/>
                             <constraint firstItem="mCk-2M-WSS" firstAttribute="top" secondItem="Q6l-Wh-Pe3" secondAttribute="bottom" constant="12" id="Gz6-bG-RgF"/>
+                            <constraint firstItem="6gp-W9-HxW" firstAttribute="trailing" secondItem="Wyj-dK-BHQ" secondAttribute="trailing" constant="8" id="H4n-Sj-RwX"/>
                             <constraint firstItem="nOx-Rb-jQ0" firstAttribute="leading" secondItem="MT5-Sr-4rH" secondAttribute="trailing" constant="8" id="H5N-iu-qcO"/>
+                            <constraint firstItem="6gp-W9-HxW" firstAttribute="bottom" secondItem="gc6-A5-aWw" secondAttribute="bottom" constant="8.5" id="IWw-0F-tq4"/>
                             <constraint firstItem="hl8-A6-jWE" firstAttribute="trailing" secondItem="6gp-W9-HxW" secondAttribute="trailing" constant="8" id="K4o-kK-j86"/>
                             <constraint firstItem="6gp-W9-HxW" firstAttribute="trailing" secondItem="gc6-A5-aWw" secondAttribute="trailing" constant="8" id="LKY-9Q-Lfd"/>
+                            <constraint firstItem="6gp-W9-HxW" firstAttribute="trailing" secondItem="uLK-pr-nfG" secondAttribute="trailing" constant="8" id="Lec-bI-b8Q"/>
                             <constraint firstItem="nOx-Rb-jQ0" firstAttribute="centerY" secondItem="MT5-Sr-4rH" secondAttribute="centerY" id="NHQ-wE-cqi"/>
+                            <constraint firstItem="6gp-W9-HxW" firstAttribute="trailing" secondItem="nOx-Rb-jQ0" secondAttribute="trailing" constant="8" id="NpY-Fi-mSq"/>
+                            <constraint firstItem="6gp-W9-HxW" firstAttribute="trailing" secondItem="fqA-kG-0dB" secondAttribute="trailing" constant="8" id="O8c-9F-mZ7"/>
                             <constraint firstItem="uLK-pr-nfG" firstAttribute="leading" secondItem="QDi-j0-7rQ" secondAttribute="trailing" constant="8" id="SUK-cm-BoS"/>
                             <constraint firstItem="Q6l-Wh-Pe3" firstAttribute="leading" secondItem="6gp-W9-HxW" secondAttribute="leading" constant="8" id="V01-N6-9lz"/>
                             <constraint firstItem="MT5-Sr-4rH" firstAttribute="top" secondItem="QDi-j0-7rQ" secondAttribute="bottom" constant="12" id="Vzm-4M-MUo"/>
@@ -179,7 +184,7 @@
                 <outlet property="lblTypeOfWork" destination="fqA-kG-0dB" id="lZ2-7A-asx"/>
                 <outlet property="viewBorder" destination="Kvd-qQ-IPO" id="aoY-Zf-NNy"/>
             </connections>
-            <point key="canvasLocation" x="104" y="91.5"/>
+            <point key="canvasLocation" x="104" y="80.5"/>
         </tableViewCell>
     </objects>
 </document>

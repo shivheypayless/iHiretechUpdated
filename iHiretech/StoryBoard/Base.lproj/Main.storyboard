@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4Rd-MM-3Oj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4Rd-MM-3Oj">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
@@ -47,20 +47,14 @@
                                                             <constraint firstAttribute="width" secondItem="Jb5-y2-cFA" secondAttribute="height" multiplier="18:8" id="rCz-5l-7qR"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your credentials below" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFD-QM-S0u">
-                                                        <rect key="frame" x="100.5" y="213.5" width="178" height="16.5"/>
-                                                        <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
-                                                        <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login to your account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5b-4z-Hxh">
-                                                        <rect key="frame" x="119.5" y="191" width="137" height="16.5"/>
+                                                        <rect key="frame" x="120" y="191" width="137" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="14"/>
                                                         <color key="textColor" red="0.2627450980392157" green="0.2627450980392157" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UsR-8n-kGh" customClass="FormFieldView" customModule="iHiretech" customModuleProvider="target">
-                                                        <rect key="frame" x="16" y="250" width="343" height="46"/>
+                                                        <rect key="frame" x="16" y="251" width="343" height="46"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="image" keyPath="image" value="img_UserName"/>
@@ -68,15 +62,15 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6sh-aD-Vdq" customClass="FormFieldView" customModule="iHiretech" customModuleProvider="target">
-                                                        <rect key="frame" x="16" y="304" width="343" height="46"/>
+                                                        <rect key="frame" x="16" y="305" width="343" height="46"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="img_Email"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="img_ReEnterPaaword"/>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Your Password"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oVU-WZ-H6T">
-                                                        <rect key="frame" x="16" y="366" width="343" height="42"/>
+                                                        <rect key="frame" x="16" y="367" width="343" height="42"/>
                                                         <color key="backgroundColor" red="0.98039215690000003" green="0.46666666670000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="12"/>
                                                         <state key="normal" title="SIGN IN ">
@@ -87,19 +81,21 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HUd-tK-AnR">
-                                                        <rect key="frame" x="67.5" y="447" width="239" height="29"/>
+                                                        <rect key="frame" x="66.5" y="448" width="241" height="29"/>
                                                         <state key="normal">
                                                             <attributedString key="attributedTitle">
-                                                                <fragment content="don't have an account?">
+                                                                <fragment content="Don't have an account?">
                                                                     <attributes>
                                                                         <color key="NSColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <font key="NSFont" size="14" name=".AppleSystemUIFont"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     </attributes>
                                                                 </fragment>
                                                                 <fragment content=" Sign up here.">
                                                                     <attributes>
                                                                         <color key="NSColor" red="0.98039215686274506" green="0.46666666666666667" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <font key="NSFont" size="14" name=".AppleSystemUIFont"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     </attributes>
                                                                 </fragment>
                                                             </attributedString>
@@ -109,7 +105,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X0U-jy-SoD">
-                                                        <rect key="frame" x="114.5" y="416" width="146" height="29"/>
+                                                        <rect key="frame" x="114.5" y="417" width="146" height="29"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
                                                         <state key="normal" title="Forgot your password?">
                                                             <color key="titleColor" red="0.98039215690000003" green="0.46666666670000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -133,7 +129,6 @@
                                                     <constraint firstAttribute="trailing" secondItem="UsR-8n-kGh" secondAttribute="trailing" constant="16" id="VEW-D9-msU"/>
                                                     <constraint firstAttribute="trailing" secondItem="oVU-WZ-H6T" secondAttribute="trailing" constant="16" id="VG2-zd-vUJ"/>
                                                     <constraint firstItem="UsR-8n-kGh" firstAttribute="height" secondItem="8Wo-Jp-bd9" secondAttribute="height" multiplier="0.07" constant="4.1599999999999966" id="Vo6-As-f0F"/>
-                                                    <constraint firstItem="gFD-QM-S0u" firstAttribute="top" secondItem="I5b-4z-Hxh" secondAttribute="bottom" constant="6" id="Wu2-Tq-3Dg"/>
                                                     <constraint firstItem="UsR-8n-kGh" firstAttribute="leading" secondItem="8Wo-Jp-bd9" secondAttribute="leading" constant="16" id="bb5-Qq-MDX"/>
                                                     <constraint firstItem="6sh-aD-Vdq" firstAttribute="leading" secondItem="8Wo-Jp-bd9" secondAttribute="leading" constant="16" id="duO-wg-dpi"/>
                                                     <constraint firstItem="X0U-jy-SoD" firstAttribute="top" secondItem="oVU-WZ-H6T" secondAttribute="bottom" constant="8" id="e3F-fp-N4P"/>
@@ -141,9 +136,8 @@
                                                     <constraint firstItem="I5b-4z-Hxh" firstAttribute="centerX" secondItem="8Wo-Jp-bd9" secondAttribute="centerX" id="hhM-GC-yO6"/>
                                                     <constraint firstItem="X0U-jy-SoD" firstAttribute="centerX" secondItem="8Wo-Jp-bd9" secondAttribute="centerX" id="iLE-03-sx6"/>
                                                     <constraint firstItem="oVU-WZ-H6T" firstAttribute="height" secondItem="8Wo-Jp-bd9" secondAttribute="height" multiplier="0.07" id="lJH-iD-oEP"/>
-                                                    <constraint firstItem="gFD-QM-S0u" firstAttribute="centerX" secondItem="8Wo-Jp-bd9" secondAttribute="centerX" constant="1" id="txZ-oi-BB6"/>
+                                                    <constraint firstItem="UsR-8n-kGh" firstAttribute="top" secondItem="I5b-4z-Hxh" secondAttribute="bottom" constant="43.5" id="oCt-65-kRS"/>
                                                     <constraint firstItem="HUd-tK-AnR" firstAttribute="top" secondItem="X0U-jy-SoD" secondAttribute="bottom" constant="2" id="u9G-nX-CIG"/>
-                                                    <constraint firstItem="UsR-8n-kGh" firstAttribute="top" secondItem="gFD-QM-S0u" secondAttribute="bottom" constant="20" id="x4S-HN-i8f"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -300,7 +294,7 @@
                                                                 </attributedString>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_CheckReminder" translatesAutoresizingMaskIntoConstraints="NO" id="SH5-FS-lo6">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_UnCheckReminder" translatesAutoresizingMaskIntoConstraints="NO" id="SH5-FS-lo6">
                                                                 <rect key="frame" x="0.0" y="7.5" width="20" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="LbX-13-Yos"/>
@@ -547,7 +541,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwX-RT-nA9">
-                                                        <rect key="frame" x="130.5" y="191" width="115" height="16.5"/>
+                                                        <rect key="frame" x="131" y="191" width="115" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="14"/>
                                                         <color key="textColor" red="0.26274509800000001" green="0.26274509800000001" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -715,7 +709,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0x-XC-7d6">
-                                                                    <rect key="frame" x="16" y="16.5" width="37" height="17.5"/>
+                                                                    <rect key="frame" x="16" y="17" width="37" height="17.5"/>
                                                                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -782,31 +776,31 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New york" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpi-zl-m2D">
-                                                        <rect key="frame" x="113.5" y="129.5" width="55" height="16"/>
+                                                        <rect key="frame" x="113" y="129.5" width="55" height="16"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="13"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Technician" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uBF-ws-DZb">
-                                                        <rect key="frame" x="100" y="149.5" width="61.5" height="15.5"/>
+                                                        <rect key="frame" x="99.5" y="149.5" width="61.5" height="15.5"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="13"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TECH-NY-00000043" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAp-sw-K6W">
-                                                        <rect key="frame" x="71" y="169" width="118.5" height="15.5"/>
+                                                        <rect key="frame" x="71.5" y="169" width="118.5" height="15.5"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="13"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Smith Johnson" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qvs-hC-SVL">
-                                                        <rect key="frame" x="86.5" y="86" width="87.5" height="15.5"/>
+                                                        <rect key="frame" x="87" y="86" width="87.5" height="15.5"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="13"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_Location" translatesAutoresizingMaskIntoConstraints="NO" id="7RF-st-rhp">
-                                                        <rect key="frame" x="97.5" y="131" width="10" height="14"/>
+                                                        <rect key="frame" x="97" y="131" width="10" height="14"/>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1028,11 +1022,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4wB-zN-lig" customClass="TPKeyboardAvoidingTPKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4wB-zN-lig" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4pm-bW-Jy3">
-                                        <rect key="frame" x="0.0" y="-800" width="375" height="1230"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pm-bW-Jy3">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1230"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  My Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2A-NP-t3c">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
@@ -1160,7 +1154,7 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Address Line 2"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="Address Line 2 *"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="Address Line 2"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BQ8-xN-FGh" customClass="EditTextView" customModule="iHiretech" customModuleProvider="target">
@@ -1378,7 +1372,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fKM-f0-HqV" customClass="TPKeyboardAvoidingTPKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fKM-f0-HqV" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DqJ-ZJ-Sux">
@@ -1445,8 +1439,8 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="text" value="Professional Summary *"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SkillSets *" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKi-Rc-50u">
-                                                <rect key="frame" x="16" y="296.5" width="60.5" height="17.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skill Sets *" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKi-Rc-50u">
+                                                <rect key="frame" x="16" y="296.5" width="64.5" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1582,7 +1576,7 @@
                                                 <rect key="frame" x="8" y="758" width="359" height="80"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="Year of Experience *"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="No of Experience *"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="5"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
@@ -1856,14 +1850,14 @@
                                                     <action selector="btn_SaveAction:" destination="HRe-Xi-NKu" eventType="touchUpInside" id="iTU-4P-JIg"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Certification *" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3b-7g-Y3E">
-                                                <rect key="frame" x="16" y="382" width="86" height="17.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Certification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3b-7g-Y3E">
+                                                <rect key="frame" x="16" y="382" width="78" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Equipment *" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6d-E7-dMd">
-                                                <rect key="frame" x="16" y="467.5" width="77" height="17.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Equipment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6d-E7-dMd">
+                                                <rect key="frame" x="16" y="467.5" width="69.5" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2234,7 +2228,7 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0V5-SI-94g">
                                                 <rect key="frame" x="8" y="8" width="264" height="18"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
                                         </subviews>
@@ -2415,7 +2409,7 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fUG-3R-lot">
                                                 <rect key="frame" x="8" y="8" width="264" height="18"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
                                         </subviews>
@@ -2576,7 +2570,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you have any counter offer :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKN-wB-zbH">
-                                                <rect key="frame" x="68.5" y="20" width="238.5" height="20"/>
+                                                <rect key="frame" x="69" y="20" width="238.5" height="20"/>
                                                 <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2677,7 +2671,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hourly Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3N-6e-WiS">
-                                                        <rect key="frame" x="126" y="37" width="84.5" height="19"/>
+                                                        <rect key="frame" x="125.5" y="37" width="84.5" height="19"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2701,7 +2695,7 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tx0-fU-hhg">
-                                                        <rect key="frame" x="134" y="115.5" width="68.5" height="19"/>
+                                                        <rect key="frame" x="133.5" y="115.5" width="68.5" height="19"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2850,7 +2844,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="692.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you have any counter offer :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQH-nu-06J">
-                                                <rect key="frame" x="69" y="20" width="238.5" height="21.5"/>
+                                                <rect key="frame" x="68.5" y="20" width="238.5" height="21.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21.5" id="saL-cQ-Vbx"/>
                                                 </constraints>
@@ -2956,7 +2950,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blended Rate First Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U14-DE-K0o">
-                                                        <rect key="frame" x="71.5" y="37.5" width="193.5" height="19"/>
+                                                        <rect key="frame" x="71" y="37.5" width="193.5" height="19"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2976,7 +2970,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blended Rate Second Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yi0-jD-EE7">
-                                                        <rect key="frame" x="59.5" y="200.5" width="217.5" height="19"/>
+                                                        <rect key="frame" x="59" y="200.5" width="217.5" height="19"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -3204,7 +3198,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verify Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6V0-N0-dl4">
-                                                <rect key="frame" x="143" y="191" width="90.5" height="16.5"/>
+                                                <rect key="frame" x="142.5" y="191" width="90.5" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="14"/>
                                                 <color key="textColor" red="0.26274509800000001" green="0.26274509800000001" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -3544,7 +3538,6 @@
         <image name="img_Background" width="320" height="205"/>
         <image name="img_Camera" width="22" height="16"/>
         <image name="img_Chat" width="16" height="15"/>
-        <image name="img_CheckReminder" width="14" height="14"/>
         <image name="img_ConfirmPass" width="8" height="10"/>
         <image name="img_EditProfilePic" width="114" height="114"/>
         <image name="img_Email" width="9" height="6"/>
@@ -3558,6 +3551,7 @@
         <image name="img_RadioOff" width="16" height="16"/>
         <image name="img_RadioOn" width="16" height="16"/>
         <image name="img_ReEnterPaaword" width="8" height="10"/>
+        <image name="img_UnCheckReminder" width="14" height="14"/>
         <image name="img_UserName" width="9" height="9"/>
         <image name="img_sendChat" width="16" height="16"/>
     </resources>

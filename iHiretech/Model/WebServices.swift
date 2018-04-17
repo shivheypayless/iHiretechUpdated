@@ -328,6 +328,13 @@ class WebAPI {
                             completionHandler(responseData)
                         }
                     }
+                     else if responseData["status"] as! Int == -1
+                    {
+                        if (responseData["msg"] as? String) != nil
+                        {
+                            AListAlertController.shared.presentAlertController(message: responseData["msg"] as! String, completionHandler: nil)
+                        }
+                    }
                     else {
                         if responseData["status"] as! Int == 0
                         {
@@ -337,8 +344,15 @@ class WebAPI {
                                 {
                                    if let mess = message[0] as? String
                                    {
-                                    AListAlertController.shared.presentAlertController(message: mess , completionHandler: nil)
-                                }
+                                    if mess == "Enter otp"
+                                    {
+                                        completionHandler(responseData)
+                                    }
+                                    else
+                                    {
+                                     AListAlertController.shared.presentAlertController(message: mess , completionHandler: nil)
+                                    }
+                                   }
                                 }
                                 else if let message = data["image"] as? [AnyObject]
                                 {

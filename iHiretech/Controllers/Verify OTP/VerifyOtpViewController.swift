@@ -14,6 +14,7 @@ class VerifyOtpViewController: UIViewController {
  
     @IBOutlet var btnVerify: UIButton!
     @IBOutlet var viewOtp: FormFieldView!
+    var emailId = String()
     var webService = WebAPI()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +41,7 @@ class VerifyOtpViewController: UIViewController {
     @IBAction func Btn_VerifyOtpAction(_ sender: UIButton)
     {
         var paramerters = [String:Any]()
-        paramerters = ["otp": viewOtp.txtFieldName.text!] as [String : Any]
-
+      
         if viewOtp.txtFieldName.text! == ""
         {
             let viewShaker = AFViewShaker(view: viewOtp)
@@ -51,6 +51,8 @@ class VerifyOtpViewController: UIViewController {
         }
         else
         {
+            paramerters = ["otp": Int(viewOtp.txtFieldName.text!)!,"email":self.emailId] as [String : Any]
+            print(paramerters)
          webService.callJSONWebApi(API.verifyOtp, withHTTPMethod: .post, forPostParameters: paramerters, shouldIncludeAuthorizationHeader: false, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
             
@@ -73,15 +75,7 @@ class VerifyOtpViewController: UIViewController {
          })
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
     
     @IBAction func Btn_ResendOTP(_ sender: UIButton)
     {

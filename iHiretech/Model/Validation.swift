@@ -16,17 +16,17 @@ func validationForLogin(viewList : [UIView]) -> Array<Any>
     var viewsToReturn = [UIView]()
     if((viewList[0] as! FormFieldView).txtFieldName.text?.isEmpty)!
     {
-        (viewList[0]as!  FormFieldView).txtFieldName.attributedPlaceholder = NSMutableAttributedString(string: "Enter Email Address",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+        (viewList[0]as!  FormFieldView).txtFieldName.attributedPlaceholder = NSMutableAttributedString(string: "Enter Email Address or UserName",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
         viewsToReturn.append(viewList[0])
     }
-    else if (!(isValidEmail(testStr: (viewList[0]as!  FormFieldView).txtFieldName.text!)))
-    {
-        (viewList[0]as!  FormFieldView).txtFieldName.text = ""
-        (viewList[0]as!  FormFieldView).txtFieldName.attributedPlaceholder = NSMutableAttributedString(string: "Enter Valid Email Address",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
-        viewsToReturn.append(viewList[0])
-        
-    }
-    
+//    else if (!(isValidEmail(testStr: (viewList[0]as!  FormFieldView).txtFieldName.text!)))
+//    {
+//        (viewList[0]as!  FormFieldView).txtFieldName.text = ""
+//        (viewList[0]as!  FormFieldView).txtFieldName.attributedPlaceholder = NSMutableAttributedString(string: "Enter Valid Email Address",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+//        viewsToReturn.append(viewList[0])
+//
+//    }
+//
     if((viewList[1]as!  FormFieldView).txtFieldName.text?.isEmpty)!
     {
         (viewList[1]as!  FormFieldView).txtFieldName.attributedPlaceholder = NSMutableAttributedString(string: "Enter Password",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
@@ -158,11 +158,6 @@ func validationForLogin(viewList : [UIView]) -> Array<Any>
         {
             (viewList[4]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter Address Line 1",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
             viewsToReturn.append(viewList[4])
-        }
-        if((viewList[5] as! EditTextView).detailTextField.text?.isEmpty)!
-        {
-            (viewList[5]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter Address Line 2",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
-            viewsToReturn.append(viewList[5])
         }
         if((viewList[6] as! EditTextView).detailTextField.text?.isEmpty)!
         {
