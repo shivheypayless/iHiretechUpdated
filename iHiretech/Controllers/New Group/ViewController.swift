@@ -34,8 +34,8 @@ class ViewController: UIViewController {
         btnSignIn.setTitleColor(UIColor.white, for: UIControlState.normal)
          btnSignIn.setAttributedTitle(attributedString, for: UIControlState.normal)
         
-        self.viewUserName.txtFieldName.text = "rohan@yopmail.com"
-        self.viewPassword.txtFieldName.text = "123456"
+    //    self.viewUserName.txtFieldName.text = "rohan@yopmail.com"
+     //   self.viewPassword.txtFieldName.text = "123456"
       
     }
 

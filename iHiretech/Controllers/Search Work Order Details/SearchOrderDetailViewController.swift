@@ -261,7 +261,7 @@ extension SearchOrderDetailViewController : UICollectionViewDelegate , UICollect
         if indexPath.row == 0
         {
             self.tabsTag = 1
-             self.cnstViewChatBottom.constant = -35
+             self.cnstViewChatBottom.constant = -55
         }
         if indexPath.row == 1
         {

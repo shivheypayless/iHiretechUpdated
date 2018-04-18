@@ -336,7 +336,7 @@ extension WorkOrderDetailsViewController : UICollectionViewDelegate , UICollecti
         if indexPath.row == 0
         {
             self.tabsTag = 1
-            self.cnstViewChatBottom.constant = -45
+            self.cnstViewChatBottom.constant = -55
         }
         if indexPath.row == 1
         {
@@ -347,13 +347,13 @@ extension WorkOrderDetailsViewController : UICollectionViewDelegate , UICollecti
         if indexPath.row == 2
         {
             self.tabsTag = 3
-            self.cnstViewChatBottom.constant = -45
+            self.cnstViewChatBottom.constant = -55
          //    self.viewChat.isHidden = true
         }
         if indexPath.row == 3
         {
             self.tabsTag = 4
-            self.cnstViewChatBottom.constant = -45
+            self.cnstViewChatBottom.constant = -55
          //    self.viewChat.isHidden = true
         }
         self.tabsCollectionView.reloadData()
