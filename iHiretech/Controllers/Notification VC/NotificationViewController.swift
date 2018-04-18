@@ -10,6 +10,7 @@ import UIKit
 
 class NotificationViewController: UIViewController {
 
+    @IBOutlet var lblNoDataFound: UILabel!
     @IBOutlet var tblNotification: UITableView!
     var frmSrc = String()
     var getAllData = [String:Any]()
@@ -20,6 +21,7 @@ class NotificationViewController: UIViewController {
         self.tblNotification.register(UINib(nibName: "NotificationTableViewCell", bundle: nil) , forCellReuseIdentifier: "NotificationTableViewCell")
         self.tblNotification.estimatedRowHeight = 90
         self.tblNotification.rowHeight = UITableViewAutomaticDimension
+        self.lblNoDataFound.isHidden = true
         // Do any additional setup after loading the view.
     }
 
@@ -115,7 +117,15 @@ class NotificationViewController: UIViewController {
            let data = serviceResponse["data"] as! [String:Any]
             self.getAllData = data["pagination_link"] as! [String:Any]
             self.notificationList = self.getAllData["data"] as! [AnyObject]
+            if self.notificationList.count != 0
+            {
             self.tblNotification.reloadData()
+                self.lblNoDataFound.isHidden = true
+            }
+            else
+            {
+                self.lblNoDataFound.isHidden = false
+            }
         })
     }
 }

@@ -478,7 +478,7 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
                 if self.getSearchListDetails.count == 0
                 {
                     self.noDataFOund.text = ""
-                    self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 450, width: 200, height: 16))
+                    self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 450, width: 200, height: 12))
                    // label.textAlignment = NSTextAlignment.center
                    self.noDataFOund.text = "No Search Found"
                     self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
@@ -496,7 +496,7 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
                 if self.getSearchListDetails.count == 0
                 {
                     self.noDataFOund.text = ""
-                    self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 910, width: 200, height: 16))
+                    self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 910, width: 200, height: 12))
                     // label.textAlignment = NSTextAlignment.center
                     self.noDataFOund.text = "No Search Found"
                     self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
@@ -666,7 +666,7 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
             self.getSearchListDetails = self.getWorkListData["data"] as! [AnyObject]
             if self.getSearchListDetails.count == 0
             {
-                self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 910, width: 200, height: 16))
+                self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 910, width: 200, height: 12))
             //    label.textAlignment = NSTextAlignment.center
                 self.noDataFOund.text = "No Search Found"
                 self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)

@@ -55,7 +55,7 @@ class AppliedRoutedTableViewController: UITableViewController {
                 if self.getSearchListDetails.count == 0
                 {
                      self.noDataFound.textAlignment = .center
-                    self.noDataFound = UILabel(frame: CGRect(x: self.view.center.x - (60), y: 60, width: 150, height: 16))
+                    self.noDataFound = UILabel(frame: CGRect(x: self.view.center.x - (60), y: 60, width: 150, height: 12))
                      self.noDataFound.text = "No Search Found"
                      self.noDataFound.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
                     self.view.addSubview( self.noDataFound)

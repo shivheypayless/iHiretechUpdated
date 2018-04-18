@@ -319,7 +319,7 @@ class MyWorkOrderTableViewController: UITableViewController {
                 if self.getSearchListDetails.count == 0
                 {
                     self.noDataFOund.text = ""
-                    self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 110, width: 200, height: 14))
+                    self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 110, width: 200, height: 12))
                   //  label.textAlignment = NSTextAlignment.center
                     self.noDataFOund.text = "No Search Found"
                     self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
@@ -337,7 +337,7 @@ class MyWorkOrderTableViewController: UITableViewController {
                 if self.getSearchListDetails.count == 0
                 {
                     self.noDataFOund.text = ""
-                self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 490, width: 200, height: 16))
+                self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 490, width: 200, height: 12))
                 self.noDataFOund.text = "No Search Found"
                 self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
                 self.view.addSubview(self.noDataFOund)
@@ -496,15 +496,15 @@ class MyWorkOrderTableViewController: UITableViewController {
         print(self.workOrderId)
        let nav = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "WorkOrderDetailsViewController") as! WorkOrderDetailsViewController
          nav.workOrderId = self.workOrderId
-//        let transition = CATransition()
-//        transition.duration = 0.5
-//        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-//        transition.type = kCATransitionFade
-//
-//        self.navigationController?.view.layer.add(transition, forKey: nil)
-//        self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
-//        self.navigationController?.navigationBar.tintColor = UIColor.white
-//        self.navigationController?.navigationBar.isTranslucent = false
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionFade
+
+        self.navigationController?.view.layer.add(transition, forKey: nil)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.pushViewController(nav, animated: false)
     }
 
