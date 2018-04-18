@@ -34,9 +34,7 @@ class NotificationViewController: UIViewController {
         super.viewWillAppear(animated)
          self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
-    
-    
-    
+        
     
     @IBAction func btn_ChatAction(_ sender: UIBarButtonItem)
     {

@@ -131,7 +131,7 @@ extension ChatViewController : UITableViewDataSource, UITableViewDelegate
 //                UserDefaults.standard.setValue((UserDefaults.standard.object(forKey: "UnreadAlertMsg")! as! Int - 1), forKey: "UnreadAlertMsg")
 //            }
         })
-    if ((self.notificationList[indexPath.row]["work_order_details"] as! [String:AnyObject])["status_id"] as! String) == "1"
+    if ((self.notificationList[indexPath.row]["work_order_details"] as! [String:AnyObject])["status_id"] as! Int) == 1
     {
         let nav = self.storyboard!.instantiateViewController(withIdentifier: "SearchOrderDetailViewController") as! SearchOrderDetailViewController
         nav.workOrderId = ((self.notificationList[indexPath.row]["work_order_details"] as! [String:AnyObject])["work_order_id"] as! Int)

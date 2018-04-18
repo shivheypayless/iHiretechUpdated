@@ -21,7 +21,7 @@ protocol SocketIOManagerDelegate: class {
 class SocketIOManager {
     
     static let sharedInstance = SocketIOManager()
-    var socket: SocketIOClient = SocketIOClient(socketURL: URL(string: "https://ihiretech.hplbusiness.com:8890")!)
+    var socket: SocketIOClient = SocketIOClient(socketURL: URL(string: "http://ihiretech.hplbusiness.com:8890")!)
     weak var socketIOManagerDelegate: SocketIOManagerDelegate!
     
     func establishConnection() {

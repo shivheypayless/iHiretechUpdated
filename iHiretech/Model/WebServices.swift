@@ -460,7 +460,7 @@ class WebAPI {
         body.appendString(string: "\r\n")
         if(mimeType.rawValue == "video")
         {
-            AListAlertController.shared.presentAlertController(title: "iHiretech", message: "Please select image only !", completionHandler: nil)
+            AListAlertController.shared.presentAlertController(title: "Techadox", message: "Please select image only !", completionHandler: nil)
         }
         
         body.appendString(string: "--\(boundary)--\r\n")

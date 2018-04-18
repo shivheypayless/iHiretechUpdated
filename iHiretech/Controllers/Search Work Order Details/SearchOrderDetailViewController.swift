@@ -130,6 +130,8 @@ class SearchOrderDetailViewController: UIViewController {
             DispatchQueue.main.async {
                 self.lblOrderId.text = "( ID: \(((self.getWorkListData)["work_order_number"] as? String)!) )"
                  self.lblStatus.setTitle("  \(finalString)  ", for: .normal)
+                self.tblListing.delegate = self
+                self.tblListing.dataSource = self
                 self.tblListing.reloadData()
                 self.tabCollectionView.delegate = self
                 self.tabCollectionView.dataSource = self

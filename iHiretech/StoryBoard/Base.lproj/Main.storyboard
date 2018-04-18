@@ -2215,10 +2215,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="f4Q-aE-rNB">
                                 <rect key="frame" x="0.0" y="194" width="375" height="419.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="0jW-YG-dgm" id="Tnl-TQ-ggv"/>
-                                    <outlet property="delegate" destination="0jW-YG-dgm" id="HSM-qE-gcs"/>
-                                </connections>
                             </tableView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TTl-WZ-ZZU">
                                 <rect key="frame" x="0.0" y="613.5" width="375" height="53.5"/>
@@ -2385,10 +2381,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CdK-j0-4mo">
                                 <rect key="frame" x="0.0" y="202" width="375" height="411.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="ljZ-IL-BMS" id="1gv-s5-AAL"/>
-                                    <outlet property="delegate" destination="ljZ-IL-BMS" id="1wD-hw-I1f"/>
-                                </connections>
                             </tableView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0b8-UX-ZnW">
                                 <rect key="frame" x="0.0" y="613.5" width="375" height="53.5"/>

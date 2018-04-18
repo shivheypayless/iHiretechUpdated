@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,LocationUpdateProtocol, So
 
         registerForPushNotifications()
         
-        if UserDefaults.standard.object(forKey: "deviceToken") as? String == nil
+        if UserDefaults.standard.object(forKey: "token") as? String == nil
         {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let destination = storyboard.instantiateViewController(withIdentifier: "RootNavViewController") as! RootNavViewController
