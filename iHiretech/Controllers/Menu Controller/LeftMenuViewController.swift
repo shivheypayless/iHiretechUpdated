@@ -239,6 +239,7 @@ extension LeftMenuViewController: UITableViewDataSource, UITableViewDelegate
             }
             else if indexPath.row == 1
             {
+                UserDefaults.standard.removeObject(forKey: "token")
                 let destination = self.storyboard!.instantiateViewController(withIdentifier: "RootNavViewController") as! RootNavViewController
                 UIApplication.shared.keyWindow!.rootViewController = destination
             }
