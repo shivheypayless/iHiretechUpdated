@@ -107,11 +107,13 @@ class SearchOrderDetailViewController: UIViewController {
         if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
-            cnstViewChatBottom.constant = keyboardHeight - viewChat.frame.height
+            cnstViewChatBottom.constant = keyboardHeight - viewChat.frame.height + 40
+            
         }
     }
     @objc
     func keyboardWillHide(_ notification: Notification) {
+        
         cnstViewChatBottom.constant = 0
     }
     
@@ -194,6 +196,7 @@ class SearchOrderDetailViewController: UIViewController {
     }
     
     @IBAction func btn_SendMessage(_ sender: UIButton) {
+         self.view.endEditing(true)
         guard !txtSendMsg.text!.isEmpty else {
             return
         }
@@ -203,7 +206,7 @@ class SearchOrderDetailViewController: UIViewController {
                          "work_order_id" : self.workOrderId,
                          "message": txtSendMsg.text!] as [String:AnyObject]
         
-        WebAPI().callJSONWebApi(API.sendMessageChat, withHTTPMethod: .post, forPostParameters: parameter, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
+        WebAPI().callJSONWebApiWithoutLoader(API.sendMessageChat, withHTTPMethod: .post, forPostParameters: parameter, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
         })
         

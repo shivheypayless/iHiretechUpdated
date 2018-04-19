@@ -85,7 +85,7 @@ class VerifyOtpViewController: UIViewController {
         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         transition.type = kCATransitionFade
         self.navigationController?.view.layer.add(transition, forKey: nil)
-        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.pushViewController(nav, animated: false)
         self.navigationController?.navigationBar.barTintColor = UIColor.clear
     }

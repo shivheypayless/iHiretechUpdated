@@ -712,7 +712,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0x-XC-7d6">
-                                                                    <rect key="frame" x="16" y="17" width="37" height="17.5"/>
+                                                                    <rect key="frame" x="16" y="15.5" width="38" height="19"/>
                                                                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -754,7 +754,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gzF-Ae-h2R" customClass="HCSStarRatingView">
-                                                        <rect key="frame" x="78" y="103.5" width="104" height="20"/>
+                                                        <rect key="frame" x="78" y="104.5" width="104" height="20"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -779,31 +779,31 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New york" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpi-zl-m2D">
-                                                        <rect key="frame" x="113" y="129.5" width="55" height="16"/>
+                                                        <rect key="frame" x="111.5" y="130.5" width="58.5" height="16"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="13"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Technician" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uBF-ws-DZb">
-                                                        <rect key="frame" x="99.5" y="149.5" width="61.5" height="15.5"/>
+                                                        <rect key="frame" x="98.5" y="150.5" width="64" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="13"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TECH-NY-00000043" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAp-sw-K6W">
-                                                        <rect key="frame" x="71.5" y="169" width="118.5" height="15.5"/>
+                                                        <rect key="frame" x="68.5" y="171" width="123" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="13"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Smith Johnson" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qvs-hC-SVL">
-                                                        <rect key="frame" x="87" y="86" width="87.5" height="15.5"/>
+                                                        <rect key="frame" x="84" y="86" width="92" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="13"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_Location" translatesAutoresizingMaskIntoConstraints="NO" id="7RF-st-rhp">
-                                                        <rect key="frame" x="97" y="131" width="10" height="14"/>
+                                                        <rect key="frame" x="95.5" y="132" width="10" height="14"/>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -952,9 +952,9 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Notification Found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9v-44-oax">
-                                <rect key="frame" x="119.5" y="325.5" width="136.5" height="16.5"/>
+                                <rect key="frame" x="119.5" y="245.5" width="136.5" height="16.5"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="1" green="0.11798357030000001" blue="0.090221814169999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -963,7 +963,7 @@
                             <constraint firstItem="2DX-vL-ud8" firstAttribute="bottom" secondItem="V6U-zB-hw8" secondAttribute="bottom" constant="16" id="3EZ-bl-klY"/>
                             <constraint firstItem="V6U-zB-hw8" firstAttribute="leading" secondItem="2DX-vL-ud8" secondAttribute="leading" constant="8" id="JPh-Pe-c2y"/>
                             <constraint firstItem="2DX-vL-ud8" firstAttribute="trailing" secondItem="V6U-zB-hw8" secondAttribute="trailing" constant="8" id="Xzx-XJ-3MG"/>
-                            <constraint firstItem="i9v-44-oax" firstAttribute="centerY" secondItem="4RR-D5-3pn" secondAttribute="centerY" id="a8k-pf-tYw"/>
+                            <constraint firstItem="i9v-44-oax" firstAttribute="centerY" secondItem="4RR-D5-3pn" secondAttribute="centerY" constant="-80" id="a8k-pf-tYw"/>
                             <constraint firstItem="V6U-zB-hw8" firstAttribute="top" secondItem="2DX-vL-ud8" secondAttribute="top" constant="12" id="cKy-9e-gYa"/>
                             <constraint firstItem="i9v-44-oax" firstAttribute="centerX" secondItem="4RR-D5-3pn" secondAttribute="centerX" id="dTG-0O-wV9"/>
                         </constraints>

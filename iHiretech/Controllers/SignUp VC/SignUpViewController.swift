@@ -59,7 +59,7 @@ class SignUpViewController: UIViewController {
         self.navigationController?.view.layer.add(transition, forKey: nil)
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.pushViewController(nav, animated: false)
-        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.navigationBar.barTintColor = UIColor.black
     }
     
@@ -115,7 +115,7 @@ class SignUpViewController: UIViewController {
                         self.navigationController?.view.layer.add(transition, forKey: nil)
                         self.navigationController?.isNavigationBarHidden = false
                         self.navigationController?.pushViewController(nav, animated: false)
-                        self.navigationController?.isNavigationBarHidden = false
+                        self.navigationController?.isNavigationBarHidden = true
                         self.navigationController?.navigationBar.barTintColor = UIColor.black
                     }
                     else
@@ -129,7 +129,7 @@ class SignUpViewController: UIViewController {
                         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
                         transition.type = kCATransitionFade
                         self.navigationController?.view.layer.add(transition, forKey: nil)
-                        self.navigationController?.isNavigationBarHidden = false
+                        self.navigationController?.isNavigationBarHidden = true
                         self.navigationController?.pushViewController(nav, animated: false)
                         self.navigationController?.isNavigationBarHidden = false
                         self.navigationController?.navigationBar.barTintColor = UIColor.black

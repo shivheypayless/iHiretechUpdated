@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         transition.type = kCATransitionFade
        self.navigationController?.view.layer.add(transition, forKey: nil)
         self.navigationController?.pushViewController(nav, animated: false)
-        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = true
          self.navigationController?.navigationBar.barTintColor = UIColor.black
     }
     
@@ -72,7 +72,7 @@ class ViewController: UIViewController {
         transition.type = kCATransitionFade
         self.navigationController?.view.layer.add(transition, forKey: nil)
         self.navigationController?.pushViewController(nav, animated: false)
-        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.navigationBar.barTintColor = UIColor.black
      
     }

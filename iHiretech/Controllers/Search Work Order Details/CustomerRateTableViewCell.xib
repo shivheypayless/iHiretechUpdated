@@ -62,8 +62,8 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Krishna Prasad" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xh-qp-6YK">
-                                <rect key="frame" x="104" y="16" width="145.5" height="25"/>
-                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="20"/>
+                                <rect key="frame" x="100" y="16" width="131" height="25"/>
+                                <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="18"/>
                                 <color key="textColor" red="0.98039215690000003" green="0.46666666670000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -163,7 +163,7 @@
                             <constraint firstItem="kB2-NP-lCn" firstAttribute="top" secondItem="9Cv-MM-ucy" secondAttribute="bottom" constant="14" id="Ohm-M4-1fw"/>
                             <constraint firstItem="ce7-jX-Eef" firstAttribute="trailing" secondItem="9Cv-MM-ucy" secondAttribute="trailing" constant="8" id="Oru-tO-B8c"/>
                             <constraint firstItem="nyc-d7-cQ8" firstAttribute="top" secondItem="Kds-gj-i3D" secondAttribute="bottom" constant="16" id="QPF-RK-uOP"/>
-                            <constraint firstItem="6xh-qp-6YK" firstAttribute="leading" secondItem="sDA-qd-LV0" secondAttribute="trailing" constant="24" id="T3A-bK-s9P"/>
+                            <constraint firstItem="6xh-qp-6YK" firstAttribute="leading" secondItem="sDA-qd-LV0" secondAttribute="trailing" constant="20" id="T3A-bK-s9P"/>
                             <constraint firstItem="6xh-qp-6YK" firstAttribute="top" secondItem="sDA-qd-LV0" secondAttribute="top" id="TmG-CT-4qh"/>
                             <constraint firstItem="rcc-6H-9Zq" firstAttribute="centerY" secondItem="nyc-d7-cQ8" secondAttribute="centerY" id="Uy2-Sb-85G"/>
                             <constraint firstItem="wE8-ur-0Jj" firstAttribute="leading" secondItem="ce7-jX-Eef" secondAttribute="leading" constant="16" id="VoW-Qq-bvY"/>

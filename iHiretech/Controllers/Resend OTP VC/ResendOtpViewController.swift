@@ -38,7 +38,7 @@ class ResendOtpViewController: UIViewController {
     @IBAction func Btn_VerifyOTPAction(_ sender: UIButton)
     {
         var paramerters = [String:Any]()
-        paramerters = ["otp": viewEmail.txtFieldName.text!] as [String : Any]
+        paramerters = ["email": viewEmail.txtFieldName.text!] as [String : Any]
         if viewEmail.txtFieldName.text! == ""
         {
             let viewShaker = AFViewShaker(view: viewEmail)

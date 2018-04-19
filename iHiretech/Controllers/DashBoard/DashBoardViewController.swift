@@ -255,20 +255,26 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
             }
             else if indexPath.row == 7
             {
+                if !(self.getProfileDetailsDict["tech_meta"] is NSNull)
+                {
                 if let tech = (self.getProfileDetailsDict["tech_meta"] as? [String:Any])
                 {
                     
                 cell.lblSubTitle.text = (self.getProfileDetailsDict["tech_meta"]! as! [String:Any])["experience"] as? String
                 }
+                }
             }
             else if indexPath.row == 8
             {
+                if !(self.getProfileDetailsDict["contact_number_1"] is NSNull)
+                {
                 if let contact = (((self.getProfileDetailsDict)["contact_number_1"]) as? String)
                 {
                     let endIndex = (((self.getProfileDetailsDict)["contact_number_1"]!) as? String)!.index((((self.getProfileDetailsDict)["contact_number_1"]!) as? String)!.endIndex, offsetBy: -8)
                 let truncated = (((self.getProfileDetailsDict)["contact_number_1"]!) as? String)!.substring(to: endIndex)
                 print(truncated)
                 cell.lblSubTitle.text = truncated
+                }
                 }
             }
             else if indexPath.row == 9
@@ -309,16 +315,28 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
         (headerViewArray.viewWithTag(3) as! UILabel).text = (((self.getProfileDetailsDict)["first_name"]!)as? String)!+" "+(((self.getProfileDetailsDict)["last_name"]!) as? String)!
         UserDefaults.standard.setValue((((self.getProfileDetailsDict)["first_name"]!)as! String)+" "+(((self.getProfileDetailsDict)["last_name"]!) as! String), forKey: "ProfileName")
         (headerViewArray.viewWithTag(4) as! UILabel).text = (self.getProfileDetailsDict)["universal_id"] as? String
-        UserDefaults.standard.setValue((((self.getProfileDetailsDict)["universal_id"]!) as! String), forKey: "Id")
-        UserDefaults.standard.setValue((((self.getProfileDetailsDict)["city"]!) as! String), forKey: "Location")
+        if !((self.getProfileDetailsDict)["universal_id"] is NSNull)
+        {
+           UserDefaults.standard.setValue((((self.getProfileDetailsDict)["universal_id"]!) as! String), forKey: "Id")
+        }
+        if !((self.getProfileDetailsDict)["city"] is NSNull)
+        {
+          UserDefaults.standard.setValue((((self.getProfileDetailsDict)["city"]!) as! String), forKey: "Location")
+        }
+        if !((self.getProfileDetailsDict)["socket_id"] is NSNull)
+        {
         UserDefaults.standard.setValue((((self.getProfileDetailsDict)["socket_id"]!) as! String), forKey: "SocketId")
+        }
+        if !((self.getProfileDetailsDict)["user_id"] is NSNull)
+        {
         UserDefaults.standard.setValue(((self.getProfileDetailsDict)["user_id"] as! Int), forKey: "UserId")
+        }
          (headerViewArray.viewWithTag(2) as! UIImageView).layer.cornerRadius =  (headerViewArray.viewWithTag(2) as! UIImageView).frame.size.height/2
          (headerViewArray.viewWithTag(2) as! UIImageView).layer.masksToBounds = true
          (headerViewArray.viewWithTag(2) as! UIImageView).layoutIfNeeded()
-        
-   //     let img_url =  (getProfileDetailsDict)["profile_picture"]!
-        if self.profileImage != nil
+         (headerViewArray.viewWithTag(2) as! UIImageView).image = UIImage(named: "img_EditProfilePic")
+   //     let img_url =  (img_EditProfilePicgetProfileDetailsDict)["profile_picture"]!
+        if !(self.profileImage .isEmpty)
         {
              DispatchQueue.global(qos: .background).async {
                     DispatchQueue.main.async {
@@ -419,7 +437,6 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
             self.profileImage = decodedData as Data
             }
             }
-            
             self.tblProfile.delegate = self
             self.tblProfile.dataSource = self
              self.tblProfile.reloadData()

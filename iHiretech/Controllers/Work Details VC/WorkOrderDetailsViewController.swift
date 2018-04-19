@@ -194,14 +194,16 @@ class WorkOrderDetailsViewController: UIViewController , UIWebViewDelegate , URL
             self.ExpensesList = (self.getWorkListData["tech_expenses"] as! [AnyObject])
             self.documentList = (self.getWorkListData["work_oder_document"] as! [AnyObject])
             
-            DispatchQueue.main.async {
+        //    DispatchQueue.main.async {
                 self.lblWorkOrderId.text = "( ID: \(((self.getWorkListData)["work_order_number"] as? String)!) )"
                 self.lblOrderView.setTitle(" \(finalString) ", for: .normal)
+                self.tblListing.delegate = self
+                self.tblListing.dataSource = self
                 self.tblListing.reloadData()
                 self.tabsCollectionView.delegate = self
                 self.tabsCollectionView.dataSource = self
                 self.tabsCollectionView.reloadData()
-            }
+       //     }
         })
     }
     
@@ -268,7 +270,7 @@ class WorkOrderDetailsViewController: UIViewController , UIWebViewDelegate , URL
                          "work_order_id" : self.workOrderId,
                          "message": txtSendMsg.text!] as [String:AnyObject]
         
-        WebAPI().callJSONWebApi(API.sendMessageChat, withHTTPMethod: .post, forPostParameters: parameter, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
+        WebAPI().callJSONWebApiWithoutLoader(API.sendMessageChat, withHTTPMethod: .post, forPostParameters: parameter, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
         })
         

@@ -159,30 +159,30 @@ func validationForLogin(viewList : [UIView]) -> Array<Any>
             (viewList[4]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter Address Line 1",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
             viewsToReturn.append(viewList[4])
         }
+        if((viewList[5] as! EditTextView).detailTextField.text?.isEmpty)!
+        {
+            (viewList[5]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter Contact Number",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[5])
+        }
         if((viewList[6] as! EditTextView).detailTextField.text?.isEmpty)!
         {
-            (viewList[6]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter Contact Number",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            (viewList[6]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter City",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
             viewsToReturn.append(viewList[6])
         }
         if((viewList[7] as! EditTextView).detailTextField.text?.isEmpty)!
         {
-            (viewList[7]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter City",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            (viewList[7]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter State",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
             viewsToReturn.append(viewList[7])
         }
         if((viewList[8] as! EditTextView).detailTextField.text?.isEmpty)!
         {
-            (viewList[8]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter State",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            (viewList[8]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter Zip",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
             viewsToReturn.append(viewList[8])
         }
         if((viewList[9] as! EditTextView).detailTextField.text?.isEmpty)!
         {
-            (viewList[9]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter Zip",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            (viewList[9]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter Country",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
             viewsToReturn.append(viewList[9])
-        }
-        if((viewList[10] as! EditTextView).detailTextField.text?.isEmpty)!
-        {
-            (viewList[10]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter Country",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
-            viewsToReturn.append(viewList[10])
         }
         
         return  viewsToReturn
