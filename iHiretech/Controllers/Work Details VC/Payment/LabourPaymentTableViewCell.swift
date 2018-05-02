@@ -10,6 +10,7 @@ import UIKit
 
 class LabourPaymentTableViewCell: UITableViewCell {
 
+    @IBOutlet var cnstAddExpensesHeight: NSLayoutConstraint!
     @IBOutlet var viewBorder: UIView!
     @IBOutlet var lblTotalExpenses: UILabel!
     @IBOutlet var lblLabourAmount: UILabel!

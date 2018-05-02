@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AFViewShaker
 
 class ForgotViewController: UIViewController {
 
@@ -14,6 +15,7 @@ class ForgotViewController: UIViewController {
     @IBOutlet var viewCnfrmPass: FormFieldView!
     @IBOutlet var viewPassword: FormFieldView!
     @IBOutlet var viewOtp: FormFieldView!
+    var email = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,7 +23,7 @@ class ForgotViewController: UIViewController {
         viewCnfrmPass.txtFieldName.isSecureTextEntry = true
         
         let iconsSize = CGRect(x: 0, y: 0, width: 12, height: 12)
-        let  myMutableString = NSMutableAttributedString(string: "Reset Password", attributes: ([NSAttributedStringKey.font :  UIFont.systemFont(ofSize: 12.0), NSAttributedStringKey.foregroundColor: UIColor.white]))
+        let  myMutableString = NSMutableAttributedString(string: "Reset Password ", attributes: ([NSAttributedStringKey.font :  UIFont.systemFont(ofSize: 12.0), NSAttributedStringKey.foregroundColor: UIColor.white]))
         let starAttachment = NSTextAttachment()
         starAttachment.image = UIImage(named: "img_ButtonArrow")
         starAttachment.bounds = iconsSize
@@ -39,9 +41,15 @@ class ForgotViewController: UIViewController {
     
     @IBAction func btn_ResetPassword(_ sender: UIButton)
     {
+        let viewArray : [UIView] = [viewPassword,viewCnfrmPass,viewOtp]
+        let obj_Validation = Validation()
+        let viewsToShake = obj_Validation.validationForForgotPassword(viewList: viewArray)
         var paramerters = [String:Any]()
-        paramerters = ["otp": viewOtp.txtFieldName.text!, "new_password": viewPassword.txtFieldName.text! ,"confirm_password": viewCnfrmPass.txtFieldName.text!] as [String : Any]
-        
+        paramerters = ["otp": viewOtp.txtFieldName.text!, "new_password": viewPassword.txtFieldName.text! ,"confirm_password": viewCnfrmPass.txtFieldName.text!,"email":self.email] as [String : Any]
+        if(viewsToShake.count == 0)
+        {
+        if viewPassword.txtFieldName.text! == viewCnfrmPass.txtFieldName.text!
+        {
         WebAPI().callJSONWebApi(API.reset, withHTTPMethod: .post, forPostParameters: paramerters, shouldIncludeAuthorizationHeader: false, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
             
@@ -55,13 +63,28 @@ class ForgotViewController: UIViewController {
                     transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
                     transition.type = kCATransitionFade
                     self.navigationController?.view.layer.add(transition, forKey: nil)
-                    self.navigationController?.isNavigationBarHidden = true
+                     self.navigationController?.navigationBar.isTranslucent = false
                     self.navigationController?.pushViewController(nav, animated: false)
                     self.navigationController?.navigationBar.barTintColor = UIColor.black
 
                 }
             }
         })
+        }
+        else
+        {
+            viewCnfrmPass.txtFieldName.text = ""
+            viewCnfrmPass.txtFieldName.attributedPlaceholder = NSMutableAttributedString(string: "Passwords do not match",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            let viewShaker = AFViewShaker(view: viewCnfrmPass)
+            viewShaker?.shake()
+        }
+        }
+        else
+        {
+            let viewShaker = AFViewShaker(viewsArray: viewsToShake)
+            print(viewsToShake)
+            viewShaker?.shake()
+        }
     }
     
     @IBAction func btn_ResendOTP(_ sender: UIButton)
@@ -72,18 +95,9 @@ class ForgotViewController: UIViewController {
         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         transition.type = kCATransitionFade
         self.navigationController?.view.layer.add(transition, forKey: nil)
-        self.navigationController?.isNavigationBarHidden = false
+          self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.pushViewController(nav, animated: false)
-        self.navigationController?.navigationBar.barTintColor = UIColor.clear
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+  
 }

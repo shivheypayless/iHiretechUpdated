@@ -25,7 +25,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="129.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Attachment:" translatesAutoresizingMaskIntoConstraints="NO" id="hAq-h8-izG">
@@ -47,7 +47,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="img_GreenCheck" translatesAutoresizingMaskIntoConstraints="NO" id="BGn-qf-cg7">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="img_UnCheck" translatesAutoresizingMaskIntoConstraints="NO" id="BGn-qf-cg7">
                         <rect key="frame" x="52" y="30.5" width="12" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="NkG-75-dVU"/>
@@ -123,15 +123,18 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="imgDrug" destination="hB8-iV-D8O" id="AbM-T0-DOg"/>
+                <outlet property="imgInsurance" destination="G44-IZ-Mb0" id="KGh-dy-u7N"/>
+                <outlet property="imgResume" destination="BGn-qf-cg7" id="lCi-vl-act"/>
+                <outlet property="imgbackground" destination="3Jm-Mj-6eY" id="4IT-Rh-I8d"/>
                 <outlet property="lblSubTitle" destination="fZ3-Ec-2rp" id="Ifr-5a-r6I"/>
                 <outlet property="lblTitle" destination="BaA-kO-HPP" id="3Vj-xg-2ug"/>
             </connections>
-            <point key="canvasLocation" x="37" y="169"/>
+            <point key="canvasLocation" x="-17" y="140"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="Attachment:" width="11" height="12"/>
-        <image name="img_GreenCheck" width="16" height="16"/>
         <image name="img_UnCheck" width="12" height="12"/>
     </resources>
 </document>

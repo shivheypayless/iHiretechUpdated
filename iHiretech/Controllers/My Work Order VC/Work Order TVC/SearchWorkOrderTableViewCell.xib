@@ -53,7 +53,7 @@
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="minus" translatesAutoresizingMaskIntoConstraints="NO" id="dQi-aT-ceL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="dQi-aT-ceL">
                                 <rect key="frame" x="244" y="189.5" width="16" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="TJz-3d-SWs"/>
@@ -194,6 +194,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="minus" width="32" height="32"/>
+        <image name="plus" width="32" height="32"/>
     </resources>
 </document>

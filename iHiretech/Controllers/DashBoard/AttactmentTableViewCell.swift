@@ -10,6 +10,10 @@ import UIKit
 
 class AttactmentTableViewCell: UITableViewCell {
 
+    @IBOutlet var imgbackground: UIImageView!
+    @IBOutlet var imgDrug: UIImageView!
+    @IBOutlet var imgInsurance: UIImageView!
+    @IBOutlet var imgResume: UIImageView!
     @IBOutlet var lblSubTitle: UILabel!
     @IBOutlet var lblTitle: UILabel!
     override func awakeFromNib() {

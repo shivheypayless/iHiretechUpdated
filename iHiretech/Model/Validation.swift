@@ -92,6 +92,44 @@ func validationForLogin(viewList : [UIView]) -> Array<Any>
           return  viewsToReturn
     }
     
+    func validationForForgotPassword(viewList : [UIView]) -> Array<Any>
+    {
+        var viewsToReturn = [UIView]()
+        
+        if((viewList[0]as!  FormFieldView).txtFieldName.text?.isEmpty)!
+        {
+            (viewList[0]as!  FormFieldView).txtFieldName.attributedPlaceholder = NSMutableAttributedString(string: "Enter Password",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[0])
+        }
+        else if(((viewList[0]as!  FormFieldView).txtFieldName.text?.characters.count)! < 6)
+        {
+            (viewList[0]as!  FormFieldView).txtFieldName.text = ""
+            (viewList[0]as!  FormFieldView).txtFieldName.attributedPlaceholder = NSMutableAttributedString(string: "Password too small",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[0])
+        }
+        
+        if((viewList[1]as!  FormFieldView).txtFieldName.text?.isEmpty)!
+        {
+            (viewList[1]as!  FormFieldView).txtFieldName.attributedPlaceholder = NSMutableAttributedString(string: "Enter Password",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[1])
+        }
+        else if(((viewList[1]as!  FormFieldView).txtFieldName.text?.characters.count)! < 6)
+        {
+            (viewList[1]as!  FormFieldView).txtFieldName.text = ""
+            (viewList[1]as!  FormFieldView).txtFieldName.attributedPlaceholder = NSMutableAttributedString(string: "Password too small",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[1])
+        }
+        
+        if((viewList[2]as!  FormFieldView).txtFieldName.text?.isEmpty)!
+        {
+            (viewList[2]as!  FormFieldView).txtFieldName.attributedPlaceholder = NSMutableAttributedString(string: "Enter OTP",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[2])
+        }
+        
+        
+        return  viewsToReturn
+    }
+    
     func validationForChangePassword(viewList : [UIView]) -> Array<Any>
     {
         var viewsToReturn = [UIView]()
@@ -139,6 +177,11 @@ func validationForLogin(viewList : [UIView]) -> Array<Any>
             (viewList[0]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter User Name",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
             viewsToReturn.append(viewList[0])
         }
+//        else
+//        if !((viewList[0] as! EditTextView).detailTextField.text?.trimmingCharacters(in: .whitespaces).isEmpty)! {
+//            (viewList[0]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Username should not contain blank space",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+//            viewsToReturn.append(viewList[0])
+//        }
         if((viewList[1] as! EditTextView).detailTextField.text?.isEmpty)!
         {
             (viewList[1]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter First Name",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])

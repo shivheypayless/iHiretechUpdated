@@ -33,7 +33,7 @@ class SocketIOManager {
             case .message?:
                 if (self.socketIOManagerDelegate != nil)
                 {
-            self.socketIOManagerDelegate.messageReceived(socketEvent.items?.first as! String)
+             self.socketIOManagerDelegate.messageReceived(socketEvent.items?.first as! String)
                 NotificationCenter.default.post(name: NSNotification.Name("MessageReceived"), object: nil)
                 }
             default:

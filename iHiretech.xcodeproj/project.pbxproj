@@ -548,7 +548,6 @@
 				846F39E5200BB86E00444853 /* Search Work Order Details */,
 				845D82FC2005E6B300B2B40D /* Apply Order VC */,
 				84580A051FECF4D100A7FCBF /* Work Details VC */,
-				844CF0D81FCEDA5A00D83B44 /* Forgot Password */,
 				8490D5F11FB2E0B300623553 /* Navigation VC */,
 				84A93FC91FA9E3AA00662040 /* Professional details VC */,
 				84A93FC61FA9E31F00662040 /* Edit Profile Personal details VC */,
@@ -561,6 +560,7 @@
 				8419929C1FA1DE1F0001E626 /* Menu Controller */,
 				841992991FA1CF1A0001E626 /* Navigation Controller */,
 				728928F61FA1A22C007686AE /* ChangePassword VC */,
+				844CF0D81FCEDA5A00D83B44 /* Forgot Password */,
 				728928F31FA1A1E8007686AE /* ResetPassword VC */,
 				8490D5EE1FB2D58400623553 /* Resend OTP VC */,
 				84416A9C1FB1F39300C45E00 /* Verify OTP */,
@@ -1487,7 +1487,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.heypayless.iHireTech;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "74beca97-9a5e-450a-8d2e-f0b79344b195";
+				PROVISIONING_PROFILE = "2d883a71-b432-499a-a778-e2bfbca412cd";
 				PROVISIONING_PROFILE_SPECIFIER = "iHireTech:AppstoreDist";
 				SWIFT_OBJC_BRIDGING_HEADER = "iHiretech/iHiretech-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1513,7 +1513,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.heypayless.iHireTech;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "74beca97-9a5e-450a-8d2e-f0b79344b195";
+				PROVISIONING_PROFILE = "2d883a71-b432-499a-a778-e2bfbca412cd";
 				PROVISIONING_PROFILE_SPECIFIER = "iHireTech:AppstoreDist";
 				SWIFT_OBJC_BRIDGING_HEADER = "iHiretech/iHiretech-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;

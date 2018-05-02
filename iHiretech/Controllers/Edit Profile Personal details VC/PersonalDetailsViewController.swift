@@ -44,13 +44,15 @@ class PersonalDetailsViewController: UIViewController {
         getProfileDetails { (userDetails) in
             self.getProfilePic()
         }
-        
+        self.viewCountry.borderView.backgroundColor = UIColor(red: 225/255, green: 229/255, blue: 234/255, alpha: 1)
+        self.viewCountry.detailTextField.text = "USA"
       // getProfileDetails()
         self.btnUploadImage.layer.cornerRadius = 3
         self.btnUploadImage.layer.masksToBounds = true
 //        if viewContactNumber.detailTextField.text! == ""
 //        {
         self.viewContactNumber.detailTextField.addTarget(self, action: #selector(self.textFieldTextChangedTrend(_:)), for: UIControlEvents.editingChanged)
+        self.viewUserName.detailTextField.addTarget(self, action: #selector(self.textFieldTextChangedTrend(_:)), for: UIControlEvents.editingChanged)
 //        }
          self.cnstStateHeight.constant = 0
           self.stateTableView.register(UINib(nibName: "StatesTableViewCell", bundle: nil) , forCellReuseIdentifier: "StatesTableViewCell")
@@ -236,20 +238,21 @@ class PersonalDetailsViewController: UIViewController {
             self.viewAddressLineTwo.detailTextField.text = userProfile["address_line_2"] as? String
             self.viewCity.detailTextField.text = userProfile["city"] as? String
             self.viewState.detailTextField.text = userProfile["state"] as? String
-            self.viewZip.detailTextField.text = userProfile["zip_code"] as? String
-            self.viewCountry.detailTextField.text = userProfile["country"] as? String
+            if !(userProfile["zip_code"] is NSNull)
+            {
+              self.viewZip.detailTextField.text = String(userProfile["zip_code"] as! Int)
+            }
             if let contact = (userProfile["contact_number_1"] as? String)
             {
             let endIndex = (userProfile["contact_number_1"] as? String)!.index((userProfile["contact_number_1"] as? String)!.endIndex, offsetBy: -8)
             let truncated = (userProfile["contact_number_1"] as? String)!.substring(to: endIndex)
             print(truncated)
-             self.viewContactNumber.detailTextField.text = truncated
-            
+           //  self.viewContactNumber.detailTextField.text = truncated
+              self.viewContactNumber.detailTextField.text =  String((userProfile["contact_number_1"] as! String).prefix(11))
             let lastChar = String((userProfile["contact_number_1"] as? String)!.suffix(2))
             print(lastChar)
              self.viewExtension.detailTextField.text = lastChar
             }
-            
              details("Done")
         })
     }
@@ -400,7 +403,7 @@ extension PersonalDetailsViewController : UIImagePickerControllerDelegate, UINav
            let fileSize = chosenImage.scale
             print(fileSize)
 
-            let imageData = UIImageJPEGRepresentation(chosenImage, 0.5)! as NSData
+            let imageData = UIImageJPEGRepresentation(imgSelectedProfilePic.image!, 0.5)! as NSData
             
          //   mediaData = UIImageJPEGRepresentation(fixOrientation(img: chosenImage), 1.0)! as NSData
             let parameters = [
@@ -461,7 +464,6 @@ extension PersonalDetailsViewController : UITableViewDelegate , UITableViewDataS
         return 30
     }
     
-    
 }
 
 extension PersonalDetailsViewController : UITextFieldDelegate
@@ -472,6 +474,11 @@ extension PersonalDetailsViewController : UITextFieldDelegate
             {
                viewContactNumber.detailTextField.delegate = self
             }
+        
+        if  !(viewUserName.detailTextField.text!.isEmpty)
+        {
+            viewUserName.detailTextField.delegate = self
+        }
     }
 //
    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
@@ -480,7 +487,10 @@ extension PersonalDetailsViewController : UITextFieldDelegate
         if viewContactNumber.detailTextField.text! == nil {
             viewContactNumber.detailTextField.text! = ""
         }
-      //  viewContactNumber.detailTextField.text! = viewContactNumber.detailTextField.text!.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
+        
+        if viewUserName.detailTextField.text! == " "{
+            viewUserName.detailTextField.text! = viewUserName.detailTextField.text!.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range: nil)
+        }
         
             let  char = string.cString(using: String.Encoding.utf8)!
             let isBackSpace = strcmp(char, "\\b")

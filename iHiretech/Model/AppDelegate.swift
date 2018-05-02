@@ -158,7 +158,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,LocationUpdateProtocol, So
            application.applicationIconBadgeNumber = (UserDefaults.standard.object(forKey: "UnreadAlert")! as! Int)
         }
       
-        if ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_status") as! String) == "1"
+        if ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_status") as! Int) == 1
         {
             let storyboardRoot = UIStoryboard(name: "Main", bundle: nil)
             let destinationRoot = storyboardRoot.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
@@ -169,14 +169,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,LocationUpdateProtocol, So
             if ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "flag") as! String) == "chat"
             {
                 destination.tabsTag = 2
-                destination.workOrderId = Int((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_id") as! String)!
+                destination.workOrderId = ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_id") as! Int)
                 destination.txtSendMsg.text! = ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "title") as! String)
                 destination.socketId = ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "to_user") as! String)
             }
             else
             {
                 destination.tabsTag = 1
-                destination.workOrderId = Int((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_id") as! String)!
+                destination.workOrderId = ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_id") as! Int)
             }
             
             (destinationRoot.frontViewController as! UINavigationController).navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
@@ -195,14 +195,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,LocationUpdateProtocol, So
         if ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "flag") as! String) == "chat"
         {
            destination.tabsTag = 2
-            destination.workOrderId = Int((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_id") as! String)!
+            destination.workOrderId = ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_id") as! Int)
          //   destination.txtSendMsg.text! = ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "title") as! String)
             destination.socketId = ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "to_user") as! String)
         }
         else
         {
             destination.tabsTag = 1
-            destination.workOrderId = Int(((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_id") as? String)!)!
+            destination.workOrderId = ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_id") as! Int)
         }
        
         (destinationRoot.frontViewController as! UINavigationController).navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)

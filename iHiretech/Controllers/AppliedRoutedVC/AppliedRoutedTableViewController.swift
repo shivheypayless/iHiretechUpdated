@@ -27,12 +27,12 @@ class AppliedRoutedTableViewController: UITableViewController {
         let button4 =  UIBarButtonItem(image: UIImage(named: "img_Back"), style: .plain, target: self, action: #selector(btnbackAction))
         
         self.navigationItem.leftBarButtonItem = button4
-        getWorkList()
       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+         getWorkList()
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
     
@@ -93,45 +93,54 @@ class AppliedRoutedTableViewController: UITableViewController {
         if self.getSearchListDetails.count != 0
         {
             cell.lblWorkOrderId.text = "#\(String(describing: (self.getSearchListDetails[indexPath.row])["work_order_number"] as! String)) "
-            if !((self.getSearchListDetails[indexPath.row])["tech_applied_status"] is NSNull)
+            if !((self.getSearchListDetails[indexPath.row])["status_name"] is NSNull)
             {
-            cell.lblStatus.text = " \(String(describing: (self.getSearchListDetails[indexPath.row])["tech_applied_status"] as! String)) "
+            cell.lblStatus.text = " \(String(describing: (self.getSearchListDetails[indexPath.row])["status_name"] as! String)) "
             }
             cell.lblWorkType.text = (((self.getSearchListDetails[indexPath.row])["work_category"]) as! [String:Any])["work_category_name"] as? String
             cell.lblLocationName.text = ((self.getSearchListDetails[indexPath.row])["location_name"] as? String)
-            cell.lblWorkOrderDate.text = "\((self.getSearchListDetails[indexPath.row])["schedule_exact_date"] as? String ?? "2017-04-20") \((self.getSearchListDetails[indexPath.row])["schedule_exact_time"] as? String ?? "10:00")"
-            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "YYYY-MM-DD HH:mm:ss"
+            if !((self.getSearchListDetails[indexPath.row])["schedule_exact_date"] is  NSNull) && !((self.getSearchListDetails[indexPath.row])["schedule_exact_time"] is  NSNull)
+            {
+            let date = dateFormatter.date(from: "\((self.getSearchListDetails[indexPath.row])["schedule_exact_date"] as! String) \((self.getSearchListDetails[indexPath.row])["schedule_exact_time"] as! String)")
+            dateFormatter.dateFormat = "MM-DD-YYYY hh:mm a"
+            cell.lblWorkOrderDate.text = dateFormatter.string(from: date!)
+            }
             cell.lblCLientName.text = (((self.getSearchListDetails[indexPath.row])["clients"]) as! [String:Any])["client_name"] as? String
             cell.lblManagerName.text = ((((self.getSearchListDetails[indexPath.row])["manager"]) as! [String:Any])["first_name"] as? String)!+" "+((((self.getSearchListDetails[indexPath.row])["manager"]) as! [String:Any])["last_name"] as? String)!
             cell.lblRouted.isHidden = true
-      //      cell.btnDetailView.tag = indexPath.row
-        //    cell.btnDetailView.addTarget(self, action: #selector(btn_DetailAction(_:)), for: .touchUpInside)
+            cell.btnDetailView.tag = indexPath.row
+            cell.btnDetailView.addTarget(self, action: #selector(btn_RejectAction(_:)), for: .touchUpInside)
             cell.btnCancel.tag = indexPath.row
-            cell.btnCancel.addTarget(self, action: #selector(btn_RejectAction(_:)), for: .touchUpInside)
-
             if ((self.getSearchListDetails[indexPath.row])["tech_applied_status"] as? String) != nil
             {
                 let image = UIImage(named: "img_ApplyOrder")
-                cell.btnDetailView.setImage(image, for: .normal)
-                cell.btnDetailView.addTarget(self, action: #selector(self.btnApplyAlready(_:)), for: .touchUpInside)
-                
+                cell.btnCancel.setImage(image, for: .normal)
+                 cell.btnCancel.removeTarget(nil, action: nil, for: .allEvents)
+                cell.btnCancel.addTarget(self, action: #selector(self.btnApplyAlready(_:)), for: .touchUpInside)
             }
+      
             else if ((self.getSearchListDetails[indexPath.row])["status_name"] as? String) == "routing"
             {
                 let image = UIImage(named: "img_ApproveArrow")
-                cell.btnDetailView.setImage(image, for: .normal)
-                cell.btnDetailView.tag = indexPath.row
-                cell.btnDetailView.addTarget(self, action: #selector(self.btnApplyAction(_:)), for: .touchUpInside)
+                cell.btnCancel.setImage(image, for: .normal)
+                 cell.btnCancel.removeTarget(nil, action: nil, for: .allEvents)
+                cell.btnCancel.tag = indexPath.row
+                cell.btnCancel.addTarget(self, action: #selector(self.btnApplyAction(_:)), for: .touchUpInside)
+            }
+            
+           else if ((self.getSearchListDetails[indexPath.row])["tech_applied_status"] as? String) == "Applied"
+            {
+                let image = UIImage(named: "img_Apply")
+                cell.btnCancel.setImage(image, for: .normal)
+                cell.btnCancel.removeTarget(nil, action: nil, for: .allEvents)
+                cell.btnCancel.tag = indexPath.row
+                cell.btnCancel.addTarget(self, action: #selector(self.btnApplyAction(_:)), for: .touchUpInside)
             }
             else
             {
-                let image = UIImage(named: "img_Apply")
-                cell.btnDetailView.setImage(image, for: .normal)
-                cell.btnDetailView.tag = indexPath.row
-                cell.btnDetailView.addTarget(self, action: #selector(self.btnApplyAction(_:)), for: .touchUpInside)
             }
-            cell.btnDetailView.tag = indexPath.row
-            
             let detail = UIImage(named: "img_View")
             cell.btnPrint.setImage(detail, for: .normal)
             cell.btnPrint.addTarget(self, action: #selector(self.btnViewAction(_:)), for: .touchUpInside)
@@ -166,12 +175,12 @@ class AppliedRoutedTableViewController: UITableViewController {
     
      @objc func btnApplyAction(_ sender: UIButton)
     {
-        if ((self.getSearchListDetails[sender.tag])["payment_rate_type"] as? String)! == "3"
+        if ((self.getSearchListDetails[sender.tag])["payment_rate_type"] as? Int)! == 3
         {
             let nav = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "BlendedApplyViewController") as! BlendedApplyViewController
             nav.workOrderId = ((self.getSearchListDetails[sender.tag])["work_order_id"] as! Int)
             nav.statusName = ((self.getSearchListDetails[sender.tag])["status_name"] as! String)
-            nav.paymentRateType = ((self.getSearchListDetails[sender.tag])["payment_rate_type"] as? String)!
+            nav.paymentRateType = String((self.getSearchListDetails[sender.tag])["payment_rate_type"] as! Int)
             let transition = CATransition()
             transition.duration = 0.5
             transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
@@ -187,7 +196,7 @@ class AppliedRoutedTableViewController: UITableViewController {
             let nav = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "ApplyWorkViewController") as! ApplyWorkViewController
             nav.workOrderId = ((self.getSearchListDetails[sender.tag])["work_order_id"] as! Int)
             nav.statusName = ((self.getSearchListDetails[sender.tag])["status_name"] as! String)
-            nav.paymentRateType = ((self.getSearchListDetails[sender.tag])["payment_rate_type"] as? String)!
+            nav.paymentRateType = String((self.getSearchListDetails[sender.tag])["payment_rate_type"] as! Int)
             let transition = CATransition()
             transition.duration = 0.5
             transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
@@ -228,7 +237,7 @@ class AppliedRoutedTableViewController: UITableViewController {
                 print(serviceResponse)
                 let data = serviceResponse["data"] as? [String:Any]
                 self.getWorkListData = data!["work_orders"] as! [String:Any]
-                self.getSearchListDetails = self.getWorkListData["data"] as! [AnyObject]
+            //    self.getSearchListDetails = self.getWorkListData["data"] as! [AnyObject]
                 self.getSearchListDetails.append(contentsOf: self.getWorkListData["data"] as! [AnyObject])
                 self.tableView.dataSource = self
                 self.tableView.delegate = self

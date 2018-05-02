@@ -51,15 +51,14 @@ class SignUpViewController: UIViewController {
     
     @IBAction func Btn_VerifyAccount(_ sender: UIButton)
     {
-        let nav = self.storyboard!.instantiateViewController(withIdentifier: "VerifyOtpViewController") as! VerifyOtpViewController
+        let nav = self.storyboard!.instantiateViewController(withIdentifier: "ViewController") as! ViewController
         let transition = CATransition()
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         transition.type = kCATransitionFade
         self.navigationController?.view.layer.add(transition, forKey: nil)
-        self.navigationController?.isNavigationBarHidden = false
+         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.pushViewController(nav, animated: false)
-        self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.navigationBar.barTintColor = UIColor.black
     }
     
@@ -113,9 +112,8 @@ class SignUpViewController: UIViewController {
                         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
                         transition.type = kCATransitionFade
                         self.navigationController?.view.layer.add(transition, forKey: nil)
-                        self.navigationController?.isNavigationBarHidden = false
+                         self.navigationController?.navigationBar.isTranslucent = false
                         self.navigationController?.pushViewController(nav, animated: false)
-                        self.navigationController?.isNavigationBarHidden = true
                         self.navigationController?.navigationBar.barTintColor = UIColor.black
                     }
                     else
@@ -129,9 +127,8 @@ class SignUpViewController: UIViewController {
                         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
                         transition.type = kCATransitionFade
                         self.navigationController?.view.layer.add(transition, forKey: nil)
-                        self.navigationController?.isNavigationBarHidden = true
                         self.navigationController?.pushViewController(nav, animated: false)
-                        self.navigationController?.isNavigationBarHidden = false
+                         self.navigationController?.navigationBar.isTranslucent = false
                         self.navigationController?.navigationBar.barTintColor = UIColor.black
                     }
                 }

@@ -22,7 +22,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         viewPassword.txtFieldName.isSecureTextEntry = true
-         self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
         let iconsSize = CGRect(x: 0, y: 0, width: 12, height: 12)
       //  let attributedString = NSMutableAttributedString(string: "SIGN IN ")
          let  attributedString = NSMutableAttributedString(string: "SIGN IN ", attributes: ([NSAttributedStringKey.font : UIFont.systemFont(ofSize: 12.0), NSAttributedStringKey.foregroundColor: UIColor.white]))
@@ -33,9 +34,6 @@ class ViewController: UIViewController {
      //   btnSignIn.titleLabel?.font = UIFont(name: "Quicksand-Bold_0", size: 12.0)
         btnSignIn.setTitleColor(UIColor.white, for: UIControlState.normal)
          btnSignIn.setAttributedTitle(attributedString, for: UIControlState.normal)
-        
-    //    self.viewUserName.txtFieldName.text = "rohan@yopmail.com"
-     //   self.viewPassword.txtFieldName.text = "123456"
       
     }
 
@@ -58,7 +56,7 @@ class ViewController: UIViewController {
         transition.type = kCATransitionFade
        self.navigationController?.view.layer.add(transition, forKey: nil)
         self.navigationController?.pushViewController(nav, animated: false)
-        self.navigationController?.isNavigationBarHidden = true
+         self.navigationController?.navigationBar.isTranslucent = false
          self.navigationController?.navigationBar.barTintColor = UIColor.black
     }
     
@@ -72,7 +70,7 @@ class ViewController: UIViewController {
         transition.type = kCATransitionFade
         self.navigationController?.view.layer.add(transition, forKey: nil)
         self.navigationController?.pushViewController(nav, animated: false)
-        self.navigationController?.isNavigationBarHidden = true
+          self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.black
      
     }

@@ -11,6 +11,8 @@ import AFViewShaker
 
 class ApplyWorkViewController: UIViewController {
 
+    @IBOutlet var cnstLblMaxRate: NSLayoutConstraint!
+    @IBOutlet var cnstMaxRateHeight: NSLayoutConstraint!
     @IBOutlet var lblMaxRate: UILabel!
     @IBOutlet var lblHourlyRate: UILabel!
     @IBOutlet var txtDescription: UITextField!
@@ -29,12 +31,23 @@ class ApplyWorkViewController: UIViewController {
     var workOrderId = Int()
     var paymentRateType = String()
     var statusName = String()
+    var navigate = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if self.paymentRateType == "2"
         {
-            lblHourlyRate.text! = "Fix Rate"
+            lblHourlyRate.text! = "Hourly Rate"
+            self.cnstMaxRateHeight.constant = 36.0
+            self.cnstLblMaxRate.constant = 36.0
+           // self.viewMaxRate.clipsToBounds = true
+        }
+        else
+        {
+            lblHourlyRate.text! = "Fixed Pay Amount"
+            self.cnstMaxRateHeight.constant = 0
+            self.cnstLblMaxRate.constant = 0
         }
          self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
         self.viewMaxRate.layer.borderWidth = 1
@@ -51,9 +64,6 @@ class ApplyWorkViewController: UIViewController {
          self.height_Yes = self.viewAnimate.frame.size.height
          self.cnstHeight.constant = 50.2*self.height_Yes
 
-        self.lblHourlyRate.isHidden = true
-        self.lblMaxRate.isHidden = true
-        
         // Do any additional setup after loading the view.
     }
 
@@ -139,41 +149,60 @@ class ApplyWorkViewController: UIViewController {
          var paramerters = [String:Any]()
        if imgYes.image == UIImage(named:"img_RadioOn")
        {
-         if self.txtFMaxRate.text! == "" && self.txtFHourlyRate.text == ""
-         {
-            let viewShaker = AFViewShaker(view: viewMaxRate)
-            print(viewMaxRate)
-             self.viewMaxRate.layer.borderColor = UIColor.red.cgColor
-            self.viewHourlyRate.layer.borderColor = UIColor.red.cgColor
-            let viewShakerrate = AFViewShaker(view: viewHourlyRate)
-            print(viewHourlyRate)
-            viewShakerrate?.shake()
-            return
-        }
-        if self.txtFMaxRate.text! == ""
+        if self.paymentRateType == "2"
         {
-            self.viewMaxRate.layer.borderColor = UIColor.red.cgColor
-            let viewShaker = AFViewShaker(view: viewMaxRate)
-            print(viewMaxRate)
-            viewShaker?.shake()
-            return
-        }
-        else if self.txtFHourlyRate.text == ""
-        {
-            self.viewHourlyRate.layer.borderColor = UIColor.red.cgColor
-            let viewShaker = AFViewShaker(view: viewHourlyRate)
-            print(viewHourlyRate)
-            viewShaker?.shake()
-            return
-        }
-        if self.paymentRateType == "1"
-        {
+            if self.txtFMaxRate.text! == "" && self.txtFHourlyRate.text == ""
+            {
+                self.txtFHourlyRate.placeholder = "Hourly Rate cannot be empty"
+                self.txtFMaxRate.placeholder = "Max Hours cannot be empty"
+                let viewShaker = AFViewShaker(view: viewMaxRate)
+                print(viewMaxRate)
+                self.viewMaxRate.layer.borderColor = UIColor.red.cgColor
+                self.viewHourlyRate.layer.borderColor = UIColor.red.cgColor
+                let viewShakerrate = AFViewShaker(view: viewHourlyRate)
+                print(viewHourlyRate)
+                viewShakerrate?.shake()
+                return
+            }
+            if self.txtFMaxRate.text! == ""
+            {
+                self.txtFMaxRate.placeholder = "Max Hours cannot be empty"
+                self.viewMaxRate.layer.borderColor = UIColor.red.cgColor
+                let viewShaker = AFViewShaker(view: viewMaxRate)
+                print(viewMaxRate)
+                viewShaker?.shake()
+                return
+            }
+            else if self.txtFHourlyRate.text == ""
+            {
+                self.txtFHourlyRate.placeholder = "Hourly Rate cannot be empty"
+                self.viewHourlyRate.layer.borderColor = UIColor.red.cgColor
+                let viewShaker = AFViewShaker(view: viewHourlyRate)
+                print(viewHourlyRate)
+                viewShaker?.shake()
+                return
+            }
+            self.txtFHourlyRate.placeholder == ""
+            self.txtFMaxRate.placeholder == ""
             self.viewMaxRate.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
             self.viewHourlyRate.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
         paramerters = ["work_order_id": self.workOrderId,"counter_offer":1, "payment_rate_type":self.paymentRateType,"per_hour_rate": self.txtFHourlyRate.text!,"per_hour_max_hours":self.txtFMaxRate.text!,"comment":""] as [String : Any]
         }
-        else if self.paymentRateType == "2"
+        else if self.paymentRateType == "1"
         {
+            if self.txtFHourlyRate.text == ""
+            {
+                 self.txtFHourlyRate.placeholder = "Fixed Rate cannot be empty"
+                let viewShaker = AFViewShaker(view: viewMaxRate)
+                print(viewMaxRate)
+                self.viewMaxRate.layer.borderColor = UIColor.red.cgColor
+                self.viewHourlyRate.layer.borderColor = UIColor.red.cgColor
+                let viewShakerrate = AFViewShaker(view: viewHourlyRate)
+                print(viewHourlyRate)
+                viewShakerrate?.shake()
+                return
+            }
+            self.txtFHourlyRate.placeholder = ""
             self.viewMaxRate.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
             self.viewHourlyRate.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
              paramerters = ["work_order_id": self.workOrderId,"counter_offer":1, "payment_rate_type":self.paymentRateType,"fixed_pay_amount": self.txtFHourlyRate.text!,"per_hour_max_hours":self.txtFMaxRate.text!,"comment":""] as [String : Any]
@@ -189,7 +218,47 @@ class ApplyWorkViewController: UIViewController {
                 print(serviceResponse)
                 if let message = serviceResponse["msg"] as? String
                 {
-                    AListAlertController.shared.presentAlertController(message: serviceResponse["msg"] as! String, completionHandler: nil)
+                    AListAlertController.shared.presentAlertController(message: serviceResponse["msg"] as! String, completionHandler: {
+                        if self.navigate == "WorkOrderDetail"
+                        {
+                            let destination = MyWorkOrderTableViewController(style: .plain)
+                            let transition = CATransition()
+                            transition.duration = 0.5
+                            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                            transition.type = kCATransitionFade
+                            self.navigationController?.view.layer.add(transition, forKey: nil)
+                            self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+                            self.navigationController?.navigationBar.tintColor = UIColor.white
+                            self.navigationController?.navigationBar.isTranslucent = false
+                            self.navigationController?.pushViewController(destination, animated: false)
+                        }
+                        else  if self.navigate == "SearchWorkOrderDetail"
+                        {
+                            let destination = SearchWorkOrderTableViewController(style: .plain)
+                            let transition = CATransition()
+                            transition.duration = 0.5
+                            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                            transition.type = kCATransitionFade
+                            self.navigationController?.view.layer.add(transition, forKey: nil)
+                            self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+                            self.navigationController?.navigationBar.tintColor = UIColor.white
+                            self.navigationController?.navigationBar.isTranslucent = false
+                            self.navigationController?.pushViewController(destination, animated: false)
+                        }
+                        else
+                        {
+                            let destination = AppliedRoutedTableViewController(style: .plain)
+                            let transition = CATransition()
+                            transition.duration = 0.5
+                            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                            transition.type = kCATransitionFade
+                            self.navigationController?.view.layer.add(transition, forKey: nil)
+                            self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+                            self.navigationController?.navigationBar.tintColor = UIColor.white
+                            self.navigationController?.navigationBar.isTranslucent = false
+                            self.navigationController?.pushViewController(destination, animated: false)
+                        }
+                })
                 }
             })
         }
@@ -199,7 +268,47 @@ class ApplyWorkViewController: UIViewController {
             print(serviceResponse)
             if let message = serviceResponse["msg"] as? String
             {
-           AListAlertController.shared.presentAlertController(message: serviceResponse["msg"] as! String, completionHandler: nil)
+                AListAlertController.shared.presentAlertController(message: serviceResponse["msg"] as! String, completionHandler: {
+                    if self.navigate == "WorkOrderDetail"
+                    {
+                        let destination = MyWorkOrderTableViewController(style: .plain)
+                        let transition = CATransition()
+                        transition.duration = 0.5
+                        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                        transition.type = kCATransitionFade
+                        self.navigationController?.view.layer.add(transition, forKey: nil)
+                        self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+                        self.navigationController?.navigationBar.tintColor = UIColor.white
+                        self.navigationController?.navigationBar.isTranslucent = false
+                        self.navigationController?.pushViewController(destination, animated: false)
+                    }
+                        else  if self.navigate == "SearchWorkOrderDetail"
+                    {
+                        let destination = SearchWorkOrderTableViewController(style: .plain)
+                        let transition = CATransition()
+                        transition.duration = 0.5
+                        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                        transition.type = kCATransitionFade
+                        self.navigationController?.view.layer.add(transition, forKey: nil)
+                        self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+                        self.navigationController?.navigationBar.tintColor = UIColor.white
+                        self.navigationController?.navigationBar.isTranslucent = false
+                        self.navigationController?.pushViewController(destination, animated: false)
+                    }
+                    else
+                    {
+                    let destination = AppliedRoutedTableViewController(style: .plain)
+                    let transition = CATransition()
+                    transition.duration = 0.5
+                    transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                    transition.type = kCATransitionFade
+                    self.navigationController?.view.layer.add(transition, forKey: nil)
+                    self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+                    self.navigationController?.navigationBar.tintColor = UIColor.white
+                    self.navigationController?.navigationBar.isTranslucent = false
+                    self.navigationController?.pushViewController(destination, animated: false)
+                    }
+                })
             }
         })
         }

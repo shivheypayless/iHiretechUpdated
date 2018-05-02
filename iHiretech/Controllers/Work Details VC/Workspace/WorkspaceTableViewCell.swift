@@ -30,9 +30,7 @@ class WorkspaceTableViewCell: UITableViewCell {
     @IBOutlet var lblTime: UILabel!
     @IBOutlet var lblDate: UILabel!
     @IBOutlet var cnstrntLocationTrackingButtonHeight: NSLayoutConstraint!
-    
     @IBOutlet var btnStartTracking: UIButton!
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()

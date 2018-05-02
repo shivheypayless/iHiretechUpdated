@@ -41,12 +41,12 @@
                                             <constraint firstAttribute="height" constant="32" id="isR-ok-ZTS"/>
                                             <constraint firstAttribute="width" secondItem="7QI-LM-Hs0" secondAttribute="height" multiplier="1:1" id="jyQ-VL-zfP"/>
                                         </constraints>
-                                        <state key="normal" image="img_View"/>
+                                        <state key="normal" image="img_Reject"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeB-iL-V2G">
                                         <rect key="frame" x="44" y="0.0" width="32" height="32"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" image="img_Reject"/>
+                                        <state key="normal" image="img_View"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tkJ-PG-kKO">
                                         <rect key="frame" x="88" y="0.0" width="32" height="32"/>
@@ -56,7 +56,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uof-Lm-b2T">
-                                <rect key="frame" x="91" y="16" width="61" height="17.5"/>
+                                <rect key="frame" x="91.5" y="16" width="61" height="17.5"/>
                                 <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -137,8 +137,8 @@
                                 <color key="textColor" red="0.98039215690000003" green="0.46666666670000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swapna Gopireddy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfO-Kq-EwP">
-                                <rect key="frame" x="102" y="136" width="120.5" height="16.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfO-Kq-EwP">
+                                <rect key="frame" x="102" y="136" width="9.5" height="16.5"/>
                                 <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
                                 <color key="textColor" red="0.98039215690000003" green="0.46666666670000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -156,7 +156,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#2017000100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ebr-bT-ydc">
-                                <rect key="frame" x="156" y="16" width="92" height="17.5"/>
+                                <rect key="frame" x="156.5" y="16" width="92" height="17.5"/>
                                 <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="15"/>
                                 <color key="textColor" red="0.98039215690000003" green="0.46666666670000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -304,7 +304,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="img_Location" width="10" height="14"/>
+        <image name="img_Location" width="16" height="16"/>
         <image name="img_Print" width="10" height="9"/>
         <image name="img_Reject" width="16" height="16"/>
         <image name="img_UserName" width="9" height="9"/>

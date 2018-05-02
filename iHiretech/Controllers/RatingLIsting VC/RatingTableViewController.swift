@@ -59,13 +59,7 @@ class RatingTableViewController: UITableViewController {
             print(serviceResponse)
             let data = serviceResponse["data"] as? [String:Any]
             self.ratingList = data!["rating_list"] as! [AnyObject]
-            if self.ratingList.count == 0
-            {
-                let label = UILabel(frame: CGRect(x: 16, y: 540, width: 200, height: 21))
-                label.textAlignment = NSTextAlignment.center
-                label.text = "No Search Found"
-                self.view.addSubview(label)
-            }
+            self.noDataFound.text = ""
             self.tableView.dataSource = self
             self.tableView.delegate = self
             self.tableView.reloadData()
@@ -117,7 +111,6 @@ class RatingTableViewController: UITableViewController {
         {
             self.navigationController?.dismiss(animated: true, completion: nil)
         }
-       //  self.navigationController?.popViewController(animated: true)
     }
 
     // MARK: - Table view data source
@@ -158,9 +151,11 @@ class RatingTableViewController: UITableViewController {
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "RateListTableViewCell", for: indexPath) as! RateListTableViewCell
             cell.lblName.text = (self.ratingList[indexPath.row]["usersDetails"] as? String)!
-            if let n = NumberFormatter().number(from: (self.ratingList[indexPath.row]["rating"] as! String)) {
-                let f = CGFloat(truncating: n)
-                cell.viewRating.value = f
+            if (self.ratingList[indexPath.row]["rating"] is Float)
+            {
+            let m = NSNumber(value: (self.ratingList[indexPath.row]["rating"] as! Float))
+            let f = CGFloat(truncating: m)
+            cell.viewRating.value = f
                 cell.viewRating.filledStarImage = #imageLiteral(resourceName: "img_OrangeStar")
                 cell.viewRating.halfStarImage = #imageLiteral(resourceName: "img_HalfStarOrng")
             }
@@ -216,6 +211,14 @@ class RatingTableViewController: UITableViewController {
             else
             {
                 let headerViewArray = Bundle.main.loadNibNamed("SearchResultHeaderView", owner: self, options: nil)?[0] as! UIView
+                if self.ratingList.count != 0
+                {
+                    (headerViewArray.viewWithTag(2) as! UILabel).isHidden = true
+                }
+                else
+                {
+                    (headerViewArray.viewWithTag(2) as! UILabel).isHidden = false
+                }
                 return headerViewArray
             }
     }
@@ -228,7 +231,14 @@ class RatingTableViewController: UITableViewController {
             }
             else
             {
+                if self.ratingList.count != 0
+                {
                 return 55.0
+                }
+                else
+                {
+                return 82.0
+                }
             }
     }
     
@@ -246,15 +256,6 @@ class RatingTableViewController: UITableViewController {
             let shouldCollapse: Bool = !collapsedSections.contains(section)
             if shouldCollapse
             {
-                if self.ratingList.count == 0
-                {
-                    self.noDataFound.text = ""
-                    self.noDataFound = UILabel(frame: CGRect(x: 16, y: 110, width: 200, height: 16))
-                   // label.textAlignment = NSTextAlignment.center
-                    self.noDataFound.text = "No Search Found"
-                    self.noDataFound.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
-                    self.view.addSubview(self.noDataFound)
-                }
                 (sender.view!.viewWithTag(2) as! UIImageView).image = UIImage(named: "plus")
                 (sender.view!.viewWithTag(2) as! UIImageView).layoutIfNeeded()
                 let numOfRows = tableView.numberOfRows(inSection: section)
@@ -264,15 +265,6 @@ class RatingTableViewController: UITableViewController {
             }
             else
             {
-                if self.ratingList.count == 0
-                {
-                    self.noDataFound.text = ""
-                    self.noDataFound = UILabel(frame: CGRect(x: 16, y: 580, width: 200, height: 16))
-                    // label.textAlignment = NSTextAlignment.center
-                    self.noDataFound.text = "No Search Found"
-                    self.noDataFound.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
-                    self.view.addSubview(self.noDataFound)
-                }
                 (sender.view!.viewWithTag(2) as! UIImageView).image = UIImage(named: "minus")
                 (sender.view!.viewWithTag(2) as! UIImageView).layoutIfNeeded()
                 let indexPaths: [NSIndexPath] = self.indexPathsForSection(section: section, withNumberOfRows: 1)
@@ -350,7 +342,7 @@ class RatingTableViewController: UITableViewController {
     
      @objc func btn_SearchAction(_ sender: UIButton)
     {
-        var rate = Int()
+        var rate = Float()
         let cell_indexPath = NSIndexPath(row: 0, section: 0)
         let tableViewCell = self.tableView.cellForRow(at: cell_indexPath as IndexPath) as! RatingFilterTableViewCell
        // tableViewCell.viewToDate.txtFieldName.text
@@ -379,18 +371,11 @@ class RatingTableViewController: UITableViewController {
             rate = 0
         }
         let parameter = ["customer_id": self.customerId , "from_date":tableViewCell.viewFromDate.txtFieldName.text!,"to_date": tableViewCell.viewToDate.txtFieldName.text!,"rating": rate] as [String:Any]
+        print(parameter)
         WebAPI().callJSONWebApi(API.filterRatingList, withHTTPMethod: .post, forPostParameters: parameter, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
             let data = serviceResponse["data"] as? [String:Any]
             self.ratingList = data!["rating_list"] as! [AnyObject]
-            if self.ratingList.count == 0
-            {
-                self.noDataFound = UILabel(frame: CGRect(x: 16, y: 580, width: 200, height: 16))
-              //  label.textAlignment = NSTextAlignment.center
-                self.noDataFound.text = "No Search Found"
-                self.noDataFound.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
-                self.view.addSubview(self.noDataFound)
-            }
             self.tableView.reloadData()
         })
     }
@@ -417,7 +402,7 @@ class RatingTableViewController: UITableViewController {
     {
         popup.dismiss(true)
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM-dd-YYYY"
+        dateFormatter.dateFormat = "MM-dd-yyyy"
         let cell_indexPath = NSIndexPath(row: 0, section: 0)
         let tableViewCell = self.tableView.cellForRow(at: cell_indexPath as IndexPath) as! RatingFilterTableViewCell
         tableViewCell.viewFromDate.txtFieldName.text = dateFormatter.string(from: calenderPickerView.date)
@@ -451,7 +436,7 @@ class RatingTableViewController: UITableViewController {
     {
         popup.dismiss(true)
         let dateFormatter = DateFormatter()
-       dateFormatter.dateFormat = "MM-dd-YYYY"
+       dateFormatter.dateFormat = "MM-dd-yyyy"
         let cell_indexPath = NSIndexPath(row: 0, section: 0)
         let tableViewCell = self.tableView.cellForRow(at: cell_indexPath as IndexPath) as! RatingFilterTableViewCell
         tableViewCell.viewToDate.txtFieldName.text = dateFormatter.string(from: calenderPickerView.date)

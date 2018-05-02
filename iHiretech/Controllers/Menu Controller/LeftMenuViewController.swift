@@ -77,7 +77,7 @@ class LeftMenuViewController: UIViewController {
         let destination = RatingTableViewController(style: .plain)
         destination.frmSrc = "LeftMenu"
         // destination.storyBoard = self.storyboard
-         destination.customerId = Int(UserDefaults.standard.object(forKey: "UserId") as! String)!
+         destination.customerId = UserDefaults.standard.object(forKey: "UserId") as! Int
         let nav = UINavigationController(rootViewController: destination)
         nav.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
         nav.navigationBar.tintColor = UIColor.white

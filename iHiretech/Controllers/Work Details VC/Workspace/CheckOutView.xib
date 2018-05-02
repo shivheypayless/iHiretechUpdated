@@ -21,11 +21,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="158"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="193"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HhF-47-ZoQ">
-                    <rect key="frame" x="16" y="0.0" width="288" height="158"/>
+                    <rect key="frame" x="16" y="0.0" width="288" height="193"/>
                     <subviews>
                         <view tag="7" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2s3-Zt-i1e">
                             <rect key="frame" x="16" y="46" width="256" height="40"/>
@@ -76,18 +76,6 @@
                                 <constraint firstItem="Mwq-56-jHC" firstAttribute="top" secondItem="lEj-3l-sbj" secondAttribute="top" id="wvd-Ms-Aa5"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QSO-Ou-NHN">
-                            <rect key="frame" x="195" y="8" width="85" height="30"/>
-                            <color key="backgroundColor" red="0.25882352939999997" green="0.70980392160000005" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="85" id="gEB-lv-Rm8"/>
-                                <constraint firstAttribute="height" constant="30" id="m9P-KZ-N6q"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="15"/>
-                            <state key="normal" title="Check Out">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LIg-Yy-Cwy">
                             <rect key="frame" x="20" y="8" width="129" height="30"/>
                             <subviews>
@@ -117,42 +105,55 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eDt-Bp-FbM">
-                            <rect key="frame" x="-1" y="0.0" width="1" height="158"/>
+                            <rect key="frame" x="-1" y="0.0" width="1" height="193"/>
                             <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="1" id="q5Q-bw-DHX"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zb6-nG-B7P">
-                            <rect key="frame" x="288" y="0.0" width="1" height="158"/>
+                            <rect key="frame" x="288" y="0.0" width="1" height="193"/>
                             <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="1" id="XG1-MJ-yWg"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8eD-5H-MOf">
-                            <rect key="frame" x="0.0" y="157" width="288" height="1"/>
+                            <rect key="frame" x="0.0" y="192" width="288" height="1"/>
                             <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="3tF-zz-hTF"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="dP7-PK-vck"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QSO-Ou-NHN">
+                            <rect key="frame" x="102" y="150" width="85" height="30"/>
+                            <color key="backgroundColor" red="0.25882352939999997" green="0.70980392160000005" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="85" id="gEB-lv-Rm8"/>
+                                <constraint firstAttribute="height" constant="30" id="m9P-KZ-N6q"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="15"/>
+                            <state key="normal" title="Check Out">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="QSO-Ou-NHN" secondAttribute="trailing" constant="8" id="7xf-3l-mPn"/>
                         <constraint firstAttribute="trailing" secondItem="lEj-3l-sbj" secondAttribute="trailing" constant="16" id="8PH-CB-ToP"/>
                         <constraint firstAttribute="trailing" secondItem="8eD-5H-MOf" secondAttribute="trailing" id="8Sp-FB-oWR"/>
                         <constraint firstItem="lEj-3l-sbj" firstAttribute="top" secondItem="2s3-Zt-i1e" secondAttribute="bottom" constant="12" id="9Dm-lV-5vo"/>
                         <constraint firstItem="2s3-Zt-i1e" firstAttribute="top" secondItem="LIg-Yy-Cwy" secondAttribute="bottom" constant="8" id="Ac2-po-L4S"/>
-                        <constraint firstItem="QSO-Ou-NHN" firstAttribute="top" secondItem="HhF-47-ZoQ" secondAttribute="top" constant="8" id="BLv-a5-lCQ"/>
                         <constraint firstItem="lEj-3l-sbj" firstAttribute="leading" secondItem="HhF-47-ZoQ" secondAttribute="leading" constant="16" id="BpZ-uG-JYL"/>
                         <constraint firstItem="eDt-Bp-FbM" firstAttribute="top" secondItem="HhF-47-ZoQ" secondAttribute="top" id="E13-Xp-iCp"/>
                         <constraint firstAttribute="bottom" secondItem="eDt-Bp-FbM" secondAttribute="bottom" id="GFQ-8O-so4"/>
                         <constraint firstItem="8eD-5H-MOf" firstAttribute="leading" secondItem="eDt-Bp-FbM" secondAttribute="trailing" id="GKT-85-HiV"/>
                         <constraint firstAttribute="trailing" secondItem="2s3-Zt-i1e" secondAttribute="trailing" constant="16" id="Izo-Hu-9YM"/>
+                        <constraint firstItem="QSO-Ou-NHN" firstAttribute="top" secondItem="lEj-3l-sbj" secondAttribute="bottom" constant="12" id="Pp4-9X-41b"/>
                         <constraint firstAttribute="bottom" secondItem="8eD-5H-MOf" secondAttribute="bottom" id="UP4-Pd-QIj"/>
+                        <constraint firstItem="8eD-5H-MOf" firstAttribute="top" secondItem="QSO-Ou-NHN" secondAttribute="bottom" constant="12" id="VCD-z4-0Tc"/>
+                        <constraint firstItem="QSO-Ou-NHN" firstAttribute="centerX" secondItem="HhF-47-ZoQ" secondAttribute="centerX" id="W7T-tQ-w9q"/>
                         <constraint firstItem="lEj-3l-sbj" firstAttribute="height" secondItem="2s3-Zt-i1e" secondAttribute="height" id="dJX-1u-O1v"/>
                         <constraint firstItem="LIg-Yy-Cwy" firstAttribute="top" secondItem="HhF-47-ZoQ" secondAttribute="top" constant="8" id="eyT-Zu-Nii"/>
                         <constraint firstItem="LIg-Yy-Cwy" firstAttribute="leading" secondItem="HhF-47-ZoQ" secondAttribute="leading" constant="20" symbolic="YES" id="f4T-Gi-1UO"/>
@@ -160,7 +161,6 @@
                         <constraint firstItem="2s3-Zt-i1e" firstAttribute="leading" secondItem="HhF-47-ZoQ" secondAttribute="leading" constant="16" id="gtq-GW-bDM"/>
                         <constraint firstAttribute="bottom" secondItem="zb6-nG-B7P" secondAttribute="bottom" id="jSG-bq-CZ4"/>
                         <constraint firstItem="8eD-5H-MOf" firstAttribute="leading" secondItem="HhF-47-ZoQ" secondAttribute="leading" id="nlW-Nd-cHe"/>
-                        <constraint firstItem="QSO-Ou-NHN" firstAttribute="centerY" secondItem="LIg-Yy-Cwy" secondAttribute="centerY" id="rpU-mm-Zxv"/>
                         <constraint firstItem="zb6-nG-B7P" firstAttribute="top" secondItem="HhF-47-ZoQ" secondAttribute="top" id="xTT-rk-LjN"/>
                     </constraints>
                 </view>
@@ -174,7 +174,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="6" y="-201"/>
+            <point key="canvasLocation" x="6" y="-183.5"/>
         </view>
     </objects>
     <resources>

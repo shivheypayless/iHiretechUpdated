@@ -28,6 +28,7 @@ class BlendedApplyViewController: UIViewController {
     var workOrderId = Int()
     var paymentRateType = String()
     var statusName = String()
+    var navigate = String()
     override func viewDidLoad() {
         super.viewDidLoad()
      self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
@@ -126,13 +127,66 @@ class BlendedApplyViewController: UIViewController {
             if(viewsToShake.count == 0)
             {
               paramerters = ["work_order_id": self.workOrderId,"counter_offer":1, "payment_rate_type": self.paymentRateType,"blended_rate_amount_first": self.viewBlendedFirstAmt.txtFieldName.text!,"blended_rate_hours_first":self.viewBlendedFirstMaxHrs.txtFieldName.text!,"blended_rate_amount_second":self.viewBlendedSecondAmt.txtFieldName.text!,"blended_rate_hours_second":self.viewBlendedSecondMaxHrs.txtFieldName.text!,"comment":self.textFieldComment.text!] as [String : Any]
+            }
+            else
+            {
+                let viewShaker = AFViewShaker(viewsArray: viewsToShake)
+                print(viewsToShake)
+                viewShaker?.shake()
+                return
+            }
+        }
+        else
+        {
+            paramerters = ["work_order_id": self.workOrderId,"counter_offer": 0] as [String : Any]
+        }
                 if self.statusName == "routing"
                 {
                     WebAPI().callJSONWebApi(API.approveWorkOrder, withHTTPMethod: .post, forPostParameters: paramerters, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
                         print(serviceResponse)
                         if let message = serviceResponse["msg"] as? String
                         {
-                            AListAlertController.shared.presentAlertController(message: serviceResponse["msg"] as! String, completionHandler: nil)
+                            AListAlertController.shared.presentAlertController(message: serviceResponse["msg"] as! String, completionHandler: {
+                                if self.navigate == "WorkOrderDetail"
+                                {
+                                    let destination = MyWorkOrderTableViewController(style: .plain)
+                                    let transition = CATransition()
+                                    transition.duration = 0.5
+                                    transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                                    transition.type = kCATransitionFade
+                                    self.navigationController?.view.layer.add(transition, forKey: nil)
+                                    self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+                                    self.navigationController?.navigationBar.tintColor = UIColor.white
+                                    self.navigationController?.navigationBar.isTranslucent = false
+                                    self.navigationController?.pushViewController(destination, animated: false)
+                                }
+                                else  if self.navigate == "SearchWorkOrderDetail"
+                                {
+                                    let destination = SearchWorkOrderTableViewController(style: .plain)
+                                    let transition = CATransition()
+                                    transition.duration = 0.5
+                                    transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                                    transition.type = kCATransitionFade
+                                    self.navigationController?.view.layer.add(transition, forKey: nil)
+                                    self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+                                    self.navigationController?.navigationBar.tintColor = UIColor.white
+                                    self.navigationController?.navigationBar.isTranslucent = false
+                                    self.navigationController?.pushViewController(destination, animated: false)
+                                }
+                                else
+                                {
+                                    let destination = AppliedRoutedTableViewController(style: .plain)
+                                    let transition = CATransition()
+                                    transition.duration = 0.5
+                                    transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                                    transition.type = kCATransitionFade
+                                    self.navigationController?.view.layer.add(transition, forKey: nil)
+                                    self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+                                    self.navigationController?.navigationBar.tintColor = UIColor.white
+                                    self.navigationController?.navigationBar.isTranslucent = false
+                                    self.navigationController?.pushViewController(destination, animated: false)
+                                }
+                            })
                         }
                     })
                 }
@@ -142,17 +196,51 @@ class BlendedApplyViewController: UIViewController {
                         print(serviceResponse)
                         if let message = serviceResponse["msg"] as? String
                         {
-                            AListAlertController.shared.presentAlertController(message: serviceResponse["msg"] as! String, completionHandler: nil)
-                        }
-                    })
+                            AListAlertController.shared.presentAlertController(message: serviceResponse["msg"] as! String, completionHandler: {
+                                if self.navigate == "WorkOrderDetail"
+                                {
+                                    let destination = MyWorkOrderTableViewController(style: .plain)
+                                    let transition = CATransition()
+                                    transition.duration = 0.5
+                                    transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                                    transition.type = kCATransitionFade
+                                    self.navigationController?.view.layer.add(transition, forKey: nil)
+                                    self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+                                    self.navigationController?.navigationBar.tintColor = UIColor.white
+                                    self.navigationController?.navigationBar.isTranslucent = false
+                                    self.navigationController?.pushViewController(destination, animated: false)
+                                }
+                                else  if self.navigate == "SearchWorkOrderDetail"
+                                {
+                                    let destination = SearchWorkOrderTableViewController(style: .plain)
+                                    let transition = CATransition()
+                                    transition.duration = 0.5
+                                    transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                                    transition.type = kCATransitionFade
+                                    self.navigationController?.view.layer.add(transition, forKey: nil)
+                                    self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+                                    self.navigationController?.navigationBar.tintColor = UIColor.white
+                                    self.navigationController?.navigationBar.isTranslucent = false
+                                    self.navigationController?.pushViewController(destination, animated: false)
+                                }
+                                else
+                                {
+                                    let destination = AppliedRoutedTableViewController(style: .plain)
+                                    let transition = CATransition()
+                                    transition.duration = 0.5
+                                    transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                                    transition.type = kCATransitionFade
+                                    self.navigationController?.view.layer.add(transition, forKey: nil)
+                                    self.navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+                                    self.navigationController?.navigationBar.tintColor = UIColor.white
+                                    self.navigationController?.navigationBar.isTranslucent = false
+                                    self.navigationController?.pushViewController(destination, animated: false)
+                                }
+                            })
+                            }
+                        })
                 }
-            }
-            else
-            {
-                let viewShaker = AFViewShaker(viewsArray: viewsToShake)
-                print(viewsToShake)
-                viewShaker?.shake()
-            }
-        }
+          
+        
     }
 }

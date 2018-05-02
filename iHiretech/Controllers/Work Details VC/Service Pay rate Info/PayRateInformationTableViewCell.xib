@@ -24,7 +24,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="98.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wi4-Jw-R1I">
@@ -49,12 +49,18 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hourly Rate Max Hours :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdJ-dR-anM">
                                 <rect key="frame" x="8" y="70" width="134" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="1xx-pq-9Ni"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Nd-rI-Llv">
                                 <rect key="frame" x="150" y="70" width="48.5" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="MeK-dM-gGh"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -93,9 +99,13 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="cnstLblMaxHoursHeight" destination="1xx-pq-9Ni" id="0JB-cf-zUe"/>
+                <outlet property="cnstValueMaxhrsheight" destination="MeK-dM-gGh" id="4zH-cQ-oJD"/>
                 <outlet property="lblHourlyRate" destination="vpm-Me-JKg" id="NDH-a1-XNy"/>
                 <outlet property="lblMaxRate" destination="0Nd-rI-Llv" id="htx-Hy-edc"/>
                 <outlet property="lblPaymentType" destination="y7a-8Z-UJp" id="NwC-kO-ohZ"/>
+                <outlet property="lblTileHourlyrate" destination="FP2-zZ-3rl" id="8CG-2i-aaa"/>
+                <outlet property="lblTitleMaxHrs" destination="WdJ-dR-anM" id="dHU-4d-5KW"/>
                 <outlet property="viewBorder" destination="wi4-Jw-R1I" id="yUw-NM-re0"/>
             </connections>
             <point key="canvasLocation" x="90" y="41.5"/>

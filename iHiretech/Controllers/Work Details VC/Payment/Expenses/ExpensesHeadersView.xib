@@ -21,11 +21,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="132"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d4F-am-dje">
-                    <rect key="frame" x="16" y="0.0" width="288" height="129"/>
+                    <rect key="frame" x="16" y="0.0" width="288" height="132"/>
                     <subviews>
                         <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GHl-Hv-sch">
                             <rect key="frame" x="0.0" y="0.0" width="288" height="35"/>
@@ -46,7 +46,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QVA-0K-xy7">
-                            <rect key="frame" x="0.0" y="35" width="288" height="94"/>
+                            <rect key="frame" x="0.0" y="35" width="288" height="97"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Expenses Added" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRj-L4-Sss">
                                     <rect key="frame" x="8" y="7" width="280" height="17.5"/>
@@ -156,7 +156,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="418" y="-133.5"/>
+            <point key="canvasLocation" x="418" y="-132"/>
         </view>
     </objects>
 </document>

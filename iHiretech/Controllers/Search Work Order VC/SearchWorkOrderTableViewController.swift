@@ -31,7 +31,7 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
     var statusName = UIButton()
     var statusId = Int()
     var statusTableCnst = NSLayoutConstraint()
-    var milesArray = ["10 Miles","20 Miles","30 miles","40 miles"]
+    var milesArray = ["10","20","30","40"]
     var searchmap = GMSMapView()
     var locationManager = CLLocationManager()
      var markerArray = [LocationMarker]()
@@ -55,11 +55,11 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
         self.tableView.register(UINib(nibName: "MapTableViewCell", bundle: nil) , forCellReuseIdentifier: "MapTableViewCell")
         self.tableView.separatorStyle = .none
         collapsedSections.add(1)
-         getWorkList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        getWorkList()
          self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
 
@@ -91,7 +91,6 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
                     
                 }
             }
-            
             self.tableView.dataSource = self
             self.tableView.delegate = self
             self.tableView.reloadData()
@@ -258,7 +257,7 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
         else if tableView == self.milesTAbleView
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "StatesTableViewCell", for: indexPath) as! StatesTableViewCell
-            cell.lblState.text! = ((self.milesArray[indexPath.row]) as? String)!
+            cell.lblState.text! = "\((self.milesArray[indexPath.row]) as String) Miles"
             return cell
         }
         else
@@ -266,6 +265,13 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
             if indexPath.section == 0
             {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SearchOrderTableViewCell", for: indexPath) as! SearchOrderTableViewCell
+                cell.viewFromDate.txtFieldName.text = "From Date"
+                cell.viewToDate.txtFieldName.text = "To Date"
+                cell.btnSortClient.setTitle("   Client Name", for: .normal)
+                cell.btnSelectMiles.setTitle("   Select Miles", for: .normal)
+                cell.viewWordOrderNo.placeholder = "Search by work order number"
+                self.milesName.setTitle("   Select Miles", for: .normal)
+                cell.viewWordOrderNo.txtFieldName.text = ""
                 cell.btnFromDate.addTarget(self, action: #selector(self.DatePickerFromDate(_:)), for: UIControlEvents.touchUpInside)
                 cell.btnToDate.addTarget(self, action: #selector(self.DatePickerToDate(_:)), for: UIControlEvents.touchUpInside)
                 cell.btnSortClient.addTarget(self, action: #selector(self.btnStatusAction(_:)), for: UIControlEvents.touchUpInside)
@@ -274,7 +280,6 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
                 self.statusName =  cell.btnSortClient
                  cell.btnSelectMiles.addTarget(self, action: #selector(self.btnMilesAction(_:)), for: UIControlEvents.touchUpInside)
                 self.milesName =  cell.btnSelectMiles
-            
                 return cell
             }
             if indexPath.section == 1
@@ -294,16 +299,28 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
                     cell.lblStatus.text = " \(finalString) "
                     cell.lblWorkType.text = (((self.getSearchListDetails[indexPath.row])["work_category"]) as! [String:Any])["work_category_name"] as? String
                     cell.lblLocationName.text = ((self.getSearchListDetails[indexPath.row])["location_name"] as? String)
-                    cell.lblWorkOrderDate.text = "\((self.getSearchListDetails[indexPath.row])["schedule_exact_date"] as? String ?? "2017-04-20") \((self.getSearchListDetails[indexPath.row])["schedule_exact_time"] as? String ?? "10:00")"
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "YYYY-MM-DD HH:mm:ss"
+                    if !((self.getSearchListDetails[indexPath.row])["schedule_exact_date"] is  NSNull) && !((self.getSearchListDetails[indexPath.row])["schedule_exact_time"] is  NSNull)
+                    {
+                    let date = dateFormatter.date(from: "\((self.getSearchListDetails[indexPath.row])["schedule_exact_date"] as! String) \((self.getSearchListDetails[indexPath.row])["schedule_exact_time"] as! String)")
+                    dateFormatter.dateFormat = "MM-DD-YYYY hh:mm a"
+                    cell.lblWorkOrderDate.text = dateFormatter.string(from: date!)
+                    }
                     cell.lblCLientName.text = (((self.getSearchListDetails[indexPath.row])["clients"]) as! [String:Any])["client_name"] as? String
                     cell.lblManagerName.text = ((((self.getSearchListDetails[indexPath.row])["manager"]) as! [String:Any])["first_name"] as? String)!+" "+((((self.getSearchListDetails[indexPath.row])["manager"]) as! [String:Any])["last_name"] as? String)!
                    cell.lblRouted.isHidden = true
-                    
-                      cell.btnDetailView.tag = indexPath.row
+//                   cell.btnDetailView.tag = indexPath.row
+                    cell.btnCancel?.removeFromSuperview()
+                    let detail = UIImage(named: "img_View")
+                    cell.btnPrint.setImage(detail, for: .normal)
+                    cell.btnPrint.addTarget(self, action: #selector(self.btnViewAction(_:)), for: .touchUpInside)
                     
                     if ((self.getSearchListDetails[indexPath.row])["tech_applied_status"] as? String) != nil
                     {
                         let image = UIImage(named: "img_ApplyOrder")
+                        cell.btnDetailView.tag = indexPath.row
+                        cell.btnDetailView.removeTarget(nil, action: nil, for: .allEvents)
                         cell.btnDetailView.setImage(image, for: .normal)
                         cell.btnDetailView.addTarget(self, action: #selector(self.btnApplyAlready(_:)), for: .touchUpInside)
                     }
@@ -311,18 +328,12 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
                     {
                         let image = UIImage(named: "img_Apply")
                         cell.btnDetailView.setImage(image, for: .normal)
+                         cell.btnDetailView.removeTarget(nil, action: nil, for: .allEvents)
                         cell.btnDetailView.tag = indexPath.row
                         cell.btnDetailView.addTarget(self, action: #selector(self.btnApplyAction(_:)), for: .touchUpInside)
                     }
-                    
-                     cell.btnCancel?.removeFromSuperview()
-                   //  cell.btnPrint?.removeFromSuperview()
-                    let detail = UIImage(named: "img_View")
-                    cell.btnPrint.setImage(detail, for: .normal)
-                    cell.btnPrint.addTarget(self, action: #selector(self.btnViewAction(_:)), for: .touchUpInside)
-                    
+                   
                     if indexPath.row == self.getSearchListDetails.count - 1 { // last cell
-                        //if totalItems > privateList.count { //removing totalItems for always service call
                         loadMoreItems()
                         //}
                     }
@@ -341,6 +352,7 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
                 let status = ((self.getStatusName[indexPath.row])["client_name"] as? String)!
                 self.statusId = ((self.getStatusName[indexPath.row])["client_id"] as? Int)!
                 statusName.titleLabel?.text = " \(status)"
+                self.statusName.setTitle("\(status)", for: .normal)
                 self.statusTableCnst.constant = 0
                 self.tableView.rowHeight = 456.0
                 self.tableView.beginUpdates()
@@ -349,10 +361,10 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
             }
             else if tableView == milesTAbleView
             {
-                let status = ((self.milesArray[indexPath.row]) as? String)!
+                let status = (self.milesArray[indexPath.row]) as String
               //  milesName.titleLabel?.text = "\(status)"
-                let miles = status.dropLast(6)
-                 milesName.titleLabel?.text = "\(miles)"
+                 milesName.titleLabel?.text = status
+                self.milesName.setTitle(status, for: .normal)
                 self.milesTableCnst.constant = 0
                 self.tableView.rowHeight = 456.0
                 self.tableView.beginUpdates()
@@ -388,12 +400,21 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
         {
             let headerViewArray = Bundle.main.loadNibNamed("SearchResultHeaderView", owner: self, options: nil)?[0] as! UIView
             (headerViewArray.viewWithTag(1) as! UILabel).text = "Location"
+            (headerViewArray.viewWithTag(2) as! UILabel).isHidden = true
             return headerViewArray
         }
         else
         {
             let headerViewArray = Bundle.main.loadNibNamed("SearchResultHeaderView", owner: self, options: nil)?[0] as! UIView
             (headerViewArray.viewWithTag(1) as! UILabel).text = "Search Result"
+            if self.getSearchListDetails.count != 0
+            {
+              (headerViewArray.viewWithTag(2) as! UILabel).isHidden = true
+            }
+            else
+            {
+                (headerViewArray.viewWithTag(2) as! UILabel).isHidden = false
+            }
             return headerViewArray
         }
         }
@@ -415,7 +436,14 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
 
         else
         {
-            return 55.0
+            if self.getSearchListDetails.count != 0
+            {
+                return 55.0
+            }
+            else
+            {
+                return 82.0
+            }
         }
     }
     
@@ -475,15 +503,7 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
             let shouldCollapse: Bool = !collapsedSections.contains(section)
             if shouldCollapse
             {
-                if self.getSearchListDetails.count == 0
-                {
-                    self.noDataFOund.text = ""
-                    self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 450, width: 200, height: 12))
-                   // label.textAlignment = NSTextAlignment.center
-                   self.noDataFOund.text = "No Search Found"
-                    self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
-                    self.view.addSubview(self.noDataFOund)
-                }
+
                 (sender.view!.viewWithTag(2) as! UIImageView).image = UIImage(named: "plus")
                 (sender.view!.viewWithTag(2) as! UIImageView).layoutIfNeeded()
                 let numOfRows = tableView.numberOfRows(inSection: section)
@@ -493,15 +513,7 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
             }
             else
             {
-                if self.getSearchListDetails.count == 0
-                {
-                    self.noDataFOund.text = ""
-                    self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 910, width: 200, height: 12))
-                    // label.textAlignment = NSTextAlignment.center
-                    self.noDataFOund.text = "No Search Found"
-                    self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
-                    self.view.addSubview(self.noDataFOund)
-                }
+
                 (sender.view!.viewWithTag(2) as! UIImageView).image = UIImage(named: "minus")
                 (sender.view!.viewWithTag(2) as! UIImageView).layoutIfNeeded()
                 let indexPaths: [NSIndexPath] = self.indexPathsForSection(section: section, withNumberOfRows: 1)
@@ -646,40 +658,56 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
     @objc func btn_SearchAction(_ sender: UIButton)
     {
         popup.dismiss(true)
+        view.endEditing(true)
         var parameters = [String:AnyObject]()
         let cell_indexPath = NSIndexPath(row: 0, section: 0)
         let tableViewCell = tableView.cellForRow(at: cell_indexPath as IndexPath) as! SearchOrderTableViewCell
-        if (milesName.titleLabel?.text!) == "   Select Miles"
+        if tableViewCell.viewFromDate.txtFieldName.text! == "From Date"
         {
-            parameters = ["work_order_number": tableViewCell.viewWordOrderNo.txtFieldName.text! , "from_date": tableViewCell.viewFromDate.txtFieldName.text! , "to_date": tableViewCell.viewToDate.txtFieldName.text!, "status":  self.statusId ,"per_page":"","miles": ""] as [String:AnyObject]
+            tableViewCell.viewFromDate.txtFieldName.text! = ""
+        }
+        if tableViewCell.viewToDate.txtFieldName.text! == "To Date"
+        {
+            tableViewCell.viewToDate.txtFieldName.text! = ""
+        }
+       
+        if tableViewCell.btnSelectMiles.titleLabel?.text! == "   Select Miles"
+        {
+            if self.statusId == 0
+            {
+                 parameters = ["work_order_number": tableViewCell.viewWordOrderNo.txtFieldName.text! , "from_date": tableViewCell.viewFromDate.txtFieldName.text! , "to_date": tableViewCell.viewToDate.txtFieldName.text!, "client": "" ,"per_page":"","miles":""] as [String:AnyObject]
+            }
+            else
+            {
+                 parameters = ["work_order_number": tableViewCell.viewWordOrderNo.txtFieldName.text! , "from_date": tableViewCell.viewFromDate.txtFieldName.text! , "to_date": tableViewCell.viewToDate.txtFieldName.text!, "client":  self.statusId ,"per_page":"","miles":""] as [String:AnyObject]
+            }
         }
         else
         {
-            parameters = ["work_order_number": tableViewCell.viewWordOrderNo.txtFieldName.text! , "from_date": tableViewCell.viewFromDate.txtFieldName.text! , "to_date": tableViewCell.viewToDate.txtFieldName.text!, "status":  self.statusId ,"per_page":"","miles": Int((milesName.titleLabel!.text)!)!] as [String:AnyObject]
+            if self.statusId == 0
+            {
+                parameters = ["work_order_number": tableViewCell.viewWordOrderNo.txtFieldName.text! , "from_date": tableViewCell.viewFromDate.txtFieldName.text! , "to_date": tableViewCell.viewToDate.txtFieldName.text!, "client": "" ,"per_page":"","miles":Int((tableViewCell.btnSelectMiles.titleLabel?.text!)!)!] as [String:AnyObject]
+            }
+            else
+            {
+               parameters = ["work_order_number": tableViewCell.viewWordOrderNo.txtFieldName.text! , "from_date": tableViewCell.viewFromDate.txtFieldName.text! , "to_date": tableViewCell.viewToDate.txtFieldName.text!, "client":  self.statusId ,"per_page":"","miles":Int((tableViewCell.btnSelectMiles.titleLabel?.text!)!)!] as [String:AnyObject]
+            }
         }
-       
+       print(parameters)
         WebAPI().callJSONWebApi(API.searchWorkOrderListing, withHTTPMethod: .post, forPostParameters: parameters, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
             let data = serviceResponse["data"] as? [String:Any]
             self.getWorkListData = data!["work_orders"] as! [String:Any]
             self.getStatusName = data!["clients"] as! [AnyObject]
-            self.getSearchListDetails = self.getWorkListData["data"] as! [AnyObject]
-            if self.getSearchListDetails.count == 0
-            {
-                self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 910, width: 200, height: 12))
-            //    label.textAlignment = NSTextAlignment.center
-                self.noDataFOund.text = "No Search Found"
-                self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
-                self.view.addSubview(self.noDataFOund)
-                print(self.getSearchListDetails.count)
-                self.locationManager.startUpdatingLocation()
-                 self.markerArray.removeAll()
-             
-            }
+             self.getSearchListDetails = self.getWorkListData["data"] as! [AnyObject]
+            self.statusId = 0
             if self.getSearchListDetails.count != 0
             {
-                print(self.getSearchListDetails.count)
                 self.locationManager.delegate = self
+                self.markerArray.removeAll()
+                self.selfMarker.position.latitude = 0
+                self.selfMarker.position.latitude = 0
+                print(self.getSearchListDetails.count)
                 if CLLocationManager.authorizationStatus() == .authorizedWhenInUse
                 {
                     self.locationManager.startUpdatingLocation()
@@ -687,8 +715,15 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
                 else
                 {
                     self.locationManager.requestWhenInUseAuthorization()
-                    
                 }
+            }
+            else
+            {
+                self.locationManager.delegate = self
+                self.markerArray.removeAll()
+                self.selfMarker.position.latitude = 0
+                self.selfMarker.position.latitude = 0
+                self.locationManager.startUpdatingLocation()
             }
             self.tableView.dataSource = self
             self.tableView.delegate = self
@@ -698,7 +733,13 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
     
     @objc func btn_ResetAction(_ sender: UIButton)
     {
-        popup.dismiss(true)
+        view.endEditing(true)
+        getWorkList()
+        let cell_indexPath = NSIndexPath(row: 0, section: 0)
+        let tableViewCell = tableView.cellForRow(at: cell_indexPath as IndexPath) as! SearchOrderTableViewCell
+        tableViewCell.btnSelectMiles.setTitle("   Select Miles", for: .normal)
+        self.milesName.setTitle("   Select Miles", for: .normal)
+        self.statusName.setTitle("   Client name", for: .normal)
     }
 
     @objc func btnApplyAction(_ sender : UIButton)
@@ -708,6 +749,7 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
             self.workOrderId =  ((self.getSearchListDetails[sender.tag])["work_order_id"] as! Int)
             let nav = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "BlendedApplyViewController") as! BlendedApplyViewController
             nav.workOrderId = self.workOrderId
+             nav.navigate = "SearchWorkOrderDetail"
              nav.statusName = ((self.getSearchListDetails[sender.tag])["status_name"] as! String)
             nav.paymentRateType = String((self.getSearchListDetails[sender.tag])["payment_rate_type"] as! Int)
             let transition = CATransition()
@@ -725,6 +767,7 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
         self.workOrderId =  ((self.getSearchListDetails[sender.tag])["work_order_id"] as! Int)
         let nav = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "ApplyWorkViewController") as! ApplyWorkViewController
         nav.workOrderId = self.workOrderId
+            nav.navigate = "SearchWorkOrderDetail"
             nav.statusName = ((self.getSearchListDetails[sender.tag])["status_name"] as! String)
             nav.paymentRateType = String((self.getSearchListDetails[sender.tag])["payment_rate_type"] as! Int)
         let transition = CATransition()
@@ -769,7 +812,7 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
                 let data = serviceResponse["data"] as? [String:Any]
                 self.getWorkListData = data!["work_orders"] as! [String:Any]
                 self.getStatusName = data!["statuses"] as! [AnyObject]
-                self.getSearchListDetails = self.getWorkListData["data"] as! [AnyObject]
+            //    self.getSearchListDetails = self.getWorkListData["data"] as! [AnyObject]
                 self.getSearchListDetails.append(contentsOf: self.getWorkListData["data"] as! [AnyObject])
                 self.tableView.dataSource = self
                 self.tableView.delegate = self

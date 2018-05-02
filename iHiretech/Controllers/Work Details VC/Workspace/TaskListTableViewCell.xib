@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,7 +33,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_CheckReminder" translatesAutoresizingMaskIntoConstraints="NO" id="DK4-0c-u4f">
+                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_UnCheckReminder" translatesAutoresizingMaskIntoConstraints="NO" id="DK4-0c-u4f">
                                 <rect key="frame" x="20" y="8.5" width="20" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="XON-Ta-FuE"/>
@@ -42,10 +41,11 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fch-oE-KVe">
-                                <rect key="frame" x="229.5" y="0.0" width="34.5" height="34.5"/>
+                                <rect key="frame" x="241.5" y="6" width="22.5" height="22.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="fch-oE-KVe" secondAttribute="height" multiplier="1:1" id="9I0-S0-bvQ"/>
+                                    <constraint firstAttribute="width" constant="22.5" id="4RO-8U-Lw5"/>
+                                    <constraint firstAttribute="height" constant="22.5" id="9C6-5w-b5Y"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="img_TaskComplete"/>
                             </button>
@@ -55,8 +55,8 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="kkJ-Sh-22p" secondAttribute="bottom" constant="9" id="4xy-Qs-TVX"/>
                             <constraint firstAttribute="trailing" secondItem="fch-oE-KVe" secondAttribute="trailing" constant="24" id="IZS-Xw-Wcz"/>
-                            <constraint firstAttribute="bottom" secondItem="fch-oE-KVe" secondAttribute="bottom" id="KSe-Z3-zKJ"/>
-                            <constraint firstItem="fch-oE-KVe" firstAttribute="top" secondItem="4uc-aK-eMo" secondAttribute="top" id="KTw-6a-SLD"/>
+                            <constraint firstItem="fch-oE-KVe" firstAttribute="top" secondItem="4uc-aK-eMo" secondAttribute="top" constant="6" id="Ljb-bB-giu"/>
+                            <constraint firstAttribute="bottom" secondItem="fch-oE-KVe" secondAttribute="bottom" constant="6" id="N89-tV-nuQ"/>
                             <constraint firstItem="kkJ-Sh-22p" firstAttribute="leading" secondItem="DK4-0c-u4f" secondAttribute="trailing" constant="16" id="UTf-cH-KQY"/>
                             <constraint firstItem="kkJ-Sh-22p" firstAttribute="centerY" secondItem="4uc-aK-eMo" secondAttribute="centerY" id="kx1-An-1cq"/>
                             <constraint firstAttribute="bottom" secondItem="DK4-0c-u4f" secondAttribute="bottom" constant="8" id="ljQ-Wf-BwP"/>
@@ -66,32 +66,12 @@
                             <constraint firstItem="kkJ-Sh-22p" firstAttribute="top" secondItem="4uc-aK-eMo" secondAttribute="top" constant="8" id="zky-fR-UOw"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oCJ-E2-KQs">
-                        <rect key="frame" x="303" y="0.0" width="1" height="50.5"/>
-                        <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="1" id="FAQ-0y-bE7"/>
-                        </constraints>
-                    </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pHa-cb-JOu">
-                        <rect key="frame" x="16" y="0.0" width="1" height="50.5"/>
-                        <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="1" id="Iav-mt-sMS"/>
-                        </constraints>
-                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="oCJ-E2-KQs" secondAttribute="trailing" constant="16" id="MSb-hL-CbY"/>
-                    <constraint firstItem="pHa-cb-JOu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Nmp-wU-CNa"/>
-                    <constraint firstAttribute="bottom" secondItem="pHa-cb-JOu" secondAttribute="bottom" id="W1E-9D-s23"/>
                     <constraint firstAttribute="trailing" secondItem="4uc-aK-eMo" secondAttribute="trailing" constant="16" id="Yso-Am-482"/>
                     <constraint firstItem="4uc-aK-eMo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="cEm-90-VDN"/>
-                    <constraint firstItem="pHa-cb-JOu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="gmt-nG-wFX"/>
                     <constraint firstAttribute="bottom" secondItem="4uc-aK-eMo" secondAttribute="bottom" constant="8" id="ihj-LZ-NDb"/>
-                    <constraint firstAttribute="bottom" secondItem="oCJ-E2-KQs" secondAttribute="bottom" id="p1S-GK-8Fd"/>
                     <constraint firstItem="4uc-aK-eMo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="sba-EN-4yY"/>
-                    <constraint firstItem="oCJ-E2-KQs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="u1b-8Q-Be2"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -104,7 +84,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="img_CheckReminder" width="14" height="14"/>
         <image name="img_TaskComplete" width="16" height="16"/>
+        <image name="img_UnCheckReminder" width="14" height="14"/>
     </resources>
 </document>

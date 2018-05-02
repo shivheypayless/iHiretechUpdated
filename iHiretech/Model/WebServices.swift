@@ -91,6 +91,7 @@ class WebAPI {
     public func callJSONWebApi(_ api: API, withHTTPMethod method: HTTPMethod, forPostParameters parameters: [String:Any]!,shouldIncludeAuthorizationHeader authorizationHeaderFlag: Bool,actionAfterServiceResponse completionHandler: @escaping actionWithServiceResponse)
     {
         var request: URLRequest!
+        self.showHUD()
         if method == .post {
             //print(parameters)
             request = URLRequest(url: URL(string: "\(self.baseurl)\(api.rawValue)")!)
@@ -123,9 +124,9 @@ class WebAPI {
         guard checkForNetworkConnectivity() else {
             return
         }
-         DispatchQueue.main.async {
-           self.showHUD()
-        }
+       //  DispatchQueue.main.async {
+        
+      //  }
         userInteractiveGlobalQueue.async {
             
             self.callWebServiceWithRequest(request, actionAfterServiceResponse: completionHandler)
@@ -361,13 +362,20 @@ class WebAPI {
                                         AListAlertController.shared.presentAlertController(message: mess , completionHandler: nil)
                                     }
                                 }
+                                else if let message = data["username"] as? [AnyObject]
+                                {
+                                    if let mess = message[0] as? String
+                                    {
+                                        AListAlertController.shared.presentAlertController(message: mess , completionHandler: nil)
+                                    }
+                                }
                             }
                             else
                             {
                                 if (responseData["msg"] as? String) != nil
                                  {
                                AListAlertController.shared.presentAlertController(message: responseData["msg"] as! String, completionHandler: nil)
-                            }
+                              }
                                 else
                                  {
                                      completionHandler(responseData)
@@ -524,7 +532,7 @@ class WebAPI {
                             fileData = ((media[fileType] as [String:AnyObject])["drug_test_certificate"] as! URL)
                            multipartFormData.append(fileData!, withName: "drug_test_certificate")
                         }
-                        if ((media[fileType] as [String:AnyObject])["drug_test_certificate"] as? URL) != nil
+                        if ((media[fileType] as [String:AnyObject])["background_certificate"] as? URL) != nil
                         {
                             fileName = ((media[fileType] as [String:AnyObject])["fileName"] as! String)
                             fileData = ((media[fileType] as [String:AnyObject])["background_certificate"] as! URL)
@@ -617,11 +625,7 @@ extension WebAPI {
     }
     
     fileprivate func showHUD() {
-        guard progressHUD != nil else {
-            progressHUD = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!.rootViewController!.view, animated: true)
-            return
-        }
-        progressHUD.show(animated: true)
+        progressHUD = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!.rootViewController!.view, animated: true)
     }
 }
 

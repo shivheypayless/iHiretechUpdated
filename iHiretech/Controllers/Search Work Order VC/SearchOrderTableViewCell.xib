@@ -53,7 +53,7 @@
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="minus" translatesAutoresizingMaskIntoConstraints="NO" id="bm0-xW-dCy">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="bm0-xW-dCy">
                                 <rect key="frame" x="256" y="348" width="16" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="bm0-xW-dCy" secondAttribute="height" multiplier="8:5" id="Y7K-2B-npf"/>
@@ -130,7 +130,7 @@
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="minus" translatesAutoresizingMaskIntoConstraints="NO" id="Euj-2U-h19">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="Euj-2U-h19">
                                 <rect key="frame" x="256" y="55.5" width="16" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Euj-2U-h19" secondAttribute="height" multiplier="8:5" id="KL8-Ul-8Z5"/>
@@ -232,6 +232,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="minus" width="32" height="32"/>
+        <image name="plus" width="32" height="32"/>
     </resources>
 </document>

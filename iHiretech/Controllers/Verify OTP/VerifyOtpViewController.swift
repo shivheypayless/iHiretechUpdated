@@ -18,7 +18,7 @@ class VerifyOtpViewController: UIViewController {
     var webService = WebAPI()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
         let iconsSize = CGRect(x: 0, y: 0, width: 12, height: 12)
         let attributedString = NSMutableAttributedString(string: "Verify Account ", attributes: ([NSAttributedStringKey.font :  UIFont.systemFont(ofSize: 12.0), NSAttributedStringKey.foregroundColor: UIColor.white]))
         let starAttachment = NSTextAttachment()
@@ -66,7 +66,7 @@ class VerifyOtpViewController: UIViewController {
                     transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
                     transition.type = kCATransitionFade
                     self.navigationController?.view.layer.add(transition, forKey: nil)
-                    self.navigationController?.isNavigationBarHidden = true
+                      self.navigationController?.navigationBar.isTranslucent = false
                     self.navigationController?.pushViewController(nav, animated: false)
                     self.navigationController?.navigationBar.barTintColor = UIColor.black
 
@@ -85,9 +85,9 @@ class VerifyOtpViewController: UIViewController {
         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         transition.type = kCATransitionFade
         self.navigationController?.view.layer.add(transition, forKey: nil)
-        self.navigationController?.isNavigationBarHidden = true
+          self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.pushViewController(nav, animated: false)
-        self.navigationController?.navigationBar.barTintColor = UIColor.clear
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
     }
     
 }

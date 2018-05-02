@@ -10,6 +10,10 @@ import UIKit
 
 class PayRateInformationTableViewCell: UITableViewCell {
 
+    @IBOutlet var cnstValueMaxhrsheight: NSLayoutConstraint!
+    @IBOutlet var cnstLblMaxHoursHeight: NSLayoutConstraint!
+    @IBOutlet var lblTitleMaxHrs: UILabel!
+    @IBOutlet var lblTileHourlyrate: UILabel!
     @IBOutlet var viewBorder: UIView!
     @IBOutlet var lblMaxRate: UILabel!
     @IBOutlet var lblHourlyRate: UILabel!

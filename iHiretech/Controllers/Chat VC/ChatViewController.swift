@@ -14,6 +14,7 @@ typealias getMarkRead = (String) -> Void
 
 class ChatViewController: UIViewController {
 
+    @IBOutlet var lblNoDataFound: UILabel!
     @IBOutlet var tblChat: UITableView!
     var frmSrc = String()
     var noDataFound = UILabel()
@@ -21,11 +22,10 @@ class ChatViewController: UIViewController {
     var notificationList = [AnyObject]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.lblNoDataFound.isHidden = true
         getNotificationList { (userDetails) in
           //  self.markMessageAsRead()
         }
-        
         self.tblChat.register(UINib(nibName: "ChatListTableViewCell", bundle: nil) , forCellReuseIdentifier: "ChatListTableViewCell")
         self.tblChat.estimatedRowHeight = 90
         self.tblChat.rowHeight = UITableViewAutomaticDimension
@@ -38,11 +38,7 @@ class ChatViewController: UIViewController {
        // chatRoom.setupNetworkCommunication()
         if self.notificationList.count == 0
         {
-        self.noDataFound.textAlignment = .center
-        self.noDataFound = UILabel(frame: CGRect(x: self.view.center.x - (60), y: 60, width: 150, height: 12))
-        self.noDataFound.text = "No message Found"
-        self.noDataFound.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
-        self.view.addSubview( self.noDataFound)
+        self.lblNoDataFound.isHidden = false
         }
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
@@ -68,8 +64,12 @@ class ChatViewController: UIViewController {
             self.tblChat.delegate = self
             self.tblChat.reloadData()
             details("done")
+                self.lblNoDataFound.isHidden = true
             }
-          
+          else
+           {
+              self.lblNoDataFound.isHidden = false
+            }
         })
     }
 
@@ -126,10 +126,7 @@ extension ChatViewController : UITableViewDataSource, UITableViewDelegate
         let param = ["work_order_id": ((self.notificationList[indexPath.row]["work_order_details"] as! [String:AnyObject])["work_order_id"] as! Int)] as [String:Any]
         WebAPI().callJSONWebApi(API.markUserMsgRead, withHTTPMethod: .get, forPostParameters: param, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
-//            if (UserDefaults.standard.object(forKey: "UnreadAlertMsg")! as! Int) != 0
-//            {
-//                UserDefaults.standard.setValue((UserDefaults.standard.object(forKey: "UnreadAlertMsg")! as! Int - 1), forKey: "UnreadAlertMsg")
-//            }
+
         })
     if ((self.notificationList[indexPath.row]["work_order_details"] as! [String:AnyObject])["status_id"] as! Int) == 1
     {

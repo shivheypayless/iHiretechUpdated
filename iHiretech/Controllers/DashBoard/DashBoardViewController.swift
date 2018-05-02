@@ -157,6 +157,25 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
         if indexPath.row == 2
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AttactmentTableViewCell", for: indexPath) as! AttactmentTableViewCell
+            if let tech = (self.getProfileDetailsDict["tech_meta"] as? [String:Any])
+            {
+              if !((self.getProfileDetailsDict["tech_meta"]! as! [String:Any])["resume"] is NSNull)
+              {
+                cell.imgResume.image = #imageLiteral(resourceName: "img_GreenCheck")
+              }
+                if !((self.getProfileDetailsDict["tech_meta"]! as! [String:Any])["general_liability_insuarance"] is NSNull)
+                {
+                    cell.imgInsurance.image = #imageLiteral(resourceName: "img_GreenCheck")
+                }
+                if !((self.getProfileDetailsDict["tech_meta"]! as! [String:Any])["drug_test_certificate"] is NSNull)
+                {
+                    cell.imgDrug.image = #imageLiteral(resourceName: "img_GreenCheck")
+                }
+                if !((self.getProfileDetailsDict["tech_meta"]! as! [String:Any])["background_certificate"] is NSNull)
+                {
+                    cell.imgbackground.image = #imageLiteral(resourceName: "img_GreenCheck")
+                }
+            }
             return cell
         }
         else
@@ -167,14 +186,36 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
             {
                 if let tech = (self.getProfileDetailsDict["tech_meta"] as? [String:Any])
                 {
-                cell.lblSubTitle.text = (self.getProfileDetailsDict["tech_meta"]! as! [String:Any])["professional_title"] as? String
+                    if !((self.getProfileDetailsDict["tech_meta"]! as! [String:Any])["professional_title"] is NSNull)
+                    {
+                    cell.lblSubTitle.text = (self.getProfileDetailsDict["tech_meta"]! as! [String:Any])["professional_title"] as? String
+                    }
+                    else
+                    {
+                        cell.lblSubTitle.text = "No Data"
+                    }
+                }
+                else
+                {
+                    cell.lblSubTitle.text = "No Data"
                 }
             }
             else if indexPath.row == 1
             {
                  if let tech = (self.getProfileDetailsDict["tech_meta"] as? [String:Any])
                  {
-                cell.lblSubTitle.text = (self.getProfileDetailsDict["tech_meta"]! as! [String:Any])["professional_summary"] as? String
+                    if !((self.getProfileDetailsDict["tech_meta"]! as! [String:Any])["professional_summary"] is NSNull)
+                    {
+                       cell.lblSubTitle.text = (self.getProfileDetailsDict["tech_meta"]! as! [String:Any])["professional_summary"] as? String
+                    }
+                    else
+                    {
+                        cell.lblSubTitle.text = "No Data"
+                    }
+                }
+                 else
+                 {
+                    cell.lblSubTitle.text = "No Data"
                 }
             }
             else if indexPath.row == 3
@@ -195,6 +236,10 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
                         }
                     }
                 }
+                else
+                {
+                    cell.lblSubTitle.text = "No Data"
+                }
             }
             else if indexPath.row == 4
             {
@@ -213,6 +258,10 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
                         cell.lblSubTitle.text!.append("\(String(describing: skillsArray[i])) ,")
                     }
                 }
+                }
+                else
+                {
+                    cell.lblSubTitle.text = "No Data"
                 }
             }
             else if indexPath.row == 5
@@ -233,6 +282,10 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
                     }
                 }
                 }
+                else
+                {
+                    cell.lblSubTitle.text = "No Data"
+                }
             }
             else if indexPath.row == 6
             {
@@ -252,6 +305,10 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
                     }
                 }
                 }
+                else
+                {
+                    cell.lblSubTitle.text = "No Data"
+                }
             }
             else if indexPath.row == 7
             {
@@ -259,8 +316,14 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
                 {
                 if let tech = (self.getProfileDetailsDict["tech_meta"] as? [String:Any])
                 {
-                    
-                cell.lblSubTitle.text = (self.getProfileDetailsDict["tech_meta"]! as! [String:Any])["experience"] as? String
+                  if !((self.getProfileDetailsDict["tech_meta"]! as! [String:Any])["experience"] is NSNull)
+                  {
+                     cell.lblSubTitle.text = (self.getProfileDetailsDict["tech_meta"]! as! [String:Any])["experience"] as? String
+                    }
+                    else
+                  {
+                     cell.lblSubTitle.text = "No Data"
+                  }
                 }
                 }
             }
@@ -268,13 +331,11 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
             {
                 if !(self.getProfileDetailsDict["contact_number_1"] is NSNull)
                 {
-                if let contact = (((self.getProfileDetailsDict)["contact_number_1"]) as? String)
-                {
-                    let endIndex = (((self.getProfileDetailsDict)["contact_number_1"]!) as? String)!.index((((self.getProfileDetailsDict)["contact_number_1"]!) as? String)!.endIndex, offsetBy: -8)
-                let truncated = (((self.getProfileDetailsDict)["contact_number_1"]!) as? String)!.substring(to: endIndex)
-                print(truncated)
-                cell.lblSubTitle.text = truncated
+                cell.lblSubTitle.text = (((self.getProfileDetailsDict)["contact_number_1"]) as? String)
                 }
+                else
+                {
+                    cell.lblSubTitle.text = "No Data"
                 }
             }
             else if indexPath.row == 9
@@ -293,7 +354,7 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
                 }
                 else
                 {
-                    cell.lblSubTitle.text = "-"
+                    cell.lblSubTitle.text = "No Data"
                 }
             }
         
@@ -329,7 +390,7 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
         }
         if !((self.getProfileDetailsDict)["user_id"] is NSNull)
         {
-        UserDefaults.standard.setValue(((self.getProfileDetailsDict)["user_id"] as! Int), forKey: "UserId")
+          UserDefaults.standard.setValue(((self.getProfileDetailsDict)["user_id"] as! Int), forKey: "UserId")
         }
          (headerViewArray.viewWithTag(2) as! UIImageView).layer.cornerRadius =  (headerViewArray.viewWithTag(2) as! UIImageView).frame.size.height/2
          (headerViewArray.viewWithTag(2) as! UIImageView).layer.masksToBounds = true

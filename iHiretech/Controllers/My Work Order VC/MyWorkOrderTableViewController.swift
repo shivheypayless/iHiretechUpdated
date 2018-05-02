@@ -40,8 +40,6 @@ class MyWorkOrderTableViewController: UITableViewController {
         self.tableView.register(UINib(nibName: "SearchWorkOrderTableViewCell", bundle: nil) , forCellReuseIdentifier: "SearchWorkOrderTableViewCell")
         self.tableView.separatorStyle = .none
         collapsedSections.add(1)
-         getWorkList()
-        
         let button4 =  UIBarButtonItem(image: UIImage(named: "img_Back"), style: .plain, target: self, action: #selector(btnbackAction))
         self.navigationItem.leftBarButtonItem = button4
      
@@ -54,6 +52,7 @@ class MyWorkOrderTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+         getWorkList()
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
     
@@ -66,12 +65,19 @@ class MyWorkOrderTableViewController: UITableViewController {
             self.getWorkListData = data!["work_orders"] as! [String:Any]
             self.getStatusName = data!["statuses"] as! [AnyObject]
             self.getSearchListDetails = self.getWorkListData["data"] as! [AnyObject]
-      //       print(self.getSearchListDetails)
            
             if self.getSearchListDetails.count != 0
             {
                 print(self.getSearchListDetails.count)
             }
+//            else
+//            {
+//                self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 930, width: 200, height: 12))
+//                //    label.textAlignment = NSTextAlignment.center
+//                self.noDataFOund.text = "No Search Found"
+//                self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+//                self.view.addSubview(self.noDataFOund)
+//            }
             self.tableView.dataSource = self
             self.tableView.delegate = self
            self.tableView.reloadData()
@@ -157,15 +163,17 @@ class MyWorkOrderTableViewController: UITableViewController {
             if indexPath.section == 0
             {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SearchWorkOrderTableViewCell", for: indexPath) as! SearchWorkOrderTableViewCell
+                cell.viewToDate.txtFieldName.text = "To Date"
+                cell.viewFromDate.txtFieldName.text = "From Date"
+                cell.btnSelectStatus.setTitle("   Select Status", for: .normal)
+                cell.txtWorkOrderNo.placeholder = "Search by work order number"
+                cell.txtWorkOrderNo.txtFieldName.text = ""
                 cell.btnFromDate.addTarget(self, action: #selector(self.DatePickerFromDate(_:)), for: UIControlEvents.touchUpInside)
                 cell.btnToDate.addTarget(self, action: #selector(self.DatePickerToDate(_:)), for: UIControlEvents.touchUpInside)
                 cell.btnSelectStatus.addTarget(self, action: #selector(self.btnStatusAction(_:)), for: UIControlEvents.touchUpInside)
                 cell.btnReset.addTarget(self, action: #selector(self.btn_ResetAction(_:)), for: UIControlEvents.touchUpInside)
                 cell.btnSearch.addTarget(self, action: #selector(self.btn_SearchAction(_:)), for: UIControlEvents.touchUpInside)
-//                cell.cntStatusHeight = self.statusTableCnst
                 self.statusName =  cell.btnSelectStatus
-//                self.statusTableCnst = cell.cntStatusHeight
-////                self.statusTableCnst.constant = 0
                 self.upDwnArrow.image = cell.UpDwnArrow.image
                 return cell
             }
@@ -179,11 +187,19 @@ class MyWorkOrderTableViewController: UITableViewController {
                     let finalString = cap.capitalized
                     cell.lblStatus.text = " \(finalString) "
                     cell.lblWorkType.text = (((self.getSearchListDetails[indexPath.row])["work_category"]) as! [String:Any])["work_category_name"] as? String
-                    cell.lblLocationName.text = ((self.getSearchListDetails[indexPath.row])["location_name"] as? String)
-                    cell.lblWorkOrderDate.text = "\((self.getSearchListDetails[indexPath.row])["schedule_exact_date"] as? String ?? "2017-04-20") \((self.getSearchListDetails[indexPath.row])["schedule_exact_time"] as? String ?? "10:00")"
+                    cell.lblLocationName.text = ((self.getSearchListDetails[indexPath.row])["location_city"] as? String)!+" "+((self.getSearchListDetails[indexPath.row])["location_state"] as? String)!
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "YYYY-MM-DD HH:mm:ss"
+                    if !((self.getSearchListDetails[indexPath.row])["schedule_exact_date"] is  NSNull) && !((self.getSearchListDetails[indexPath.row])["schedule_exact_time"] is  NSNull)
+                    {
+                   let date = dateFormatter.date(from: "\((self.getSearchListDetails[indexPath.row])["schedule_exact_date"] as! String) \((self.getSearchListDetails[indexPath.row])["schedule_exact_time"] as! String)")
+                    dateFormatter.dateFormat = "MM-DD-YYYY hh:mm a"
+                    cell.lblWorkOrderDate.text = dateFormatter.string(from: date!)
+                    }
+                //    cell.lblWorkOrderDate.text = "\((self.getSearchListDetails[indexPath.row])["schedule_exact_date"] as? String ?? "2017-04-20") \((self.getSearchListDetails[indexPath.row])["schedule_exact_time"] as? String ?? "10:00")"
                     cell.lblCLientName.text = (((self.getSearchListDetails[indexPath.row])["clients"]) as! [String:Any])["client_name"] as? String
                     cell.lblManagerName.text = ((((self.getSearchListDetails[indexPath.row])["manager"]) as! [String:Any])["first_name"] as? String)!+" "+((((self.getSearchListDetails[indexPath.row])["manager"]) as! [String:Any])["last_name"] as? String)!
-                 
+                    cell.lblCreatedBy.text = ((((self.getSearchListDetails[indexPath.row])["user_profile"]) as! [String:Any])["first_name"] as? String)!+" "+((((self.getSearchListDetails[indexPath.row])["user_profile"]) as! [String:Any])["last_name"] as? String)!
                     if (((self.getSearchListDetails[indexPath.row])["work_order_status"] as! [String:Any])["is_routed"] as? String) == "1"
                     {
                        cell.lblRouted.isHidden = false
@@ -197,7 +213,7 @@ class MyWorkOrderTableViewController: UITableViewController {
                 cell.btnCancel?.removeFromSuperview()
                 cell.btnDetailView.tag = indexPath.row
                 cell.btnPrint?.removeFromSuperview()
-                
+                cell.btnDetailView.setImage(#imageLiteral(resourceName: "img_View"), for: .normal)
                 cell.btnDetailView.addTarget(self, action: #selector(self.btnViewAction(_:)), for: .touchUpInside)
               //   cell.btnPrint.addTarget(self, action: #selector(self.btnViewAction(_:)), for: .touchUpInside)
                 if indexPath.row == self.getSearchListDetails.count - 1 { // last cell
@@ -248,6 +264,14 @@ class MyWorkOrderTableViewController: UITableViewController {
             else
             {
                 let headerViewArray = Bundle.main.loadNibNamed("SearchResultHeaderView", owner: self, options: nil)?[0] as! UIView
+                if self.getSearchListDetails.count != 0
+                {
+                    (headerViewArray.viewWithTag(2) as! UILabel).isHidden = true
+                }
+                else
+                {
+                    (headerViewArray.viewWithTag(2) as! UILabel).isHidden = false
+                }
                 return headerViewArray
             }
         }
@@ -268,7 +292,21 @@ class MyWorkOrderTableViewController: UITableViewController {
             }
             else
             {
-                return 55.0
+                if section == 1
+                {
+                    return 55.0
+                }
+                else
+                {
+                if self.getSearchListDetails.count != 0
+                {
+                  return 55.0
+                }
+                else
+                {
+                    return 82.0
+                }
+                }
             }
         }
         
@@ -316,15 +354,15 @@ class MyWorkOrderTableViewController: UITableViewController {
             let shouldCollapse: Bool = !collapsedSections.contains(section)
             if shouldCollapse
             {
-                if self.getSearchListDetails.count == 0
-                {
-                    self.noDataFOund.text = ""
-                    self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 110, width: 200, height: 12))
-                  //  label.textAlignment = NSTextAlignment.center
-                    self.noDataFOund.text = "No Search Found"
-                    self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
-                    self.view.addSubview(self.noDataFOund)
-                }
+//                if self.getSearchListDetails.count == 0
+//                {
+//                    self.noDataFOund.text = ""
+//                    self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 110, width: 200, height: 12))
+//                  //  label.textAlignment = NSTextAlignment.center
+//                    self.noDataFOund.text = "No Search Found"
+//                    self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+//                    self.view.addSubview(self.noDataFOund)
+//                }
                 (sender.view!.viewWithTag(2) as! UIImageView).image = UIImage(named: "plus")
                 (sender.view!.viewWithTag(2) as! UIImageView).layoutIfNeeded()
                 let numOfRows = tableView.numberOfRows(inSection: section)
@@ -334,14 +372,14 @@ class MyWorkOrderTableViewController: UITableViewController {
             }
             else
             {
-                if self.getSearchListDetails.count == 0
-                {
-                    self.noDataFOund.text = ""
-                self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 490, width: 200, height: 12))
-                self.noDataFOund.text = "No Search Found"
-                self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
-                self.view.addSubview(self.noDataFOund)
-                }
+//                if self.getSearchListDetails.count == 0
+//                {
+//                    self.noDataFOund.text = ""
+//                self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 490, width: 200, height: 12))
+//                self.noDataFOund.text = "No Search Found"
+//                self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
+//                self.view.addSubview(self.noDataFOund)
+//                }
                 (sender.view!.viewWithTag(2) as! UIImageView).image = UIImage(named: "minus")
                 (sender.view!.viewWithTag(2) as! UIImageView).layoutIfNeeded()
                 let indexPaths: [NSIndexPath] = self.indexPathsForSection(section: section, withNumberOfRows: 1)
@@ -365,14 +403,12 @@ class MyWorkOrderTableViewController: UITableViewController {
         
     }
     
-    
      @objc func btnStatusAction(_ sender : UIButton)
      {
         if statusTableCnst.constant == 0
         {
         let cell_indexPath = NSIndexPath(row: 0, section: 0)
         let tableViewCell = tableView.cellForRow(at: cell_indexPath as IndexPath) as! SearchWorkOrderTableViewCell
-//        self.tableView.rowHeight = 468.0
         statusTableCnst = tableViewCell.cntStatusHeight
         statusTableCnst.constant = 85.0
         self.upDwnArrow.image = UIImage(named: "plus")
@@ -389,7 +425,6 @@ class MyWorkOrderTableViewController: UITableViewController {
         {
 //            statusRow = 0
             statusTableCnst.constant = 0
-
             tableView.reloadData()
             self.upDwnArrow.image = UIImage(named: "minus")
         }
@@ -459,26 +494,26 @@ class MyWorkOrderTableViewController: UITableViewController {
     
     @objc func btn_SearchAction(_ sender: UIButton)
     {
+        view.endEditing(true)
         popup.dismiss(true)
         let cell_indexPath = NSIndexPath(row: 0, section: 0)
         let tableViewCell = tableView.cellForRow(at: cell_indexPath as IndexPath) as! SearchWorkOrderTableViewCell
-        let parameters = ["work_order_number": tableViewCell.txtWorkOrderNo.txtFieldName.text! , "from_date": tableViewCell.viewFromDate.txtFieldName.text! , "to_date": tableViewCell.viewToDate.txtFieldName.text!, "status":  self.statusId ,"per_page":""] as! [String:AnyObject]
+        if tableViewCell.viewFromDate.txtFieldName.text! == "From Date"
+        {
+            tableViewCell.viewFromDate.txtFieldName.text! = ""
+        }
+        if tableViewCell.viewToDate.txtFieldName.text! == "To Date"
+        {
+            tableViewCell.viewToDate.txtFieldName.text! = ""
+        }
+        let parameters = ["work_order_number": tableViewCell.txtWorkOrderNo.txtFieldName.text! , "from_date": tableViewCell.viewFromDate.txtFieldName.text! , "to_date": tableViewCell.viewToDate.txtFieldName.text!, "status":  self.statusId ,"per_page":""] as [String:AnyObject]
         WebAPI().callJSONWebApi(API.workOrderListing, withHTTPMethod: .post, forPostParameters: parameters, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
             let data = serviceResponse["data"] as? [String:Any]
             self.getWorkListData = data!["work_orders"] as! [String:Any]
             self.getStatusName = data!["statuses"] as! [AnyObject]
             self.getSearchListDetails = self.getWorkListData["data"] as! [AnyObject]
-            //       print(self.getSearchListDetails)
-            if self.getSearchListDetails.count == 0
-            {
-                    self.noDataFOund.isHidden = false
-                    self.noDataFOund = UILabel(frame: CGRect(x: 16, y: 490, width: 200, height: 16))
-                  //  self.noDataFOund.textAlignment = NSTextAlignment.center
-                    self.noDataFOund.text = "No Search Found"
-                    self.noDataFOund.textColor = UIColor(red: 250/255, green: 119/255, blue: 0/255, alpha: 1)
-                    self.view.addSubview(self.noDataFOund)
-            }
+            tableViewCell.btnSelectStatus.setTitle("   Select Status", for: .normal)
             self.tableView.dataSource = self
             self.tableView.delegate = self
             self.tableView.reloadData()
@@ -487,7 +522,11 @@ class MyWorkOrderTableViewController: UITableViewController {
     
     @objc func btn_ResetAction(_ sender: UIButton)
     {
-        popup.dismiss(true)
+        view.endEditing(true)
+        let cell_indexPath = NSIndexPath(row: 0, section: 0)
+        let tableViewCell = tableView.cellForRow(at: cell_indexPath as IndexPath) as! SearchWorkOrderTableViewCell
+         tableViewCell.btnSelectStatus.setTitle("   Select Status", for: .normal)
+        getWorkList()
     }
     
     @objc func btnViewAction(_ sender : UIButton)
@@ -496,6 +535,7 @@ class MyWorkOrderTableViewController: UITableViewController {
         print(self.workOrderId)
        let nav = (appdelegate.storyBoard)?.instantiateViewController(withIdentifier: "WorkOrderDetailsViewController") as! WorkOrderDetailsViewController
          nav.workOrderId = self.workOrderId
+        nav.workOrderType = (((self.getSearchListDetails[sender.tag])["work_category"]) as! [String:Any])["work_category_name"] as! String
         let transition = CATransition()
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
@@ -518,7 +558,7 @@ class MyWorkOrderTableViewController: UITableViewController {
             let data = serviceResponse["data"] as? [String:Any]
             self.getWorkListData = data!["work_orders"] as! [String:Any]
             self.getStatusName = data!["statuses"] as! [AnyObject]
-            self.getSearchListDetails = self.getWorkListData["data"] as! [AnyObject]
+         //   self.getSearchListDetails = self.getWorkListData["data"] as! [AnyObject]
             self.getSearchListDetails.append(contentsOf: self.getWorkListData["data"] as! [AnyObject])
             self.tableView.dataSource = self
             self.tableView.delegate = self

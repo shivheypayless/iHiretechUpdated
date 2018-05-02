@@ -267,11 +267,13 @@ extension SearchOrderDetailViewController : UICollectionViewDelegate , UICollect
         {
             self.tabsTag = 1
              self.cnstViewChatBottom.constant = -55
+            self.viewChat.isHidden = true
         }
         if indexPath.row == 1
         {
             self.tabsTag = 2
              self.cnstViewChatBottom.constant = 0
+            self.viewChat.isHidden = false
             getChatHistory()
         }
         self.tabCollectionView.reloadData()
@@ -451,8 +453,26 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
             else if indexPath.section == 4
             {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleInformationTableViewCell", for: indexPath) as! ScheduleInformationTableViewCell
-                cell.lblDate.text = ((self.getWorkListData)["schedule_exact_date"] as? String)!
-                cell.lblTime.text = ((self.getWorkListData)["schedule_exact_time"] as? String)!
+                if !((self.getWorkListData)["schedule_exact_date"] is NSNull)
+                {
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "YYYY-MM-DD"
+                    let date = dateFormatter.date(from: ((self.getWorkListData)["schedule_exact_date"] as! String))
+                    dateFormatter.dateFormat = "MM-DD-YYYY"
+                    cell.lblDate.text = dateFormatter.string(from: date!)
+                    // cell.lblDate.text = ((self.getWorkListData)["schedule_exact_date"] as? String)!
+                }
+                if !((self.getWorkListData)["schedule_exact_time"] is NSNull)
+                {
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "HH:mm:ss"
+                    let date = dateFormatter.date(from: ((self.getWorkListData)["schedule_exact_time"] as! String))
+                    dateFormatter.dateFormat = "HH:mm a"
+                    cell.lblTime.text = dateFormatter.string(from: date!)
+                    //  cell.lblTime.text = ((self.getWorkListData)["schedule_exact_time"] as? String)!
+                }
+              //  cell.lblDate.text = ((self.getWorkListData)["schedule_exact_date"] as? String)!
+              //  cell.lblTime.text = ((self.getWorkListData)["schedule_exact_time"] as? String)!
                 return cell
             }
             else if indexPath.section == 5
@@ -468,22 +488,53 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
             {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "PayRateInformationTableViewCell", for: indexPath) as! PayRateInformationTableViewCell
                 let information = self.chatDetails["chatWith"] as! [String:Any]
-                cell.lblPaymentType.text = ((information)["first_name"] as? String)!
-                if !((self.getWorkListData)["per_hour_max_hours"] is NSNull)
+                if ((self.getWorkListData)["payment_rate_type"] as? Int) == 1
                 {
-                    cell.lblMaxRate.text = String((self.getWorkListData)["per_hour_max_hours"] as! Int)
+                    cell.lblPaymentType.text = "Fixed"
+                    cell.lblTileHourlyrate.text = "Fixed Rate"
+                    cell.cnstLblMaxHoursHeight.constant = 0
+                    cell.cnstValueMaxhrsheight.constant = 0
+                    if !((self.getWorkListData)["fixed_pay_amount"] is NSNull)
+                    {
+                        cell.lblHourlyRate.text = "$ \((self.getWorkListData)["fixed_pay_amount"] as! String)"
+                    }
+                    else
+                    {
+                        cell.lblHourlyRate.text = "-"
+                    }
+                }
+                else if ((self.getWorkListData)["payment_rate_type"] as? Int) == 2
+                {
+                    cell.lblPaymentType.text = "Per hour"
+                    cell.lblTileHourlyrate.text = "Per hour rate"
+                    cell.lblTitleMaxHrs.text = "Per hour Rate Max Hours :"
+                    cell.lblTitleMaxHrs.isHidden = false
+                    cell.cnstLblMaxHoursHeight.constant = 15
+                    cell.cnstValueMaxhrsheight.constant = 15
+                    if !((self.getWorkListData)["per_hour_max_hours"] is NSNull)
+                    {
+                        cell.lblMaxRate.text = "\(String((self.getWorkListData)["per_hour_max_hours"] as! Int)) hrs"
+                    }
+                    else
+                    {
+                        cell.lblMaxRate.text = "-"
+                    }
+                    if !((self.getWorkListData)["per_hour_rate"] is NSNull)
+                    {
+                        cell.lblHourlyRate.text = "$ \((self.getWorkListData)["per_hour_rate"] as! String)"
+                    }
+                    else
+                    {
+                        cell.lblHourlyRate.text = "-"
+                    }
                 }
                 else
                 {
-                    cell.lblMaxRate.text = "-"
-                }
-                if !((self.getWorkListData)["per_hour_rate"] is NSNull)
-                {
-                    cell.lblHourlyRate.text = ((self.getWorkListData)["per_hour_rate"] as! String)
-                }
-                else
-                {
-                    cell.lblHourlyRate.text = "-"
+                    cell.lblPaymentType.text = "Blended"
+                    cell.lblTileHourlyrate.text = "Pay Amount :"
+                    cell.lblHourlyRate.text = "$ \((self.getWorkListData)["blended_rate_amount_first"] as! String), For Hours : \((self.getWorkListData)["blended_rate_hours_first"] as! Int) Hrs"
+                    cell.lblTitleMaxHrs.text = "Then Pay Amount :"
+                    cell.lblMaxRate.text = "$ \((self.getWorkListData)["blended_rate_amount_second"] as! String), For Hours Upto : \((self.getWorkListData)["blended_rate_hours_second"] as! Int) Hrs"
                 }
                 return cell
             }
@@ -767,15 +818,7 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
 
 extension SearchOrderDetailViewController: SocketIOManagerDelegate {
     func usersTyping(_ data: [String : Any]) {
-        //        isTyping = true
-        //        timer?.invalidate()
-        //        if #available(iOS 10.0, *) {
-        //            timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (_) in
-        //          //      self.isTyping = false
-        //            })
-        //        } else {
-        //            // Fallback on earlier versions
-        //        }
+      
     }
     
     func messageReceived(_ data: String) {

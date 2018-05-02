@@ -18,6 +18,7 @@ class SearchServiceTableViewCell: UITableViewCell {
     @IBOutlet var lblManagerName: UILabel!
     @IBOutlet var btnApply: UIButton!
     @IBOutlet var lblSkills: UILabel!
+    @IBOutlet var cnstapplyHeight: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()

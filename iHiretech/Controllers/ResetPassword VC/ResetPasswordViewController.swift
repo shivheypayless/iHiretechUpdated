@@ -72,9 +72,8 @@ class ResetPasswordViewController: UIViewController {
                         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
                         transition.type = kCATransitionFade
                         self.navigationController?.view.layer.add(transition, forKey: nil)
-                        self.navigationController?.isNavigationBarHidden = false
                         self.navigationController?.pushViewController(nav, animated: false)
-                        self.navigationController?.isNavigationBarHidden = false
+                          self.navigationController?.navigationBar.isTranslucent = false
                         self.navigationController?.navigationBar.barTintColor = UIColor.black
                     }
                 }

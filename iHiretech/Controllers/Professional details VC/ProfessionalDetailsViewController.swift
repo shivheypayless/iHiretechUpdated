@@ -13,6 +13,15 @@ import AFViewShaker
 
 class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelegate,UIDocumentPickerDelegate,UINavigationControllerDelegate, TagListViewDelegate {
 
+    @IBOutlet var lblNoDataFound: UILabel!
+    @IBOutlet var lblResumeNone: UILabel!
+    @IBOutlet var lblBackgroundNone: UILabel!
+    @IBOutlet var lblDrugNone: UILabel!
+    @IBOutlet var lblInsuranceNone: UILabel!
+    @IBOutlet var lblresumeNone: UILabel!
+    @IBOutlet var cnstLicenesHeight: NSLayoutConstraint!
+    @IBOutlet var tblLicences: UITableView!
+    @IBOutlet var viewLicences: TagListView!
     @IBOutlet var viewUploadBackground: UIView!
     @IBOutlet var txtAreaDetailResume: UITextView!
     @IBOutlet var lblDocumentTwoname: UILabel!
@@ -34,7 +43,6 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
     @IBOutlet var viewUploadDoc: UIView!
     @IBOutlet var viewUploadResume: UIView!
     @IBOutlet var viewTitle: EditTextView!
-    @IBOutlet var viewLicenses: EditTextView!
     @IBOutlet var viewExperience: EditTextView!
     @IBOutlet var btnBackgrundUpload: UIButton!
     @IBOutlet var lblBackgrundUpload: UILabel!
@@ -47,6 +55,7 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
     var getSkills = NSArray()
     var getCertificates = NSArray()
     var getEquipments = NSArray()
+    var getLicenes = NSArray()
     var skills = String()
     var certificates = String()
     var equipments = String()
@@ -61,16 +70,21 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
     var skillsId = [String]()
     var certificateId = [String]()
     var equipmentId = [String]()
-   
+    var setLicenes = [String]()
+    var licenesId = [String]()
+    var licenes = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.lblNoDataFound.isHidden = true
         self.txtAreaDetailResume.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1).cgColor
         self.txtAreaDetailResume.layer.borderWidth = 1
         
         self.viewCertification.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1).cgColor
         self.viewCertification.layer.borderWidth = 1
+        
+        self.viewLicences.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1).cgColor
+        self.viewLicences.layer.borderWidth = 1
         
         self.viewUploadBackground.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1).cgColor
         self.viewUploadBackground.layer.borderWidth = 1
@@ -106,8 +120,10 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
         viewSkillTag.clipsToBounds = true
         viewCertification.clipsToBounds = true
         viewEquipment.clipsToBounds = true
+        viewLicences.clipsToBounds = true
         
         self.tblSkills.register(UINib(nibName: "StatesTableViewCell", bundle: nil) , forCellReuseIdentifier: "StatesTableViewCell")
+        self.tblLicences.register(UINib(nibName: "StatesTableViewCell", bundle: nil) , forCellReuseIdentifier: "StatesTableViewCell")
         self.tblCertification.register(UINib(nibName: "StatesTableViewCell", bundle: nil) , forCellReuseIdentifier: "StatesTableViewCell")
         self.tblEquipment.register(UINib(nibName: "StatesTableViewCell", bundle: nil) , forCellReuseIdentifier: "StatesTableViewCell")
         // Do any additional setup after loading the view.
@@ -123,13 +139,7 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
-    
-//    func tagPressed(_ title: String, tagView: TagView, sender: TagListView) -> Void
-//     {
-//        print("Tag pressed: \(title), \(sender)")
-//        viewSkillTag.removeTagView(tagView)
-//        self.setSkillsArray.remove(at: sender.tag)
-//     }
+
     
     
     func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) -> Void
@@ -151,6 +161,12 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
              viewEquipment.removeTagView(tagView)
              self.setEquipments.remove(at: tagView.tag)
              self.equipmentId.remove(at: tagView.tag)
+        }
+        else
+        {
+            viewLicences.removeTagView(tagView)
+            self.setLicenes.remove(at: tagView.tag)
+            self.licenesId.remove(at: tagView.tag)
         }
     }
     
@@ -179,6 +195,7 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
               //  uploadResumeName = url.lastPathComponent
                  resume = fileName
                 lblResumeName.text = url.lastPathComponent
+                lblresumeNone.text = url.lastPathComponent
                 print(resume!)
             }
            if uploadDocTag == 5
@@ -186,6 +203,7 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
          //       uploadDocOneName = url.lastPathComponent
                 documentOne = fileName
                  lblDocumentOneName.text = url.lastPathComponent
+                lblInsuranceNone.text = url.lastPathComponent
                 print(documentOne!)
             }
             if uploadDocTag == 6
@@ -193,6 +211,7 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
          //       uploadDocTwoName = url.lastPathComponent
                 documentTwo = fileName
                 lblDocumentTwoname.text = url.lastPathComponent
+                lblDrugNone.text = url.lastPathComponent
                 print(documentTwo!)
             }
             
@@ -201,6 +220,7 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
             //    uploadDocTwoName = url.lastPathComponent
                 documentThree = fileName
                 lblBackgrundUpload.text = url.lastPathComponent
+                lblBackgroundNone.text = url.lastPathComponent
                 print(documentThree!)
             }
            
@@ -232,15 +252,14 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
         {
          if self.skillsId.count != 0
             {
-
                 let skillsString = self.skillsId.joined(separator: ",")
                 print(skillsString)
                 let certificateString = self.certificateId.joined(separator: ",")
                 let equipmentString = self.equipmentId.joined(separator: ",")
-                
+                 let licenesString = self.licenesId.joined(separator: ",")
                 if txtAreaDetailResume.text != ""
                 {
-                    paramerters = ["professional_title": viewTitle.detailTextField.text!, "professional_summary": viewSummary.detailTextField.text!, "skill_sets": skillsString , "certification": certificateString , "equipment": equipmentString ,"licenses":viewLicenses.detailTextField.text!,"experience":viewExperience.detailTextField.text!,"resume_details": txtAreaDetailResume.text!,"bank_account_number":viewAccountNo.detailTextField.text!,"routing_number":viewRoutingNumber.detailTextField.text!] as [String : Any]
+                    paramerters = ["professional_title": viewTitle.detailTextField.text!, "professional_summary": viewSummary.detailTextField.text!, "skill_sets": skillsString , "certification": certificateString , "equipment": equipmentString ,"licenses": licenesString,"experience":viewExperience.detailTextField.text!,"resume_details": txtAreaDetailResume.text!,"bank_account_number":viewAccountNo.detailTextField.text!,"routing_number":viewRoutingNumber.detailTextField.text!,"ssn_ein":viewSSN.detailTextField.text!] as [String : Any]
             
        
         var fileArray =  [[String:AnyObject]]()
@@ -263,7 +282,7 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
         }
         if self.documentThree != nil
         {
-            dict = ["drug_test_certificate":self.documentThree!,"fileName":lblBackgrundUpload.text!]
+            dict = ["background_certificate":self.documentThree!,"fileName":lblBackgrundUpload.text!]
             fileArray.append(dict as [String : AnyObject])
         }
 
@@ -400,9 +419,9 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
             self.getCertificates = (data!["certifications"] as! NSArray)
            // print(self.getCertificates)
             self.getEquipments = (data!["equipments"] as! NSArray)
+            self.getLicenes = (data!["licenses"] as! NSArray)
            // print(self.getEquipments)
             let userProfile = data!["UserProfile"] as! [String:Any]
-          //  let tech_Meta = userProfile["tech_meta"] as! [String:Any]
             if let tech = (data!)["tech"] as? [String:Any]
             {
             let techDict = (data!)["tech"] as! [String:Any]
@@ -410,10 +429,15 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
             self.viewSummary.detailTextField.text = (techDict)["professional_summary"] as? String
             self.viewExperience.detailTextField.text = (techDict)["experience"] as? String
             self.lblResumeName.text = (techDict)["resume"] as? String
+            self.lblResumeNone.text = (techDict)["resume"] as? String
+            self.lblDrugNone.text = (techDict)["drug_test_certificate"] as? String
             self.txtAreaDetailResume.text = (techDict)["resume_details"] as? String
+            self.lblInsuranceNone.text = (techDict)["general_liability_insuarance"] as? String
             self.lblDocumentOneName.text = (techDict)["general_liability_insuarance"] as? String
-            self.lblDocumentTwoname.text = (techDict)["background_certificate"] as? String
-            self.viewLicenses.detailTextField.text = (techDict)["licenses_master_id"] as? String
+            self.lblDocumentTwoname.text = (techDict)["drug_test_certificate"] as? String
+            self.lblBackgroundNone.text = (techDict)["background_certificate"] as? String
+            
+         //   self.viewLicenses.detailTextField.text = (techDict)["licenses_master_id"] as? String
             self.viewSSN.detailTextField.text = (techDict)["ssn_ein"] as? String
             self.viewAccountNo.detailTextField.text = (techDict)["bank_account_number"] as? String
             self.viewRoutingNumber.detailTextField.text = (techDict)["routing_number"] as? String
@@ -428,6 +452,7 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
                 self.viewSkillTag.addTag(self.setSkillsArray[i])
             }
                 }
+                
             self.setCertificates = techDict["certification_name"] as! [String]
             self.certificateId = techDict["certification_id"] as! [String]
             print(self.certificateId)
@@ -447,6 +472,17 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
             {
                 self.viewEquipment.addTag(self.setEquipments[i])
             }
+                }
+                
+                self.setLicenes = techDict["licenses_master_name"] as! [String]
+                self.licenesId = techDict["licenses_master_id"] as! [String]
+                print(self.licenesId)
+                if self.setLicenes.count != 0
+                {
+                    for i in 0...self.setLicenes.count-1
+                    {
+                        self.viewLicences.addTag(self.setLicenes[i])
+                    }
                 }
             }
            
@@ -506,6 +542,34 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
             self.cnstEquipment.constant = 0
         }
     }
+    
+    @IBAction func btn_LicenesAction(_ sender: UITapGestureRecognizer)
+    {
+        if self.cnstLicenesHeight.constant == 0
+        {
+            if self.getLicenes.count == 0
+            {
+                 self.lblNoDataFound.isHidden = false
+            }
+            else
+            {
+                self.lblNoDataFound.isHidden = true
+            self.cnstLicenesHeight.constant = CGFloat(30 * 3)
+            self.tblLicences.delegate = self
+            self.tblLicences.dataSource = self
+            self.tblLicences.layer.borderWidth = 1
+            self.tblLicences.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
+            self.tblLicences.layer.masksToBounds = true
+            self.tblLicences.reloadData()
+            }
+        }
+        else
+        {
+            self.cnstLicenesHeight.constant = 0
+        }
+        
+    }
+    
 }
 
 extension ProfessionalDetailsViewController : UITableViewDelegate , UITableViewDataSource
@@ -518,6 +582,10 @@ extension ProfessionalDetailsViewController : UITableViewDelegate , UITableViewD
         else if tableView == tblCertification
         {
              return self.getCertificates.count
+        }
+        else if tableView == tblLicences
+        {
+            return self.getLicenes.count
         }
         else
         {
@@ -538,10 +606,26 @@ extension ProfessionalDetailsViewController : UITableViewDelegate , UITableViewD
             cell.lblState.text = ((self.getCertificates[indexPath.row] as? NSDictionary)?.object(forKey: "certification_name") as? String)!
             return cell
         }
+        else if tableView == tblLicences
+        {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "StatesTableViewCell", for: indexPath) as! StatesTableViewCell
+            if self.getLicenes.count != 0
+            {
+               cell.lblState.text = ((self.getLicenes[indexPath.row] as? NSDictionary)?.object(forKey: "licenses_name") as? String)!
+            }
+            else
+            {
+                cell.lblState.text = "No Data Found"
+            }
+            
+            return cell
+        }
         else
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "StatesTableViewCell", for: indexPath) as! StatesTableViewCell
+            
             cell.lblState.text = ((self.getEquipments[indexPath.row] as? NSDictionary)?.object(forKey: "equipment_name") as? String)!
+            
             return cell
         }
     }
@@ -552,33 +636,56 @@ extension ProfessionalDetailsViewController : UITableViewDelegate , UITableViewD
         {
             cell.lblState.text = ((self.getSkills[indexPath.row] as? NSDictionary)?.object(forKey: "skill_name") as? String)!
             self.skills = cell.lblState.text!
+            if !(self.setSkillsArray.contains(self.skills))
+            {
             self.viewSkillTag.addTag(self.skills)
             self.setSkillsArray.append(self.skills)
               print(self.setSkillsArray)
             self.skillsId.append(String((self.getSkills[indexPath.row] as? NSDictionary)?.object(forKey: "skill_set_master_id") as! Int))
              print(self.skillsId)
+            }
             self.cnstSkillsHeight.constant = 0
         }
         else if tableView == tblCertification
         {
             cell.lblState.text = ((self.getCertificates[indexPath.row] as? NSDictionary)?.object(forKey: "certification_name") as? String)!
             self.certificates = cell.lblState.text!
+            if !(self.setCertificates.contains(self.certificates))
+            {
             self.viewCertification.addTag(self.certificates)
             self.setCertificates.append(self.certificates)
               print(self.setCertificates)
             self.certificateId.append(String((self.getCertificates[indexPath.row] as? NSDictionary)?.object(forKey: "certification_master_id") as! Int))
              print(self.certificateId)
+            }
             self.cnstCertificationHeight.constant = 0
+        }
+        else if tableView == tblLicences
+        {
+            cell.lblState.text = ((self.getLicenes[indexPath.row] as? NSDictionary)?.object(forKey: "licenses_master_name") as? String)!
+            self.licenes = cell.lblState.text!
+            if !(self.setLicenes.contains(self.licenes))
+            {
+                self.viewLicences.addTag(self.licenes)
+                self.setCertificates.append(self.licenes)
+                print(self.setLicenes)
+                self.licenesId.append(String((self.getLicenes[indexPath.row] as? NSDictionary)?.object(forKey: "licenses_master_id") as! Int))
+                print(self.licenesId)
+            }
+            self.cnstLicenesHeight.constant = 0
         }
         else
         {
             cell.lblState.text = ((self.getEquipments[indexPath.row] as? NSDictionary)?.object(forKey: "equipment_name") as? String)!
             self.equipments = cell.lblState.text!
+            if !(self.setEquipments.contains(self.equipments))
+            {
             self.viewEquipment.addTag(self.equipments)
             self.setEquipments.append(self.equipments)
               print(self.setEquipments)
             self.equipmentId.append(String((self.getEquipments[indexPath.row] as? NSDictionary)?.object(forKey: "equipment_master_id") as! Int))
             print(self.equipmentId)
+            }
             self.cnstEquipment.constant = 0
         }
     }
