@@ -51,7 +51,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login to your account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5b-4z-Hxh">
-                                                        <rect key="frame" x="119.5" y="191" width="137" height="16.5"/>
+                                                        <rect key="frame" x="120" y="191" width="137" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="14"/>
                                                         <color key="textColor" red="0.2627450980392157" green="0.2627450980392157" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -183,7 +183,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="30.434782608695656" y="32.608695652173914"/>
+            <point key="canvasLocation" x="-87" y="43"/>
         </scene>
         <!--Root Nav View Controller-->
         <scene sceneID="KOB-C4-hjB">
@@ -458,11 +458,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lqt-5I-yMV" customClass="TPKeyboardAvoidingTPKeyboardAvoidingScrollView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lqt-5I-yMV" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nFo-Un-yMy">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login_Banner" translatesAutoresizingMaskIntoConstraints="NO" id="6DQ-8J-Qui">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="167"/>
@@ -477,7 +477,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gJT-ck-95W" customClass="FormFieldView" customModule="iHiretech" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="223.5" width="343" height="47"/>
+                                                <rect key="frame" x="16" y="223.5" width="343" height="46.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="image" keyPath="image" value="img_Email"/>
@@ -485,7 +485,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8wf-xq-3rT">
-                                                <rect key="frame" x="16" y="290.5" width="343" height="47"/>
+                                                <rect key="frame" x="16" y="290" width="343" height="47"/>
                                                 <color key="backgroundColor" red="0.98039215690000003" green="0.46666666670000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="12"/>
                                                 <state key="normal" title="SEND PASSWORD RESET LINK ">
@@ -510,13 +510,15 @@
                                             <constraint firstItem="8wf-xq-3rT" firstAttribute="leading" secondItem="nFo-Un-yMy" secondAttribute="leading" constant="16" id="l91-7T-ATk"/>
                                             <constraint firstAttribute="trailing" secondItem="8wf-xq-3rT" secondAttribute="trailing" constant="16" id="qlb-7R-Cv2"/>
                                             <constraint firstItem="9Pq-ej-8D6" firstAttribute="top" secondItem="6DQ-8J-Qui" secondAttribute="bottom" constant="24" id="rDG-ba-uvV"/>
-                                            <constraint firstItem="gJT-ck-95W" firstAttribute="height" secondItem="nFo-Un-yMy" secondAttribute="height" multiplier="0.07" id="zgm-zE-K6a"/>
+                                            <constraint firstItem="gJT-ck-95W" firstAttribute="height" secondItem="nFo-Un-yMy" secondAttribute="height" multiplier="0.07" constant="4.2899999999999991" id="zgm-zE-K6a"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="nFo-Un-yMy" secondAttribute="bottom" constant="-64" id="I5M-cK-A5y"/>
+                                    <constraint firstItem="nFo-Un-yMy" firstAttribute="top" secondItem="lqt-5I-yMV" secondAttribute="top" id="1qn-iP-mNg"/>
+                                    <constraint firstItem="nFo-Un-yMy" firstAttribute="height" secondItem="lqt-5I-yMV" secondAttribute="height" id="HVc-jr-rkV"/>
+                                    <constraint firstAttribute="bottom" secondItem="nFo-Un-yMy" secondAttribute="bottom" id="I5M-cK-A5y"/>
                                     <constraint firstAttribute="trailing" secondItem="nFo-Un-yMy" secondAttribute="trailing" id="ObM-9R-vyb"/>
                                     <constraint firstItem="nFo-Un-yMy" firstAttribute="leading" secondItem="lqt-5I-yMV" secondAttribute="leading" id="coV-Rr-DtN"/>
                                 </constraints>
@@ -525,11 +527,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="lqt-5I-yMV" firstAttribute="leading" secondItem="9dE-3q-4TT" secondAttribute="leading" id="5T2-Tm-EQk"/>
-                            <constraint firstItem="lqt-5I-yMV" firstAttribute="top" secondItem="9dE-3q-4TT" secondAttribute="top" id="D7j-lv-sg8"/>
                             <constraint firstItem="lqt-5I-yMV" firstAttribute="trailing" secondItem="9dE-3q-4TT" secondAttribute="trailing" id="MWA-xA-E2Z"/>
                             <constraint firstItem="lqt-5I-yMV" firstAttribute="bottom" secondItem="9dE-3q-4TT" secondAttribute="bottom" id="OOA-MR-HGJ"/>
-                            <constraint firstItem="nFo-Un-yMy" firstAttribute="height" secondItem="7ac-gZ-HBM" secondAttribute="height" id="hbf-wL-ehe"/>
                             <constraint firstItem="nFo-Un-yMy" firstAttribute="width" secondItem="7ac-gZ-HBM" secondAttribute="width" id="tGQ-M3-257"/>
+                            <constraint firstItem="lqt-5I-yMV" firstAttribute="top" secondItem="9dE-3q-4TT" secondAttribute="top" id="tW9-gS-RIx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9dE-3q-4TT"/>
                     </view>
@@ -567,7 +568,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwX-RT-nA9">
-                                                        <rect key="frame" x="131" y="191" width="115" height="16.5"/>
+                                                        <rect key="frame" x="130.5" y="191" width="115" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="14"/>
                                                         <color key="textColor" red="0.26274509800000001" green="0.26274509800000001" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -735,7 +736,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0x-XC-7d6">
-                                                                    <rect key="frame" x="16" y="16.5" width="37" height="17.5"/>
+                                                                    <rect key="frame" x="16" y="17" width="37" height="17.5"/>
                                                                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -802,31 +803,31 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New york" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpi-zl-m2D">
-                                                        <rect key="frame" x="113.5" y="129.5" width="55" height="16"/>
+                                                        <rect key="frame" x="113" y="129.5" width="55" height="16"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="13"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Technician" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uBF-ws-DZb">
-                                                        <rect key="frame" x="100" y="149.5" width="61.5" height="15.5"/>
+                                                        <rect key="frame" x="99.5" y="149.5" width="61.5" height="15.5"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="13"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TECH-NY-00000043" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAp-sw-K6W">
-                                                        <rect key="frame" x="71" y="169" width="118.5" height="15.5"/>
+                                                        <rect key="frame" x="71.5" y="169" width="118.5" height="15.5"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="13"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Smith Johnson" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qvs-hC-SVL">
-                                                        <rect key="frame" x="86.5" y="86" width="87.5" height="15.5"/>
+                                                        <rect key="frame" x="87" y="86" width="87.5" height="15.5"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="13"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_Location" translatesAutoresizingMaskIntoConstraints="NO" id="7RF-st-rhp">
-                                                        <rect key="frame" x="91.5" y="130" width="16" height="16"/>
+                                                        <rect key="frame" x="91" y="130" width="16" height="16"/>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2501,7 +2502,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="35"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WB0-fa-AvI">
-                                                                        <rect key="frame" x="16" y="9.5" width="30.5" height="17.5"/>
+                                                                        <rect key="frame" x="16" y="9" width="30.5" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="15"/>
                                                                         <color key="textColor" red="0.98039215690000003" green="0.46666666670000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -3087,7 +3088,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you have any counter offer :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKN-wB-zbH">
-                                                <rect key="frame" x="68.5" y="20" width="238.5" height="20"/>
+                                                <rect key="frame" x="69" y="20" width="238.5" height="20"/>
                                                 <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -3188,7 +3189,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hourly Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3N-6e-WiS">
-                                                        <rect key="frame" x="126" y="37" width="84.5" height="19"/>
+                                                        <rect key="frame" x="125.5" y="37" width="84.5" height="19"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -3366,7 +3367,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="692.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you have any counter offer :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQH-nu-06J">
-                                                <rect key="frame" x="69" y="20" width="238.5" height="21.5"/>
+                                                <rect key="frame" x="68.5" y="20" width="238.5" height="21.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21.5" id="saL-cQ-Vbx"/>
                                                 </constraints>
@@ -3472,7 +3473,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blended Rate First Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U14-DE-K0o">
-                                                        <rect key="frame" x="71.5" y="37.5" width="193.5" height="19"/>
+                                                        <rect key="frame" x="71" y="37.5" width="193.5" height="19"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -3492,7 +3493,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blended Rate Second Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yi0-jD-EE7">
-                                                        <rect key="frame" x="59.5" y="200.5" width="217.5" height="19"/>
+                                                        <rect key="frame" x="59" y="200.5" width="217.5" height="19"/>
                                                         <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -3720,7 +3721,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verify Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6V0-N0-dl4">
-                                                <rect key="frame" x="143" y="191" width="90.5" height="16.5"/>
+                                                <rect key="frame" x="142.5" y="191" width="90.5" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="14"/>
                                                 <color key="textColor" red="0.26274509800000001" green="0.26274509800000001" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>

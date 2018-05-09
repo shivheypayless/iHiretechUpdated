@@ -21,7 +21,6 @@ class ForgotViewController: UIViewController {
         
         viewPassword.txtFieldName.isSecureTextEntry = true
         viewCnfrmPass.txtFieldName.isSecureTextEntry = true
-        
         let iconsSize = CGRect(x: 0, y: 0, width: 12, height: 12)
         let  myMutableString = NSMutableAttributedString(string: "Reset Password ", attributes: ([NSAttributedStringKey.font :  UIFont.systemFont(ofSize: 12.0), NSAttributedStringKey.foregroundColor: UIColor.white]))
         let starAttachment = NSTextAttachment()

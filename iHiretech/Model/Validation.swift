@@ -19,13 +19,7 @@ func validationForLogin(viewList : [UIView]) -> Array<Any>
         (viewList[0]as!  FormFieldView).txtFieldName.attributedPlaceholder = NSMutableAttributedString(string: "Enter Email Address or UserName",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
         viewsToReturn.append(viewList[0])
     }
-//    else if (!(isValidEmail(testStr: (viewList[0]as!  FormFieldView).txtFieldName.text!)))
-//    {
-//        (viewList[0]as!  FormFieldView).txtFieldName.text = ""
-//        (viewList[0]as!  FormFieldView).txtFieldName.attributedPlaceholder = NSMutableAttributedString(string: "Enter Valid Email Address",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
-//        viewsToReturn.append(viewList[0])
-//
-//    }
+
 //
     if((viewList[1]as!  FormFieldView).txtFieldName.text?.isEmpty)!
     {
@@ -177,11 +171,7 @@ func validationForLogin(viewList : [UIView]) -> Array<Any>
             (viewList[0]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter User Name",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
             viewsToReturn.append(viewList[0])
         }
-//        else
-//        if !((viewList[0] as! EditTextView).detailTextField.text?.trimmingCharacters(in: .whitespaces).isEmpty)! {
-//            (viewList[0]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Username should not contain blank space",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
-//            viewsToReturn.append(viewList[0])
-//        }
+
         if((viewList[1] as! EditTextView).detailTextField.text?.isEmpty)!
         {
             (viewList[1]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter First Name",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
@@ -205,6 +195,12 @@ func validationForLogin(viewList : [UIView]) -> Array<Any>
         if((viewList[5] as! EditTextView).detailTextField.text?.isEmpty)!
         {
             (viewList[5]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter Contact Number",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+            viewsToReturn.append(viewList[5])
+        }
+        else if((viewList[5] as! EditTextView).detailTextField.text?.characters.count != 12)
+        {
+            (viewList[5]as!  EditTextView).detailTextField.text = ""
+            (viewList[5]as!  EditTextView).detailTextField.attributedPlaceholder = NSMutableAttributedString(string: "Enter 10 digit contact number",attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
             viewsToReturn.append(viewList[5])
         }
         if((viewList[6] as! EditTextView).detailTextField.text?.isEmpty)!

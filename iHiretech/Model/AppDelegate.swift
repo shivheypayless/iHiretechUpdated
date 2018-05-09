@@ -195,7 +195,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,LocationUpdateProtocol, So
         if ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "flag") as! String) == "chat"
         {
            destination.tabsTag = 2
+            if ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_id") is String)
+            {
+            destination.workOrderId = Int((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_id") as! String)!
+            }
+            else
+            {
             destination.workOrderId = ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "work_order_id") as! Int)
+            }
          //   destination.txtSendMsg.text! = ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "title") as! String)
             destination.socketId = ((((userInfo as AnyObject).object(forKey: "aps") as AnyObject).object(forKey: "alert")as AnyObject).object(forKey: "to_user") as! String)
         }

@@ -10,6 +10,10 @@ import UIKit
 
 class AttactmentTableViewCell: UITableViewCell {
 
+    @IBOutlet var btnBackground: UIButton!
+    @IBOutlet var btnDrugs: UIButton!
+    @IBOutlet var btnInsurance: UIButton!
+    @IBOutlet var btnResume: UIButton!
     @IBOutlet var imgbackground: UIImageView!
     @IBOutlet var imgDrug: UIImageView!
     @IBOutlet var imgInsurance: UIImageView!

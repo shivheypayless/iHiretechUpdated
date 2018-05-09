@@ -72,8 +72,8 @@ class WebAPI {
     //Base URL for WebAPI(s)
   //  private let baseurl = "http://172.16.2.62:8001/"//local
   //   private let baseurl = "http://172.16.2.68:8001/" // local
-    private let baseurl = "https://app.ihiretech.hplbusiness.com/" //testbed
-    //    private let baseurl = "http://172.16.2.7:3003/"//live
+  // private let baseurl = "https://app.ihiretech.hplbusiness.com/" //testbed
+    private let baseurl = "https://dev.techadox.com/"//live
    // lazy var profileImgs = "\(baseurl)profileImgs/"
   //  lazy var postImgs = "\(baseurl)postImgs/"
     
@@ -238,6 +238,16 @@ class WebAPI {
                             completionHandler(responseData)
                         }
                     }
+                    else if responseData["status"] as! Int == -1
+                    {
+                        if (responseData["msg"] as? String) != nil
+                        {
+                            //  AListAlertController.shared.presentAlertController(message: responseData["msg"] as! String, completionHandler: nil)
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let destination = storyboard.instantiateViewController(withIdentifier: "RootNavViewController") as! RootNavViewController
+                            UIApplication.shared.keyWindow!.rootViewController = destination
+                        }
+                    }
                     else {
                         if responseData["status"] as! Int == 0
                         {
@@ -333,7 +343,10 @@ class WebAPI {
                     {
                         if (responseData["msg"] as? String) != nil
                         {
-                            AListAlertController.shared.presentAlertController(message: responseData["msg"] as! String, completionHandler: nil)
+                          //  AListAlertController.shared.presentAlertController(message: responseData["msg"] as! String, completionHandler: nil)
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let destination = storyboard.instantiateViewController(withIdentifier: "RootNavViewController") as! RootNavViewController
+                            UIApplication.shared.keyWindow!.rootViewController = destination
                         }
                     }
                     else {
@@ -498,7 +511,7 @@ class WebAPI {
                                         "content-type": "multipart/form-data; boundary= \(boundary)",
                 "cache-control": "no-cache"
             ]
-            request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+           // request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
             request.allHTTPHeaderFields = headers
             Alamofire.upload(multipartFormData:{ multipartFormData in
                 for (key, value) in parameters {
@@ -508,6 +521,7 @@ class WebAPI {
                 
                 var fileName = String()
                 var fileData : URL?
+           //     var convertData : Data?
                 if media?.count != 0
                 {
                     for fileType in 0...media.count-1
@@ -517,6 +531,15 @@ class WebAPI {
                             fileName = ((media[fileType] as [String:AnyObject])["fileName"] as! String)
                             print(fileName)
                             fileData = ((media[fileType] as [String:AnyObject])["resume"] as! URL)
+//                            let pathExtension = fileData!.pathExtension
+//                            do {
+//                                convertData = try Data(contentsOf: fileData!)
+//                                print(convertData!)
+//                            } catch {
+//                                print("Unable to load data: \(error)")
+//                            }
+//                            multipartFormData.append(convertData!, withName: "resume", fileName: fileName, mimeType: pathExtension)
+                           
                             multipartFormData.append(fileData!, withName: "resume")
 
                         }
@@ -537,9 +560,7 @@ class WebAPI {
                             fileName = ((media[fileType] as [String:AnyObject])["fileName"] as! String)
                             fileData = ((media[fileType] as [String:AnyObject])["background_certificate"] as! URL)
                              multipartFormData.append(fileData!, withName: "background_certificate")
-                           
                         }
-                        
                     }
                 }
     
@@ -548,8 +569,14 @@ class WebAPI {
                     encodingResult in
                     switch encodingResult {
                     case .success(let upload, _,_):
-                        upload.responseJSON { response in
+                        upload.response{ response in
                             print(response)
+//                            if response.response?.statusCode != 200
+//                            {
+//                                 AListAlertController.shared.presentAlertController(message: \"(response.response)", completionHandler: nil)
+//                               // if let message = response["msg"] as? String {
+//                            //    }
+//                            }
                             AListAlertController.shared.presentAlertController(message: "Your profile updated successfully.", completionHandler: nil)
                             self.progressHUD.hide(animated: true)
                         }

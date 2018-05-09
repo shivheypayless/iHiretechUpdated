@@ -7,17 +7,20 @@
 //
 
 import UIKit
+import MBProgressHUD
 
-class DocumentViewController: UIViewController {
+class DocumentViewController: UIViewController, UIWebViewDelegate {
 
     @IBOutlet var viewDocument: UIWebView!
     var url: URL!
+    var progressHUD: MBProgressHUD!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
 //        let urlRequest = URLRequest.init(url: urlResponse! as URL)
 //        self.webView.loadRequest(urlRequest as URLRequest)
+        self.viewDocument.delegate = self
         print(url)
         var request = URLRequest.init(url: url)
         request.setValue(UserDefaults.standard.object(forKey: "token")! as! String, forHTTPHeaderField: "Authorization")
@@ -33,14 +36,24 @@ class DocumentViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    public func webViewDidStartLoad(_ webView: UIWebView)
+    {
+         self.showHUD()
     }
-    */
+    
+    public func webViewDidFinishLoad(_ webView: UIWebView)
+    {
+        self.progressHUD.hide(animated: true)
+    }
+    
+    func showHUD() {
+        progressHUD = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!.rootViewController!.view, animated: true)
+    }
+//    override func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool
+//    {
+//    }
+    
+   
+   
 
 }

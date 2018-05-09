@@ -162,17 +162,25 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
               if !((self.getProfileDetailsDict["tech_meta"]! as! [String:Any])["resume"] is NSNull)
               {
                 cell.imgResume.image = #imageLiteral(resourceName: "img_GreenCheck")
+                cell.btnResume.tag = 1
+                cell.btnResume.addTarget(self, action: #selector(self.getDocument(_:)), for: .touchUpInside)
               }
                 if !((self.getProfileDetailsDict["tech_meta"]! as! [String:Any])["general_liability_insuarance"] is NSNull)
                 {
+                    cell.btnInsurance.tag = 2
+                    cell.btnInsurance.addTarget(self, action: #selector(self.getDocument(_:)), for: .touchUpInside)
                     cell.imgInsurance.image = #imageLiteral(resourceName: "img_GreenCheck")
                 }
                 if !((self.getProfileDetailsDict["tech_meta"]! as! [String:Any])["drug_test_certificate"] is NSNull)
                 {
+                    cell.btnDrugs.tag = 3
+                    cell.btnDrugs.addTarget(self, action: #selector(self.getDocument(_:)), for: .touchUpInside)
                     cell.imgDrug.image = #imageLiteral(resourceName: "img_GreenCheck")
                 }
                 if !((self.getProfileDetailsDict["tech_meta"]! as! [String:Any])["background_certificate"] is NSNull)
                 {
+                    cell.btnBackground.tag = 4
+                    cell.btnBackground.addTarget(self, action: #selector(self.getDocument(_:)), for: .touchUpInside)
                     cell.imgbackground.image = #imageLiteral(resourceName: "img_GreenCheck")
                 }
             }
@@ -504,5 +512,12 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
         })
     }
 
+    @objc func getDocument(_ sender: UIButton) {
+        let downloadUrl = "https://dev.techadox.com/api/technician/download_tech_doc/\(((self.getProfileDetailsDict)["user_id"] as! Int))/\(sender.tag)"
+        let destination = self.storyboard?.instantiateViewController(withIdentifier: "DocumentViewController") as! DocumentViewController
+        destination.url = URL(string: downloadUrl)!
+        self.navigationController?.pushViewController(destination, animated: true)
+        
+    }
 }
 

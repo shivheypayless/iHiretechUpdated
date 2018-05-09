@@ -24,6 +24,7 @@ class ViewController: UIViewController {
         viewPassword.txtFieldName.isSecureTextEntry = true
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.black
+   //      self.navigationController?.isNavigationBarHidden = true
         let iconsSize = CGRect(x: 0, y: 0, width: 12, height: 12)
       //  let attributedString = NSMutableAttributedString(string: "SIGN IN ")
          let  attributedString = NSMutableAttributedString(string: "SIGN IN ", attributes: ([NSAttributedStringKey.font : UIFont.systemFont(ofSize: 12.0), NSAttributedStringKey.foregroundColor: UIColor.white]))
@@ -34,6 +35,9 @@ class ViewController: UIViewController {
      //   btnSignIn.titleLabel?.font = UIFont(name: "Quicksand-Bold_0", size: 12.0)
         btnSignIn.setTitleColor(UIColor.white, for: UIControlState.normal)
          btnSignIn.setAttributedTitle(attributedString, for: UIControlState.normal)
+        
+    //    self.viewUserName.txtFieldName.text = "rohan@yopmail.com"
+     //   self.viewPassword.txtFieldName.text = "123456"
       
     }
 
@@ -51,13 +55,13 @@ class ViewController: UIViewController {
     {
         let nav = self.storyboard!.instantiateViewController(withIdentifier: "ResetPasswordViewController") as! ResetPasswordViewController
         let transition = CATransition()
-                transition.duration = 0.5
-                transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         transition.type = kCATransitionFade
-       self.navigationController?.view.layer.add(transition, forKey: nil)
+        self.navigationController?.view.layer.add(transition, forKey: nil)
         self.navigationController?.pushViewController(nav, animated: false)
-         self.navigationController?.navigationBar.isTranslucent = false
-         self.navigationController?.navigationBar.barTintColor = UIColor.black
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
     }
     
     
@@ -70,9 +74,8 @@ class ViewController: UIViewController {
         transition.type = kCATransitionFade
         self.navigationController?.view.layer.add(transition, forKey: nil)
         self.navigationController?.pushViewController(nav, animated: false)
-          self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.black
-     
     }
     
     func Login()
@@ -83,6 +86,7 @@ class ViewController: UIViewController {
         var paramerters = [String:Any]()
         if(viewsToShake.count == 0)
         {
+            
             paramerters = ["login": viewUserName.txtFieldName.text!, "password": viewPassword.txtFieldName.text!,"user_type":"technician","device_id":((UserDefaults.standard.object(forKey: "deviceToken") != nil) ?  (UserDefaults.standard.object(forKey: "deviceToken")!) : "6998E359CA0619C7B90772DEF7A70F463BF97A5F559E328E88581C802851724F"),"device_type":"ios"] as [String : Any]
             
          //    paramerters = ["login": viewUserName.txtFieldName.text!, "password": viewPassword.txtFieldName.text!,"user_type":"technician","device_id":(UserDefaults.standard.object(forKey: "deviceToken")!),"device_type":"ios"] as [String : Any]

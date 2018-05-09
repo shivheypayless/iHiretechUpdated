@@ -240,7 +240,15 @@ class PersonalDetailsViewController: UIViewController {
             self.viewState.detailTextField.text = userProfile["state"] as? String
             if !(userProfile["zip_code"] is NSNull)
             {
-              self.viewZip.detailTextField.text = String(userProfile["zip_code"] as! Int)
+               if (userProfile["zip_code"] is String)
+                {
+                    self.viewZip.detailTextField.text = userProfile["zip_code"] as! String
+                }
+                else
+               {
+                self.viewZip.detailTextField.text = String(userProfile["zip_code"] as! Int)
+                }
+              
             }
             if let contact = (userProfile["contact_number_1"] as? String)
             {
@@ -312,7 +320,16 @@ class PersonalDetailsViewController: UIViewController {
         var paramerters = [String:Any]()
         if(viewsToShake.count == 0)
         {
-        paramerters = ["username": viewUserName.detailTextField.text!, "first_name": viewFirstname.detailTextField.text!, "last_name":viewLastName.detailTextField.text!, "date_of_birth": viewDate.detailTextField.text!, "address_line_1": viewAdressLineOne.detailTextField.text!,"address_line_2":viewAddressLineTwo.detailTextField.text!,"contact_number_1":viewContactNumber.detailTextField.text!,"contact_number_extension":viewExtension.detailTextField.text!,"city":viewCity.detailTextField.text!,"state":viewState.detailTextField.text!,"zip_code":viewZip.detailTextField.text!,"country":viewCountry.detailTextField.text!] as [String : Any]
+            if viewExtension.detailTextField.text! != ""
+            {
+                 paramerters = ["username": viewUserName.detailTextField.text!, "first_name": viewFirstname.detailTextField.text!, "last_name":viewLastName.detailTextField.text!, "date_of_birth": viewDate.detailTextField.text!, "address_line_1": viewAdressLineOne.detailTextField.text!,"address_line_2":viewAddressLineTwo.detailTextField.text!,"contact_number_1":viewContactNumber.detailTextField.text!,"contact_number_extension":Int(viewExtension.detailTextField.text!)!,"city":viewCity.detailTextField.text!,"state":viewState.detailTextField.text!,"zip_code":Int(viewZip.detailTextField.text!)!,"country":viewCountry.detailTextField.text!] as [String : Any]
+            }
+            else
+            {
+                 paramerters = ["username": viewUserName.detailTextField.text!, "first_name": viewFirstname.detailTextField.text!, "last_name":viewLastName.detailTextField.text!, "date_of_birth": viewDate.detailTextField.text!, "address_line_1": viewAdressLineOne.detailTextField.text!,"address_line_2":viewAddressLineTwo.detailTextField.text!,"contact_number_1":viewContactNumber.detailTextField.text!,"contact_number_extension":viewExtension.detailTextField.text!,"city":viewCity.detailTextField.text!,"state":viewState.detailTextField.text!,"zip_code":Int(viewZip.detailTextField.text!)!,"country":viewCountry.detailTextField.text!] as [String : Any]
+            }
+       
+            print(paramerters)
         WebAPI().callJSONWebApi(API.updatePersonalDetails, withHTTPMethod: .post, forPostParameters: paramerters, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)
             if let message = serviceResponse["msg"] as? String
@@ -483,15 +500,13 @@ extension PersonalDetailsViewController : UITextFieldDelegate
 //
    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
-        
-        if viewContactNumber.detailTextField.text! == nil {
-            viewContactNumber.detailTextField.text! = ""
-        }
-        
-        if viewUserName.detailTextField.text! == " "{
+       
+        if viewUserName.detailTextField.text!.characters.contains(" "){
             viewUserName.detailTextField.text! = viewUserName.detailTextField.text!.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range: nil)
         }
         
+        if !(viewContactNumber.detailTextField.text!.isEmpty) {
+      
             let  char = string.cString(using: String.Encoding.utf8)!
             let isBackSpace = strcmp(char, "\\b")
             
@@ -513,7 +528,7 @@ extension PersonalDetailsViewController : UITextFieldDelegate
                     return false
                 }
                 }
-           
+            }
         }
          return true
         

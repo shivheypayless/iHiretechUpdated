@@ -808,7 +808,7 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
     }
     
     @objc func getDocument(_ sender: UIButton) {
-        let downloadUrl = "https://app.ihiretech.hplbusiness.com/api/technician/work_order_document/\(((self.documentList[sender.tag])["work_order_document_id"] as! Int))"
+        let downloadUrl = "https://dev.techadox.com/api/technician/work_order_document/\(((self.documentList[sender.tag])["work_order_document_id"] as! Int))"
         let destination = self.storyboard?.instantiateViewController(withIdentifier: "DocumentViewController") as! DocumentViewController
         destination.url = URL(string: downloadUrl)!
         self.navigationController?.pushViewController(destination, animated: true)

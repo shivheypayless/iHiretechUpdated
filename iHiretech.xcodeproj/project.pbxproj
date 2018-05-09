@@ -12,7 +12,6 @@
 		728928F51FA1A211007686AE /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728928F41FA1A211007686AE /* ResetPasswordViewController.swift */; };
 		728928F81FA1A25D007686AE /* ChangePaawordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728928F71FA1A25D007686AE /* ChangePaawordViewController.swift */; };
 		8403A6BD1FA0610200222ED9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403A6BC1FA0610200222ED9 /* AppDelegate.swift */; };
-		8403A6BF1FA0610200222ED9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403A6BE1FA0610200222ED9 /* ViewController.swift */; };
 		8403A6C21FA0610200222ED9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8403A6C01FA0610200222ED9 /* Main.storyboard */; };
 		8403A6C51FA0610200222ED9 /* iHiretech.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8403A6C31FA0610200222ED9 /* iHiretech.xcdatamodeld */; };
 		8403A6C71FA0610200222ED9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8403A6C61FA0610200222ED9 /* Assets.xcassets */; };
@@ -100,6 +99,7 @@
 		8463A9FB2015BB7400702C9C /* TaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8463A9F92015BB7400702C9C /* TaskListTableViewCell.swift */; };
 		8463A9FC2015BB7400702C9C /* TaskListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8463A9FA2015BB7400702C9C /* TaskListTableViewCell.xib */; };
 		8463A9FE2015BD9700702C9C /* StartTrackingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8463A9FD2015BD9700702C9C /* StartTrackingView.xib */; };
+		8468738B20A1A97800FDB616 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468738A20A1A97800FDB616 /* ViewController.swift */; };
 		846F39E7200BB97300444853 /* SearchOrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F39E6200BB97300444853 /* SearchOrderDetailViewController.swift */; };
 		846F39EA200BCAC400444853 /* SearchServiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F39E8200BCAC400444853 /* SearchServiceTableViewCell.swift */; };
 		846F39EB200BCAC400444853 /* SearchServiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846F39E9200BCAC400444853 /* SearchServiceTableViewCell.xib */; };
@@ -182,7 +182,6 @@
 		728928F71FA1A25D007686AE /* ChangePaawordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePaawordViewController.swift; sourceTree = "<group>"; };
 		8403A6B91FA0610200222ED9 /* iHiretech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iHiretech.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8403A6BC1FA0610200222ED9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8403A6BE1FA0610200222ED9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "../New Group/ViewController.swift"; sourceTree = "<group>"; };
 		8403A6C11FA0610200222ED9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8403A6C41FA0610200222ED9 /* iHiretech.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iHiretech.xcdatamodel; sourceTree = "<group>"; };
 		8403A6C61FA0610200222ED9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -285,6 +284,7 @@
 		8463A9F92015BB7400702C9C /* TaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTableViewCell.swift; sourceTree = "<group>"; };
 		8463A9FA2015BB7400702C9C /* TaskListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListTableViewCell.xib; sourceTree = "<group>"; };
 		8463A9FD2015BD9700702C9C /* StartTrackingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartTrackingView.xib; sourceTree = "<group>"; };
+		8468738A20A1A97800FDB616 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		846F39E6200BB97300444853 /* SearchOrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrderDetailViewController.swift; sourceTree = "<group>"; };
 		846F39E8200BCAC400444853 /* SearchServiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServiceTableViewCell.swift; sourceTree = "<group>"; };
 		846F39E9200BCAC400444853 /* SearchServiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchServiceTableViewCell.xib; sourceTree = "<group>"; };
@@ -438,6 +438,7 @@
 			isa = PBXGroup;
 			children = (
 				728928F11FA1A1BF007686AE /* SignUpViewController.swift */,
+				8468738A20A1A97800FDB616 /* ViewController.swift */,
 			);
 			path = "SignUp VC";
 			sourceTree = "<group>";
@@ -565,7 +566,6 @@
 				8490D5EE1FB2D58400623553 /* Resend OTP VC */,
 				84416A9C1FB1F39300C45E00 /* Verify OTP */,
 				728928F01FA1A165007686AE /* SignUp VC */,
-				84368E861FA0B3A800258F57 /* Login CV */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -644,14 +644,6 @@
 				84368E801FA07F9000258F57 /* Quicksand-Regular.ttf */,
 			);
 			path = Font;
-			sourceTree = "<group>";
-		};
-		84368E861FA0B3A800258F57 /* Login CV */ = {
-			isa = PBXGroup;
-			children = (
-				8403A6BE1FA0610200222ED9 /* ViewController.swift */,
-			);
-			path = "Login CV";
 			sourceTree = "<group>";
 		};
 		843D5D471FA352AB00292565 /* Form Field */ = {
@@ -1237,7 +1229,6 @@
 				84580A071FECF77800A7FCBF /* WorkOrderDetailsViewController.swift in Sources */,
 				846F39EA200BCAC400444853 /* SearchServiceTableViewCell.swift in Sources */,
 				844DE1E420170948007C6C9D /* BlendedRateTableViewCell.swift in Sources */,
-				8403A6BF1FA0610200222ED9 /* ViewController.swift in Sources */,
 				8450AACD20037B4000675996 /* EarningTableViewCell.swift in Sources */,
 				84289ED42010B22400421B54 /* RatingFilterTableViewCell.swift in Sources */,
 				846F39E7200BB97300444853 /* SearchOrderDetailViewController.swift in Sources */,
@@ -1294,6 +1285,7 @@
 				8450AAB61FFBA42700675996 /* ScheduleInformationTableViewCell.swift in Sources */,
 				8490D5F01FB2D5AF00623553 /* ResendOtpViewController.swift in Sources */,
 				844CF0DA1FCEDA7F00D83B44 /* ForgotViewController.swift in Sources */,
+				8468738B20A1A97800FDB616 /* ViewController.swift in Sources */,
 				728928F51FA1A211007686AE /* ResetPasswordViewController.swift in Sources */,
 				8403A6C51FA0610200222ED9 /* iHiretech.xcdatamodeld in Sources */,
 				CA400F56206A2FA7001526EC /* LocationShareModel.m in Sources */,

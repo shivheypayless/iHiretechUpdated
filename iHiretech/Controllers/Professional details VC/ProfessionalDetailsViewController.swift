@@ -166,7 +166,7 @@ class ProfessionalDetailsViewController: UIViewController , UIDocumentMenuDelega
         {
             viewLicences.removeTagView(tagView)
             self.setLicenes.remove(at: tagView.tag)
-            self.licenesId.remove(at: tagView.tag)
+            self.setLicenes.remove(at: tagView.tag)
         }
     }
     
@@ -613,10 +613,7 @@ extension ProfessionalDetailsViewController : UITableViewDelegate , UITableViewD
             {
                cell.lblState.text = ((self.getLicenes[indexPath.row] as? NSDictionary)?.object(forKey: "licenses_name") as? String)!
             }
-            else
-            {
-                cell.lblState.text = "No Data Found"
-            }
+           
             
             return cell
         }
@@ -662,14 +659,17 @@ extension ProfessionalDetailsViewController : UITableViewDelegate , UITableViewD
         }
         else if tableView == tblLicences
         {
-            cell.lblState.text = ((self.getLicenes[indexPath.row] as? NSDictionary)?.object(forKey: "licenses_master_name") as? String)!
+            cell.lblState.text = ((self.getLicenes[indexPath.row] as? NSDictionary)?.object(forKey: "licenses_name") as? String)!
             self.licenes = cell.lblState.text!
             if !(self.setLicenes.contains(self.licenes))
             {
                 self.viewLicences.addTag(self.licenes)
-                self.setCertificates.append(self.licenes)
+                self.setLicenes.append(self.licenes)
                 print(self.setLicenes)
-                self.licenesId.append(String((self.getLicenes[indexPath.row] as? NSDictionary)?.object(forKey: "licenses_master_id") as! Int))
+                if !(self.licenesId.contains(String((self.getLicenes[indexPath.row] as? NSDictionary)?.object(forKey: "licenses_master_id") as! Int)))
+                {
+                 self.licenesId.append(String((self.getLicenes[indexPath.row] as? NSDictionary)?.object(forKey: "licenses_master_id") as! Int))
+                }
                 print(self.licenesId)
             }
             self.cnstLicenesHeight.constant = 0
