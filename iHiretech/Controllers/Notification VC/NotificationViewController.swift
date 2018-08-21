@@ -33,6 +33,7 @@ class NotificationViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
          self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        self.navigationController?.isNavigationBarHidden = false
     }
         
     

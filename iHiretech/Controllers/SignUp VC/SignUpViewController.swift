@@ -25,7 +25,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.isNavigationBarHidden = false
         viewPassWord.txtFieldName.isSecureTextEntry = true
         viewConfirmPass.txtFieldName.isSecureTextEntry = true
         let iconsSize = CGRect(x: 0, y: 0, width: 12, height: 12)

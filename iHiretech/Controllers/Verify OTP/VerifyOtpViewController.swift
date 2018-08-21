@@ -37,7 +37,11 @@ class VerifyOtpViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     @IBAction func Btn_VerifyOtpAction(_ sender: UIButton)
     {
         var paramerters = [String:Any]()

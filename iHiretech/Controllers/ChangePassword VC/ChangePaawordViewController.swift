@@ -41,6 +41,8 @@ class ChangePaawordViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+       
+            self.navigationController?.isNavigationBarHidden = false
     }
 
     @IBAction func btn_BackAction(_ sender: UIBarButtonItem)

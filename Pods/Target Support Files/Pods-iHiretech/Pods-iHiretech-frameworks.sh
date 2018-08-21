@@ -91,6 +91,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/AFViewShaker/AFViewShaker.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/DAOSearchBar/DAOSearchBar.framework"
   install_framework "$BUILT_PRODUCTS_DIR/HCSStarRatingView/HCSStarRatingView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KLCPopup/KLCPopup.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MBProgressHUD/MBProgressHUD.framework"
@@ -104,6 +105,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/AFViewShaker/AFViewShaker.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/DAOSearchBar/DAOSearchBar.framework"
   install_framework "$BUILT_PRODUCTS_DIR/HCSStarRatingView/HCSStarRatingView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KLCPopup/KLCPopup.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MBProgressHUD/MBProgressHUD.framework"

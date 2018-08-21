@@ -80,7 +80,6 @@ class SearchOrderDetailViewController: UIViewController {
             name: NSNotification.Name.UIKeyboardWillShow,
             object: nil
         )
-       
         
         NotificationCenter.default.addObserver(
             self,
@@ -98,7 +97,7 @@ class SearchOrderDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         self.tabCollectionView.register(UINib(nibName: "TabOrderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TabOrderCollectionViewCell")
-       
+            self.navigationController?.isNavigationBarHidden = false
         getWorkList()
     }
     
@@ -775,7 +774,15 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
     @objc func CustomerRatingDetail(_ sender: UIButton)
     {
         let destination = RatingTableViewController(style: .plain)
-        destination.customerId = Int((self.getWorkListData)["customer_id"] as! String)!
+        if ((self.getWorkListData)["customer_id"] is String)
+        {
+          //  destination.customerId = (self.getWorkListData)["customer_id"] as! String
+        }
+        else
+        {
+          destination.customerId = Int((self.getWorkListData)["customer_id"] as! String)!
+        }
+        
         let nav = UINavigationController(rootViewController: destination)
         let transition = CATransition()
         transition.duration = 0.5
@@ -808,7 +815,7 @@ extension SearchOrderDetailViewController : UITableViewDelegate , UITableViewDat
     }
     
     @objc func getDocument(_ sender: UIButton) {
-        let downloadUrl = "https://dev.techadox.com/api/technician/work_order_document/\(((self.documentList[sender.tag])["work_order_document_id"] as! Int))"
+        let downloadUrl = "https://techadoxfinal.hplbusiness.com/api/technician/work_order_document/\(((self.documentList[sender.tag])["work_order_document_id"] as! Int))"
         let destination = self.storyboard?.instantiateViewController(withIdentifier: "DocumentViewController") as! DocumentViewController
         destination.url = URL(string: downloadUrl)!
         self.navigationController?.pushViewController(destination, animated: true)

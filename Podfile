@@ -19,4 +19,5 @@ pod 'AFViewShaker'
 pod 'TagListView', '~> 1.0'
 pod 'Socket.IO-Client-Swift'
 pod 'HCSStarRatingView'
+pod 'DAOSearchBar'
 end

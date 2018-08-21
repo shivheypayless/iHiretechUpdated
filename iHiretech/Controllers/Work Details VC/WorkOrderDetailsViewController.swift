@@ -157,10 +157,12 @@ class WorkOrderDetailsViewController: UIViewController , UIWebViewDelegate , URL
         // Dispose of any resources that can be recreated.
     }
     
+ 
     
     override func viewWillAppear(_ animated: Bool) {
         
         self.tabsCollectionView.register(UINib(nibName: "TabOrderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TabOrderCollectionViewCell")
+         self.navigationController?.isNavigationBarHidden = false
 //        if let flowLayout = tabsCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
 //            flowLayout.estimatedItemSize = CGSize(width: 1,height: 1)
 //        }
@@ -2025,7 +2027,7 @@ extension WorkOrderDetailsViewController : UITableViewDelegate , UITableViewData
     
     
      @objc func getDocument(_ sender: UIButton) {
-        let downloadUrl = "https://dev.techadox.com/api/technician/work_order_document/\(((self.documentList[sender.tag])["work_order_document_id"] as! Int))"
+        let downloadUrl = "https://techadoxfinal.hplbusiness.com/api/technician/work_order_document/\(((self.documentList[sender.tag])["work_order_document_id"] as! Int))"
         let destination = self.storyboard?.instantiateViewController(withIdentifier: "DocumentViewController") as! DocumentViewController
         destination.url = URL(string: downloadUrl)!
         self.navigationController?.pushViewController(destination, animated: true)

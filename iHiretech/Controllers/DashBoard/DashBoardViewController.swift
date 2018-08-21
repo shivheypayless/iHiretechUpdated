@@ -86,6 +86,7 @@ class DashBoardViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+            self.navigationController?.isNavigationBarHidden = false
     }
     
     @objc func getUnreadCount()
@@ -513,7 +514,7 @@ extension DashBoardViewController : UITableViewDelegate , UITableViewDataSource
     }
 
     @objc func getDocument(_ sender: UIButton) {
-        let downloadUrl = "https://dev.techadox.com/api/technician/download_tech_doc/\(((self.getProfileDetailsDict)["user_id"] as! Int))/\(sender.tag)"
+        let downloadUrl = "https://techadoxfinal.hplbusiness.com/api/technician/download_tech_doc/\(((self.getProfileDetailsDict)["user_id"] as! Int))/\(sender.tag)"
         let destination = self.storyboard?.instantiateViewController(withIdentifier: "DocumentViewController") as! DocumentViewController
         destination.url = URL(string: downloadUrl)!
         self.navigationController?.pushViewController(destination, animated: true)

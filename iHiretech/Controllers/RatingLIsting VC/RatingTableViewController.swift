@@ -44,6 +44,7 @@ class RatingTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+            self.navigationController?.isNavigationBarHidden = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,6 +55,7 @@ class RatingTableViewController: UITableViewController {
     
     func getRatingList()
     {
+        
         let parameter = ["id": self.customerId] as [String:Any]
         WebAPI().callJSONWebApi(API.ratingTechnicianList, withHTTPMethod: .get, forPostParameters: parameter, shouldIncludeAuthorizationHeader: true, actionAfterServiceResponse: { (serviceResponse) in
             print(serviceResponse)

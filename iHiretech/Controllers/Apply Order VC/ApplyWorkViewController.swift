@@ -72,6 +72,12 @@ class ApplyWorkViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     @IBAction func btn_backAction(_ sender: UIBarButtonItem) {
          self.navigationController?.popViewController(animated: true)
     }

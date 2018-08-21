@@ -1,6 +1,7 @@
 PODS:
   - AFViewShaker (0.0.5)
   - Alamofire (4.2.0)
+  - DAOSearchBar (1.0.4)
   - GoogleMaps (2.3.1):
     - GoogleMaps/Maps (= 2.3.1)
   - GoogleMaps/Base (2.3.1)
@@ -22,6 +23,7 @@ PODS:
 DEPENDENCIES:
   - AFViewShaker
   - Alamofire (~> 4.2.0)
+  - DAOSearchBar
   - GoogleMaps
   - GooglePlaces
   - HCSStarRatingView
@@ -46,6 +48,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFViewShaker: fc201fa4c0030e3f4875b9f84ac0763828518b00
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
+  DAOSearchBar: b1f2024c2e7ca776ae67f70170f0c5b8f9c427a1
   GoogleMaps: c66a71058b9b1294bcdd5463a68e357fa50c079f
   GooglePlaces: 4a7b22debfa1af65017b82943431822607e45201
   HCSStarRatingView: 1d18f79654735514cd6f00e6d90e38cb6320dc31
@@ -58,6 +61,6 @@ SPEC CHECKSUMS:
   TagListView: 999e1df50c0f6b9ca927fae705c86a7e3b6ee9ba
   TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
 
-PODFILE CHECKSUM: 17607bbdd91fcd1c6298fcb16df8837b4d0b8ed7
+PODFILE CHECKSUM: 1fa643f5e8f373840a7790b97bfea41fcb5a51b1
 
 COCOAPODS: 1.2.1

@@ -61,6 +61,8 @@ class SearchWorkOrderTableViewController: UITableViewController , GMSMapViewDele
         super.viewWillAppear(animated)
         getWorkList()
          self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        
+            self.navigationController?.isNavigationBarHidden = false
     }
 
     override func didReceiveMemoryWarning() {

@@ -22,9 +22,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         viewPassword.txtFieldName.isSecureTextEntry = true
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.barTintColor = UIColor.black
-   //      self.navigationController?.isNavigationBarHidden = true
+        
         let iconsSize = CGRect(x: 0, y: 0, width: 12, height: 12)
       //  let attributedString = NSMutableAttributedString(string: "SIGN IN ")
          let  attributedString = NSMutableAttributedString(string: "SIGN IN ", attributes: ([NSAttributedStringKey.font : UIFont.systemFont(ofSize: 12.0), NSAttributedStringKey.foregroundColor: UIColor.white]))
@@ -41,6 +39,10 @@ class ViewController: UIViewController {
       
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+     self.navigationController?.isNavigationBarHidden = true
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

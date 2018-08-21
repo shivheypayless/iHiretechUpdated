@@ -26,6 +26,12 @@ class DocumentViewController: UIViewController, UIWebViewDelegate {
         request.setValue(UserDefaults.standard.object(forKey: "token")! as! String, forHTTPHeaderField: "Authorization")
         self.viewDocument.loadRequest(request)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = false
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

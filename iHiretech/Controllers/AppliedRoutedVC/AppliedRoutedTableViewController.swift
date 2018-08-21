@@ -34,6 +34,7 @@ class AppliedRoutedTableViewController: UITableViewController {
         super.viewWillAppear(animated)
          getWorkList()
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+         self.navigationController?.isNavigationBarHidden = false
     }
     
     override func didReceiveMemoryWarning() {

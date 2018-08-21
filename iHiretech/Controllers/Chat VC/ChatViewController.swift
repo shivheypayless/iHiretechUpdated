@@ -35,6 +35,7 @@ class ChatViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
        // chatRoom.setupNetworkCommunication()
         if self.notificationList.count == 0
         {

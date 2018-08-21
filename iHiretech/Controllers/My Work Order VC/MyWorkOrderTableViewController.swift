@@ -29,6 +29,7 @@ class MyWorkOrderTableViewController: UITableViewController {
     var noDataFOund = UILabel()
     override func viewDidLoad() {
         super.viewDidLoad()
+         self.navigationController?.isNavigationBarHidden = false
         self.tableView.dataSource = nil
         self.tableView.delegate = nil
         self.navigationItem.title = "My Work Order"
@@ -54,6 +55,8 @@ class MyWorkOrderTableViewController: UITableViewController {
         super.viewWillAppear(animated)
          getWorkList()
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+       
+            self.navigationController?.isNavigationBarHidden = false
     }
     
     func getWorkList()

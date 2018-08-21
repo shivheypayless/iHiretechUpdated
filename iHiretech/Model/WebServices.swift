@@ -73,7 +73,8 @@ class WebAPI {
   //  private let baseurl = "http://172.16.2.62:8001/"//local
   //   private let baseurl = "http://172.16.2.68:8001/" // local
   // private let baseurl = "https://app.ihiretech.hplbusiness.com/" //testbed
-    private let baseurl = "https://dev.techadox.com/"//live
+    private let baseurl = "https://techadoxfinal.hplbusiness.com/" //testbed new
+  //  private let baseurl = "https://dev.techadox.com/"//live
    // lazy var profileImgs = "\(baseurl)profileImgs/"
   //  lazy var postImgs = "\(baseurl)postImgs/"
     
@@ -343,10 +344,17 @@ class WebAPI {
                     {
                         if (responseData["msg"] as? String) != nil
                         {
+                            if (responseData["msg"] as? String) == "User with this email/username  does not exist"
+                            {
+                            AListAlertController.shared.presentAlertController(message: responseData["msg"] as! String, completionHandler: nil)
+                            }
+                            else
+                            {
                           //  AListAlertController.shared.presentAlertController(message: responseData["msg"] as! String, completionHandler: nil)
                             let storyboard = UIStoryboard(name: "Main", bundle: nil)
                             let destination = storyboard.instantiateViewController(withIdentifier: "RootNavViewController") as! RootNavViewController
                             UIApplication.shared.keyWindow!.rootViewController = destination
+                            }
                         }
                     }
                     else {

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'CB4001ED2E7B7E24ADB78A5B93CD1093'
-               BlueprintName = 'TPKeyboardAvoiding'
+               BlueprintIdentifier = '49D713CD053BA364F13FD5F9B8E46A00'
+               BlueprintName = 'DAOSearchBar'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'TPKeyboardAvoiding.framework'>
+               BuildableName = 'DAOSearchBar.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

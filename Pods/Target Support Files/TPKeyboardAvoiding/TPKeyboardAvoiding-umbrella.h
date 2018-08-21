@@ -13,7 +13,7 @@
 #import "TPKeyboardAvoidingCollectionView.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "TPKeyboardAvoidingTableView.h"
-#import "UIswipeView+TPKeyboardAvoidingAdditions.h"
+#import "UIScrollView+TPKeyboardAvoidingAdditions.h"
 
 FOUNDATION_EXPORT double TPKeyboardAvoidingVersionNumber;
 FOUNDATION_EXPORT const unsigned char TPKeyboardAvoidingVersionString[];
